@@ -1,0 +1,481 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Minecraft Item Data",
+    "definitions": {
+        "stackSizeEnum": {
+            "type": "integer",
+            "enum": [1, 16, 64]
+        },
+        "toolEnum": {
+            "type": "string",
+            "enum": ["sword", "axe", "pickaxe", "shovel", "hoe", "shears", "none", "any"]
+        },
+        "enchantmentEnum": {
+            "type": "string",
+            "enum": [
+                "aqua_affinity",
+                "bane_of_arthropods",
+                "binding_curse",
+                "blast_protection",
+                "breach",
+                "channeling",
+                "density",
+                "depth_strider",
+                "efficiency",
+                "feather_falling",
+                "fire_aspect",
+                "fire_protection",
+                "flame",
+                "fortune",
+                "frost_walker",
+                "impaling",
+                "infinity",
+                "knockback",
+                "looting",
+                "loyalty",
+                "luck_of_the_sea",
+                "lunge",
+                "lure",
+                "mending",
+                "multishot",
+                "piercing",
+                "power",
+                "projectile_protection",
+                "protection",
+                "punch",
+                "quick_charge",
+                "respiration",
+                "riptide",
+                "sharpness",
+                "silk_touch",
+                "smite",
+                "soul_speed",
+                "sweeping_edge",
+                "swift_sneak",
+                "thorns",
+                "unbreaking",
+                "vanishing_curse",
+                "wind_burst"
+            ]
+        },
+        "biomeEnum": {
+            "type": "string",
+            "enum": [
+                "badlands",
+                "bamboo_jungle",
+                "basalt_deltas",
+                "beach",
+                "birch_forest",
+                "cherry_grove",
+                "cold_ocean",
+                "crimson_forest",
+                "dark_forest",
+                "deep_cold_ocean",
+                "deep_dark",
+                "deep_frozen_ocean",
+                "deep_lukewarm_ocean",
+                "deep_ocean",
+                "desert",
+                "dripstone_caves",
+                "end_barrens",
+                "end_highlands",
+                "end_midlands",
+                "eroded_badlands",
+                "flower_forest",
+                "forest",
+                "frozen_ocean",
+                "frozen_peaks",
+                "frozen_river",
+                "grove",
+                "ice_spikes",
+                "jagged_peaks",
+                "jungle",
+                "lukewarm_ocean",
+                "lush_caves",
+                "mangrove_swamp",
+                "meadow",
+                "mushroom_fields",
+                "nether_wastes",
+                "ocean",
+                "old_growth_birch_forest",
+                "old_growth_pine_taiga",
+                "old_growth_spruce_taiga",
+                "pale_garden",
+                "plains",
+                "river",
+                "savanna",
+                "savanna_plateau",
+                "small_end_islands",
+                "snowy_beach",
+                "snowy_plains",
+                "snowy_slopes",
+                "snowy_taiga",
+                "soul_sand_valley",
+                "sparse_jungle",
+                "stony_peaks",
+                "stony_shore",
+                "sunflower_plains",
+                "swamp",
+                "taiga",
+                "the_end",
+                "the_void",
+                "warm_ocean",
+                "warped_forest",
+                "windswept_forest",
+                "windswept_gravelly_hills",
+                "windswept_hills",
+                "windswept_savanna",
+                "wooded_badlands"
+            ]
+        },
+        "dimensionEnum": {
+            "type": "string",
+            "enum": ["overworld", "nether", "the_end"]
+        },
+        "structureEnum": {
+            "type": "string",
+            "enum": [
+                "ancient_city",
+                "bastion_remnant",
+                "buried_treasure",
+                "desert_pyramid",
+                "end_city",
+                "fortress",
+                "igloo",
+                "jungle_temple",
+                "mineshaft",
+                "monster_room",
+                "nether_fossil",
+                "ocean_monument",
+                "ocean_ruin",
+                "pillager_outpost",
+                "ruined_portal",
+                "shipwreck",
+                "stronghold",
+                "swamp_hut",
+                "trail_ruins",
+                "trial_chambers",
+                "village_desert",
+                "village_plains",
+                "village_savanna",
+                "village_snowy",
+                "village_taiga",
+                "woodland_mansion"
+            ]
+        },
+        "mobEnum": {
+            "type": "string",
+            "enum": [
+                "acacia_boat",
+                "acacia_chest_boat",
+                "allay",
+                "area_effect_cloud",
+                "armadillo",
+                "armor_stand",
+                "arrow",
+                "axolotl",
+                "bamboo_chest_raft",
+                "bamboo_raft",
+                "bat",
+                "bee",
+                "birch_boat",
+                "birch_chest_boat",
+                "blaze",
+                "block_display",
+                "bogged",
+                "breeze",
+                "breeze_wind_charge",
+                "camel",
+                "camel_husk",
+                "cat",
+                "cave_spider",
+                "cherry_boat",
+                "cherry_chest_boat",
+                "chest_minecart",
+                "chicken",
+                "cod",
+                "command_block_minecart",
+                "copper_golem",
+                "cow",
+                "creaking",
+                "creeper",
+                "dark_oak_boat",
+                "dark_oak_chest_boat",
+                "dolphin",
+                "donkey",
+                "dragon_fireball",
+                "drowned",
+                "egg",
+                "elder_guardian",
+                "end_crystal",
+                "ender_dragon",
+                "ender_pearl",
+                "enderman",
+                "endermite",
+                "evoker",
+                "evoker_fangs",
+                "experience_bottle",
+                "experience_orb",
+                "eye_of_ender",
+                "falling_block",
+                "fireball",
+                "firework_rocket",
+                "fishing_bobber",
+                "fox",
+                "frog",
+                "furnace_minecart",
+                "ghast",
+                "giant",
+                "glow_item_frame",
+                "glow_squid",
+                "goat",
+                "guardian",
+                "happy_ghast",
+                "hoglin",
+                "hopper_minecart",
+                "horse",
+                "husk",
+                "illusioner",
+                "interaction",
+                "iron_golem",
+                "item",
+                "item_display",
+                "item_frame",
+                "jungle_boat",
+                "jungle_chest_boat",
+                "leash_knot",
+                "lightning_bolt",
+                "lingering_potion",
+                "llama",
+                "llama_spit",
+                "magma_cube",
+                "mangrove_boat",
+                "mangrove_chest_boat",
+                "mannequin",
+                "marker",
+                "minecart",
+                "mooshroom",
+                "mule",
+                "nautilus",
+                "oak_boat",
+                "oak_chest_boat",
+                "ocelot",
+                "ominous_item_spawner",
+                "painting",
+                "pale_oak_boat",
+                "pale_oak_chest_boat",
+                "panda",
+                "parched",
+                "parrot",
+                "phantom",
+                "pig",
+                "piglin",
+                "piglin_brute",
+                "pillager",
+                "player",
+                "polar_bear",
+                "pufferfish",
+                "rabbit",
+                "ravager",
+                "salmon",
+                "sheep",
+                "shulker",
+                "shulker_bullet",
+                "silverfish",
+                "skeleton",
+                "skeleton_horse",
+                "slime",
+                "small_fireball",
+                "sniffer",
+                "snow_golem",
+                "snowball",
+                "spawner_minecart",
+                "spectral_arrow",
+                "spider",
+                "splash_potion",
+                "spruce_boat",
+                "spruce_chest_boat",
+                "squid",
+                "stray",
+                "strider",
+                "tadpole",
+                "text_display",
+                "tnt",
+                "tnt_minecart",
+                "trader_llama",
+                "trident",
+                "tropical_fish",
+                "turtle",
+                "vex",
+                "villager",
+                "vindicator",
+                "wandering_trader",
+                "warden",
+                "wind_charge",
+                "witch",
+                "wither",
+                "wither_skeleton",
+                "wither_skull",
+                "wolf",
+                "zoglin",
+                "zombie",
+                "zombie_horse",
+                "zombie_nautilus",
+                "zombie_villager",
+                "zombified_piglin"
+            ]
+        },
+        "villagerProfessionEnum": {
+            "type": "string",
+            "enum": [
+                "armorer",
+                "butcher",
+                "cartographer",
+                "cleric",
+                "farmer",
+                "fisherman",
+                "fletcher",
+                "leatherworker",
+                "librarian",
+                "mason",
+                "shepherd",
+                "toolsmith",
+                "weaponsmith"
+            ]
+        }
+    },
+    "type": "object",
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "displayName": {
+                "type": "string"
+            },
+            "displayNameGerman": {
+                "type": "string"
+            },
+            "isBlock": {
+                "type": "boolean"
+            },
+            "stackSize": {
+                "$ref": "#/definitions/stackSizeEnum"
+            },
+            "renewable": {
+                "type": "boolean"
+            },
+            "survivalObtainable": {
+                "type": "boolean"
+            },
+            "dealsDamage": {
+                "type": "boolean"
+            },
+            "difficultyToObtain": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10
+            },
+            "enchantments": {
+                "enchantments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/enchantmentEnum"
+                    }
+                }
+            },
+            "edible": {
+                "type": "boolean"
+            },
+            "flammable": {
+                "type": "boolean"
+            },
+            "craftable": {
+                "type": "boolean"
+            },
+            "blastResistance": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 3600000.0
+            },
+            "hardness": {
+                "type": "number",
+                "minimum": -1.0,
+                "maximum": 1000.0
+            },
+            "tool": {
+                "$ref": "#/definitions/toolEnum"
+            },
+            "obtaining": {
+                "type": "object",
+                "properties": {
+                    "naturalGeneration": {
+                        "type": "object",
+                        "properties": {
+                            "biomes": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/biomeEnum"
+                                }
+                            },
+                            "dimensions": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/dimensionEnum"
+                                }
+                            },
+                            "structures": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/structureEnum"
+                                }
+                            }
+                        },
+                        "required": ["biomes", "structures", "dimensions"]
+                    },
+                    "loot": {
+                        "type": "object",
+                        "properties": {
+                            "structures": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/structureEnum"
+                                }
+                            },
+                            "mobs": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/mobEnum"
+                                }
+                            }
+                        },
+                        "required": ["structures", "mobs"]
+                    },
+                    "trading": {
+                        "type": "object",
+                        "properties": {
+                            "villager": {
+                                "type": "object",
+                                "properties": {
+                                    "profession": {
+                                        "$ref": "#/definitions/villagerProfessionEnum"
+                                    },
+                                    "level": {
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 5
+                                    }
+                                },
+                                "required": ["profession", "level"]
+                            },
+                            "wanderingTrader": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": ["villager", "wanderingTrader"]
+                    }
+                },
+                "required": ["structures", "dimensions"]
+            }
+        },
+        "required": ["displayName"]
+    }
+}

@@ -1,0 +1,33 @@
+@import "../styles/globals.css";
+
+@layer base {
+  :root {
+    @apply font-sans;
+  }
+
+  body {
+    @apply min-w-[320px] min-h-screen relative m-0 bg-background text-foreground;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.image-pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+@media (prefers-reduced-motion) {
+  *,
+  ::before,
+  ::after {
+    animation: none !important;
+  }
+}

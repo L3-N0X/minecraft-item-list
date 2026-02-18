@@ -1,0 +1,95 @@
+import { serve } from "bun";
+import path from "node:path";
+import fs from "node:fs";
+import index from "./index.html";
+
+const server = serve({
+  routes: {
+    "/*": index,
+
+    "/public/*": async (req) => {
+      const url = new URL(req.url);
+      // Remove leading slash and handle path
+      const relativePath = url.pathname.slice(1); 
+      const filePath = path.join(process.cwd(), relativePath);
+      
+      const file = Bun.file(filePath);
+      if (await file.exists()) {
+        return new Response(file);
+      }
+      return new Response("Not Found", { status: 404 });
+    },
+
+    "/api/items/download": {
+      async GET() {
+        const file = Bun.file("src/data/items.json");
+        return new Response(file, {
+          headers: {
+            "Content-Disposition": 'attachment; filename="items.json"',
+            "Content-Type": "application/json",
+          },
+        });
+      },
+    },
+
+    "/api/items": {
+      async GET() {
+        const data = await Bun.file("src/data/items.json").json();
+        return Response.json(data);
+      },
+      async POST(req) {
+        const body = await req.json();
+        const { id, data, categories: itemCategories } = body;
+        const items = await Bun.file("src/data/items.json").json();
+        items[id] = data;
+        await Bun.write("src/data/items.json", JSON.stringify(items, null, 2));
+
+        if (itemCategories) {
+          const categories = await Bun.file("src/data/categories.json").json();
+          // Remove item from all existing categories
+          for (const catName in categories) {
+            categories[catName] = categories[catName].filter((itemId: string) => itemId !== id);
+          }
+          // Add item to new categories
+          for (const catName of itemCategories) {
+            if (!categories[catName]) categories[catName] = [];
+            if (!categories[catName].includes(id)) {
+              categories[catName].push(id);
+            }
+          }
+          // Clean up empty categories
+          for (const catName in categories) {
+            if (categories[catName].length === 0 && catName !== "Uncategorized") {
+              delete categories[catName];
+            }
+          }
+          await Bun.write("src/data/categories.json", JSON.stringify(categories, null, 2));
+        }
+
+        return Response.json({ success: true });
+      }
+    },
+
+    "/api/categories": {
+      async GET() {
+        const data = await Bun.file("src/data/categories.json").json();
+        return Response.json(data);
+      },
+      async POST(req) {
+        const categories = await req.json();
+        await Bun.write("src/data/categories.json", JSON.stringify(categories, null, 2));
+        return Response.json({ success: true });
+      }
+    },
+  },
+
+  development: process.env.NODE_ENV !== "production" && {
+    // Enable browser hot reloading in development
+    hmr: true,
+
+    // Echo console logs from the browser to the server
+    console: true,
+  },
+});
+
+console.log(`🚀 Server running at ${server.url}`);
