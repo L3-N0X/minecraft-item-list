@@ -4,14 +4,34 @@
     "displayNameGerman": "Akazienholzboot",
     "isBlock": false,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 1,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "tool": "none"
   },
   "acacia_button": {
     "displayName": "Acacia Button",
     "displayNameGerman": "Akazienholzknopf",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "craftable": true,
+    "blastResistance": 0.5,
+    "hardness": 0.5,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": []
+      }
+    }
   },
   "acacia_chest_boat": {
     "displayName": "Acacia Chest Boat",

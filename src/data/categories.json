@@ -1,6 +1,5 @@
 {
   "Uncategorized": [
-    "acacia_boat",
     "acacia_chest_boat",
     "acacia_door",
     "acacia_hanging_sign",
@@ -38,7 +37,6 @@
     "bamboo_door",
     "andesite_wall",
     "acacia_fence",
-    "acacia_button",
     "acacia_slab",
     "acacia_pressure_plate",
     "acacia_fence_gate",
@@ -1514,5 +1512,15 @@
   ],
   "dyed": [
     "black_bed"
+  ],
+  "boat": [
+    "acacia_boat"
+  ],
+  "entity": [
+    "acacia_boat"
+  ],
+  "requires_wood": [
+    "acacia_boat",
+    "acacia_button"
   ]
 }
