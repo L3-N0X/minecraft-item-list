@@ -11,7 +11,14 @@
     "difficultyToObtain": 2,
     "flammable": true,
     "craftable": true,
-    "tool": "none"
+    "tool": "none",
+    "obtaining": {
+      "naturalGeneration": {
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "acacia_button": {
     "displayName": "Acacia Button",
@@ -29,7 +36,10 @@
     "tool": "axe",
     "obtaining": {
       "naturalGeneration": {
-        "structures": []
+        "structures": [],
+        "dimensions": [
+          "overworld"
+        ]
       }
     }
   },
@@ -38,203 +48,644 @@
     "displayNameGerman": "Akazienholztruhenboot",
     "isBlock": false,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 1,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "tool": "none",
+    "obtaining": {
+      "naturalGeneration": {
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "acacia_door": {
     "displayName": "Acacia Door",
     "displayNameGerman": "Akazienholztür",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 3,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "acacia_fence": {
     "displayName": "Acacia Fence",
     "displayNameGerman": "Akazienholzzaun",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 2,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    },
+    "stackSize": 64
   },
   "acacia_fence_gate": {
     "displayName": "Acacia Fence Gate",
     "displayNameGerman": "Akazienholzzauntor",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 2,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "shipwreck",
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    },
+    "stackSize": 64
   },
   "acacia_hanging_sign": {
     "displayName": "Acacia Hanging Sign",
     "displayNameGerman": "Akazienholzhängeschild",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 4,
+    "flammable": false,
+    "craftable": true,
+    "blastResistance": 1,
+    "hardness": 1,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "shipwreck",
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    },
+    "stackSize": 16
   },
   "acacia_leaves": {
     "displayName": "Acacia Leaves",
     "displayNameGerman": "Akazienlaub",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "survivalObtainable": true,
+    "renewable": true,
+    "stackSize": 64,
+    "difficultyToObtain": 3,
+    "flammable": true,
+    "blastResistance": 0.2,
+    "hardness": 0.2,
+    "tool": "shears",
+    "obtaining": {
+      "naturalGeneration": {
+        "biomes": [
+          "savanna",
+          "savanna_plateau",
+          "windswept_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "acacia_log": {
     "displayName": "Acacia Log",
     "displayNameGerman": "Akazienstamm",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "renewable": true,
+    "stackSize": 64,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": false,
+    "blastResistance": 2,
+    "hardness": 2,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "biomes": [
+          "savanna",
+          "savanna_plateau",
+          "windswept_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ],
+        "structures": [
+          "village_savanna"
+        ]
+      },
+      "trading": {
+        "wanderingTrader": true
+      }
+    }
   },
   "acacia_planks": {
     "displayName": "Acacia Planks",
     "displayNameGerman": "Akazienholzbretter",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 2,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      },
+      "loot": {
+        "structures": [
+          "trial_chambers"
+        ]
+      }
+    }
   },
   "acacia_pressure_plate": {
     "displayName": "Acacia Pressure Plate",
     "displayNameGerman": "Akazienholzdruckplatte",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "craftable": true,
+    "blastResistance": 0.5,
+    "hardness": 0.5,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "acacia_sapling": {
     "displayName": "Acacia Sapling",
     "displayNameGerman": "Akaziensetzling",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "blastResistance": 0,
+    "hardness": 0,
+    "tool": "any",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      },
+      "trading": {
+        "wanderingTrader": true
+      }
+    }
   },
   "acacia_shelf": {
     "displayName": "Acacia Shelf",
     "displayNameGerman": "Akazienholzregal",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 2,
+    "tool": "axe"
   },
   "acacia_sign": {
     "displayName": "Acacia Sign",
     "displayNameGerman": "Akazienholzschild",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 16,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "craftable": true,
+    "blastResistance": 1,
+    "hardness": 1,
+    "tool": "axe"
   },
   "acacia_slab": {
     "displayName": "Acacia Slab",
     "displayNameGerman": "Akazienholzstufe",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 2,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "acacia_stairs": {
     "displayName": "Acacia Stairs",
     "displayNameGerman": "Akazienholztreppe",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 2,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "acacia_trapdoor": {
     "displayName": "Acacia Trapdoor",
     "displayNameGerman": "Akazienholzfalltür",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "craftable": true,
+    "blastResistance": 3,
+    "hardness": 3,
+    "tool": "axe"
   },
   "acacia_wood": {
     "displayName": "Acacia Wood",
     "displayNameGerman": "Akazienholz",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 2,
+    "flammable": true,
+    "craftable": true,
+    "blastResistance": 2,
+    "hardness": 2,
+    "tool": "axe",
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": [
+          "village_savanna"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "activator_rail": {
     "displayName": "Activator Rail",
     "displayNameGerman": "Aktivierungsschiene",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 4,
+    "blastResistance": 0.7,
+    "hardness": 0.7,
+    "tool": "pickaxe",
+    "obtaining": {
+      "loot": {
+        "structures": [
+          "mineshaft"
+        ]
+      }
+    },
+    "craftable": true,
+    "stackSize": 64
   },
   "air": {
     "displayName": "Air",
     "displayNameGerman": "Luft",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "blastResistance": 0,
+    "hardness": 0,
+    "tool": "none"
   },
   "allay_spawn_egg": {
     "displayName": "Allay Spawn Egg",
     "displayNameGerman": "Hilfsgeister-Spawn-Ei",
     "isBlock": false,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64
   },
   "allium": {
     "displayName": "Allium",
     "displayNameGerman": "Zierlauch",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 4,
+    "flammable": true,
+    "blastResistance": 0,
+    "hardness": 0,
+    "tool": "any",
+    "obtaining": {
+      "naturalGeneration": {
+        "biomes": [
+          "flower_forest",
+          "meadow"
+        ],
+        "structures": [
+          "woodland_mansion"
+        ],
+        "dimensions": [
+          "overworld"
+        ]
+      },
+      "trading": {
+        "wanderingTrader": true
+      }
+    }
   },
   "amethyst_block": {
     "displayName": "Amethyst Block",
     "displayNameGerman": "Amethystblock",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 4,
+    "craftable": true,
+    "blastResistance": 1.5,
+    "hardness": 1.5,
+    "tool": "pickaxe",
+    "obtaining": {
+      "naturalGeneration": {
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    },
+    "stackSize": 64
   },
   "amethyst_cluster": {
     "displayName": "Amethyst Cluster",
     "displayNameGerman": "Amethysthaufen",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 8,
+    "blastResistance": 1.5,
+    "hardness": 1.5,
+    "tool": "pickaxe",
+    "obtaining": {
+      "naturalGeneration": {
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    },
+    "stackSize": 64
   },
   "amethyst_shard": {
     "displayName": "Amethyst Shard",
     "displayNameGerman": "Amethystscherbe",
     "isBlock": false,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "survivalObtainable": true,
+    "renewable": true,
+    "difficultyToObtain": 4,
+    "obtaining": {
+      "naturalGeneration": {
+        "dimensions": []
+      },
+      "loot": {
+        "structures": [
+          "ancient_city",
+          "trial_chambers"
+        ]
+      }
+    }
   },
   "ancient_debris": {
     "displayName": "Ancient Debris",
     "displayNameGerman": "Antiker Schrott",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "obtaining": {
+      "naturalGeneration": {
+        "dimensions": [
+          "nether"
+        ],
+        "structures": [
+          "bastion_remnant"
+        ]
+      }
+    },
+    "stackSize": 64,
+    "survivalObtainable": true,
+    "difficultyToObtain": 6,
+    "blastResistance": 1200,
+    "hardness": 30,
+    "tool": "pickaxe"
   },
   "andesite": {
     "displayName": "Andesite",
     "displayNameGerman": "Andesit",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 1,
+    "craftable": true,
+    "blastResistance": 6,
+    "hardness": 1.5,
+    "tool": "pickaxe",
+    "obtaining": {
+      "naturalGeneration": {
+        "dimensions": [
+          "overworld"
+        ]
+      }
+    }
   },
   "andesite_slab": {
     "displayName": "Andesite Slab",
     "displayNameGerman": "Andesitstufe",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 1,
+    "craftable": true,
+    "blastResistance": 6,
+    "hardness": 1.5,
+    "tool": "pickaxe"
   },
   "andesite_stairs": {
     "displayName": "Andesite Stairs",
     "displayNameGerman": "Andesittreppe",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 1,
+    "craftable": true,
+    "blastResistance": 6,
+    "hardness": 1.5,
+    "tool": "pickaxe"
   },
   "andesite_wall": {
     "displayName": "Andesite Wall",
     "displayNameGerman": "Andesitmauer",
     "isBlock": true,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "renewable": true,
+    "survivalObtainable": true,
+    "difficultyToObtain": 1,
+    "craftable": true,
+    "blastResistance": 6,
+    "hardness": 1.5,
+    "tool": "pickaxe"
   },
   "angler_pottery_sherd": {
     "displayName": "Angler Pottery Sherd",
     "displayNameGerman": "Angler-Töpferscherbe",
     "isBlock": false,
     "description": "",
-    "attributes": {}
+    "attributes": {},
+    "stackSize": 64,
+    "survivalObtainable": true,
+    "difficultyToObtain": 8,
+    "obtaining": {
+      "naturalGeneration": {
+        "structures": []
+      },
+      "loot": {
+        "structures": [
+          "ocean_ruin"
+        ],
+        "mobs": {
+          "list": []
+        }
+      }
+    }
   },
   "anvil": {
     "displayName": "Anvil",
