@@ -426,347 +426,395 @@
         }
     },
     "type": "object",
-    "additionalProperties": {
-        "type": "object",
-        "properties": {
-            "displayName": {
-                "type": "string"
-            },
-            "displayNameGerman": {
-                "type": "string"
-            },
-            "isBlock": {
-                "type": "boolean"
-            },
-            "isBlockEntity": {
-                "type": "boolean"
-            },
-            "renewable": {
-                "type": "string",
-                "enum": ["yes", "no", "vault_only"],
-                "$comment": "Block is renewable (infinite), some are 'vault_only', which means they are only renewable when more than 128 players open a vault, which makes them not renewable in singleplayer"
-            },
-            "stackSize": {
-                "$ref": "#/definitions/stackSizeEnum"
-            },
-            "tools": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/definitions/toolEnum"
-                }
-            },
-            "blastResistance": {
-                "type": "number",
-                "minimum": 0.0,
-                "maximum": 3600000.0
-            },
-            "hardness": {
-                "type": "number",
-                "minimum": -1.0,
-                "maximum": 1000.0
-            },
-            "luminousLevel": {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 15
-            },
-            "damage": {
+    "properties": {
+        "minecraft_version": {
+            "type": "string",
+            "description": "The Minecraft version this item list targets"
+        },
+        "items": {
+            "type": "object",
+            "additionalProperties": {
                 "type": "object",
                 "properties": {
-                    "attackDamage": {
-                        "type": "number",
-                        "minimum": 0.0
+                    "displayName": {
+                        "type": "string"
                     },
-                    "attackSpeed": {
-                        "type": "number",
-                        "minimum": 0.0
-                    }
-                }
-            },
-            "armor": {
-                "type": "object",
-                "properties": {
-                    "armorPoints": {
-                        "type": "number",
-                        "minimum": 0.0
+                    "displayNameGerman": {
+                        "type": "string"
                     },
-                    "toughness": {
-                        "type": "number",
-                        "minimum": 0.0
-                    },
-                    "knockbackResistance": {
-                        "type": "number",
-                        "minimum": 0.0
-                    }
-                }
-            },
-            "compostable": {
-                "type": "object",
-                "properties": {
-                    "chance": {
-                        "type": "number",
-                        "minimum": 0.0,
-                        "maximum": 1.0
-                    }
-                }
-            },
-            "durability": {
-                "type": "number"
-            },
-            "possibleEnchantments": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/definitions/enchantmentEnum"
-                }
-            },
-            "enchantability": {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 25
-            },
-            "rarityTier": {
-                "type": "string",
-                "enum": ["common", "uncommon", "rare", "epic"],
-                "default": "common"
-            },
-            "edible": {
-                "type": "object",
-                "properties": {
-                    "hunger": {
-                        "type": "number",
-                        "minimum": 0.0
-                    },
-                    "saturation": {
-                        "type": "number",
-                        "minimum": 0.0
-                    },
-                    "alwaysConsumable": {
+                    "isBlock": {
                         "type": "boolean"
-                    }
-                }
-            },
-            "transparency": {
-                "type": "string",
-                "enum": ["transparent", "partial", "opaque"]
-            },
-            "waterloggable": {
-                "type": "boolean"
-            },
-            "flammable": {
-                "type": "boolean"
-            },
-            "catchesFire": {
-                "type": "boolean"
-            },
-            "craftingIngredient": {
-                "type": "boolean",
-                "$comment": "If this item is used in any crafting recipe"
-            },
-            "isArmorTrimMaterial": {
-                "type": "boolean",
-                "$comment": "If this item is a material for armor trims"
-            },
-            "fireResistantItem": {
-                "type": "boolean",
-                "$comment": "If this item is fire resistant (e.g. netherite)"
-            },
-            "fuel": {
-                "type": "object",
-                "properties": {
-                    "burnTimeSeconds": {
-                        "type": "number",
-                        "minimum": 0.0,
-                        "maximum": 1000.0,
-                        "$comment": "Time in seconds this item burns for"
                     },
-                    "numberOfItemsSmelted": {
-                        "type": "number",
-                        "minimum": 0.0,
-                        "maximum": 100.0,
-                        "$comment": "The number of items that can be smelted per fuel"
-                    }
-                },
-                "$comment": "If this item can be used as fuel in a furnace"
-            },
-            "difficultyToObtain": {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 10
-            },
-            "obtaining": {
-                "type": "object",
-                "properties": {
-                    "survivalObtainable": {
-                        "type": "boolean",
-                        "$comment": "Block is obtainable in survival mode (no commands/creative)"
+                    "renewable": {
+                        "type": "string",
+                        "enum": ["yes", "no", "vault_only"],
+                        "$comment": "If block is renewable (infinite), some are 'vault_only', which means they are only renewable when more than 128 players open a vault, which makes them not renewable in singleplayer"
                     },
-                    "unobtainable": {
-                        "type": "boolean",
-                        "$comment": "Block is completely unobtainable (not obtainable with commands/creative)"
+                    "stackSize": {
+                        "$ref": "#/definitions/stackSizeEnum"
                     },
-                    "crafting": {
-                        "type": "boolean",
-                        "$comment": "Can be obtained by a crafting recipe"
-                    },
-                    "breaking": {
+                    "block": {
                         "type": "object",
+                        "$comment": "Block-specific properties. Required when isBlock is true.",
+                        "required": [
+                            "hardness",
+                            "blastResistance",
+                            "luminousLevel",
+                            "transparency",
+                            "isBlockEntity",
+                            "tools",
+                            "flammable",
+                            "catchesFire"
+                        ],
                         "properties": {
-                            "requiresSilkTouch": {
-                                "type": "string",
-                                "enum": ["silk_touch_only", "yes", "no"],
-                                "$comment": "Block requires Silk Touch to drop in this form"
+                            "hardness": {
+                                "type": "number",
+                                "minimum": -1.0,
+                                "maximum": 1000.0
                             },
-                            "requiresSpecialTools": {
+                            "blastResistance": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 3600000.0
+                            },
+                            "luminousLevel": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 15
+                            },
+                            "transparency": {
+                                "type": "string",
+                                "enum": ["transparent", "partial", "opaque"]
+                            },
+                            "waterloggable": {
+                                "type": "boolean"
+                            },
+                            "isBlockEntity": {
+                                "type": "boolean"
+                            },
+                            "tools": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "#/definitions/specialToolEnum"
-                                },
-                                "$comment": "Requires a specific tool at least, if not provided, it drops by hand."
+                                    "$ref": "#/definitions/toolEnum"
+                                }
                             },
-                            "instantBreaking": {
+                            "flammable": {
+                                "type": "boolean"
+                            },
+                            "catchesFire": {
+                                "type": "boolean"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "item": {
+                        "type": "object",
+                        "properties": {
+                            "damage": {
+                                "type": "object",
+                                "properties": {
+                                    "attackDamage": {
+                                        "type": "number",
+                                        "minimum": 0.0
+                                    },
+                                    "attackSpeed": {
+                                        "type": "number",
+                                        "minimum": 0.0
+                                    }
+                                }
+                            },
+                            "armor": {
+                                "type": "object",
+                                "properties": {
+                                    "armorPoints": {
+                                        "type": "number",
+                                        "minimum": 0.0
+                                    },
+                                    "toughness": {
+                                        "type": "number",
+                                        "minimum": 0.0
+                                    },
+                                    "knockbackResistance": {
+                                        "type": "number",
+                                        "minimum": 0.0
+                                    }
+                                }
+                            },
+                            "durability": {
+                                "type": "number"
+                            },
+                            "possibleEnchantments": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/enchantmentEnum"
+                                }
+                            },
+                            "enchantability": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 25
+                            },
+                            "fireResistant": {
+                                "type": "boolean",
+                                "$comment": "If this item is fire resistant (e.g. netherite)"
+                            }
+                        }
+                    },
+                    "compostable": {
+                        "type": "object",
+                        "properties": {
+                            "chance": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 1.0
+                            }
+                        }
+                    },
+                    "rarityTier": {
+                        "type": "string",
+                        "enum": ["common", "uncommon", "rare", "epic"],
+                        "default": "common"
+                    },
+                    "edible": {
+                        "type": "object",
+                        "properties": {
+                            "hunger": {
+                                "type": "number",
+                                "minimum": 0.0
+                            },
+                            "saturation": {
+                                "type": "number",
+                                "minimum": 0.0
+                            },
+                            "alwaysConsumable": {
                                 "type": "boolean"
                             }
                         }
                     },
-                    "naturalGeneration": {
-                        "type": "object",
-                        "properties": {
-                            "biomes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/biomeEnum"
-                                }
-                            },
-                            "dimensions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/dimensionEnum"
-                                }
-                            },
-                            "structures": {
-                                "type": "object",
-                                "properties": {
-                                    "list": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/definitions/structureEnum"
-                                        }
-                                    },
-                                    "comment": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": ["list"]
-                            },
-                            "comment": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["biomes", "structures", "dimensions"],
-                        "if": {
-                            "anyOf": [
-                                {
-                                    "properties": {
-                                        "biomes": {
-                                            "minItems": 1
-                                        }
-                                    }
-                                },
-                                {
-                                    "properties": {
-                                        "structures": {
-                                            "properties": {
-                                                "list": {
-                                                    "minItems": 1
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            ]
-                        },
-                        "then": {
-                            "properties": {
-                                "dimensions": {
-                                    "minItems": 1
-                                }
-                            }
-                        }
+                    "craftingIngredient": {
+                        "type": "boolean",
+                        "$comment": "If this item is used in any crafting recipe"
                     },
-                    "generatedLoot": {
+                    "isArmorTrimMaterial": {
+                        "type": "boolean",
+                        "$comment": "If this item is a material for armor trims"
+                    },
+                    "fuel": {
                         "type": "object",
                         "properties": {
-                            "structures": {
+                            "burnTimeSeconds": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 1000.0,
+                                "$comment": "Time in seconds this item burns for"
+                            },
+                            "numberOfItemsSmelted": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 100.0,
+                                "$comment": "The number of items that can be smelted per fuel"
+                            }
+                        },
+                        "$comment": "If this item can be used as fuel in a furnace"
+                    },
+                    "obtaining": {
+                        "type": "object",
+                        "properties": {
+                            "obtainability": {
+                                "type": "string",
+                                "enum": ["survival", "creative_only", "unobtainable"],
+                                "$comment": "survival: Standard gameplay. creative_only: Requires commands or creative menu (e.g., Command Block, Barrier). unobtainable: Technical blocks with no item form (e.g., Nether Portal block, Piston Head)."
+                            },
+                            "crafting": {
+                                "type": "boolean",
+                                "$comment": "Can be obtained by a crafting recipe"
+                            },
+                            "breaking": {
                                 "type": "object",
                                 "properties": {
-                                    "list": {
+                                    "requiresSilkTouch": {
+                                        "type": "string",
+                                        "enum": ["silk_touch_only", "yes", "no"],
+                                        "$comment": "Block requires Silk Touch to drop in this form"
+                                    },
+                                    "requiresSpecialTools": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "#/definitions/structureEnum"
-                                        }
+                                            "$ref": "#/definitions/specialToolEnum"
+                                        },
+                                        "$comment": "Requires a specific tool at least, if not provided, it drops by hand."
                                     },
-                                    "chest": {
+                                    "instantBreaking": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "naturalGeneration": {
+                                "type": "object",
+                                "properties": {
+                                    "biomes": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/biomeEnum"
+                                        },
+                                        "minItems": 1
+                                    },
+                                    "dimensions": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/dimensionEnum"
+                                        },
+                                        "minItems": 1
+                                    },
+                                    "structures": {
                                         "type": "object",
                                         "properties": {
-                                            "chestName": {
+                                            "list": {
                                                 "type": "array",
                                                 "items": {
-                                                    "$ref": "#/definitions/chestEnum"
+                                                    "$ref": "#/definitions/structureEnum"
+                                                },
+                                                "minItems": 1
+                                            },
+                                            "comment": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["list"]
+                                    },
+                                    "comment": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["biomes", "structures", "dimensions"],
+                                "if": {
+                                    "anyOf": [{ "required": ["biomes"] }, { "required": ["structures"] }]
+                                },
+                                "then": {
+                                    "required": ["dimensions"]
+                                }
+                            },
+                            "generatedLoot": {
+                                "type": "object",
+                                "properties": {
+                                    "structures": {
+                                        "type": "object",
+                                        "properties": {
+                                            "list": {
+                                                "type": "array",
+                                                "items": {
+                                                    "$ref": "#/definitions/structureEnum"
                                                 }
                                             },
-                                            "chance": {
-                                                "type": "number",
-                                                "minimum": 0.0,
-                                                "maximum": 1.0
+                                            "chest": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "chestName": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "$ref": "#/definitions/chestEnum"
+                                                        }
+                                                    },
+                                                    "chance": {
+                                                        "type": "number",
+                                                        "minimum": 0.0,
+                                                        "maximum": 1.0
+                                                    }
+                                                }
+                                            },
+                                            "comment": {
+                                                "type": "string"
                                             }
-                                        }
+                                        },
+                                        "required": ["list"]
                                     },
-                                    "comment": {
-                                        "type": "string"
+                                    "mobs": {
+                                        "type": "object",
+                                        "properties": {
+                                            "list": {
+                                                "type": "array",
+                                                "items": {
+                                                    "$ref": "#/definitions/mobEnum"
+                                                }
+                                            },
+                                            "comment": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["list"]
                                     }
-                                },
-                                "required": ["list"]
+                                }
                             },
-                            "mobs": {
+                            "trading": {
                                 "type": "object",
                                 "properties": {
-                                    "list": {
+                                    "villagers": {
                                         "type": "array",
+                                        "minItems": 1,
                                         "items": {
-                                            "$ref": "#/definitions/mobEnum"
+                                            "type": "object",
+                                            "properties": {
+                                                "profession": {
+                                                    "$ref": "#/definitions/villagerProfessionEnum"
+                                                },
+                                                "level": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Novice (1)",
+                                                        "Apprentice (2)",
+                                                        "Journeyman (3)",
+                                                        "Expert (4)",
+                                                        "Master (5)"
+                                                    ]
+                                                },
+                                                "probability": {
+                                                    "type": "number",
+                                                    "minimum": 0.0,
+                                                    "maximum": 1.0
+                                                },
+                                                "comment": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["profession", "level", "probability"]
+                                        },
+                                        "wanderingTrader": {
+                                            "type": "object",
+                                            "properties": {
+                                                "chance": {
+                                                    "type": "number",
+                                                    "minimum": 0.0,
+                                                    "maximum": 1.0
+                                                },
+                                                "comment": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["chance"]
                                         }
-                                    },
-                                    "comment": {
-                                        "type": "string"
                                     }
                                 },
-                                "required": ["list"]
-                            }
-                        },
-                        "required": ["structures", "mobs"]
-                    },
-                    "trading": {
-                        "type": "object",
-                        "properties": {
-                            "villager": {
+                                "anyOf": [{ "required": ["villagers"] }, { "required": ["wanderingTrader"] }]
+                            },
+                            "fishing": {
                                 "type": "object",
                                 "properties": {
-                                    "profession": {
-                                        "$ref": "#/definitions/villagerProfessionEnum"
-                                    },
-                                    "level": {
+                                    "category": {
                                         "type": "string",
-                                        "enum": ["Novice (1)", "Apprentice (2)", "Journeyman (3)", "Expert (4)", "Master (5)"]
+                                        "enum": ["fish", "treasure", "junk"]
                                     },
-                                    "probability": {
+                                    "chance": {
                                         "type": "number",
                                         "minimum": 0.0,
                                         "maximum": 1.0
+                                    },
+                                    "comment": {
+                                        "type": "string"
                                     }
                                 },
-                                "required": ["profession", "level"]
+                                "required": ["category", "chance"]
                             },
-                            "wanderingTrader": {
+                            "bartering": {
                                 "type": "object",
                                 "properties": {
                                     "chance": {
@@ -779,101 +827,38 @@
                                     }
                                 },
                                 "required": ["chance"]
+                            },
+                            "smelting": {
+                                "type": "boolean"
+                            },
+                            "difficultyToObtain": {
+                                "type": "integer",
+                                "minimum": -1,
+                                "maximum": 10
                             }
                         },
-                        "required": ["villager", "wanderingTrader"]
-                    },
-                    "fishing": {
-                        "type": "object",
-                        "properties": {
-                            "category": {
-                                "type": "string",
-                                "enum": ["fish", "treasure", "junk"]
-                            },
-                            "chance": {
-                                "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 1.0
-                            },
-                            "comment": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["category", "chance"]
-                    },
-                    "bartering": {
-                        "type": "object",
-                        "properties": {
-                            "chance": {
-                                "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 1.0
-                            },
-                            "comment": {
-                                "type": "string"
-                            }
-                        },
-                        "required": ["chance"]
-                    },
-                    "smelting": {
-                        "type": "boolean"
+                        "required": ["obtainability", "difficultyToObtain"]
                     }
                 },
-                "if": { "properties": { "unobtainable": { "const": true } } },
-                "then": { "properties": { "survivalObtainable": { "const": false } } }
-            }
-        },
-        "required": [
-            "displayName",
-            "displayNameGerman",
-            "isBlock",
-            "renewable",
-            "rarityTier",
-            "survivalObtainable",
-            "unobtainable",
-            "difficultyToObtain"
-        ],
-        "if": {
-            "properties": {
-                "isBlock": {
-                    "const": true
-                }
-            }
-        },
-        "then": {
-            "required": [
-                "displayName",
-                "displayNameGerman",
-                "isBlock",
-                "renewable",
-                "rarityTier",
-                "difficultyToObtain",
-                "flammable",
-                "catchesFire",
-                "transparency",
-                "blastResistance",
-                "hardness",
-                "luminousLevel",
-                "isBlockEntity",
-                "tools"
-            ],
-            "properties": {
-                "damage": false,
-                "durability": false,
-                "possibleEnchantments": false
-            }
-        },
-        "else": {
-            "required": ["displayName", "displayNameGerman", "isBlock", "renewable", "rarityTier", "difficultyToObtain"],
-            "properties": {
-                "flammable": false,
-                "catchesFire": false,
-                "transparency": false,
-                "blastResistance": false,
-                "hardness": false,
-                "luminousLevel": false,
-                "isBlockEntity": false,
-                "tools": false
+                "required": ["displayName", "displayNameGerman", "isBlock", "renewable", "rarityTier", "obtaining"],
+                "oneOf": [
+                    {
+                        "$comment": "Block item — isBlock must be true and block sub-object must be present. Item-only fields (damage, durability, possibleEnchantments) are forbidden.",
+                        "properties": {
+                            "isBlock": { "const": true },
+                            "item": false
+                        },
+                        "required": ["block"]
+                    },
+                    {
+                        "$comment": "Non-block item — isBlock must be false and block sub-object must not be present.",
+                        "properties": {
+                            "isBlock": { "const": false },
+                            "block": false
+                        },
+                        "required": ["item"]
+                    }
+                ]
             }
         }
     }
