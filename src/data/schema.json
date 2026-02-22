@@ -485,7 +485,8 @@
                             "isBlockEntity",
                             "tools",
                             "flammable",
-                            "catchesFire"
+                            "catchesFire",
+                            "waterloggable"
                         ],
                         "properties": {
                             "hardness": {
@@ -517,7 +518,8 @@
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/definitions/toolEnum"
-                                }
+                                },
+                                "minItems": 1
                             },
                             "flammable": {
                                 "type": "boolean"
@@ -581,7 +583,8 @@
                                 "type": "boolean",
                                 "$comment": "If this item is fire resistant (e.g. netherite)"
                             }
-                        }
+                        },
+                        "required": ["fireResistant"]
                     },
                     "compostability": {
                         "type": "object",
@@ -705,16 +708,10 @@
                                                 "type": "string"
                                             }
                                         },
-                                        "required": ["list"]
+                                        "required": ["structures"]
                                     }
                                 },
-                                "required": ["biomes", "structures", "dimensions"],
-                                "if": {
-                                    "anyOf": [{ "required": ["biomes"] }, { "required": ["structures"] }]
-                                },
-                                "then": {
-                                    "required": ["dimensions"]
-                                }
+                                "required": ["dimensions"]
                             },
                             "generatedLoot": {
                                 "type": "object",

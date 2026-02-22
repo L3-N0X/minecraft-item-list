@@ -40,7 +40,6 @@
     "bell",
     "birch_boat",
     "birch_chest_boat",
-    "birch_door",
     "birch_hanging_sign",
     "birch_leaves",
     "birch_log",
@@ -50,7 +49,6 @@
     "birch_sign",
     "birch_trapdoor",
     "beehive",
-    "birch_fence",
     "bee_nest",
     "bamboo_stairs",
     "black_banner",
@@ -1473,7 +1471,9 @@
     "zombie_head",
     "bamboo_mosaic_slab",
     "black_bundle",
-    "parched_spawn_egg"
+    "parched_spawn_egg",
+    "birch_door",
+    "birch_fence"
   ],
   "block_entity": [
     "black_bed",

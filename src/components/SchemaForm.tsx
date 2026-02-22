@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Check, ChevronsUpDown, Plus, Trash2, X } from "lucide-react";
@@ -115,14 +116,15 @@ interface EnumSelectProps {
     options: string[];
     value: string;
     onChange: (val: string) => void;
+    triggerClassName?: string;
 }
 
-function EnumSelect({ label, options, value, onChange }: EnumSelectProps) {
+function EnumSelect({ label, options, value, onChange, triggerClassName }: EnumSelectProps) {
     return (
         <div className="space-y-2">
             <Label>{label}</Label>
             <Select value={value || ""} onValueChange={onChange}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className={cn("w-full", triggerClassName)}>
                     <SelectValue placeholder={`Select ${label}...`} />
                 </SelectTrigger>
                 <SelectContent>
@@ -142,9 +144,10 @@ interface MultiEnumSelectProps {
     options: string[];
     value: string[];
     onChange: (val: string[]) => void;
+    triggerClassName?: string;
 }
 
-function MultiEnumSelect({ label, options, value, onChange }: MultiEnumSelectProps) {
+function MultiEnumSelect({ label, options, value, onChange, triggerClassName }: MultiEnumSelectProps) {
     const [open, setOpen] = useState(false);
     const selectedValues = Array.isArray(value) ? value : [];
 
@@ -183,7 +186,12 @@ function MultiEnumSelect({ label, options, value, onChange }: MultiEnumSelectPro
             </div>
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
-                    <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between h-9 px-3">
+                    <Button
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className={cn("w-full justify-between h-9 px-3", triggerClassName)}
+                    >
                         <span className="text-muted-foreground font-normal">Add {label.toLowerCase()}...</span>
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
@@ -305,7 +313,9 @@ function QuantitySpecField({ label, value, onChange }: QuantitySpecFieldProps) {
 }
 
 export function SchemaForm({ data, onChange }: SchemaFormProps) {
-    const itemProperties = (schema.properties as any).items || {};
+    const itemProperties = itemSchema.properties || {};
+
+    const [pendingIsBlock, setPendingIsBlock] = useState<boolean | null>(null);
 
     const handleFieldChange = (path: (string | number)[], value: any) => {
         const newData = JSON.parse(JSON.stringify(data));
@@ -319,7 +329,44 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             current = current[segment];
         }
         current[path[path.length - 1] as string | number] = value;
+
+        // When isBlock is toggled, remove the now-irrelevant sub-object so stale
+        // data doesn't cause phantom validation errors.
+        if (path.length === 1 && path[0] === "isBlock") {
+            if (value === true) {
+                delete newData.item;
+            } else {
+                delete newData.block;
+            }
+        }
+
         onChange(newData);
+    };
+
+    /**
+     * Called when the isBlock switch is toggled. If the section that would be
+     * deleted already has data, show a confirmation dialog first. Otherwise
+     * apply the change immediately.
+     */
+    const handleIsBlockChange = (checked: boolean) => {
+        const sectionToDelete = checked ? "item" : "block";
+        const hasExistingData = data?.[sectionToDelete] && Object.keys(data[sectionToDelete]).length > 0;
+        if (hasExistingData) {
+            setPendingIsBlock(checked);
+        } else {
+            handleFieldChange(["isBlock"], checked);
+        }
+    };
+
+    const confirmIsBlockChange = () => {
+        if (pendingIsBlock !== null) {
+            handleFieldChange(["isBlock"], pendingIsBlock);
+            setPendingIsBlock(null);
+        }
+    };
+
+    const cancelIsBlockChange = () => {
+        setPendingIsBlock(null);
     };
 
     const validationErrors = useMemo(() => validateItemData(data), [data]);
@@ -391,12 +438,13 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             // Handle Enum (Single)
             if (fieldSchema.enum) {
                 return (
-                    <div key={path.join(".")} className={cn("rounded-md", vRing(path))}>
+                    <div key={path.join(".")}>
                         <EnumSelect
                             label={label}
                             options={fieldSchema.enum}
                             value={value}
                             onChange={(val) => handleFieldChange(path, val)}
+                            triggerClassName={vRing(path)}
                         />
                         {vMsg(path)}
                     </div>
@@ -417,12 +465,13 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             if (fieldSchema.type === "array" && fieldSchema.items?.enum) {
                 const options = [...(fieldSchema.items.enum || [])].sort();
                 return (
-                    <div key={path.join(".")} className={cn("md:col-span-2 rounded-md", vRing(path))}>
+                    <div key={path.join(".")} className="md:col-span-2">
                         <MultiEnumSelect
                             label={label}
                             options={options}
                             value={value}
                             onChange={(val) => handleFieldChange(path, val)}
+                            triggerClassName={vRing(path)}
                         />
                         {vMsg(path)}
                     </div>
@@ -500,6 +549,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
 
             // Handle Boolean
             if (fieldSchema.type === "boolean") {
+                const isIsBlockField = path.length === 1 && path[0] === "isBlock";
                 return (
                     <div
                         key={path.join(".")}
@@ -514,7 +564,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                         <Switch
                             id={path.join(".")}
                             checked={!!value}
-                            onCheckedChange={(checked) => handleFieldChange(path, checked)}
+                            onCheckedChange={isIsBlockField ? handleIsBlockChange : (checked) => handleFieldChange(path, checked)}
                         />
                     </div>
                 );
@@ -656,9 +706,50 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
         });
     };
 
+    // Only show the relevant conditional section based on isBlock.
+    // isBlock === true  → show "block", hide "item"
+    // isBlock === false → show "item",  hide "block"
+    const visibleItemProperties = useMemo(() => {
+        const filtered = { ...itemProperties } as Record<string, any>;
+        if (data.isBlock === true) {
+            delete filtered.item;
+        } else {
+            delete filtered.block;
+        }
+        return filtered;
+    }, [data.isBlock]);
+
+    const deletedSectionLabel = pendingIsBlock === true ? "Item" : "Block";
+
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">{renderRecursiveFields(itemProperties, [], data)}</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">{renderRecursiveFields(visibleItemProperties, [], data)}</div>
+
+            <Dialog
+                open={pendingIsBlock !== null}
+                onOpenChange={(open) => {
+                    if (!open) cancelIsBlockChange();
+                }}
+            >
+                <DialogContent showCloseButton={false}>
+                    <DialogHeader>
+                        <DialogTitle>Discard {deletedSectionLabel} properties?</DialogTitle>
+                        <DialogDescription>
+                            Switching this item to a <strong>{pendingIsBlock ? "block" : "non-block"}</strong> will permanently
+                            delete all data currently stored in the <strong>{deletedSectionLabel}</strong> section. This cannot be
+                            undone.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={cancelIsBlockChange}>
+                            Cancel
+                        </Button>
+                        <Button variant="destructive" onClick={confirmIsBlockChange}>
+                            Discard &amp; Switch
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
