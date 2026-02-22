@@ -4,7 +4,7 @@
     "definitions": {
         "stackSizeEnum": {
             "type": "integer",
-            "enum": [1, 16, 64]
+            "enum": [-1, 1, 16, 64]
         },
         "toolEnum": {
             "type": "string",
@@ -548,6 +548,7 @@
                             },
                             "armor": {
                                 "type": "object",
+                                "required": ["armorPoints", "toughness", "knockbackResistance"],
                                 "properties": {
                                     "armorPoints": {
                                         "type": "number",
@@ -575,8 +576,18 @@
                             },
                             "possibleEnchantments": {
                                 "type": "array",
+                                "minItems": 1,
                                 "items": {
-                                    "$ref": "#/definitions/enchantmentEnum"
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "$ref": "#/definitions/enchantmentEnum"
+                                        },
+                                        "levels": {
+                                            "$ref": "#/definitions/quantitySpec"
+                                        }
+                                    },
+                                    "required": ["id", "levels"]
                                 }
                             },
                             "fireResistant": {
@@ -584,7 +595,16 @@
                                 "$comment": "If this item is fire resistant (e.g. netherite)"
                             }
                         },
-                        "required": ["fireResistant"]
+                        "required": ["fireResistant"],
+                        "dependentRequired": {
+                            "enchantability": ["possibleEnchantments"]
+                        },
+                        "if": {
+                            "anyOf": [{ "required": ["armor"] }, { "required": ["damage"] }]
+                        },
+                        "then": {
+                            "required": ["durability", "enchantability", "possibleEnchantments"]
+                        }
                     },
                     "compostability": {
                         "type": "object",
@@ -890,7 +910,7 @@
                         "required": ["obtainability", "difficultyToObtain"]
                     }
                 },
-                "required": ["displayName", "displayNameGerman", "isBlock", "renewable", "rarityTier", "obtaining"],
+                "required": ["displayName", "displayNameGerman", "isBlock", "renewable", "stackSize", "rarityTier", "obtaining"],
                 "oneOf": [
                     {
                         "$comment": "Block item — isBlock must be true and block sub-object must be present. Item-only fields (damage, durability, possibleEnchantments) are forbidden.",
