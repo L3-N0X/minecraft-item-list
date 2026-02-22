@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import Ajv from "ajv";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -46,6 +47,53 @@ function resolveSchema(fieldSchema: any): any {
     }
     return fieldSchema;
 }
+
+// ---------------------------------------------------------------------------
+// Validation engine (AJV)
+// ---------------------------------------------------------------------------
+
+type ValidationSeverity = "warning" | "error";
+interface ValidationEntry {
+    severity: ValidationSeverity;
+    message: string;
+}
+type ValidationMap = Map<string, ValidationEntry>;
+
+const ajv = new Ajv({ allErrors: true, strict: false });
+// Merge root `definitions` into the item sub-schema so that $ref entries like
+// "#/definitions/stackSizeEnum" can be resolved (# refers to the compiled schema root).
+const itemSchema = {
+    definitions: (schema as any).definitions,
+    ...(schema.properties as any).items.additionalProperties,
+};
+const validateAjv = ajv.compile(itemSchema);
+
+/** Converts an AJV instancePath like "/foo/bar/0" to dot-notation "foo.bar.0" */
+function instancePathToDot(instancePath: string): string {
+    return instancePath.replace(/^\//, "").replace(/\//g, ".");
+}
+
+function validateItemData(data: any): ValidationMap {
+    const errors: ValidationMap = new Map();
+    validateAjv(data ?? {});
+    for (const err of validateAjv.errors ?? []) {
+        let path: string;
+        if (err.keyword === "required") {
+            const parent = instancePathToDot(err.instancePath);
+            const missing = (err.params as any).missingProperty as string;
+            path = parent ? `${parent}.${missing}` : missing;
+        } else {
+            path = instancePathToDot(err.instancePath) || "__root__";
+        }
+        // Only keep the first error per path
+        if (!errors.has(path)) {
+            errors.set(path, { severity: "error", message: err.message ?? "Invalid value" });
+        }
+    }
+    return errors;
+}
+
+// ---------------------------------------------------------------------------
 
 interface SchemaFormProps {
     data: any;
@@ -274,6 +322,65 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
         onChange(newData);
     };
 
+    const validationErrors = useMemo(() => validateItemData(data), [data]);
+
+    /** Direct error at exactly this path */
+    const getErr = (p: (string | number)[]): ValidationEntry | undefined => validationErrors.get(p.join("."));
+
+    /**
+     * Highest-severity error at OR below this path.
+     * Used for section containers so they light up when any child has an issue.
+     */
+    const getChildErr = (p: (string | number)[]): ValidationEntry | undefined => {
+        const prefix = p.join(".");
+        let result: ValidationEntry | undefined;
+        for (const [k, v] of validationErrors.entries()) {
+            if (k === prefix || k.startsWith(prefix + ".")) {
+                if (!result || v.severity === "error") {
+                    result = v;
+                    if (v.severity === "error") break;
+                }
+            }
+        }
+        return result;
+    };
+
+    /** ring class for leaf fields (no existing border) */
+    const vRing = (p: (string | number)[]): string => {
+        const e = getErr(p);
+        if (!e) return "";
+        return e.severity === "error" ? "ring-2 ring-red-500/70" : "ring-2 ring-yellow-400/70";
+    };
+
+    /** border-color class for section containers that already have border-2 */
+    const vBorderColor = (p: (string | number)[], useChildScan = false): string => {
+        const e = useChildScan ? getChildErr(p) : getErr(p);
+        if (!e) return "border-muted";
+        return e.severity === "error" ? "border-red-500/70" : "border-yellow-400/70";
+    };
+
+    /** Small message text rendered below a leaf field */
+    const vMsg = (p: (string | number)[]): React.ReactNode => {
+        const e = getErr(p);
+        if (!e) return null;
+        return (
+            <p className={cn("text-[11px] leading-tight mt-1", e.severity === "error" ? "text-red-400" : "text-yellow-500/90")}>
+                {e.message}
+            </p>
+        );
+    };
+
+    /** Inline message for section headers */
+    const vMsgInline = (p: (string | number)[], useChildScan = false): React.ReactNode => {
+        const e = useChildScan ? getChildErr(p) : getErr(p);
+        if (!e) return null;
+        return (
+            <span className={cn("text-xs font-normal", e.severity === "error" ? "text-red-400" : "text-yellow-500/90")}>
+                {e.message}
+            </span>
+        );
+    };
+
     const renderRecursiveFields = (properties: any, currentPath: (string | number)[], currentData: any) => {
         return Object.entries(properties).map(([key, rawFieldSchema]: [string, any]) => {
             const path: (string | number)[] = [...currentPath, key];
@@ -284,25 +391,25 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             // Handle Enum (Single)
             if (fieldSchema.enum) {
                 return (
-                    <EnumSelect
-                        key={path.join(".")}
-                        label={label}
-                        options={fieldSchema.enum}
-                        value={value}
-                        onChange={(val) => handleFieldChange(path, val)}
-                    />
+                    <div key={path.join(".")} className={cn("rounded-md", vRing(path))}>
+                        <EnumSelect
+                            label={label}
+                            options={fieldSchema.enum}
+                            value={value}
+                            onChange={(val) => handleFieldChange(path, val)}
+                        />
+                        {vMsg(path)}
+                    </div>
                 );
             }
 
             // Handle QuantitySpec (fixed integer or {min, max} range)
             if (isQuantitySpec(fieldSchema)) {
                 return (
-                    <QuantitySpecField
-                        key={path.join(".")}
-                        label={label}
-                        value={value}
-                        onChange={(val) => handleFieldChange(path, val)}
-                    />
+                    <div key={path.join(".")} className={cn("rounded-md", vRing(path))}>
+                        <QuantitySpecField label={label} value={value} onChange={(val) => handleFieldChange(path, val)} />
+                        {vMsg(path)}
+                    </div>
                 );
             }
 
@@ -310,13 +417,14 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             if (fieldSchema.type === "array" && fieldSchema.items?.enum) {
                 const options = [...(fieldSchema.items.enum || [])].sort();
                 return (
-                    <div key={path.join(".")} className="md:col-span-2">
+                    <div key={path.join(".")} className={cn("md:col-span-2 rounded-md", vRing(path))}>
                         <MultiEnumSelect
                             label={label}
                             options={options}
                             value={value}
                             onChange={(val) => handleFieldChange(path, val)}
                         />
+                        {vMsg(path)}
                     </div>
                 );
             }
@@ -325,7 +433,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             if (fieldSchema.type === "string") {
                 if (key.toLowerCase().includes("description") || fieldSchema.format === "textarea") {
                     return (
-                        <div key={path.join(".")} className="space-y-2 md:col-span-2">
+                        <div key={path.join(".")} className={cn("space-y-2 md:col-span-2 rounded-md", vRing(path))}>
                             <Label htmlFor={path.join(".")}>{label}</Label>
                             <Textarea
                                 id={path.join(".")}
@@ -334,17 +442,19 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                                 rows={3}
                                 className="resize-none"
                             />
+                            {vMsg(path)}
                         </div>
                     );
                 }
                 return (
-                    <div key={path.join(".")} className="space-y-2">
+                    <div key={path.join(".")} className={cn("space-y-2 rounded-md", vRing(path))}>
                         <Label htmlFor={path.join(".")}>{label}</Label>
                         <Input
                             id={path.join(".")}
                             value={value ?? ""}
                             onChange={(e) => handleFieldChange(path, e.target.value)}
                         />
+                        {vMsg(path)}
                     </div>
                 );
             }
@@ -354,7 +464,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                 const min = fieldSchema.minimum;
                 const max = fieldSchema.maximum;
                 return (
-                    <div key={path.join(".")} className="space-y-2">
+                    <div key={path.join(".")} className={cn("space-y-2 rounded-md", vRing(path))}>
                         <div className="flex justify-between">
                             <Label htmlFor={path.join(".")}>{label}</Label>
                             {(min !== undefined || max !== undefined) && (
@@ -383,6 +493,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                                 }
                             }}
                         />
+                        {vMsg(path)}
                     </div>
                 );
             }
@@ -392,7 +503,10 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                 return (
                     <div
                         key={path.join(".")}
-                        className="flex items-center justify-between py-2 px-3 border rounded-md bg-muted/5"
+                        className={cn(
+                            "flex items-center justify-between py-2 px-3 border rounded-md bg-muted/5",
+                            vBorderColor(path),
+                        )}
                     >
                         <Label htmlFor={path.join(".")} className="cursor-pointer">
                             {label}
@@ -427,6 +541,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                         <div className="flex items-center gap-3">
                             <h4 className="font-bold text-sm text-primary uppercase tracking-wider">{label}</h4>
                             <div className="h-px flex-1 bg-muted" />
+                            {vMsgInline(path)}
                             <Button
                                 type="button"
                                 size="sm"
@@ -442,27 +557,51 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                             <p className="text-xs text-muted-foreground italic px-1">No entries yet — click Add to create one.</p>
                         )}
                         <div className="space-y-3">
-                            {arrayItems.map((item: any, index: number) => (
-                                <div key={index} className="p-3 border-2 border-muted rounded-lg bg-card shadow-sm space-y-4">
-                                    <div className="flex items-center justify-between">
-                                        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                                            {label} #{index + 1}
-                                        </span>
-                                        <Button
-                                            type="button"
-                                            size="sm"
-                                            variant="ghost"
-                                            className="h-6 w-6 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
-                                            onClick={() => handleRemoveItem(index)}
-                                        >
-                                            <Trash2 className="h-3.5 w-3.5" />
-                                        </Button>
+                            {arrayItems.map((item: any, index: number) => {
+                                const itemPath = [...path, index];
+                                const itemErr = getChildErr(itemPath);
+                                return (
+                                    <div
+                                        key={index}
+                                        className={cn(
+                                            "p-3 border-2 rounded-lg bg-card shadow-sm space-y-4",
+                                            itemErr
+                                                ? itemErr.severity === "error"
+                                                    ? "border-red-500/70"
+                                                    : "border-yellow-400/70"
+                                                : "border-muted",
+                                        )}
+                                    >
+                                        <div className="flex items-center justify-between gap-2">
+                                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                                                {label} #{index + 1}
+                                            </span>
+                                            {itemErr && (
+                                                <span
+                                                    className={cn(
+                                                        "text-xs flex-1",
+                                                        itemErr.severity === "error" ? "text-red-400" : "text-yellow-500/90",
+                                                    )}
+                                                >
+                                                    {itemErr.message}
+                                                </span>
+                                            )}
+                                            <Button
+                                                type="button"
+                                                size="sm"
+                                                variant="ghost"
+                                                className="h-6 w-6 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                                onClick={() => handleRemoveItem(index)}
+                                            >
+                                                <Trash2 className="h-3.5 w-3.5" />
+                                            </Button>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {renderRecursiveFields(itemSchema.properties, itemPath, item)}
+                                        </div>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {renderRecursiveFields(itemSchema.properties, [...path, index], item)}
-                                    </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 );
@@ -473,11 +612,15 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                 return (
                     <div
                         key={path.join(".")}
-                        className="space-y-4 p-4 border-2 border-muted rounded-lg bg-card shadow-sm md:col-span-2"
+                        className={cn(
+                            "space-y-4 p-4 border-2 rounded-lg bg-card shadow-sm md:col-span-2",
+                            vBorderColor(path, /* useChildScan */ true),
+                        )}
                     >
                         <div className="flex items-center gap-2">
                             <h4 className="font-bold text-sm text-primary uppercase tracking-wider">{label}</h4>
                             <div className="h-px flex-1 bg-muted" />
+                            {vMsgInline(path, /* useChildScan */ true)}
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {renderRecursiveFields(fieldSchema.properties, path, value)}
@@ -489,7 +632,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             // Fallback for complex types not handled explicitly
             if (fieldSchema.type === "array" || fieldSchema.type === "object") {
                 return (
-                    <div key={path.join(".")} className="space-y-2 md:col-span-2">
+                    <div key={path.join(".")} className={cn("space-y-2 md:col-span-2 rounded-md", vRing(path))}>
                         <Label htmlFor={path.join(".")}>{label} (JSON)</Label>
                         <Textarea
                             id={path.join(".")}
@@ -504,6 +647,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                                 }
                             }}
                         />
+                        {vMsg(path)}
                     </div>
                 );
             }
