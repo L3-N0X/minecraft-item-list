@@ -2,9 +2,9 @@
     "minecraft_version": "26.1-snapshot-9",
     "items": {
         "acacia_boat": {
-            "displayName": "Acacia Boat",
-            "displayNameGerman": "Akazienholzboot",
-            "isBlock": false
+            "displayName": "Acacia Button",
+            "displayNameGerman": "Akazienholzknopf",
+            "isBlock": true
         },
         "acacia_button": {
             "displayName": "Acacia Button",

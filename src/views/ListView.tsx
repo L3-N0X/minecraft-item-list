@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "@/context/DataContext";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { validateItemData } from "@/components/schemaValidation";
 
 export function ListView() {
     const { items, itemIds, getItemCategories, isLoading } = useData();
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
+
+    // Compute validation error counts for every item, keyed by item ID.
+    const errorCounts = useMemo<Record<string, number>>(() => {
+        if (isLoading) return {};
+        const counts: Record<string, number> = {};
+        for (const id of itemIds) {
+            const map = validateItemData(items[id]);
+            counts[id] = map.size;
+        }
+        return counts;
+    }, [items, itemIds, isLoading]);
 
     if (isLoading) return <div className="p-8 text-center">Loading items...</div>;
 
@@ -50,9 +62,10 @@ export function ListView() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead className="w-12"></TableHead>
-                                    <TableHead>Name (EN / DE)</TableHead>
+                                    <TableHead>Name</TableHead>
                                     <TableHead>ID</TableHead>
                                     <TableHead>Categories</TableHead>
+                                    <TableHead className="text-right">Issues</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -98,6 +111,18 @@ export function ListView() {
                                                     </Badge>
                                                 ))}
                                             </div>
+                                        </TableCell>
+                                        <TableCell className="text-right">
+                                            {(errorCounts[id] ?? 0) > 0 ? (
+                                                <Badge
+                                                    variant="destructive"
+                                                    className="text-[10px] px-1.5 py-0 h-auto font-mono tabular-nums"
+                                                >
+                                                    {errorCounts[id] ?? 0}
+                                                </Badge>
+                                            ) : (
+                                                <span className="text-xs text-muted-foreground">✓</span>
+                                            )}
                                         </TableCell>
                                     </TableRow>
                                 ))}

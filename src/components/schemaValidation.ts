@@ -42,7 +42,7 @@ function instancePathToDot(instancePath: string): string {
 }
 
 /** Runs AJV against `data` and returns a map of dot-path → ValidationEntry. */
-export function validateItemData(data: any): ValidationMap {
+export function validateItemData(data: any, debugLabel?: string): ValidationMap {
     const errors: ValidationMap = new Map();
     validateAjv(data ?? {});
     for (const err of validateAjv.errors ?? []) {
@@ -59,7 +59,23 @@ export function validateItemData(data: any): ValidationMap {
             errors.set(path, { severity: "error", message: err.message ?? "Invalid value" });
         }
     }
+
+    if (debugLabel !== undefined) {
+        console.debug(
+            `[schemaValidation] "${debugLabel}" → ${errors.size} issue(s)`,
+            errors.size > 0 ? Object.fromEntries([...errors.entries()].map(([k, v]) => [k, v.message])) : "(none)",
+        );
+    }
+
     return errors;
+}
+
+/**
+ * Convenience helper: returns just the number of validation errors for an item.
+ * Accepts an optional label that will be forwarded to the debug log.
+ */
+export function countItemErrors(data: any, debugLabel?: string): number {
+    return validateItemData(data, debugLabel).size;
 }
 
 // ---------------------------------------------------------------------------

@@ -16,12 +16,27 @@ export function BooleanField({ path, value, label, onCheckedChange, validationEn
     const borderColor = validationBorderColorClass(validationEntry);
     const id = path.join(".");
 
+    const handleClick = () => {
+        // If the property doesn't exist yet (undefined/null), the first click
+        // only adds it as false. A second click will then switch it to true.
+        if (value === undefined || value === null) {
+            onCheckedChange(false);
+        } else {
+            onCheckedChange(!value);
+        }
+    };
+
     return (
-        <div className={cn("flex items-center justify-between py-2 px-3 border rounded-md bg-muted/5", borderColor)}>
-            <Label htmlFor={id} className="cursor-pointer">
-                {label}
-            </Label>
-            <Switch id={id} checked={!!value} onCheckedChange={onCheckedChange} />
+        <div
+            id={id}
+            className={cn(
+                "flex items-center justify-between py-2 px-3 border rounded-md bg-muted/5 cursor-pointer select-none",
+                borderColor,
+            )}
+            onClick={handleClick}
+        >
+            <Label className="cursor-pointer pointer-events-none">{label}</Label>
+            <Switch checked={!!value} className="pointer-events-none" />
         </div>
     );
 }

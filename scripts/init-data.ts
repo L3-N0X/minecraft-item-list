@@ -73,6 +73,7 @@ async function initData() {
             displayName: existing.displayName ?? displayNameEn,
             displayNameGerman: existing.displayNameGerman ?? displayNameGerman,
             isBlock,
+            ...(isBlock ? { block: existing.block ?? {} } : { item: existing.item ?? {} }),
         };
 
         // Ensure item appears in at least one category

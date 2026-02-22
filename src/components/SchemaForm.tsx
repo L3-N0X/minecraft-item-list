@@ -48,7 +48,13 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             }
             current = current[segment];
         }
-        current[path[path.length - 1] as string | number] = value;
+
+        const lastKey = path[path.length - 1] as string | number;
+        if (value === undefined || value === null || value === "") {
+            delete current[lastKey];
+        } else {
+            current[lastKey] = value;
+        }
 
         // When isBlock is toggled, remove the now-irrelevant sub-object so
         // stale data doesn't cause phantom validation errors.
@@ -120,12 +126,20 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
     // Recursive field renderer
     // -----------------------------------------------------------------------
 
-    const renderRecursiveFields = (properties: any, currentPath: (string | number)[], currentData: any): React.ReactNode => {
+    const renderRecursiveFields = (
+        properties: any,
+        currentPath: (string | number)[],
+        currentData: any,
+        parentRequired?: string[],
+    ): React.ReactNode => {
         return Object.entries(properties).map(([key, rawFieldSchema]: [string, any]) => {
             const path: (string | number)[] = [...currentPath, key];
             const value = currentData ? currentData[key] : undefined;
             const fieldSchema = resolveSchema(rawFieldSchema);
             const label = getLabel(key, fieldSchema);
+            // A field is optional when the parent schema explicitly lists required
+            // fields and this key is absent from that list.
+            const isOptional = parentRequired !== undefined && !parentRequired.includes(key);
 
             // Enum (single-select)
             if (fieldSchema.enum) {
@@ -153,8 +167,13 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             if (isQuantitySpec(fieldSchema)) {
                 const err = getErr(path);
                 return (
-                    <div key={path.join(".")} className={validationRingClass(err)}>
-                        <QuantitySpecField label={label} value={value} onChange={(val) => handleFieldChange(path, val)} />
+                    <div key={path.join(".")}>
+                        <QuantitySpecField
+                            label={label}
+                            value={value}
+                            onChange={(val) => handleFieldChange(path, val)}
+                            validationEntry={err}
+                        />
                         {err && (
                             <p
                                 className={`text-[11px] leading-tight mt-1 ${err.severity === "error" ? "text-red-400" : "text-yellow-500/90"}`}
@@ -261,6 +280,8 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                         value={value}
                         label={label}
                         fieldSchema={fieldSchema}
+                        isOptional={isOptional}
+                        onFieldChange={handleFieldChange}
                         childValidationEntry={getChildErr(path)}
                         renderChildren={renderRecursiveFields}
                     />
@@ -293,7 +314,9 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
 
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">{renderRecursiveFields(visibleItemProperties, [], data)}</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {renderRecursiveFields(visibleItemProperties, [], data, itemSchema.required as string[])}
+            </div>
 
             <Dialog
                 open={pendingIsBlock !== null}

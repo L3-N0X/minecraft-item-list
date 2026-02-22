@@ -1,24 +1,28 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { validationRingClass } from "../schemaValidation";
+import type { ValidationEntry } from "../schemaValidation";
 
 export interface QuantitySpecFieldProps {
     label: string;
     value: number | { min: number; max: number } | undefined;
     onChange: (val: number | { min: number; max: number } | undefined) => void;
+    validationEntry?: ValidationEntry;
 }
 
-export function QuantitySpecField({ label, value, onChange }: QuantitySpecFieldProps) {
+export function QuantitySpecField({ label, value, onChange, validationEntry }: QuantitySpecFieldProps) {
     const isRange = value !== null && typeof value === "object";
+    const ring = validationRingClass(validationEntry);
 
     const switchToFixed = () => {
-        const fixedVal = isRange ? (value as { min: number; max: number }).min : 1;
+        const fixedVal = isRange ? (value as { min: number; max: number }).min : undefined;
         onChange(fixedVal);
     };
 
     const switchToRange = () => {
-        const base = typeof value === "number" ? value : 1;
-        onChange({ min: base, max: base });
+        const base = typeof value === "number" ? value : undefined;
+        onChange({ min: base as number, max: base as number });
     };
 
     return (
@@ -52,6 +56,7 @@ export function QuantitySpecField({ label, value, onChange }: QuantitySpecFieldP
                 <Input
                     type="number"
                     value={typeof value === "number" ? value : ""}
+                    className={ring}
                     onChange={(e) => {
                         const raw = e.target.value;
                         if (raw === "") {
@@ -69,6 +74,7 @@ export function QuantitySpecField({ label, value, onChange }: QuantitySpecFieldP
                         <Input
                             type="number"
                             value={(value as { min: number; max: number }).min ?? ""}
+                            className={ring}
                             onChange={(e) => {
                                 const v = parseInt(e.target.value);
                                 if (!isNaN(v)) onChange({ ...(value as { min: number; max: number }), min: v });
@@ -80,6 +86,7 @@ export function QuantitySpecField({ label, value, onChange }: QuantitySpecFieldP
                         <Input
                             type="number"
                             value={(value as { min: number; max: number }).max ?? ""}
+                            className={ring}
                             onChange={(e) => {
                                 const v = parseInt(e.target.value);
                                 if (!isNaN(v)) onChange({ ...(value as { min: number; max: number }), max: v });

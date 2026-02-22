@@ -32,14 +32,14 @@ export function StringField({ path, value, label, fieldSchema, onFieldChange, va
 
     if (isTextarea) {
         return (
-            <div className={cn("space-y-2 md:col-span-2 rounded-md", ring)}>
+            <div className="space-y-2 md:col-span-2">
                 <Label htmlFor={id}>{label}</Label>
                 <Textarea
                     id={id}
                     value={value ?? ""}
-                    onChange={(e) => onFieldChange(path, e.target.value)}
+                    onChange={(e) => onFieldChange(path, e.target.value === "" ? undefined : e.target.value)}
                     rows={3}
-                    className="resize-none"
+                    className={cn("resize-none", ring)}
                 />
                 <ValidationMessage entry={validationEntry} />
             </div>
@@ -47,9 +47,14 @@ export function StringField({ path, value, label, fieldSchema, onFieldChange, va
     }
 
     return (
-        <div className={cn("space-y-2 rounded-md", ring)}>
+        <div className="space-y-2">
             <Label htmlFor={id}>{label}</Label>
-            <Input id={id} value={value ?? ""} onChange={(e) => onFieldChange(path, e.target.value)} />
+            <Input
+                id={id}
+                value={value ?? ""}
+                onChange={(e) => onFieldChange(path, e.target.value === "" ? undefined : e.target.value)}
+                className={ring}
+            />
             <ValidationMessage entry={validationEntry} />
         </div>
     );

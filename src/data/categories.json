@@ -1503,14 +1503,14 @@
     "acacia_door",
     "acacia_chest_boat",
     "acacia_button",
-    "acacia_boat",
     "acacia_fence",
     "acacia_shelf",
     "acacia_sign",
     "acacia_trapdoor",
     "acacia_stairs",
     "acacia_slab",
-    "acacia_pressure_plate"
+    "acacia_pressure_plate",
+    "acacia_boat"
   ],
   "has_container": [
     "acacia_chest_boat"

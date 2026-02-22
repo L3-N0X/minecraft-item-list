@@ -30,7 +30,7 @@ export function NumberField({ path, value, label, fieldSchema, onFieldChange, va
     const isInteger = fieldSchema.type === "integer";
 
     return (
-        <div className={cn("space-y-2 rounded-md", ring)}>
+        <div className="space-y-2">
             <div className="flex justify-between">
                 <Label htmlFor={id}>{label}</Label>
                 {(min !== undefined || max !== undefined) && (
@@ -45,6 +45,7 @@ export function NumberField({ path, value, label, fieldSchema, onFieldChange, va
                 min={min}
                 max={max}
                 value={value ?? ""}
+                className={ring}
                 onChange={(e) => {
                     const raw = e.target.value;
                     if (raw === "") {

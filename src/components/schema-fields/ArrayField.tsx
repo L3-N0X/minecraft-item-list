@@ -13,7 +13,12 @@ export interface ArrayFieldProps {
     onFieldChange: (path: (string | number)[], value: any) => void;
     validationEntry?: ValidationEntry;
     getChildErr: (path: (string | number)[]) => ValidationEntry | undefined;
-    renderChildren: (properties: any, currentPath: (string | number)[], currentData: any) => React.ReactNode;
+    renderChildren: (
+        properties: any,
+        currentPath: (string | number)[],
+        currentData: any,
+        parentRequired?: string[],
+    ) => React.ReactNode;
 }
 
 export function ArrayField({
@@ -27,17 +32,18 @@ export function ArrayField({
     renderChildren,
 }: ArrayFieldProps) {
     const arrayItems: any[] = Array.isArray(value) ? value : [];
-    const itemSchema = fieldSchema.items;
+    const itemFieldSchema = fieldSchema.items;
+    const itemParentRequired: string[] | undefined = Array.isArray(itemFieldSchema?.required)
+        ? itemFieldSchema.required
+        : undefined;
 
     const handleAddItem = () => {
         onFieldChange(path, [...arrayItems, {}]);
     };
 
     const handleRemoveItem = (index: number) => {
-        onFieldChange(
-            path,
-            arrayItems.filter((_, i) => i !== index),
-        );
+        const next = arrayItems.filter((_, i) => i !== index);
+        onFieldChange(path, next.length > 0 ? next : undefined);
     };
 
     return (
@@ -100,7 +106,7 @@ export function ArrayField({
                                 </Button>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {renderChildren(itemSchema.properties, itemPath, item)}
+                                {renderChildren(itemFieldSchema.properties, itemPath, item, itemParentRequired)}
                             </div>
                         </div>
                     );

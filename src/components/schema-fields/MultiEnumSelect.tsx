@@ -11,7 +11,7 @@ export interface MultiEnumSelectProps {
     label: string;
     options: string[];
     value: string[];
-    onChange: (val: string[]) => void;
+    onChange: (val: string[] | undefined) => void;
     triggerClassName?: string;
 }
 
@@ -20,7 +20,8 @@ export function MultiEnumSelect({ label, options, value, onChange, triggerClassN
     const selectedValues = Array.isArray(value) ? value : [];
 
     const handleUnselect = (item: string) => {
-        onChange(selectedValues.filter((i) => i !== item));
+        const next = selectedValues.filter((i) => i !== item);
+        onChange(next.length > 0 ? next : undefined);
     };
 
     const handleSelect = (item: string) => {
@@ -50,9 +51,7 @@ export function MultiEnumSelect({ label, options, value, onChange, triggerClassN
                         </button>
                     </Badge>
                 ))}
-                {selectedValues.length === 0 && (
-                    <span className="text-xs text-muted-foreground italic">None selected</span>
-                )}
+                {selectedValues.length === 0 && <span className="text-xs text-muted-foreground italic">None selected</span>}
             </div>
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
