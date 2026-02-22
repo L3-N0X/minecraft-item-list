@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Check, ChevronsUpDown, X } from "lucide-react";
+import { Check, ChevronsUpDown, Plus, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import schema from "../data/schema.json";
 
@@ -23,6 +23,15 @@ function resolveRef(ref: string): any {
         return current;
     }
     return undefined;
+}
+
+function isQuantitySpec(fieldSchema: any): boolean {
+    if (!Array.isArray(fieldSchema?.oneOf) || fieldSchema.oneOf.length !== 2) return false;
+    const hasInteger = fieldSchema.oneOf.some((o: any) => o.type === "integer" && !o.properties);
+    const hasRange = fieldSchema.oneOf.some(
+        (o: any) => o.type === "object" && o.properties?.min?.type === "integer" && o.properties?.max?.type === "integer",
+    );
+    return hasInteger && hasRange;
 }
 
 function resolveSchema(fieldSchema: any): any {
@@ -157,23 +166,117 @@ function MultiEnumSelect({ label, options, value, onChange }: MultiEnumSelectPro
     );
 }
 
-export function SchemaForm({ data, onChange }: SchemaFormProps) {
-    const itemProperties = (schema.additionalProperties as any).properties || {};
+interface QuantitySpecFieldProps {
+    label: string;
+    value: number | { min: number; max: number } | undefined;
+    onChange: (val: number | { min: number; max: number } | undefined) => void;
+}
 
-    const handleFieldChange = (path: string[], value: any) => {
+function QuantitySpecField({ label, value, onChange }: QuantitySpecFieldProps) {
+    const isRange = value !== null && typeof value === "object";
+
+    const switchToFixed = () => {
+        const fixedVal = isRange ? (value as { min: number; max: number }).min : 1;
+        onChange(fixedVal);
+    };
+
+    const switchToRange = () => {
+        const base = typeof value === "number" ? value : 1;
+        onChange({ min: base, max: base });
+    };
+
+    return (
+        <div className="space-y-2">
+            <div className="flex items-center justify-between">
+                <Label>{label}</Label>
+                <div className="flex rounded-md border overflow-hidden text-xs h-6">
+                    <button
+                        type="button"
+                        className={cn(
+                            "px-2 transition-colors",
+                            !isRange ? "bg-primary text-primary-foreground" : "hover:bg-muted text-muted-foreground",
+                        )}
+                        onClick={switchToFixed}
+                    >
+                        Fixed
+                    </button>
+                    <button
+                        type="button"
+                        className={cn(
+                            "px-2 border-l transition-colors",
+                            isRange ? "bg-primary text-primary-foreground" : "hover:bg-muted text-muted-foreground",
+                        )}
+                        onClick={switchToRange}
+                    >
+                        Range
+                    </button>
+                </div>
+            </div>
+            {!isRange ? (
+                <Input
+                    type="number"
+                    value={typeof value === "number" ? value : ""}
+                    onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "") {
+                            onChange(undefined);
+                        } else {
+                            const v = parseInt(raw);
+                            if (!isNaN(v)) onChange(v);
+                        }
+                    }}
+                />
+            ) : (
+                <div className="flex gap-2">
+                    <div className="flex-1 space-y-1">
+                        <Label className="text-xs text-muted-foreground">Min</Label>
+                        <Input
+                            type="number"
+                            value={(value as { min: number; max: number }).min ?? ""}
+                            onChange={(e) => {
+                                const v = parseInt(e.target.value);
+                                if (!isNaN(v)) onChange({ ...(value as { min: number; max: number }), min: v });
+                            }}
+                        />
+                    </div>
+                    <div className="flex-1 space-y-1">
+                        <Label className="text-xs text-muted-foreground">Max</Label>
+                        <Input
+                            type="number"
+                            value={(value as { min: number; max: number }).max ?? ""}
+                            onChange={(e) => {
+                                const v = parseInt(e.target.value);
+                                if (!isNaN(v)) onChange({ ...(value as { min: number; max: number }), max: v });
+                            }}
+                        />
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export function SchemaForm({ data, onChange }: SchemaFormProps) {
+    const itemProperties = (schema.properties as any).items || {};
+
+    const handleFieldChange = (path: (string | number)[], value: any) => {
         const newData = JSON.parse(JSON.stringify(data));
         let current = newData;
         for (let i = 0; i < path.length - 1; i++) {
-            if (!current[path[i]]) current[path[i]] = {};
-            current = current[path[i]];
+            const segment = path[i] as string | number;
+            const nextSegment = path[i + 1];
+            if (current[segment] === undefined || current[segment] === null) {
+                current[segment] = typeof nextSegment === "number" ? [] : {};
+            }
+            current = current[segment];
         }
-        current[path[path.length - 1]] = value;
+        current[path[path.length - 1] as string | number] = value;
         onChange(newData);
     };
 
-    const renderRecursiveFields = (properties: any, currentPath: string[], currentData: any) => {
+    const renderRecursiveFields = (properties: any, currentPath: (string | number)[], currentData: any) => {
         return Object.entries(properties).map(([key, rawFieldSchema]: [string, any]) => {
-            const path = [...currentPath, key];
+            const path: (string | number)[] = [...currentPath, key];
             const value = currentData ? currentData[key] : undefined;
             const fieldSchema = resolveSchema(rawFieldSchema);
             const label = getLabel(key, fieldSchema);
@@ -185,6 +288,18 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                         key={path.join(".")}
                         label={label}
                         options={fieldSchema.enum}
+                        value={value}
+                        onChange={(val) => handleFieldChange(path, val)}
+                    />
+                );
+            }
+
+            // Handle QuantitySpec (fixed integer or {min, max} range)
+            if (isQuantitySpec(fieldSchema)) {
+                return (
+                    <QuantitySpecField
+                        key={path.join(".")}
+                        label={label}
                         value={value}
                         onChange={(val) => handleFieldChange(path, val)}
                     />
@@ -287,6 +402,68 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                             checked={!!value}
                             onCheckedChange={(checked) => handleFieldChange(path, checked)}
                         />
+                    </div>
+                );
+            }
+
+            // Handle Array of Objects
+            if (fieldSchema.type === "array" && fieldSchema.items?.type === "object" && fieldSchema.items?.properties) {
+                const arrayItems: any[] = Array.isArray(value) ? value : [];
+                const itemSchema = fieldSchema.items;
+
+                const handleAddItem = () => {
+                    handleFieldChange(path, [...arrayItems, {}]);
+                };
+
+                const handleRemoveItem = (index: number) => {
+                    handleFieldChange(
+                        path,
+                        arrayItems.filter((_, i) => i !== index),
+                    );
+                };
+
+                return (
+                    <div key={path.join(".")} className="space-y-3 md:col-span-2">
+                        <div className="flex items-center gap-3">
+                            <h4 className="font-bold text-sm text-primary uppercase tracking-wider">{label}</h4>
+                            <div className="h-px flex-1 bg-muted" />
+                            <Button
+                                type="button"
+                                size="sm"
+                                variant="outline"
+                                className="h-7 px-2 text-xs gap-1"
+                                onClick={handleAddItem}
+                            >
+                                <Plus className="h-3 w-3" />
+                                Add
+                            </Button>
+                        </div>
+                        {arrayItems.length === 0 && (
+                            <p className="text-xs text-muted-foreground italic px-1">No entries yet — click Add to create one.</p>
+                        )}
+                        <div className="space-y-3">
+                            {arrayItems.map((item: any, index: number) => (
+                                <div key={index} className="p-3 border-2 border-muted rounded-lg bg-card shadow-sm space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                                            {label} #{index + 1}
+                                        </span>
+                                        <Button
+                                            type="button"
+                                            size="sm"
+                                            variant="ghost"
+                                            className="h-6 w-6 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                            onClick={() => handleRemoveItem(index)}
+                                        >
+                                            <Trash2 className="h-3.5 w-3.5" />
+                                        </Button>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {renderRecursiveFields(itemSchema.properties, [...path, index], item)}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 );
             }

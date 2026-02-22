@@ -685,6 +685,26 @@
           "list": []
         }
       }
+    },
+    "additionalProperties": {
+      "obtaining": {
+        "naturalGeneration": {
+          "partOfStructures": {
+            "structures": []
+          }
+        },
+        "generatedLoot": {
+          "structures": [],
+          "mobs": {
+            "list": []
+          }
+        },
+        "mobLoot": [
+          {
+            "mob": "bogged"
+          }
+        ]
+      }
     }
   },
   "anvil": {

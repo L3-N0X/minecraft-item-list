@@ -10,6 +10,22 @@
             "type": "string",
             "enum": ["sword", "axe", "pickaxe", "shovel", "hoe", "shears", "brush", "none", "any"]
         },
+        "quantitySpec": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "min": { "type": "integer" },
+                        "max": { "type": "integer" }
+                    },
+                    "required": ["min", "max"],
+                    "additionalProperties": false
+                }
+            ]
+        },
         "specialToolEnum": {
             "type": "string",
             "enum": [
@@ -453,6 +469,11 @@
                     "stackSize": {
                         "$ref": "#/definitions/stackSizeEnum"
                     },
+                    "rarityTier": {
+                        "type": "string",
+                        "enum": ["common", "uncommon", "rare", "epic"],
+                        "default": "common"
+                    },
                     "block": {
                         "type": "object",
                         "$comment": "Block-specific properties. Required when isBlock is true.",
@@ -541,7 +562,14 @@
                                 }
                             },
                             "durability": {
-                                "type": "number"
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 3000
+                            },
+                            "enchantability": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 25
                             },
                             "possibleEnchantments": {
                                 "type": "array",
@@ -549,31 +577,25 @@
                                     "$ref": "#/definitions/enchantmentEnum"
                                 }
                             },
-                            "enchantability": {
-                                "type": "integer",
-                                "minimum": 0,
-                                "maximum": 25
-                            },
                             "fireResistant": {
                                 "type": "boolean",
                                 "$comment": "If this item is fire resistant (e.g. netherite)"
                             }
                         }
                     },
-                    "compostable": {
+                    "compostability": {
                         "type": "object",
                         "properties": {
+                            "compostable": {
+                                "type": "boolean",
+                                "$comment": "If this item is compostable"
+                            },
                             "chance": {
                                 "type": "number",
                                 "minimum": 0.0,
                                 "maximum": 1.0
                             }
                         }
-                    },
-                    "rarityTier": {
-                        "type": "string",
-                        "enum": ["common", "uncommon", "rare", "epic"],
-                        "default": "common"
                     },
                     "edible": {
                         "type": "object",
@@ -625,7 +647,7 @@
                                 "enum": ["survival", "creative_only", "unobtainable"],
                                 "$comment": "survival: Standard gameplay. creative_only: Requires commands or creative menu (e.g., Command Block, Barrier). unobtainable: Technical blocks with no item form (e.g., Nether Portal block, Piston Head)."
                             },
-                            "crafting": {
+                            "craftable": {
                                 "type": "boolean",
                                 "$comment": "Can be obtained by a crafting recipe"
                             },
@@ -637,7 +659,7 @@
                                         "enum": ["silk_touch_only", "yes", "no"],
                                         "$comment": "Block requires Silk Touch to drop in this form"
                                     },
-                                    "requiresSpecialTools": {
+                                    "requiresSpecialToolsToDrop": {
                                         "type": "array",
                                         "items": {
                                             "$ref": "#/definitions/specialToolEnum"
@@ -666,10 +688,13 @@
                                         },
                                         "minItems": 1
                                     },
-                                    "structures": {
+                                    "comment": {
+                                        "type": "string"
+                                    },
+                                    "partOfStructures": {
                                         "type": "object",
                                         "properties": {
-                                            "list": {
+                                            "structures": {
                                                 "type": "array",
                                                 "items": {
                                                     "$ref": "#/definitions/structureEnum"
@@ -681,9 +706,6 @@
                                             }
                                         },
                                         "required": ["list"]
-                                    },
-                                    "comment": {
-                                        "type": "string"
                                     }
                                 },
                                 "required": ["biomes", "structures", "dimensions"],
@@ -698,50 +720,62 @@
                                 "type": "object",
                                 "properties": {
                                     "structures": {
-                                        "type": "object",
-                                        "properties": {
-                                            "list": {
-                                                "type": "array",
-                                                "items": {
+                                        "type": "array",
+                                        "minItems": 1,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "structure": {
                                                     "$ref": "#/definitions/structureEnum"
-                                                }
-                                            },
-                                            "chest": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "chestName": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "$ref": "#/definitions/chestEnum"
-                                                        }
-                                                    },
-                                                    "chance": {
-                                                        "type": "number",
-                                                        "minimum": 0.0,
-                                                        "maximum": 1.0
+                                                },
+                                                "chests": {
+                                                    "type": "array",
+                                                    "minItems": 1,
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "chestName": {
+                                                                "$ref": "#/definitions/chestEnum"
+                                                            },
+                                                            "chance": {
+                                                                "type": "number",
+                                                                "minimum": 0.0,
+                                                                "maximum": 1.0
+                                                            },
+                                                            "quantity": { "$ref": "#/definitions/quantitySpec" }
+                                                        },
+                                                        "required": ["chestName", "chance"],
+                                                        "additionalProperties": false
                                                     }
+                                                },
+                                                "comment": {
+                                                    "type": "string"
                                                 }
                                             },
-                                            "comment": {
-                                                "type": "string"
-                                            }
+                                            "required": ["structure", "chests"],
+                                            "additionalProperties": false
+                                        }
+                                    }
+                                }
+                            },
+                            "mobLoot": {
+                                "type": "array",
+                                "minItems": 1,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "mob": {
+                                            "$ref": "#/definitions/mobEnum"
                                         },
-                                        "required": ["list"]
-                                    },
-                                    "mobs": {
-                                        "type": "object",
-                                        "properties": {
-                                            "list": {
-                                                "type": "array",
-                                                "items": {
-                                                    "$ref": "#/definitions/mobEnum"
-                                                }
-                                            },
-                                            "comment": {
-                                                "type": "string"
-                                            }
+                                        "chance": {
+                                            "type": "number",
+                                            "minimum": 0.0,
+                                            "maximum": 1.0
                                         },
-                                        "required": ["list"]
+                                        "quantity": { "$ref": "#/definitions/quantitySpec" },
+                                        "comment": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             },
@@ -772,6 +806,7 @@
                                                     "minimum": 0.0,
                                                     "maximum": 1.0
                                                 },
+                                                "quantity": { "$ref": "#/definitions/quantitySpec" },
                                                 "comment": {
                                                     "type": "string"
                                                 }
@@ -786,6 +821,7 @@
                                                     "minimum": 0.0,
                                                     "maximum": 1.0
                                                 },
+                                                "quantity": { "$ref": "#/definitions/quantitySpec" },
                                                 "comment": {
                                                     "type": "string"
                                                 }
@@ -808,6 +844,7 @@
                                         "minimum": 0.0,
                                         "maximum": 1.0
                                     },
+                                    "quantity": { "$ref": "#/definitions/quantitySpec" },
                                     "comment": {
                                         "type": "string"
                                     }
@@ -822,6 +859,7 @@
                                         "minimum": 0.0,
                                         "maximum": 1.0
                                     },
+                                    "quantity": { "$ref": "#/definitions/quantitySpec" },
                                     "comment": {
                                         "type": "string"
                                     }
@@ -829,7 +867,22 @@
                                 "required": ["chance"]
                             },
                             "smelting": {
-                                "type": "boolean"
+                                "type": "object",
+                                "properties": {
+                                    "smeltable": {
+                                        "type": "array",
+                                        "minItems": 1,
+                                        "items": {
+                                            "type": "string",
+                                            "enum": ["furnace", "blast_furnace", "smoker", "campfire"]
+                                        }
+                                    },
+                                    "xpFromSmelting": {
+                                        "type": "number",
+                                        "minimum": 0.1
+                                    }
+                                },
+                                "required": ["smeltable", "xpFromSmelting"]
                             },
                             "difficultyToObtain": {
                                 "type": "integer",

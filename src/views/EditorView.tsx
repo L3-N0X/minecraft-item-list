@@ -166,7 +166,7 @@ export function EditorView() {
                         </Dialog>
                     </div>
                 </CardHeader>
-                <CardContent className="pt-6 space-y-8">
+                <CardContent className="space-y-8">
                     <div className="space-y-2 pb-6 border-b">
                         <Label className="text-lg font-semibold">Categories</Label>
                         <CategorySelector
