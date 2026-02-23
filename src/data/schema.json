@@ -1986,7 +1986,7 @@
                             "luminousLevel",
                             "transparency",
                             "isBlockEntity",
-                            "tools",
+                            "bestTools",
                             "flammable",
                             "catchesFire",
                             "waterloggable"
@@ -2017,7 +2017,7 @@
                             "isBlockEntity": {
                                 "type": "boolean"
                             },
-                            "bestTool": {
+                            "bestTools": {
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/definitions/toolEnum"

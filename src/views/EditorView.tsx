@@ -176,6 +176,22 @@ export function EditorView() {
                     </div>
 
                     <SchemaForm data={currentItem} onChange={(newData) => updateItem(id, newData, itemCategories)} />
+
+                    <div className="flex items-center justify-between pt-6 border-t mt-2">
+                        <Button variant="outline" onClick={goToPrev} disabled={currentIndex <= 0}>
+                            <ChevronLeft className="mr-2 h-4 w-4" />
+                            Previous
+                        </Button>
+
+                        <span className="text-sm text-muted-foreground">
+                            {currentIndex + 1} / {itemIds.length}
+                        </span>
+
+                        <Button variant="outline" onClick={goToNext} disabled={currentIndex >= itemIds.length - 1}>
+                            Next
+                            <ChevronRight className="ml-2 h-4 w-4" />
+                        </Button>
+                    </div>
                 </CardContent>
             </Card>
         </div>

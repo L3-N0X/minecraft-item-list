@@ -105,7 +105,7 @@ export function ListView() {
                                                     <Badge
                                                         key={cat}
                                                         variant="outline"
-                                                        className="text-[10px] px-1 py-0 h-auto font-normal"
+                                                        className="text-[12px] px-3 py-0.5 h-auto font-normal"
                                                     >
                                                         {cat}
                                                     </Badge>
@@ -116,7 +116,7 @@ export function ListView() {
                                             {(errorCounts[id] ?? 0) > 0 ? (
                                                 <Badge
                                                     variant="destructive"
-                                                    className="text-[10px] px-1.5 py-0 h-auto font-mono tabular-nums"
+                                                    className="text-[12px] px-3 py-0.5 h-auto font-mono tabular-nums"
                                                 >
                                                     {errorCounts[id] ?? 0}
                                                 </Badge>

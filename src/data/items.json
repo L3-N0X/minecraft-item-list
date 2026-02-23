@@ -4,7 +4,39 @@
         "acacia_boat": {
             "displayName": "Acacia Button",
             "displayNameGerman": "Akazienholzknopf",
-            "isBlock": true
+            "isBlock": true,
+            "renewable": "no",
+            "stackSize": 16,
+            "rarityTier": "uncommon",
+            "block": {
+                "hardness": 4,
+                "blastResistance": 6,
+                "luminousLevel": 15,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTool": [
+                    "brush",
+                    "hoe"
+                ],
+                "flammable": true,
+                "catchesFire": true,
+                "bestTools": [
+                    "shovel"
+                ]
+            },
+            "edible": {
+                "alwaysConsumable": false,
+                "hunger": 12,
+                "saturation": 12
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": 10
+            }
         },
         "acacia_button": {
             "displayName": "Acacia Button",
@@ -389,7 +421,20 @@
         "bell": {
             "displayName": "Bell",
             "displayNameGerman": "Glocke",
-            "isBlock": true
+            "isBlock": false,
+            "item": {
+                "fireResistant": false
+            },
+            "obtaining": {
+                "craftable": false,
+                "obtainability": "survival",
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "yes"
         },
         "big_dripleaf": {
             "displayName": "Big Dripleaf",
