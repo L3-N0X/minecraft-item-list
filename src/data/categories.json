@@ -1,6 +1,7 @@
 {
   "has_container": [
-    "acacia_chest_boat"
+    "acacia_chest_boat",
+    "black_bundle"
   ],
   "redstone": [
     "acacia_door",
@@ -43,11 +44,13 @@
   ],
   "slab": [
     "acacia_slab",
-    "andesite_slab"
+    "andesite_slab",
+    "blackstone_slab"
   ],
   "stairs": [
     "acacia_stairs",
-    "andesite_stairs"
+    "andesite_stairs",
+    "blackstone_stairs"
   ],
   "rail": [
     "activator_rail"
@@ -73,7 +76,8 @@
     "ancient_debris"
   ],
   "stone_variant": [
-    "andesite"
+    "andesite",
+    "blackstone"
   ],
   "wall": [
     "andesite_wall"
@@ -81,7 +85,78 @@
   "pottery_sherd": [
     "angler_pottery_sherd"
   ],
-  "Uncategorized": [
-    "bell"
+  "bundle": [
+    "black_bundle"
+  ],
+  "candle": [
+    "black_candle"
+  ],
+  "gravity": [
+    "black_concrete_powder"
+  ],
+  "black": [
+    "black_candle",
+    "black_bundle",
+    "black_bed",
+    "black_banner",
+    "black_carpet",
+    "black_concrete_powder",
+    "black_dye",
+    "black_glazed_terracotta",
+    "black_concrete",
+    "black_shulker_box",
+    "black_harness",
+    "black_stained_glass",
+    "black_stained_glass_pane",
+    "black_terracotta",
+    "black_wool"
+  ],
+  "bed": [
+    "black_bed"
+  ],
+  "banner": [
+    "black_banner"
+  ],
+  "carpet": [
+    "black_carpet"
+  ],
+  "concrete": [
+    "black_concrete"
+  ],
+  "concrete_powder": [
+    "black_concrete_powder"
+  ],
+  "dye": [
+    "black_dye"
+  ],
+  "glazed_terracotta": [
+    "black_glazed_terracotta"
+  ],
+  "shulker_box": [
+    "black_shulker_box"
+  ],
+  "harness": [
+    "black_harness"
+  ],
+  "stained_glass": [
+    "black_stained_glass"
+  ],
+  "glass": [
+    "black_stained_glass",
+    "black_stained_glass_pane"
+  ],
+  "stained_glass_pane": [
+    "black_stained_glass_pane"
+  ],
+  "terracotta": [
+    "black_terracotta"
+  ],
+  "wool": [
+    "black_wool"
+  ],
+  "blackstone": [
+    "blackstone",
+    "blackstone_slab",
+    "blackstone_stairs"
   ]
 }

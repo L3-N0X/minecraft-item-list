@@ -2164,6 +2164,28 @@
                         },
                         "$comment": "If this item can be used as fuel in a furnace"
                     },
+                    "breaking": {
+                        "type": "object",
+                        "required": ["requiresSilkTouch", "instantBreaking"],
+                        "properties": {
+                            "requiresSilkTouch": {
+                                "type": "string",
+                                "enum": ["silk_touch_only", "yes", "no"],
+                                "$comment": "Block requires Silk Touch to drop in this form"
+                            },
+                            "requiresSpecialToolsToDrop": {
+                                "type": "array",
+                                "minItems": 1,
+                                "items": {
+                                    "$ref": "#/definitions/specialToolEnum"
+                                },
+                                "$comment": "Requires a specific tool at least, if not provided, it drops by hand."
+                            },
+                            "instantBreaking": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
                     "obtaining": {
                         "type": "object",
                         "properties": {
@@ -2175,28 +2197,6 @@
                             "craftable": {
                                 "type": "boolean",
                                 "$comment": "Can be obtained by a crafting recipe"
-                            },
-                            "breaking": {
-                                "type": "object",
-                                "required": ["requiresSilkTouch", "instantBreaking"],
-                                "properties": {
-                                    "requiresSilkTouch": {
-                                        "type": "string",
-                                        "enum": ["silk_touch_only", "yes", "no"],
-                                        "$comment": "Block requires Silk Touch to drop in this form"
-                                    },
-                                    "requiresSpecialToolsToDrop": {
-                                        "type": "array",
-                                        "minItems": 1,
-                                        "items": {
-                                            "$ref": "#/definitions/specialToolEnum"
-                                        },
-                                        "$comment": "Requires a specific tool at least, if not provided, it drops by hand."
-                                    },
-                                    "instantBreaking": {
-                                        "type": "boolean"
-                                    }
-                                }
                             },
                             "naturalGeneration": {
                                 "type": "object",

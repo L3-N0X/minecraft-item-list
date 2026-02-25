@@ -82,21 +82,24 @@ export function EditorView() {
     return (
         <div className="max-w-4xl mx-auto space-y-6">
             <div className="flex items-center justify-between">
-                <Button variant="ghost" onClick={() => navigate("/")}>
-                    <List className="mr-2 h-4 w-4" />
-                    Back to List
-                </Button>
+                <div className="flex items-center gap-2">
+                    <Button variant="outline" size="lg" onClick={goToPrev} disabled={currentIndex <= 0}>
+                        <ChevronLeft className="h-4 w-4" />
+                        Previous
+                    </Button>
+                    <Button variant="ghost" onClick={() => navigate("/")}>
+                        <List className="mr-2 h-4 w-4" />
+                        Back to List
+                    </Button>
+                </div>
 
                 <div className="flex items-center gap-2">
-                    <Button variant="outline" size="icon" onClick={goToPrev} disabled={currentIndex <= 0}>
-                        <ChevronLeft className="h-4 w-4" />
-                    </Button>
-
-                    <div className="min-w-50 text-center">
+                    <div className="min-w-[360px] text-center">
                         <ItemSelector items={itemIds} selectedItem={id} onSelect={(newId) => navigate(`/edit/${newId}`)} />
                     </div>
 
-                    <Button variant="outline" size="icon" onClick={goToNext} disabled={currentIndex >= itemIds.length - 1}>
+                    <Button variant="outline" size="lg" onClick={goToNext} disabled={currentIndex >= itemIds.length - 1}>
+                        Next
                         <ChevronRight className="h-4 w-4" />
                     </Button>
                 </div>
@@ -108,12 +111,12 @@ export function EditorView() {
                         <div className="flex items-center gap-4">
                             <div className="w-16 h-16 bg-background rounded-md border flex items-center justify-center p-2">
                                 <img
-                                    src={`/public/renders/${items[id]?.isBlock ? "blocks" : "items"}/${id}.png`}
+                                    src={`/renders/${items[id]?.isBlock ? "blocks" : "items"}/${id}.png`}
                                     alt=""
                                     className="w-full h-full object-contain image-pixelated"
                                     onError={(e) => {
                                         if (e.currentTarget.src.includes("/blocks/")) {
-                                            e.currentTarget.src = `/public/renders/items/${id}.png`;
+                                            e.currentTarget.src = `/renders/items/${id}.png`;
                                         } else {
                                             e.currentTarget.src =
                                                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";

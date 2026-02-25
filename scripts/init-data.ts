@@ -73,17 +73,8 @@ async function initData() {
             displayName: existing.displayName ?? displayNameEn,
             displayNameGerman: existing.displayNameGerman ?? displayNameGerman,
             isBlock,
-            ...(isBlock ? { block: existing.block ?? {} } : { item: existing.item ?? {} }),
+            ...(isBlock ? { block: existing.block ?? {}, breaking: existing.breaking ?? {} } : { item: existing.item ?? {} }),
         };
-
-        // Ensure item appears in at least one category
-        const hasCategory = Object.values(categories).some((ids) => ids.includes(name));
-        if (!hasCategory) {
-            if (!categories["Uncategorized"]) categories["Uncategorized"] = [];
-            if (!categories["Uncategorized"].includes(name)) {
-                categories["Uncategorized"].push(name);
-            }
-        }
     }
 
     const output = {
