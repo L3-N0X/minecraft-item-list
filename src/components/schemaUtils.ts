@@ -1,4 +1,4 @@
-import schema from "../data/schema.json";
+import schema from "../schema/schema.json";
 
 /**
  * Resolves a JSON Schema $ref string (only supports local "#/..." references)

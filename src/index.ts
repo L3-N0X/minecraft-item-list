@@ -48,7 +48,7 @@ const server = serve({
 
         "/api/items/download": {
             async GET() {
-                const file = Bun.file("src/data/items.json");
+                const file = Bun.file("data/items.json");
                 return new Response(file, {
                     headers: {
                         "Content-Disposition": 'attachment; filename="items.json"',
@@ -60,24 +60,24 @@ const server = serve({
 
         "/api/items": {
             async GET() {
-                const data = await Bun.file("src/data/items.json").json();
+                const data = await Bun.file("data/items.json").json();
                 // New schema wraps items under an "items" key alongside "minecraft_version"
                 return Response.json(data.items ?? data);
             },
             async POST(req) {
                 const body = await req.json();
                 const { id, data, categories: itemCategories } = body;
-                const jsonData = await Bun.file("src/data/items.json").json();
+                const jsonData = await Bun.file("data/items.json").json();
                 // Support both new schema ({ minecraft_version, items: {...} }) and legacy flat schema
                 if (jsonData.items !== undefined) {
                     jsonData.items[id] = data;
                 } else {
                     jsonData[id] = data;
                 }
-                await Bun.write("src/data/items.json", JSON.stringify(jsonData, null, 4));
+                await Bun.write("data/items.json", JSON.stringify(jsonData, null, 4));
 
                 if (itemCategories) {
-                    const categories = await Bun.file("src/data/categories.json").json();
+                    const categories = await Bun.file("data/categories.json").json();
                     // Remove item from all existing categories
                     for (const catName in categories) {
                         categories[catName] = categories[catName].filter((itemId: string) => itemId !== id);
@@ -95,7 +95,7 @@ const server = serve({
                             delete categories[catName];
                         }
                     }
-                    await Bun.write("src/data/categories.json", JSON.stringify(categories, null, 2));
+                    await Bun.write("data/categories.json", JSON.stringify(categories, null, 2));
                 }
 
                 return Response.json({ success: true });
@@ -104,12 +104,12 @@ const server = serve({
 
         "/api/categories": {
             async GET() {
-                const data = await Bun.file("src/data/categories.json").json();
+                const data = await Bun.file("data/categories.json").json();
                 return Response.json(data);
             },
             async POST(req) {
                 const categories = await req.json();
-                await Bun.write("src/data/categories.json", JSON.stringify(categories, null, 2));
+                await Bun.write("data/categories.json", JSON.stringify(categories, null, 2));
                 return Response.json({ success: true });
             },
         },

@@ -19,10 +19,7 @@ function ItemRow({ id }: { id: string }) {
     const categories = useMemo(() => getItemCategories(id), [id, getItemCategories]);
 
     return (
-        <TableRow
-            className="cursor-pointer hover:bg-muted/50"
-            onClick={() => navigate(`/edit/${id}`)}
-        >
+        <TableRow className="cursor-pointer hover:bg-muted/50" onClick={() => navigate(`/edit/${id}`)}>
             <TableCell className="w-12 py-2">
                 <img
                     src={`/public/renders/${item?.isBlock ? "blocks" : "items"}/${id}.png`}
@@ -41,20 +38,14 @@ function ItemRow({ id }: { id: string }) {
             <TableCell className="whitespace-normal">
                 <div className="flex flex-col">
                     <span className="font-medium">{item?.displayName}</span>
-                    {item?.displayNameGerman && (
-                        <span className="text-xs text-muted-foreground">{item.displayNameGerman}</span>
-                    )}
+                    {item?.displayNameGerman && <span className="text-xs text-muted-foreground">{item.displayNameGerman}</span>}
                 </div>
             </TableCell>
             <TableCell className="font-mono text-xs text-muted-foreground whitespace-normal break-all">{id}</TableCell>
             <TableCell className="whitespace-normal">
                 <div className="flex flex-wrap gap-1">
                     {categories.map((cat) => (
-                        <Badge
-                            key={cat}
-                            variant="outline"
-                            className="text-[12px] px-3 py-0.5 h-auto font-normal"
-                        >
+                        <Badge key={cat} variant="outline" className="text-[12px] px-3 py-0.5 h-auto font-normal">
                             {cat}
                         </Badge>
                     ))}
@@ -62,10 +53,7 @@ function ItemRow({ id }: { id: string }) {
             </TableCell>
             <TableCell className="text-right">
                 {errorCount > 0 ? (
-                    <Badge
-                        variant="destructive"
-                        className="text-[12px] px-3 py-0.5 h-auto font-mono tabular-nums"
-                    >
+                    <Badge variant="destructive" className="text-[12px] px-3 py-0.5 h-auto font-mono tabular-nums">
                         {errorCount}
                     </Badge>
                 ) : (
@@ -123,9 +111,9 @@ export function ListView() {
 
         const observer = new IntersectionObserver(
             (entries) => {
-                if (entries[0].isIntersecting) loadMore();
+                if (entries[0]?.isIntersecting) loadMore();
             },
-            { rootMargin: "200px" }
+            { rootMargin: "200px" },
         );
         observer.observe(sentinel);
         return () => observer.disconnect();
@@ -145,14 +133,15 @@ export function ListView() {
                     <h1 className="text-3xl font-bold tracking-tight">Items</h1>
                     <p className="text-muted-foreground">Browse and manage Minecraft items.</p>
                 </div>
-                <p className={`text-sm tabular-nums transition-opacity ${isStale ? "opacity-40" : "opacity-100"} text-muted-foreground`}>
-                    {isStale ? "Filtering…" : (
+                <p
+                    className={`text-sm tabular-nums transition-opacity ${isStale ? "opacity-40" : "opacity-100"} text-muted-foreground`}
+                >
+                    {isStale ? (
+                        "Filtering…"
+                    ) : (
                         <>
                             <span className="font-medium text-foreground">{filteredIds.length}</span>
-                            {filteredIds.length !== itemIds.length && (
-                                <span> of {itemIds.length}</span>
-                            )}
-                            {" "}items
+                            {filteredIds.length !== itemIds.length && <span> of {itemIds.length}</span>} items
                         </>
                     )}
                 </p>
@@ -199,13 +188,13 @@ export function ListView() {
 
                 <CardContent>
                     <div className="rounded-md border overflow-x-auto">
-                        <Table className="min-w-[560px]">
+                        <Table className="min-w-140">
                             <TableHeader>
                                 <TableRow>
                                     <TableHead className="w-12"></TableHead>
-                                    <TableHead className="min-w-[120px]">Name</TableHead>
-                                    <TableHead className="min-w-[140px]">ID</TableHead>
-                                    <TableHead className="min-w-[140px]">Categories</TableHead>
+                                    <TableHead className="min-w-30">Name</TableHead>
+                                    <TableHead className="min-w-35">ID</TableHead>
+                                    <TableHead className="min-w-35">Categories</TableHead>
                                     <TableHead className="text-right w-20">Issues</TableHead>
                                 </TableRow>
                             </TableHeader>
@@ -231,11 +220,13 @@ export function ListView() {
                             {hasMore ? (
                                 <>
                                     Showing <span className="font-medium text-foreground">{visibleCount}</span> of{" "}
-                                    <span className="font-medium text-foreground">{filteredIds.length}</span> items — scroll for more
+                                    <span className="font-medium text-foreground">{filteredIds.length}</span> items — scroll for
+                                    more
                                 </>
                             ) : (
                                 <>
-                                    All <span className="font-medium text-foreground">{filteredIds.length}</span> item{filteredIds.length !== 1 ? "s" : ""} shown
+                                    All <span className="font-medium text-foreground">{filteredIds.length}</span> item
+                                    {filteredIds.length !== 1 ? "s" : ""} shown
                                 </>
                             )}
                         </p>

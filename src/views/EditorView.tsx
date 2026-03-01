@@ -94,7 +94,7 @@ export function EditorView() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <div className="min-w-[360px] text-center">
+                    <div className="min-w-90 text-center">
                         <ItemSelector items={itemIds} selectedItem={id} onSelect={(newId) => navigate(`/edit/${newId}`)} />
                     </div>
 

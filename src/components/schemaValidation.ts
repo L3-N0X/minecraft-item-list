@@ -1,5 +1,5 @@
 import Ajv from "ajv";
-import schema from "../data/schema.json";
+import schema from "../schema/schema.json";
 
 // ---------------------------------------------------------------------------
 // Types

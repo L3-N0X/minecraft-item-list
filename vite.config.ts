@@ -12,6 +12,11 @@ export default defineConfig({
         },
     },
     server: {
+        watch: {
+            ignored: [
+                path.resolve(__dirname, "data/**"),
+            ],
+        },
         proxy: {
             "/api": {
                 target: "http://localhost:3000",
