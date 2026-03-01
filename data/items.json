@@ -27,166 +27,1050 @@
             "displayName": "Acacia Button",
             "displayNameGerman": "Akazienholzknopf",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.5,
+                "blastResistance": 0.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 5,
+                "numberOfItemsSmelted": 0.5
+            },
+            "obtaining": {
+                "craftable": true,
+                "obtainability": "survival",
+                "difficultyToObtain": 3
+            }
         },
         "acacia_chest_boat": {
             "displayName": "Acacia Boat with Chest",
             "displayNameGerman": "Akazienholztruhenboot",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 60,
+                "numberOfItemsSmelted": 6
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "acacia_door": {
             "displayName": "Acacia Door",
             "displayNameGerman": "Akazienholztür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 3,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 10,
+                "numberOfItemsSmelted": 1
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_fence": {
             "displayName": "Acacia Fence",
             "displayNameGerman": "Akazienholzzaun",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_fence_gate": {
             "displayName": "Acacia Fence Gate",
             "displayNameGerman": "Akazienholzzauntor",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_hanging_sign": {
             "displayName": "Acacia Hanging Sign",
             "displayNameGerman": "Akazienholzhängeschild",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1,
+                "blastResistance": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "fuel": {
+                "burnTimeSeconds": 40,
+                "numberOfItemsSmelted": 4
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "acacia_leaves": {
             "displayName": "Acacia Leaves",
             "displayNameGerman": "Akazienlaub",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.2,
+                "blastResistance": 0.2,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shears",
+                    "hoe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "shears"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "biomes": [
+                        "savanna",
+                        "savanna_plateau",
+                        "windswept_savanna"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ]
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_log": {
             "displayName": "Acacia Log",
             "displayNameGerman": "Akazienstamm",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "biomes": [
+                        "savanna",
+                        "savanna_plateau",
+                        "windswept_savanna"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.13,
+                        "quantity": 8
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_planks": {
             "displayName": "Acacia Planks",
             "displayNameGerman": "Akazienholzbretter",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 1.5,
+                "numberOfItemsSmelted": 15
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "trial_chambers",
+                            "chests": [
+                                {
+                                    "chestName": "trial_chamber_supply_chest",
+                                    "chance": 0.204,
+                                    "quantity": {
+                                        "min": 3,
+                                        "max": 6
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
         },
         "acacia_pressure_plate": {
             "displayName": "Acacia Pressure Plate",
             "displayNameGerman": "Akazienholzdruckplatte",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.5,
+                "blastResistance": 0.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ],
+                        "comment": "Fletcher House, Mason House, Small House 1, Small House 5, Weaponsmith 2"
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_sapling": {
             "displayName": "Acacia Sapling",
             "displayNameGerman": "Akaziensetzling",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 5,
+                "numberOfItemsSmelted": 0.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ],
+                        "comment": "Library House"
+                    }
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "village_savanna",
+                            "chests": [
+                                {
+                                    "chestName": "savanna_village_house_chest",
+                                    "chance": 0.717,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 2
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "blockLoot": [
+                    {
+                        "blocks": [
+                            "acacia_leaves"
+                        ],
+                        "chance": 0.05,
+                        "quantity": 1
+                    }
+                ],
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 1
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_shelf": {
             "displayName": "Acacia Shelf",
             "displayNameGerman": "Akazienholzregal",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "acacia_sign": {
             "displayName": "Acacia Sign",
             "displayNameGerman": "Akazienholzschild",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1,
+                "blastResistance": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "isArmorTrimMaterial": false,
+            "craftingIngredient": false,
+            "fuel": {
+                "burnTimeSeconds": 10,
+                "numberOfItemsSmelted": 1
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "acacia_slab": {
             "displayName": "Acacia Slab",
             "displayNameGerman": "Akazienholzstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "luminousLevel": 0,
+                "blastResistance": 3,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 7.5,
+                "numberOfItemsSmelted": 0.75
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_stairs": {
             "displayName": "Acacia Stairs",
             "displayNameGerman": "Akazienholztreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "acacia_trapdoor": {
             "displayName": "Acacia Trapdoor",
             "displayNameGerman": "Akazienholzfalltür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 3,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "acacia_wood": {
             "displayName": "Acacia Wood",
             "displayNameGerman": "Akazienholz",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_savanna"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "activator_rail": {
             "displayName": "Activator Rail",
             "displayNameGerman": "Aktivierungsschiene",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.7,
+                "blastResistance": 0.7,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "mineshaft",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.271,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 4
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 6
+            }
         },
         "air": {
             "displayName": "Air",
             "displayNameGerman": "Luft",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "none"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": -1,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "unobtainable",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "allay_spawn_egg": {
             "displayName": "Allay Spawn Egg",
             "displayNameGerman": "Hilfsgeister-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "allium": {
             "displayName": "Allium",
             "displayNameGerman": "Zierlauch",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": true,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.65
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "biomes": [
+                        "flower_forest",
+                        "meadow"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion"
+                        ],
+                        "comment": "Flower room, Small library, Allium room, Double bed bedroom, "
+                    }
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "woodland_mansion",
+                            "chests": [
+                                {
+                                    "chestName": "woodland_mansion_allium_room_chest",
+                                    "chance": 1,
+                                    "quantity": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 1
+                    }
+                },
+                "difficultyToObtain": 5
+            }
         },
         "amethyst_block": {
             "displayName": "Block of Amethyst",
             "displayNameGerman": "Amethystblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 1.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "Between y=-60 and y=42"
+                },
+                "difficultyToObtain": 4
+            }
         },
         "amethyst_cluster": {
             "displayName": "Amethyst Cluster",
             "displayNameGerman": "Amethysthaufen",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 1.5,
+                "luminousLevel": 5,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "as part of amethyst geodes"
+                },
+                "difficultyToObtain": 9
+            }
         },
         "amethyst_shard": {
             "displayName": "Amethyst Shard",
             "displayNameGerman": "Amethystscherbe",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": true,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "blockLoot": [
+                    {}
+                ]
+            }
         },
         "ancient_debris": {
             "displayName": "Ancient Debris",

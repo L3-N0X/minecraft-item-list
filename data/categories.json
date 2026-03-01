@@ -1,12 +1,14 @@
 {
   "has_container": [
-    "acacia_chest_boat",
-    "black_bundle"
+    "black_bundle",
+    "acacia_chest_boat"
   ],
   "redstone": [
+    "acacia_button",
     "acacia_door",
-    "acacia_trapdoor",
+    "acacia_fence_gate",
     "acacia_pressure_plate",
+    "acacia_trapdoor",
     "activator_rail"
   ],
   "leaves": [
@@ -43,14 +45,14 @@
     "acacia_sapling"
   ],
   "slab": [
-    "acacia_slab",
     "andesite_slab",
-    "blackstone_slab"
+    "blackstone_slab",
+    "acacia_slab"
   ],
   "stairs": [
-    "acacia_stairs",
     "andesite_stairs",
-    "blackstone_stairs"
+    "blackstone_stairs",
+    "acacia_stairs"
   ],
   "rail": [
     "activator_rail"
@@ -65,11 +67,8 @@
     "allium"
   ],
   "geode": [
-    "amethyst_cluster",
     "amethyst_block",
-    "amethyst_shard"
-  ],
-  "armor_trim_material": [
+    "amethyst_cluster",
     "amethyst_shard"
   ],
   "ores": [
@@ -160,9 +159,41 @@
     "blackstone_stairs"
   ],
   "boat": [
-    "acacia_boat"
+    "acacia_boat",
+    "acacia_chest_boat"
   ],
   "acacia": [
-    "acacia_boat"
+    "acacia_boat",
+    "acacia_button",
+    "acacia_door",
+    "acacia_fence",
+    "acacia_fence_gate",
+    "acacia_hanging_sign",
+    "acacia_leaves",
+    "acacia_log",
+    "acacia_planks",
+    "acacia_pressure_plate",
+    "acacia_sign",
+    "acacia_shelf",
+    "acacia_sapling",
+    "acacia_slab",
+    "acacia_stairs",
+    "acacia_trapdoor",
+    "acacia_wood"
+  ],
+  "button": [
+    "acacia_button"
+  ],
+  "chest_boat": [
+    "acacia_chest_boat"
+  ],
+  "pressure_plate": [
+    "acacia_pressure_plate"
+  ],
+  "shelf": [
+    "acacia_shelf"
+  ],
+  "trapdoor": [
+    "acacia_trapdoor"
   ]
 }
