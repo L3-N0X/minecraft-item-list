@@ -524,7 +524,7 @@
                             "structure": "village_savanna",
                             "chests": [
                                 {
-                                    "chestName": "savanna_village_house_chest",
+                                    "chestName": "village_savanna_house_chest",
                                     "chance": 0.717,
                                     "quantity": {
                                         "min": 1,
@@ -993,7 +993,8 @@
                     "iron_pickaxe",
                     "netherite_pickaxe",
                     "stone_pickaxe",
-                    "wooden_pickaxe"
+                    "wooden_pickaxe",
+                    "copper_pickaxe"
                 ],
                 "instantBreaking": false
             },
@@ -1068,132 +1069,1051 @@
                 "obtainability": "survival",
                 "craftable": false,
                 "blockLoot": [
-                    {}
-                ]
+                    {
+                        "blocks": [
+                            "amethyst_cluster"
+                        ],
+                        "chance": 1,
+                        "quantity": 4
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "ancient_city",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.232,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 15
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "trial_chambers",
+                            "chests": [
+                                {
+                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chance": 0.397,
+                                    "quantity": {
+                                        "min": 8,
+                                        "max": 20
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 4
             }
         },
         "ancient_debris": {
             "displayName": "Ancient Debris",
             "displayNameGerman": "Antiker Schrott",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 30,
+                "blastResistance": 1200,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "netherite_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "nether"
+                    ],
+                    "comment": "most common at y=16"
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.12,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "bastion_treasure_chest",
+                                    "chance": 0.245,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "bastion_generic_chest",
+                                    "chance": 0.135,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.05,
+                                    "quantity": 2
+                                },
+                                {
+                                    "chestName": "bastion_treasure_chest",
+                                    "chance": 0.103,
+                                    "quantity": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 8
+            }
         },
         "andesite": {
             "displayName": "Andesite",
             "displayNameGerman": "Andesit",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "netherite_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe",
+                    "copper_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 1,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ]
+                }
+            }
         },
         "andesite_slab": {
             "displayName": "Andesite Slab",
             "displayNameGerman": "Andesitstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe",
+                    "copper_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 1
+            }
         },
         "andesite_stairs": {
             "displayName": "Andesite Stairs",
             "displayNameGerman": "Andesittreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 1
+            }
         },
         "andesite_wall": {
             "displayName": "Andesite Wall",
             "displayNameGerman": "Andesitmauer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 1
+            }
         },
         "angler_pottery_sherd": {
             "displayName": "Angler Pottery Sherd",
             "displayNameGerman": "Angler-Töpferscherbe",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "uncommon",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "ocean_ruin",
+                            "chests": [
+                                {
+                                    "chestName": "ocean_ruin_suspicious_sand",
+                                    "chance": 0.067,
+                                    "quantity": 1
+                                }
+                            ],
+                            "comment": "only warm ruins have suspicious sand"
+                        }
+                    ]
+                },
+                "difficultyToObtain": 9
+            }
         },
         "anvil": {
             "displayName": "Anvil",
             "displayNameGerman": "Amboss",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 5,
+                "blastResistance": 1200,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trail_ruins",
+                            "woodland_mansion"
+                        ],
+                        "comment": "Only in 'Forge room' in Woodland Mansions, Only in 'Group Hall 1' in Trail Ruins"
+                    }
+                },
+                "difficultyToObtain": 6
+            }
         },
         "apple": {
             "displayName": "Apple",
             "displayNameGerman": "Apfel",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.65
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "edible": {
+                "hunger": 4,
+                "saturation": 2.4,
+                "alwaysConsumable": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "igloo",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.704,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ],
+                            "comment": "chest only generates in the basement"
+                        },
+                        {
+                            "structure": "stronghold",
+                            "chests": [
+                                {
+                                    "chestName": "stronghold_storerooms_chest",
+                                    "chance": 0.475,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                },
+                                {
+                                    "chestName": "stronghold_altar_chest",
+                                    "chance": 0.329,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_plains",
+                            "chests": [
+                                {
+                                    "chestName": "village_plains_house_chest",
+                                    "chance": 0.742,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 5
+                                    }
+                                },
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.55,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_desert",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.55,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_savanna",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.55,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_snowy",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.55,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_taiga",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.55,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "farmer",
+                            "level": "Apprentice (2)",
+                            "probability": 0.67,
+                            "quantity": 4
+                        }
+                    ]
+                },
+                "difficultyToObtain": 2
+            }
         },
         "archer_pottery_sherd": {
             "displayName": "Archer Pottery Sherd",
             "displayNameGerman": "Schützen-Töpferscherbe",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "uncommon",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "desert_pyramid",
+                            "chests": [
+                                {
+                                    "chestName": "desert_pyramid_suspicious_sand",
+                                    "chance": 0.125,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 8
+            }
         },
         "armadillo_scute": {
             "displayName": "Armadillo Scute",
             "displayNameGerman": "Gürteltier-Hornschild",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "mob": "armadillo",
+                        "chance": 1,
+                        "quantity": 1,
+                        "comment": "When brushed"
+                    },
+                    {
+                        "mob": "armadillo",
+                        "chance": 1,
+                        "quantity": 1,
+                        "comment": "Every 5-10 minutes dropped"
+                    }
+                ],
+                "difficultyToObtain": 6
+            }
         },
         "armadillo_spawn_egg": {
             "displayName": "Armadillo Spawn Egg",
             "displayNameGerman": "Gürteltier-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "armor_stand": {
             "displayName": "Armor Stand",
             "displayNameGerman": "Rüstungsständer",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_taiga"
+                        ],
+                        "comment": "in armory part, one with iron helmet, one with iron chestplate"
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "arms_up_pottery_sherd": {
             "displayName": "Arms Up Pottery Sherd",
             "displayNameGerman": "Gebärden-Töpferscherbe",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "uncommon",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "desert_well",
+                            "chests": [
+                                {
+                                    "chestName": "desert_well_suspicious_sand",
+                                    "chance": 0.25,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 7
+            }
         },
         "arrow": {
             "displayName": "Arrow",
             "displayNameGerman": "Pfeil",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "mobLoot": [
+                    {
+                        "mob": "skeleton",
+                        "chance": 0.6667,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "mob": "stray",
+                        "chance": 0.6667,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "mob": "bogged",
+                        "chance": 0.6667,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "mob": "parched",
+                        "chance": 0.6667,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    }
+                ],
+                "difficultyToObtain": 3,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_generic_chest",
+                                    "chance": 0.441,
+                                    "quantity": {
+                                        "min": 5,
+                                        "max": 17
+                                    }
+                                },
+                                {
+                                    "chestName": "bastion_bridge_chest",
+                                    "chance": 0.479,
+                                    "quantity": {
+                                        "min": 5,
+                                        "max": 17
+                                    }
+                                },
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.228,
+                                    "quantity": {
+                                        "min": 5,
+                                        "max": 17
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "jungle_temple",
+                            "chests": [
+                                {
+                                    "chestName": "jungle_pyramid_dispenser",
+                                    "chance": 1,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 7
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "pillager_outpost",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.391,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 7
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "trial_chambers",
+                            "chests": [
+                                {
+                                    "chestName": "trial_chamber_entrance_chest",
+                                    "chance": 0.551,
+                                    "quantity": {
+                                        "min": 5,
+                                        "max": 10
+                                    }
+                                },
+                                {
+                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chance": 0.285,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 8
+                                    }
+                                },
+                                {
+                                    "chestName": "trial_chamber_chamber_dispenser",
+                                    "chance": 0.138,
+                                    "quantity": {
+                                        "min": 4,
+                                        "max": 8
+                                    }
+                                },
+                                {
+                                    "chestName": "trial_chamber_corridor_dispenser",
+                                    "chance": 1,
+                                    "quantity": {
+                                        "min": 4,
+                                        "max": 8
+                                    }
+                                },
+                                {
+                                    "chestName": "trial_chamber_vault",
+                                    "chance": 0.31,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 8
+                                    }
+                                },
+                                {
+                                    "chestName": "trial_chamber_supply_chest",
+                                    "chance": 0.373,
+                                    "quantity": {
+                                        "min": 4,
+                                        "max": 14
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_taiga",
+                            "chests": [
+                                {
+                                    "chestName": "village_taiga_fletcher_chest",
+                                    "chance": 0.233,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "fletcher",
+                            "level": "Novice (1)",
+                            "probability": 0.67,
+                            "quantity": 16,
+                            "comment": "Obtainable as gift after a raid"
+                        }
+                    ]
+                },
+                "bartering": {
+                    "chance": 0.0853,
+                    "quantity": {
+                        "min": 6,
+                        "max": 12
+                    }
+                }
+            }
         },
         "axolotl_bucket": {
             "displayName": "Bucket of Axolotl",
             "displayNameGerman": "Axolotleimer",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 5
+            }
         },
         "axolotl_spawn_egg": {
             "displayName": "Axolotl Spawn Egg",
             "displayNameGerman": "Axolotl-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "azalea": {
             "displayName": "Azalea",
             "displayNameGerman": "Azalee",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": true,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 5,
+                "numberOfItemsSmelted": 0.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "biomes": [
+                        "lush_caves"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "on top of moss blocks, most common at y=-8"
+                },
+                "blockLoot": [
+                    {
+                        "blocks": [
+                            "azalea_leaves"
+                        ],
+                        "chance": 0.05,
+                        "quantity": 1
+                    }
+                ],
+                "difficultyToObtain": 5
+            }
         },
         "azalea_leaves": {
             "displayName": "Azalea Leaves",
             "displayNameGerman": "Azaleenlaub",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.2,
+                "blastResistance": 0.2,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shears",
+                    "hoe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "shears"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "above lush caves, high humidity"
+                },
+                "difficultyToObtain": 5
+            }
         },
         "azure_bluet": {
             "displayName": "Azure Bluet",
             "displayNameGerman": "Porzellansternchen",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": true,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.65
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "biomes": [
+                        "flower_forest",
+                        "meadow",
+                        "plains",
+                        "sunflower_plains"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "theoretically capable of generating in dripstone cave and deep dark biomes"
+                },
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 1
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "baked_potato": {
             "displayName": "Baked Potato",
@@ -2189,7 +3109,7 @@
                             "structure": "village_snowy",
                             "chests": [
                                 {
-                                    "chestName": "snowy_village_shepherd_chest",
+                                    "chestName": "village_snowy_shepherd_chest",
                                     "chance": 0.33,
                                     "quantity": {
                                         "min": 1,

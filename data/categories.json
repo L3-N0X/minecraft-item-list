@@ -12,7 +12,8 @@
     "activator_rail"
   ],
   "leaves": [
-    "acacia_leaves"
+    "acacia_leaves",
+    "azalea_leaves"
   ],
   "sign": [
     "acacia_hanging_sign",
@@ -33,7 +34,7 @@
   "log": [
     "acacia_log"
   ],
-  "wood": [
+  "log_planks_wood": [
     "acacia_log",
     "acacia_planks",
     "acacia_wood"
@@ -45,14 +46,14 @@
     "acacia_sapling"
   ],
   "slab": [
-    "andesite_slab",
     "blackstone_slab",
-    "acacia_slab"
+    "acacia_slab",
+    "andesite_slab"
   ],
   "stairs": [
-    "andesite_stairs",
     "blackstone_stairs",
-    "acacia_stairs"
+    "acacia_stairs",
+    "andesite_stairs"
   ],
   "rail": [
     "activator_rail"
@@ -61,28 +62,32 @@
     "air"
   ],
   "spawn_egg": [
-    "allay_spawn_egg"
+    "allay_spawn_egg",
+    "armadillo_spawn_egg",
+    "axolotl_spawn_egg"
   ],
   "flower": [
-    "allium"
+    "allium",
+    "azure_bluet"
   ],
   "geode": [
-    "amethyst_block",
     "amethyst_cluster",
-    "amethyst_shard"
+    "amethyst_shard",
+    "amethyst_block"
   ],
   "ores": [
     "ancient_debris"
   ],
   "stone_variant": [
-    "andesite",
-    "blackstone"
+    "blackstone",
+    "andesite"
   ],
   "wall": [
     "andesite_wall"
   ],
   "pottery_sherd": [
-    "angler_pottery_sherd"
+    "angler_pottery_sherd",
+    "archer_pottery_sherd"
   ],
   "bundle": [
     "black_bundle"
@@ -91,7 +96,8 @@
     "black_candle"
   ],
   "gravity": [
-    "black_concrete_powder"
+    "black_concrete_powder",
+    "anvil"
   ],
   "black": [
     "black_candle",
@@ -175,11 +181,11 @@
     "acacia_pressure_plate",
     "acacia_sign",
     "acacia_shelf",
-    "acacia_sapling",
     "acacia_slab",
     "acacia_stairs",
     "acacia_trapdoor",
-    "acacia_wood"
+    "acacia_wood",
+    "acacia_sapling"
   ],
   "button": [
     "acacia_button"
@@ -195,5 +201,31 @@
   ],
   "trapdoor": [
     "acacia_trapdoor"
+  ],
+  "andesite": [
+    "andesite_slab",
+    "andesite",
+    "andesite_stairs",
+    "andesite_wall"
+  ],
+  "pottery_sherd_brushing_only": [
+    "angler_pottery_sherd",
+    "archer_pottery_sherd"
+  ],
+  "enchanting": [
+    "anvil"
+  ],
+  "projectile": [
+    "arrow"
+  ],
+  "bucket": [
+    "axolotl_bucket"
+  ],
+  "bucket_caught": [
+    "axolotl_bucket"
+  ],
+  "azalea": [
+    "azalea",
+    "azalea_leaves"
   ]
 }
