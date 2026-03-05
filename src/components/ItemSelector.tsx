@@ -12,10 +12,19 @@ interface ItemSelectorProps {
     onSelect: (item: string) => void;
     selectedItem?: string;
     placeholder?: string;
+    autoOpen?: boolean;
+    onConfirm?: () => void;
 }
 
-export function ItemSelector({ items: itemIds, onSelect, selectedItem, placeholder = "Select item..." }: ItemSelectorProps) {
-    const [open, setOpen] = React.useState(false);
+export function ItemSelector({
+    items: itemIds,
+    onSelect,
+    selectedItem,
+    placeholder = "Select item...",
+    autoOpen = false,
+    onConfirm,
+}: ItemSelectorProps) {
+    const [open, setOpen] = React.useState(autoOpen);
     const [search, setSearch] = React.useState("");
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [visibleCount, setVisibleCount] = React.useState(PAGE_SIZE);
@@ -23,7 +32,6 @@ export function ItemSelector({ items: itemIds, onSelect, selectedItem, placehold
 
     const inputRef = React.useRef<HTMLInputElement>(null);
     const listRef = React.useRef<HTMLDivElement>(null);
-    const activeItemRef = React.useRef<HTMLDivElement>(null);
 
     // ── Filtered list (memoised so it only recomputes when search/items change) ──
     const filtered = React.useMemo(() => {
@@ -45,18 +53,12 @@ export function ItemSelector({ items: itemIds, onSelect, selectedItem, placehold
             setSearch("");
             setActiveIndex(0);
             setVisibleCount(PAGE_SIZE);
+
             // Defer focus so Radix has finished mounting the portal
             const id = requestAnimationFrame(() => inputRef.current?.focus());
             return () => cancelAnimationFrame(id);
         }
     }, [open]);
-
-    // ── Keep the active row visible ──
-    React.useEffect(() => {
-        if (open) {
-            activeItemRef.current?.scrollIntoView({ block: "nearest" });
-        }
-    }, [activeIndex, open]);
 
     // ── Load the next page when the user scrolls near the bottom ──
     const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -108,7 +110,19 @@ export function ItemSelector({ items: itemIds, onSelect, selectedItem, placehold
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-                <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between font-mono">
+                <Button
+                    type="button"
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="w-full justify-between font-mono"
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" && !open && selectedItem && onConfirm) {
+                            e.preventDefault();
+                            onConfirm();
+                        }
+                    }}
+                >
                     <span className="truncate">{selectedItem ?? placeholder}</span>
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
@@ -160,7 +174,6 @@ export function ItemSelector({ items: itemIds, onSelect, selectedItem, placehold
                         visibleItems.map((id, index) => (
                             <div
                                 key={id}
-                                ref={index === activeIndex ? activeItemRef : undefined}
                                 role="option"
                                 aria-selected={selectedItem === id}
                                 className={cn(

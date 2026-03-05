@@ -24,6 +24,13 @@ export function EditorView() {
     const navigate = useNavigate();
     const [isCopyDialogOpen, setIsCopyDialogOpen] = React.useState(false);
     const [sourceItemId, setSourceItemId] = React.useState<string | undefined>();
+    const copyButtonRef = React.useRef<HTMLButtonElement>(null);
+
+    React.useEffect(() => {
+        if (!isCopyDialogOpen) {
+            setSourceItemId(undefined);
+        }
+    }, [isCopyDialogOpen]);
 
     const currentIndex = id ? getItemIndex(id) : -1;
     const currentItem = id ? items[id] : null;
@@ -139,32 +146,46 @@ export function EditorView() {
                                     Copy from Item
                                 </Button>
                             </DialogTrigger>
-                            <DialogContent className="sm:max-w-106.25">
-                                <DialogHeader>
-                                    <DialogTitle>Copy details from another item</DialogTitle>
-                                    <DialogDescription>
-                                        Select an item to copy its properties and categories. Names and textures will not be
-                                        copied.
-                                    </DialogDescription>
-                                </DialogHeader>
-                                <div className="py-4">
-                                    <Label htmlFor="source-item" className="mb-2 block">
-                                        Source Item
-                                    </Label>
-                                    <ItemSelector
-                                        items={itemIds.filter((itemId) => itemId !== id)}
-                                        selectedItem={sourceItemId}
-                                        onSelect={setSourceItemId}
-                                    />
-                                </div>
-                                <DialogFooter>
-                                    <Button variant="outline" onClick={() => setIsCopyDialogOpen(false)}>
-                                        Cancel
-                                    </Button>
-                                    <Button onClick={handleCopy} disabled={!sourceItemId}>
-                                        Copy Details
-                                    </Button>
-                                </DialogFooter>
+                            <DialogContent className="sm:max-w-150">
+                                <form
+                                    className="contents"
+                                    onSubmit={(e) => {
+                                        e.preventDefault();
+                                        handleCopy();
+                                    }}
+                                >
+                                    <DialogHeader>
+                                        <DialogTitle>Copy details from another item</DialogTitle>
+                                        <DialogDescription>
+                                            Select an item to copy its properties and categories. Names and textures will not be
+                                            copied.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="py-6">
+                                        <Label htmlFor="source-item" className="mb-2 block">
+                                            Source Item
+                                        </Label>
+                                        <ItemSelector
+                                            items={itemIds.filter((itemId) => itemId !== id)}
+                                            selectedItem={sourceItemId}
+                                            onSelect={(newId) => {
+                                                setSourceItemId(newId);
+                                                // After selection, focus the copy button so the next Enter confirms
+                                                setTimeout(() => copyButtonRef.current?.focus(), 50);
+                                            }}
+                                            autoOpen={true}
+                                            onConfirm={handleCopy}
+                                        />
+                                    </div>
+                                    <DialogFooter>
+                                        <Button variant="outline" type="button" onClick={() => setIsCopyDialogOpen(false)}>
+                                            Cancel
+                                        </Button>
+                                        <Button ref={copyButtonRef} type="submit" disabled={!sourceItemId}>
+                                            Copy Details
+                                        </Button>
+                                    </DialogFooter>
+                                </form>
                             </DialogContent>
                         </Dialog>
                     </div>

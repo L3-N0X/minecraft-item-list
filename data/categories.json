@@ -1,7 +1,14 @@
 {
   "has_container": [
     "black_bundle",
-    "acacia_chest_boat"
+    "bamboo_chest_raft",
+    "acacia_chest_boat",
+    "barrel",
+    "birch_chest_boat",
+    "blue_bundle",
+    "brown_bundle",
+    "bundle",
+    "cherry_chest_boat"
   ],
   "redstone": [
     "acacia_button",
@@ -9,51 +16,111 @@
     "acacia_fence_gate",
     "acacia_pressure_plate",
     "acacia_trapdoor",
-    "activator_rail"
+    "activator_rail",
+    "bamboo_button",
+    "bamboo_door",
+    "bamboo_fence_gate",
+    "bamboo_pressure_plate",
+    "bamboo_trapdoor",
+    "birch_pressure_plate",
+    "birch_fence_gate",
+    "birch_door",
+    "birch_button",
+    "birch_trapdoor",
+    "cherry_button",
+    "cherry_door",
+    "cherry_fence_gate",
+    "cherry_pressure_plate",
+    "cherry_trapdoor"
   ],
   "leaves": [
+    "azalea_leaves",
     "acacia_leaves",
-    "azalea_leaves"
+    "birch_leaves",
+    "cherry_leaves"
   ],
   "sign": [
     "acacia_hanging_sign",
-    "acacia_sign"
+    "acacia_sign",
+    "bamboo_hanging_sign",
+    "bamboo_sign",
+    "birch_hanging_sign",
+    "birch_sign",
+    "cherry_hanging_sign",
+    "cherry_sign"
   ],
   "hanging_sign": [
-    "acacia_hanging_sign"
+    "acacia_hanging_sign",
+    "bamboo_hanging_sign",
+    "birch_hanging_sign",
+    "cherry_hanging_sign"
   ],
   "fence_gate": [
-    "acacia_fence_gate"
+    "acacia_fence_gate",
+    "bamboo_fence_gate",
+    "birch_fence_gate",
+    "cherry_fence_gate"
   ],
   "fence": [
-    "acacia_fence"
+    "acacia_fence",
+    "bamboo_fence",
+    "birch_fence",
+    "cherry_fence"
   ],
   "door": [
-    "acacia_door"
+    "acacia_door",
+    "bamboo_door",
+    "birch_door",
+    "cherry_door"
   ],
   "log": [
-    "acacia_log"
+    "acacia_log",
+    "birch_log",
+    "cherry_log"
   ],
   "log_planks_wood": [
     "acacia_log",
     "acacia_planks",
-    "acacia_wood"
+    "acacia_wood",
+    "bamboo_planks",
+    "birch_planks",
+    "birch_log",
+    "birch_wood",
+    "cherry_log",
+    "cherry_planks",
+    "cherry_wood"
   ],
   "planks": [
-    "acacia_planks"
+    "acacia_planks",
+    "bamboo_planks",
+    "birch_planks",
+    "cherry_planks"
   ],
   "sapling": [
-    "acacia_sapling"
+    "acacia_sapling",
+    "birch_sapling",
+    "cherry_sapling"
   ],
   "slab": [
     "blackstone_slab",
     "acacia_slab",
-    "andesite_slab"
+    "andesite_slab",
+    "bamboo_mosaic_slab",
+    "bamboo_slab",
+    "birch_slab",
+    "brick_slab",
+    "cherry_slab"
   ],
   "stairs": [
     "blackstone_stairs",
     "acacia_stairs",
-    "andesite_stairs"
+    "andesite_stairs",
+    "bamboo_mosaic_stairs",
+    "bamboo_stairs",
+    "birch_stairs",
+    "brick_stairs",
+    "bricks",
+    "cherry_stairs"
   ],
   "rail": [
     "activator_rail"
@@ -64,16 +131,28 @@
   "spawn_egg": [
     "allay_spawn_egg",
     "armadillo_spawn_egg",
-    "axolotl_spawn_egg"
+    "axolotl_spawn_egg",
+    "bat_spawn_egg",
+    "bee_spawn_egg",
+    "blaze_spawn_egg",
+    "bogged_spawn_egg",
+    "breeze_spawn_egg",
+    "camel_husk_spawn_egg",
+    "camel_spawn_egg",
+    "cat_spawn_egg",
+    "cave_spider_spawn_egg"
   ],
   "flower": [
     "allium",
-    "azure_bluet"
+    "azure_bluet",
+    "blue_orchid"
   ],
   "geode": [
     "amethyst_cluster",
     "amethyst_shard",
-    "amethyst_block"
+    "amethyst_block",
+    "budding_amethyst",
+    "calcite"
   ],
   "ores": [
     "ancient_debris"
@@ -83,21 +162,34 @@
     "andesite"
   ],
   "wall": [
-    "andesite_wall"
+    "andesite_wall",
+    "blackstone_wall",
+    "brick_wall"
   ],
   "pottery_sherd": [
     "angler_pottery_sherd",
-    "archer_pottery_sherd"
+    "archer_pottery_sherd",
+    "blade_pottery_sherd",
+    "brewer_pottery_sherd",
+    "burn_pottery_sherd"
   ],
   "bundle": [
-    "black_bundle"
+    "black_bundle",
+    "blue_bundle",
+    "brown_bundle",
+    "bundle"
   ],
   "candle": [
-    "black_candle"
+    "black_candle",
+    "blue_candle",
+    "brown_candle",
+    "candle"
   ],
   "gravity": [
     "black_concrete_powder",
-    "anvil"
+    "anvil",
+    "blue_concrete_powder",
+    "brown_concrete_powder"
   ],
   "black": [
     "black_candle",
@@ -117,56 +209,93 @@
     "black_wool"
   ],
   "bed": [
-    "black_bed"
+    "black_bed",
+    "blue_bed",
+    "brown_bed"
   ],
   "banner": [
-    "black_banner"
+    "black_banner",
+    "blue_banner",
+    "brown_banner"
   ],
   "carpet": [
-    "black_carpet"
+    "black_carpet",
+    "blue_carpet",
+    "brown_carpet"
   ],
   "concrete": [
-    "black_concrete"
+    "black_concrete",
+    "blue_concrete",
+    "brown_concrete"
   ],
   "concrete_powder": [
-    "black_concrete_powder"
+    "black_concrete_powder",
+    "blue_concrete_powder",
+    "brown_concrete_powder"
   ],
   "dye": [
-    "black_dye"
+    "black_dye",
+    "blue_dye",
+    "brown_dye"
   ],
   "glazed_terracotta": [
-    "black_glazed_terracotta"
+    "black_glazed_terracotta",
+    "blue_glazed_terracotta",
+    "brown_glazed_terracotta"
   ],
   "shulker_box": [
-    "black_shulker_box"
+    "black_shulker_box",
+    "blue_shulker_box",
+    "brown_shulker_box"
   ],
   "harness": [
-    "black_harness"
+    "black_harness",
+    "blue_harness",
+    "brown_harness"
   ],
   "stained_glass": [
-    "black_stained_glass"
+    "black_stained_glass",
+    "blue_stained_glass",
+    "brown_stained_glass"
   ],
   "glass": [
     "black_stained_glass",
-    "black_stained_glass_pane"
+    "black_stained_glass_pane",
+    "blue_stained_glass",
+    "blue_stained_glass_pane",
+    "brown_stained_glass",
+    "brown_stained_glass_pane"
   ],
   "stained_glass_pane": [
-    "black_stained_glass_pane"
+    "black_stained_glass_pane",
+    "blue_stained_glass_pane",
+    "brown_stained_glass_pane"
   ],
   "terracotta": [
-    "black_terracotta"
+    "black_terracotta",
+    "blue_terracotta",
+    "brown_terracotta"
   ],
   "wool": [
-    "black_wool"
+    "black_wool",
+    "blue_wool",
+    "brown_wool"
   ],
   "blackstone": [
     "blackstone",
     "blackstone_slab",
-    "blackstone_stairs"
+    "blackstone_stairs",
+    "blackstone_wall"
   ],
   "boat": [
     "acacia_boat",
-    "acacia_chest_boat"
+    "bamboo_chest_raft",
+    "acacia_chest_boat",
+    "bamboo_raft",
+    "birch_chest_boat",
+    "birch_boat",
+    "cherry_boat",
+    "cherry_chest_boat"
   ],
   "acacia": [
     "acacia_boat",
@@ -175,7 +304,6 @@
     "acacia_fence",
     "acacia_fence_gate",
     "acacia_hanging_sign",
-    "acacia_leaves",
     "acacia_log",
     "acacia_planks",
     "acacia_pressure_plate",
@@ -185,22 +313,39 @@
     "acacia_stairs",
     "acacia_trapdoor",
     "acacia_wood",
-    "acacia_sapling"
+    "acacia_sapling",
+    "acacia_chest_boat",
+    "acacia_leaves"
   ],
   "button": [
-    "acacia_button"
+    "acacia_button",
+    "bamboo_button",
+    "birch_button",
+    "cherry_button"
   ],
   "chest_boat": [
-    "acacia_chest_boat"
+    "bamboo_chest_raft",
+    "acacia_chest_boat",
+    "birch_chest_boat",
+    "cherry_chest_boat"
   ],
   "pressure_plate": [
-    "acacia_pressure_plate"
+    "acacia_pressure_plate",
+    "bamboo_pressure_plate",
+    "birch_pressure_plate",
+    "cherry_pressure_plate"
   ],
   "shelf": [
-    "acacia_shelf"
+    "acacia_shelf",
+    "bamboo_shelf",
+    "birch_shelf",
+    "cherry_shelf"
   ],
   "trapdoor": [
-    "acacia_trapdoor"
+    "acacia_trapdoor",
+    "bamboo_trapdoor",
+    "birch_trapdoor",
+    "cherry_trapdoor"
   ],
   "andesite": [
     "andesite_slab",
@@ -210,7 +355,10 @@
   ],
   "pottery_sherd_brushing_only": [
     "angler_pottery_sherd",
-    "archer_pottery_sherd"
+    "archer_pottery_sherd",
+    "blade_pottery_sherd",
+    "brewer_pottery_sherd",
+    "burn_pottery_sherd"
   ],
   "enchanting": [
     "anvil"
@@ -219,7 +367,8 @@
     "arrow"
   ],
   "bucket": [
-    "axolotl_bucket"
+    "axolotl_bucket",
+    "bucket"
   ],
   "bucket_caught": [
     "axolotl_bucket"
@@ -227,5 +376,256 @@
   "azalea": [
     "azalea",
     "azalea_leaves"
+  ],
+  "potato": [
+    "baked_potato"
+  ],
+  "bamboo": [
+    "bamboo",
+    "bamboo_block",
+    "bamboo_button",
+    "bamboo_chest_raft",
+    "bamboo_door",
+    "bamboo_fence",
+    "bamboo_fence_gate",
+    "bamboo_hanging_sign",
+    "bamboo_mosaic",
+    "bamboo_mosaic_slab",
+    "bamboo_mosaic_stairs",
+    "bamboo_planks",
+    "bamboo_pressure_plate",
+    "bamboo_raft",
+    "bamboo_shelf",
+    "bamboo_sign",
+    "bamboo_slab",
+    "bamboo_stairs",
+    "bamboo_trapdoor"
+  ],
+  "unbreakable": [
+    "bedrock"
+  ],
+  "bee": [
+    "bee_nest",
+    "beehive"
+  ],
+  "requires_honey": [
+    "beehive",
+    "candle"
+  ],
+  "crop": [
+    "beetroot",
+    "carrot"
+  ],
+  "seeds": [
+    "beetroot_seeds"
+  ],
+  "soup": [
+    "beetroot_soup"
+  ],
+  "beetroot": [
+    "beetroot_seeds",
+    "beetroot",
+    "beetroot_soup"
+  ],
+  "birch": [
+    "birch_pressure_plate",
+    "birch_planks",
+    "birch_log",
+    "birch_leaves",
+    "birch_hanging_sign",
+    "birch_fence_gate",
+    "birch_fence",
+    "birch_door",
+    "birch_chest_boat",
+    "birch_button",
+    "birch_boat",
+    "birch_sapling",
+    "birch_shelf",
+    "birch_sign",
+    "birch_slab",
+    "birch_stairs",
+    "birch_trapdoor",
+    "birch_wood"
+  ],
+  "basalt": [
+    "basalt"
+  ],
+  "furnace": [
+    "blast_furnace"
+  ],
+  "blaze": [
+    "blaze_powder",
+    "blaze_rod"
+  ],
+  "required_for_ender_eye": [
+    "blaze_powder",
+    "blaze_rod"
+  ],
+  "blue": [
+    "blue_bundle",
+    "blue_bed",
+    "blue_banner",
+    "blue_candle",
+    "blue_carpet",
+    "blue_concrete",
+    "blue_concrete_powder",
+    "blue_dye",
+    "blue_glazed_terracotta",
+    "blue_harness",
+    "blue_shulker_box",
+    "blue_stained_glass",
+    "blue_stained_glass_pane",
+    "blue_terracotta",
+    "blue_wool"
+  ],
+  "egg": [
+    "blue_egg",
+    "brown_egg"
+  ],
+  "ice": [
+    "blue_ice"
+  ],
+  "armor_trim_smithing_template": [
+    "bolt_armor_trim_smithing_template"
+  ],
+  "bone": [
+    "bone",
+    "bone_block",
+    "bone_meal"
+  ],
+  "book": [
+    "book"
+  ],
+  "bookshelf": [
+    "bookshelf"
+  ],
+  "banner_pattern": [
+    "bordure_indented_banner_pattern"
+  ],
+  "coral": [
+    "brain_coral",
+    "brain_coral_block",
+    "brain_coral_fan",
+    "bubble_coral",
+    "bubble_coral_block",
+    "bubble_coral_fan"
+  ],
+  "coral_block": [
+    "brain_coral_block",
+    "bubble_coral_block"
+  ],
+  "breeze": [
+    "breeze_rod"
+  ],
+  "brick": [
+    "brick",
+    "brick_slab",
+    "brick_wall",
+    "brick_stairs",
+    "bricks"
+  ],
+  "brown": [
+    "brown_banner",
+    "brown_bed",
+    "brown_bundle",
+    "brown_candle",
+    "brown_carpet",
+    "brown_concrete",
+    "brown_concrete_powder",
+    "brown_dye",
+    "brown_glazed_terracotta",
+    "brown_harness",
+    "brown_shulker_box",
+    "brown_stained_glass",
+    "brown_stained_glass_pane",
+    "brown_terracotta",
+    "brown_wool"
+  ],
+  "mushroom": [
+    "brown_mushroom",
+    "brown_mushroom_block"
+  ],
+  "mushroom_block": [
+    "brown_mushroom_block"
+  ],
+  "amethyst": [
+    "budding_amethyst"
+  ],
+  "uncolored": [
+    "bundle",
+    "candle"
+  ],
+  "cactus": [
+    "cactus",
+    "cactus_flower"
+  ],
+  "sculk": [
+    "calibrated_sculk_sensor"
+  ],
+  "campfire": [
+    "campfire"
+  ],
+  "carrot": [
+    "carrot"
+  ],
+  "fishing_rod": [
+    "carrot_on_a_stick"
+  ],
+  "work_station": [
+    "blast_furnace",
+    "cartography_table"
+  ],
+  "pumpkin": [
+    "carved_pumpkin"
+  ],
+  "command_block": [
+    "chain_command_block"
+  ],
+  "armor": [
+    "chainmail_boots",
+    "chainmail_chestplate",
+    "chainmail_helmet",
+    "chainmail_leggings"
+  ],
+  "boots": [
+    "chainmail_boots"
+  ],
+  "chainmail": [
+    "chainmail_boots",
+    "chainmail_chestplate",
+    "chainmail_helmet",
+    "chainmail_leggings"
+  ],
+  "chestplate": [
+    "chainmail_chestplate"
+  ],
+  "helmet": [
+    "chainmail_helmet"
+  ],
+  "leggings": [
+    "chainmail_leggings"
+  ],
+  "coal": [
+    "charcoal"
+  ],
+  "cherry": [
+    "cherry_boat",
+    "cherry_button",
+    "cherry_chest_boat",
+    "cherry_door",
+    "cherry_fence",
+    "cherry_fence_gate",
+    "cherry_hanging_sign",
+    "cherry_leaves",
+    "cherry_log",
+    "cherry_planks",
+    "cherry_pressure_plate",
+    "cherry_sapling",
+    "cherry_shelf",
+    "cherry_sign",
+    "cherry_slab",
+    "cherry_stairs",
+    "cherry_trapdoor",
+    "cherry_wood"
   ]
 }

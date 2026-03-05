@@ -225,38 +225,39 @@
                 "shipwreck_treasure_chest",
                 "shipwreck_map_chest",
                 "stronghold_altar_chest",
-                "stronghold_storerooms_chest",
                 "stronghold_library_chest",
+                "stronghold_storerooms_chest",
                 "trail_ruin_common_suspicious_gravel",
                 "trail_ruin_rare_suspicious_gravel",
                 "trial_chamber_vault",
                 "trial_chamber_ominous_vault",
+                "trial_chamber_trial_spawner",
+                "trial_chamber_onimous_trial_spawner",
                 "trial_chamber_entrance_chest",
-                "trial_chamber_intersection_chest",
                 "trial_chamber_supply_chest",
-                "trial_chamber_intersection_barrel",
+                "trial_chamber_intersection_chest",
                 "trial_chamber_corridor_barrel",
-                "trial_chamber_decorated_pot",
+                "trial_chamber_intersection_barrel",
                 "trial_chamber_chamber_dispenser",
                 "trial_chamber_corridor_dispenser",
                 "trial_chamber_water_dispenser",
-                "trial_chamber_trial_spawner",
-                "trial_chamber_onimous_trial_spawner",
-                "village_plains_fisher_cottage_chest",
-                "village_savanna_mason_chest",
-                "village_taiga_fletcher_chest",
-                "village_snowy_shepherd_chest",
-                "village_tannery_chest",
-                "village_desert_temple_chest",
-                "village_desert_taiga_toolsmith_chest",
+                "trial_chamber_decorated_pot",
+                "village_cartographer_chest",
                 "village_weaponsmith_chest",
-                "village_desert_house_chest",
+                "village_tannery_chest",
+                "village_plains_fisher_cottage_chest",
                 "village_plains_house_chest",
+                "village_desert_temple_chest",
+                "village_desert_house_chest",
+                "village_desert_taiga_toolsmith_chest",
+                "village_savanna_mason_chest",
                 "village_savanna_house_chest",
-                "village_snowy_house_chest",
-                "village_taiga_house_chest",
-                "village_snowy_armorer_chest",
                 "village_savanna_butcher_chest",
+                "village_snowy_shepherd_chest",
+                "village_snowy_house_chest",
+                "village_snowy_armorer_chest",
+                "village_taiga_fletcher_chest",
+                "village_taiga_house_chest",
                 "woodland_mansion_chest",
                 "woodland_mansion_allium_room_chest",
                 "woodland_mansion_sapling_farm_chest",
@@ -2289,15 +2290,15 @@
                             "waterloggable"
                         ],
                         "properties": {
-                            "hardness": {
-                                "type": "number",
-                                "minimum": -1.0,
-                                "maximum": 1000.0
-                            },
                             "blastResistance": {
                                 "type": "number",
                                 "minimum": 0.0,
                                 "maximum": 3600000.0
+                            },
+                            "hardness": {
+                                "type": "number",
+                                "minimum": -1.0,
+                                "maximum": 1000.0
                             },
                             "luminousLevel": {
                                 "type": "integer",
@@ -2406,17 +2407,6 @@
                             "required": ["durability", "enchantability", "possibleEnchantments"]
                         }
                     },
-                    "compostable": {
-                        "type": "object",
-                        "required": ["chance"],
-                        "properties": {
-                            "chance": {
-                                "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 1.0
-                            }
-                        }
-                    },
                     "edible": {
                         "type": "object",
                         "required": ["hunger", "saturation", "alwaysConsumable"],
@@ -2433,33 +2423,6 @@
                                 "type": "boolean"
                             }
                         }
-                    },
-                    "craftingIngredient": {
-                        "type": "boolean",
-                        "$comment": "If this item is used in any crafting recipe"
-                    },
-                    "isArmorTrimMaterial": {
-                        "type": "boolean",
-                        "$comment": "If this item is a material for armor trims"
-                    },
-                    "fuel": {
-                        "type": "object",
-                        "required": ["burnTimeSeconds", "numberOfItemsSmelted"],
-                        "properties": {
-                            "burnTimeSeconds": {
-                                "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 1000.0,
-                                "$comment": "Time in seconds this item burns for"
-                            },
-                            "numberOfItemsSmelted": {
-                                "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 100.0,
-                                "$comment": "The number of items that can be smelted per fuel"
-                            }
-                        },
-                        "$comment": "If this item can be used as fuel in a furnace"
                     },
                     "breaking": {
                         "type": "object",
@@ -2736,6 +2699,44 @@
                             }
                         },
                         "required": ["obtainability", "difficultyToObtain", "craftable"]
+                    },
+                    "compostable": {
+                        "type": "object",
+                        "required": ["chance"],
+                        "properties": {
+                            "chance": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 1.0
+                            }
+                        }
+                    },
+                    "craftingIngredient": {
+                        "type": "boolean",
+                        "$comment": "If this item is used in any crafting recipe"
+                    },
+                    "isArmorTrimMaterial": {
+                        "type": "boolean",
+                        "$comment": "If this item is a material for armor trims"
+                    },
+                    "fuel": {
+                        "type": "object",
+                        "required": ["burnTimeSeconds", "numberOfItemsSmelted"],
+                        "properties": {
+                            "burnTimeSeconds": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 1000.0,
+                                "$comment": "Time in seconds this item burns for"
+                            },
+                            "numberOfItemsSmelted": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 100.0,
+                                "$comment": "The number of items that can be smelted per fuel"
+                            }
+                        },
+                        "$comment": "If this item can be used as fuel in a furnace"
                     }
                 },
                 "required": [
