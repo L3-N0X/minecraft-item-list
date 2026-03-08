@@ -2375,37 +2375,12 @@
                                 "minimum": 0,
                                 "maximum": 25
                             },
-                            "possibleEnchantments": {
-                                "type": "array",
-                                "minItems": 1,
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "$ref": "#/definitions/enchantmentEnum"
-                                        },
-                                        "levels": {
-                                            "$ref": "#/definitions/quantitySpec"
-                                        }
-                                    },
-                                    "required": ["id", "levels"]
-                                }
-                            },
                             "fireResistant": {
                                 "type": "boolean",
                                 "$comment": "If this item is fire resistant (e.g. netherite)"
                             }
                         },
-                        "required": ["fireResistant"],
-                        "dependentRequired": {
-                            "enchantability": ["possibleEnchantments"]
-                        },
-                        "if": {
-                            "anyOf": [{ "required": ["armor"] }, { "required": ["damage"] }]
-                        },
-                        "then": {
-                            "required": ["durability", "enchantability", "possibleEnchantments"]
-                        }
+                        "required": ["fireResistant"]
                     },
                     "edible": {
                         "type": "object",
@@ -2737,6 +2712,22 @@
                             }
                         },
                         "$comment": "If this item can be used as fuel in a furnace"
+                    },
+                    "possibleEnchantments": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/definitions/enchantmentEnum"
+                                },
+                                "levels": {
+                                    "$ref": "#/definitions/quantitySpec"
+                                }
+                            },
+                            "required": ["id", "levels"]
+                        }
                     }
                 },
                 "required": [

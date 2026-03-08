@@ -1426,18 +1426,6 @@
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": true,
-                "naturalGeneration": {
-                    "dimensions": [
-                        "overworld"
-                    ],
-                    "partOfStructures": {
-                        "structures": [
-                            "trail_ruins",
-                            "woodland_mansion"
-                        ],
-                        "comment": "Only in 'Forge room' in Woodland Mansions, Only in 'Group Hall 1' in Trail Ruins"
-                    }
-                },
                 "difficultyToObtain": 6
             }
         },
@@ -11065,633 +11053,5343 @@
             "displayName": "Chest",
             "displayNameGerman": "Truhe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 2.5,
+                "hardness": 2.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "nether",
+                        "overworld",
+                        "the_end"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city",
+                            "bastion_remnant",
+                            "buried_treasure",
+                            "desert_pyramid",
+                            "end_city",
+                            "fortress",
+                            "igloo",
+                            "jungle_temple",
+                            "monster_room",
+                            "woodland_mansion",
+                            "village_taiga",
+                            "village_snowy",
+                            "village_savanna",
+                            "village_plains",
+                            "village_desert",
+                            "trial_chambers",
+                            "stronghold",
+                            "shipwreck",
+                            "ruined_portal",
+                            "pillager_outpost",
+                            "ocean_ruin"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            }
         },
         "chest_minecart": {
             "displayName": "Minecart with Chest",
             "displayNameGerman": "Güterlore",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "mineshaft"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chicken": {
             "displayName": "Raw Chicken",
             "displayNameGerman": "Rohes Hühnchen",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 2,
+                "saturation": 1.2,
+                "alwaysConsumable": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "mob": "chicken",
+                        "chance": 1,
+                        "quantity": 1
+                    },
+                    {
+                        "mob": "cat",
+                        "chance": 0.163,
+                        "quantity": 1,
+                        "comment": "as gift after waking up (70% for any gift)"
+                    }
+                ],
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chicken_spawn_egg": {
             "displayName": "Chicken Spawn Egg",
             "displayNameGerman": "Huhn-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "chipped_anvil": {
             "displayName": "Chipped Anvil",
             "displayNameGerman": "Angeschlagener Amboss",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 5,
+                "blastResistance": 1200,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 7
+            }
         },
         "chiseled_bookshelf": {
             "displayName": "Chiseled Bookshelf",
             "displayNameGerman": "Gearbeitetes Bücherregal",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "yes",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            }
         },
         "chiseled_copper": {
             "displayName": "Chiseled Copper",
             "displayNameGerman": "Gemeißelter Kupferblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 4
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "chiseled_deepslate": {
             "displayName": "Chiseled Deepslate",
             "displayNameGerman": "Gemeißelter Tiefenschiefer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_nether_bricks": {
             "displayName": "Chiseled Nether Bricks",
             "displayNameGerman": "Gemeißelte Netherziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_polished_blackstone": {
             "displayName": "Chiseled Polished Blackstone",
             "displayNameGerman": "Gemeißelter polierter Schwarzstein",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "partOfStructures": {
+                        "structures": [
+                            "ruined_portal",
+                            "bastion_remnant"
+                        ]
+                    },
+                    "dimensions": [
+                        "nether"
+                    ]
+                },
+                "difficultyToObtain": 5
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_quartz_block": {
             "displayName": "Chiseled Quartz Block",
             "displayNameGerman": "Gemeißelter Quarzblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.8,
+                "hardness": 0.8,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 6
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_red_sandstone": {
             "displayName": "Chiseled Red Sandstone",
             "displayNameGerman": "Gemeißelter roter Sandstein",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 7
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_resin_bricks": {
             "displayName": "Chiseled Resin Bricks",
             "displayNameGerman": "Gemeißelte Harzziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 8
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_sandstone": {
             "displayName": "Chiseled Sandstone",
             "displayNameGerman": "Gemeißelter Sandstein",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.8,
+                "hardness": 0.8,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "desert_pyramid",
+                            "ocean_ruin",
+                            "trial_chambers"
+                        ],
+                        "comment": "in warm ocean ruins only, in trial chambers around husk spawners"
+                    }
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_stone_bricks": {
             "displayName": "Chiseled Stone Bricks",
             "displayNameGerman": "Gemeißelte Steinziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ocean_ruin",
+                            "ruined_portal",
+                            "jungle_temple",
+                            "igloo"
+                        ],
+                        "comment": "In igloo basement only (may be infested), in cold ocean ruins only"
+                    }
+                },
+                "difficultyToObtain": 1,
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "mason",
+                            "level": "Apprentice (2)",
+                            "probability": 1,
+                            "quantity": 4
+                        }
+                    ]
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_tuff": {
             "displayName": "Chiseled Tuff",
             "displayNameGerman": "Gemeißelter Tuffstein",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chiseled_tuff_bricks": {
             "displayName": "Chiseled Tuff Bricks",
             "displayNameGerman": "Gemeißelte Tuffsteinziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chorus_flower": {
             "displayName": "Chorus Flower",
             "displayNameGerman": "Chorusblüte",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.4,
+                "hardness": 0.4,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "the_end"
+                    ],
+                    "comment": "on top of chorus trees"
+                },
+                "difficultyToObtain": 9
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chorus_fruit": {
             "displayName": "Chorus Fruit",
             "displayNameGerman": "Chorusfrucht",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 4,
+                "saturation": 2.4,
+                "alwaysConsumable": true
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "blockLoot": [
+                    {
+                        "blocks": [
+                            "chorus_plant"
+                        ],
+                        "chance": 0.5,
+                        "quantity": 1
+                    }
+                ],
+                "difficultyToObtain": 9
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "chorus_plant": {
             "displayName": "Chorus Plant",
             "displayNameGerman": "Choruspflanze",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.4,
+                "hardness": 0.4,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "the_end"
+                    ]
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "clay": {
             "displayName": "Clay",
             "displayNameGerman": "Ton",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.6,
+                "hardness": 0.6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shovel"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "yes",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "naturalGeneration": {
+                    "biomes": [
+                        "river",
+                        "frozen_river",
+                        "ocean",
+                        "lukewarm_ocean",
+                        "cold_ocean",
+                        "deep_cold_ocean",
+                        "deep_frozen_ocean",
+                        "deep_lukewarm_ocean",
+                        "deep_ocean",
+                        "frozen_ocean",
+                        "warm_ocean",
+                        "swamp",
+                        "beach",
+                        "snowy_beach"
+                    ],
+                    "comment": "Also in other biomes in lakes",
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_plains",
+                            "village_savanna",
+                            "village_desert",
+                            "village_taiga"
+                        ],
+                        "comment": "Generates in mason houses in plains, savanna, and desert villages, and under fisher cottages in taiga villages"
+                    }
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "trail_ruins",
+                            "chests": [
+                                {
+                                    "chestName": "trail_ruin_common_suspicious_gravel",
+                                    "chance": 0.044,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 2,
+                "obtainability": "survival",
+                "craftable": true
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "clay_ball": {
             "displayName": "Clay Ball",
             "displayNameGerman": "Tonklumpen",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "blockLoot": [
+                    {
+                        "blocks": [
+                            "clay"
+                        ],
+                        "chance": 0,
+                        "quantity": 4
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "village_desert",
+                            "chests": [
+                                {
+                                    "chestName": "village_desert_house_chest",
+                                    "chance": 0.143,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_savanna",
+                            "chests": [
+                                {
+                                    "chestName": "village_savanna_mason_chest",
+                                    "chance": 0.208,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "clock": {
             "displayName": "Clock",
             "displayNameGerman": "Uhr",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "ruined_portal",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.073,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "shipwreck",
+                            "chests": [
+                                {
+                                    "chestName": "shipwreck_map_chest",
+                                    "chance": 0.073,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "librarian",
+                            "level": "Expert (4)",
+                            "probability": 0.5,
+                            "quantity": 1
+                        }
+                    ]
+                },
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "closed_eyeblossom": {
             "displayName": "Closed Eyeblossom",
             "displayNameGerman": "Geschlossene Augenblüte",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0,
+                "hardness": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "catchesFire": false,
+                "flammable": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "biomes": [
+                        "pale_garden"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ]
+                },
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 1
+                    }
+                },
+                "difficultyToObtain": 7
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "coal": {
             "displayName": "Coal",
             "displayNameGerman": "Kohle",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "blockLoot": [
+                    {
+                        "blocks": [
+                            "coal_ore",
+                            "deepslate_coal_ore"
+                        ],
+                        "chance": 1,
+                        "quantity": 1
+                    }
+                ],
+                "mobLoot": [
+                    {
+                        "mob": "wither_skeleton",
+                        "chance": 0.333,
+                        "quantity": {
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "monster_room",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.266,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 4
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "mineshaft",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.273,
+                                    "quantity": {
+                                        "min": 3,
+                                        "max": 8
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "ancient_city",
+                            "chests": [
+                                {
+                                    "chestName": "ancient_city_normal_chest",
+                                    "chance": 0.465,
+                                    "quantity": {
+                                        "min": 6,
+                                        "max": 15
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "igloo",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.704,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 4
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "ocean_ruin",
+                            "chests": [
+                                {
+                                    "chestName": "ocean_ruin_small_chest",
+                                    "chance": 0.821,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 4
+                                    }
+                                },
+                                {
+                                    "chestName": "ocean_ruin_big_chest",
+                                    "chance": 0.789,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 4
+                                    }
+                                },
+                                {
+                                    "chestName": "ocean_ruin_suspicious_gravel",
+                                    "chance": 0.133,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "ocean_ruin_suspicious_sand",
+                                    "chance": 0.133,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "shipwreck",
+                            "chests": [
+                                {
+                                    "chestName": "shipwreck_supply_chest",
+                                    "chance": 0.373,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 8
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "stronghold",
+                            "chests": [
+                                {
+                                    "chestName": "stronghold_storerooms_chest",
+                                    "chance": 0.343,
+                                    "quantity": {
+                                        "min": 3,
+                                        "max": 8
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "trail_ruins",
+                            "chests": [
+                                {
+                                    "chestName": "trail_ruin_common_suspicious_gravel",
+                                    "chance": 0.022,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_snowy",
+                            "chests": [
+                                {
+                                    "chestName": "village_snowy_house_chest",
+                                    "chance": 0.472,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 4
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_plains",
+                            "chests": [
+                                {
+                                    "chestName": "village_plains_fisher_cottage_chest",
+                                    "chance": 0.43,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_desert",
+                            "chests": [
+                                {
+                                    "chestName": "village_desert_taiga_toolsmith_chest",
+                                    "chance": 0.099,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_taiga",
+                            "chests": [
+                                {
+                                    "chestName": "village_desert_taiga_toolsmith_chest",
+                                    "chance": 0.099,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_savanna",
+                            "chests": [
+                                {
+                                    "chestName": "village_savanna_butcher_chest",
+                                    "chance": 0.279,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "woodland_mansion",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.197,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 4
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 2
+            },
+            "fuel": {
+                "burnTimeSeconds": 80,
+                "numberOfItemsSmelted": 8
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "coal_block": {
             "displayName": "Block of Coal",
             "displayNameGerman": "Kohleblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": true,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trail_ruins"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 800,
+                "numberOfItemsSmelted": 80
+            }
         },
         "coal_ore": {
             "displayName": "Coal Ore",
             "displayNameGerman": "Steinkohle",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 3,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "Most common at y=45, also in high altitude, also alongside fossils"
+                },
+                "difficultyToObtain": 9
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "coarse_dirt": {
             "displayName": "Coarse Dirt",
             "displayNameGerman": "Grobe Erde",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.5,
+                "hardness": 0.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shovel"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "biomes": [
+                        "windswept_savanna",
+                        "wooded_badlands",
+                        "old_growth_pine_taiga",
+                        "old_growth_spruce_taiga"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion",
+                            "trail_ruins"
+                        ],
+                        "comment": "In mushroom farm room in woodland mansion"
+                    }
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "coast_armor_trim_smithing_template": {
             "displayName": "Smithing Template",
             "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "vault_only",
+            "stackSize": 64,
+            "rarityTier": "uncommon",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "shipwreck",
+                            "chests": [
+                                {
+                                    "chestName": "shipwreck_map_chest",
+                                    "chance": 0.167,
+                                    "quantity": 2
+                                },
+                                {
+                                    "chestName": "shipwreck_treasure_chest",
+                                    "chance": 0.167,
+                                    "quantity": 2
+                                },
+                                {
+                                    "chestName": "shipwreck_supply_chest",
+                                    "chance": 0.167,
+                                    "quantity": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 5
+            }
         },
         "cobbled_deepslate": {
             "displayName": "Cobbled Deepslate",
             "displayNameGerman": "Bruchtiefenschiefer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city",
+                            "trial_chambers"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cobbled_deepslate_slab": {
             "displayName": "Cobbled Deepslate Slab",
             "displayNameGerman": "Bruchtiefenschieferstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cobbled_deepslate_stairs": {
             "displayName": "Cobbled Deepslate Stairs",
             "displayNameGerman": "Bruchtiefenschiefertreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cobbled_deepslate_wall": {
             "displayName": "Cobbled Deepslate Wall",
             "displayNameGerman": "Bruchtiefenschiefermauer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cobblestone": {
             "displayName": "Cobblestone",
             "displayNameGerman": "Bruchstein",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "monster_room",
+                            "jungle_temple",
+                            "pillager_outpost",
+                            "ocean_ruin",
+                            "stronghold",
+                            "village_plains",
+                            "village_desert",
+                            "village_savanna",
+                            "village_snowy",
+                            "village_taiga",
+                            "trail_ruins",
+                            "trial_chambers",
+                            "woodland_mansion"
+                        ],
+                        "comment": "in trial chambers around baby zombie spawners"
+                    }
+                },
+                "difficultyToObtain": 1,
+                "blockLoot": [
+                    {
+                        "blocks": [
+                            "stone"
+                        ],
+                        "chance": 1,
+                        "quantity": 1
+                    }
+                ]
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cobblestone_slab": {
             "displayName": "Cobblestone Slab",
             "displayNameGerman": "Bruchsteinstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "pillager_outpost",
+                            "village_plains",
+                            "woodland_mansion"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cobblestone_stairs": {
             "displayName": "Cobblestone Stairs",
             "displayNameGerman": "Bruchsteintreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "stronghold",
+                            "woodland_mansion",
+                            "pillager_outpost",
+                            "village_plains",
+                            "village_taiga",
+                            "village_snowy",
+                            "jungle_temple"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cobblestone_wall": {
             "displayName": "Cobblestone Wall",
             "displayNameGerman": "Bruchsteinmauer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "pillager_outpost",
+                            "village_plains",
+                            "woodland_mansion",
+                            "village_taiga",
+                            "village_snowy"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cobweb": {
             "displayName": "Cobweb",
             "displayNameGerman": "Spinnennetz",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 4,
+                "hardness": 4,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shears",
+                    "sword"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "shears"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "mineshaft",
+                            "stronghold",
+                            "igloo",
+                            "woodland_mansion",
+                            "trial_chambers"
+                        ],
+                        "comment": "in spider spawner room in woodland mansion, also in abandoned villages"
+                    }
+                },
+                "difficultyToObtain": 4
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cocoa_beans": {
             "displayName": "Cocoa Beans",
             "displayNameGerman": "Kakaobohnen",
-            "isBlock": false,
-            "item": {}
+            "isBlock": true,
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 6,
+                "blockLoot": [
+                    {
+                        "blocks": [
+                            "cocoa"
+                        ],
+                        "chance": 1,
+                        "quantity": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    }
+                ]
+            },
+            "block": {
+                "blastResistance": 3,
+                "hardness": 0.2,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "compostable": {
+                "chance": 0.65
+            }
         },
         "cod": {
             "displayName": "Raw Cod",
             "displayNameGerman": "Roher Kabeljau",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 2,
+                "saturation": 0.4,
+                "alwaysConsumable": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "mob": "cod",
+                        "chance": 1,
+                        "quantity": 1
+                    },
+                    {
+                        "mob": "guardian",
+                        "chance": 0.409,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "mob": "elder_guardian",
+                        "chance": 0.5,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "mob": "polar_bear",
+                        "chance": 0.5,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "mob": "dolphin",
+                        "chance": 0.5,
+                        "quantity": {
+                            "min": 0,
+                            "max": 1
+                        }
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "village_plains",
+                            "chests": [
+                                {
+                                    "chestName": "village_plains_fisher_cottage_chest",
+                                    "chance": 0.43,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "fishing": {
+                    "category": "fish",
+                    "chance": 0.51,
+                    "quantity": 1
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cod_bucket": {
             "displayName": "Bucket of Cod",
             "displayNameGerman": "Kabeljaueimer",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "farmer",
+                            "level": "Novice (1)",
+                            "probability": 0.5,
+                            "quantity": 1
+                        }
+                    ]
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cod_spawn_egg": {
             "displayName": "Cod Spawn Egg",
             "displayNameGerman": "Kabeljau-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "command_block": {
             "displayName": "Command Block",
             "displayNameGerman": "Befehlsblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": -1,
+                "blastResistance": 3600000,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "none"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "epic",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "command_block_minecart": {
             "displayName": "Minecart with Command Block",
             "displayNameGerman": "Befehlsblocklore",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 1,
+            "rarityTier": "epic",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "comparator": {
             "displayName": "Redstone Comparator",
             "displayNameGerman": "Redstone-Komparator",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0,
+                "hardness": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city"
+                        ],
+                        "comment": "2-9 comparators in every ancient city"
+                    }
+                },
+                "difficultyToObtain": 6
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "compass": {
             "displayName": "Compass",
             "displayNameGerman": "Kompass",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "ancient_city",
+                            "chests": [
+                                {
+                                    "chance": 0.161,
+                                    "chestName": "ancient_city_normal_chest",
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "shipwreck",
+                            "chests": [
+                                {
+                                    "chestName": "shipwreck_map_chest",
+                                    "chance": 0.077,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "stronghold",
+                            "chests": [
+                                {
+                                    "chestName": "stronghold_library_chest",
+                                    "chance": 0.109,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "trial_chambers",
+                            "chests": [
+                                {
+                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chance": 0.059,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_desert",
+                            "chests": [
+                                {
+                                    "chestName": "village_cartographer_chest",
+                                    "chance": 0.263,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_plains",
+                            "chests": [
+                                {
+                                    "chestName": "village_cartographer_chest",
+                                    "chance": 0.263,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_savanna",
+                            "chests": [
+                                {
+                                    "chestName": "village_cartographer_chest",
+                                    "chance": 0.263,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_snowy",
+                            "chests": [
+                                {
+                                    "chestName": "village_cartographer_chest",
+                                    "chance": 0.263,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "chests": [
+                                {
+                                    "chestName": "village_cartographer_chest",
+                                    "chance": 0.263,
+                                    "quantity": 1
+                                }
+                            ],
+                            "structure": "village_taiga"
+                        }
+                    ]
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "leatherworker",
+                            "level": "Expert (4)",
+                            "probability": 0.5,
+                            "quantity": 1
+                        }
+                    ]
+                },
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "composter": {
             "displayName": "Composter",
             "displayNameGerman": "Komposter",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.6,
+                "hardness": 0.6,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trail_ruins",
+                            "village_desert",
+                            "village_plains",
+                            "village_savanna",
+                            "village_snowy",
+                            "village_taiga"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            }
         },
         "conduit": {
             "displayName": "Conduit",
             "displayNameGerman": "Aquisator",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 3,
+                "blastResistance": 3,
+                "luminousLevel": 15,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "no",
+            "rarityTier": "uncommon",
+            "stackSize": 64,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 9
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cooked_beef": {
             "displayName": "Steak",
             "displayNameGerman": "Steak",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 8,
+                "saturation": 12.8,
+                "alwaysConsumable": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "mob": "cow",
+                        "chance": 1,
+                        "quantity": {
+                            "min": 1,
+                            "max": 3
+                        },
+                        "comment": "when on fire or killed with fire aspect"
+                    },
+                    {
+                        "comment": "when on fire or killed with fire aspect",
+                        "chance": 1,
+                        "mob": "magma_cube",
+                        "quantity": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "trial_chambers",
+                            "chests": [
+                                {
+                                    "chestName": "trial_chamber_onimous_trial_spawner",
+                                    "chance": 0.21,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 2
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "smelting": {
+                    "smeltable": [
+                        "campfire",
+                        "furnace",
+                        "smoker"
+                    ],
+                    "xpFromSmelting": 0.35
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cooked_chicken": {
             "displayName": "Cooked Chicken",
             "displayNameGerman": "Gebratenes Hühnchen",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 6,
+                "saturation": 7.2,
+                "alwaysConsumable": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "comment": "when on fire or killed with fire aspect",
+                        "chance": 1,
+                        "mob": "magma_cube",
+                        "quantity": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "trial_chambers",
+                            "chests": [
+                                {
+                                    "chestName": "trial_chamber_trial_spawner",
+                                    "chance": 0.15,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "smelting": {
+                    "smeltable": [
+                        "campfire",
+                        "furnace",
+                        "smoker"
+                    ],
+                    "xpFromSmelting": 0.35
+                },
+                "difficultyToObtain": 2,
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "armorer",
+                            "level": "Apprentice (2)",
+                            "probability": 0.67,
+                            "quantity": 8
+                        }
+                    ]
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cooked_cod": {
             "displayName": "Cooked Cod",
             "displayNameGerman": "Gebratener Kabeljau",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 5,
+                "saturation": 6,
+                "alwaysConsumable": false
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "mob": "cod",
+                        "chance": 1,
+                        "quantity": 1,
+                        "comment": "when killed with fire aspect or on fire"
+                    },
+                    {
+                        "comment": "when killed with fire aspect or on fire",
+                        "mob": "guardian",
+                        "chance": 0.409,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "mob": "elder_guardian",
+                        "chance": 0.575,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    },
+                    {
+                        "mob": "polar_bear",
+                        "chance": 0.5,
+                        "quantity": {
+                            "min": 0,
+                            "max": 2
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    },
+                    {
+                        "mob": "dolphin",
+                        "chance": 0.5,
+                        "quantity": {
+                            "min": 0,
+                            "max": 1
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "buried_treasure",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.75,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 4
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "fisherman",
+                            "level": "Novice (1)",
+                            "probability": 0.5,
+                            "quantity": 6
+                        }
+                    ]
+                },
+                "difficultyToObtain": 3,
+                "smelting": {
+                    "smeltable": [
+                        "campfire",
+                        "furnace",
+                        "smoker"
+                    ],
+                    "xpFromSmelting": 0.35
+                }
+            }
         },
         "cooked_mutton": {
             "displayName": "Cooked Mutton",
             "displayNameGerman": "Gebratenes Hammelfleisch",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 3,
+                "smelting": {
+                    "smeltable": [
+                        "campfire",
+                        "furnace",
+                        "smoker"
+                    ],
+                    "xpFromSmelting": 0.35
+                },
+                "mobLoot": [
+                    {
+                        "mob": "sheep",
+                        "chance": 1,
+                        "quantity": {
+                            "min": 1,
+                            "max": 2
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    }
+                ]
+            },
+            "edible": {
+                "hunger": 6,
+                "saturation": 5,
+                "alwaysConsumable": false
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cooked_porkchop": {
             "displayName": "Cooked Porkchop",
             "displayNameGerman": "Gebratenes Schweinefleisch",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 8,
+                "saturation": 12.8,
+                "alwaysConsumable": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "mob": "pig",
+                        "comment": "when killed with fire aspect or on fire",
+                        "chance": 1,
+                        "quantity": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "mob": "hoglin",
+                        "chance": 1,
+                        "quantity": {
+                            "min": 2,
+                            "max": 4
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    }
+                ],
+                "difficultyToObtain": 2,
+                "smelting": {
+                    "smeltable": [
+                        "campfire",
+                        "furnace",
+                        "smoker"
+                    ],
+                    "xpFromSmelting": 0.35
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_generic_chest",
+                                    "chance": 0.244,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.228,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 5
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "butcher",
+                            "level": "Apprentice (2)",
+                            "probability": 0.67,
+                            "quantity": 5
+                        }
+                    ]
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cooked_rabbit": {
             "displayName": "Cooked Rabbit",
             "displayNameGerman": "Gebratenes Kaninchen",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 4,
+                "smelting": {
+                    "smeltable": [
+                        "campfire",
+                        "furnace",
+                        "smoker"
+                    ],
+                    "xpFromSmelting": 0.35
+                },
+                "mobLoot": [
+                    {
+                        "mob": "rabbit",
+                        "chance": 1,
+                        "quantity": 1,
+                        "comment": "when killed with fire aspect or on fire"
+                    }
+                ]
+            },
+            "edible": {
+                "hunger": 5,
+                "saturation": 6,
+                "alwaysConsumable": false
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cooked_salmon": {
             "displayName": "Cooked Salmon",
             "displayNameGerman": "Gebratener Lachs",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 3,
+                "smelting": {
+                    "smeltable": [
+                        "campfire",
+                        "furnace",
+                        "smoker"
+                    ],
+                    "xpFromSmelting": 0.35
+                },
+                "mobLoot": [
+                    {
+                        "mob": "salmon",
+                        "chance": 1,
+                        "quantity": 1,
+                        "comment": "when killed with fire aspect or on fire"
+                    },
+                    {
+                        "mob": "guardian",
+                        "chance": 0.0062,
+                        "quantity": {
+                            "min": 0,
+                            "max": 1
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    },
+                    {
+                        "mob": "elder_guardian",
+                        "chance": 0.0062,
+                        "quantity": {
+                            "min": 0,
+                            "max": 1
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    },
+                    {
+                        "mob": "polar_bear",
+                        "chance": 0.1667,
+                        "quantity": {
+                            "min": 90,
+                            "max": 2
+                        },
+                        "comment": "when killed with fire aspect or on fire"
+                    }
+                ],
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "buried_treasure",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.75,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 4
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "fisherman",
+                            "level": "Apprentice (2)",
+                            "probability": 0.67,
+                            "quantity": 6
+                        }
+                    ]
+                }
+            },
+            "edible": {
+                "hunger": 6,
+                "saturation": 9.6,
+                "alwaysConsumable": false
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cookie": {
             "displayName": "Cookie",
             "displayNameGerman": "Keks",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "edible": {
+                "hunger": 2,
+                "saturation": 0.4,
+                "alwaysConsumable": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "farmer",
+                            "level": "Journeyman (3)",
+                            "probability": 1,
+                            "quantity": 18
+                        }
+                    ]
+                },
+                "difficultyToObtain": 6
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "compostable": {
+                "chance": 0.85
+            }
         },
         "copper_axe": {
             "displayName": "Copper Axe",
             "displayNameGerman": "Kupferaxt",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "damage": {
+                    "attackDamage": 9,
+                    "attackSpeed": 0.8
+                },
+                "durability": 190,
+                "enchantability": 13,
+                "possibleEnchantments": [
+                    {
+                        "id": "efficiency",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "fortune",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "silk_touch",
+                        "levels": 1
+                    },
+                    {
+                        "id": "sharpness",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "smite",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "bane_of_arthropods",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_bars": {
             "displayName": "Copper Bars",
             "displayNameGerman": "Kupfergitter",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "golden_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_block": {
             "displayName": "Block of Copper",
             "displayNameGerman": "Kupferblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ]
+                    }
+                }
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_boots": {
             "displayName": "Copper Boots",
             "displayNameGerman": "Kupferstiefel",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "armor": {
+                    "armorPoints": 1,
+                    "toughness": 0,
+                    "knockbackResistance": 0
+                },
+                "durability": 143,
+                "enchantability": 8,
+                "possibleEnchantments": [
+                    {
+                        "id": "protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "id": "projectile_protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "blast_protection"
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "fire_protection"
+                    },
+                    {
+                        "id": "feather_falling",
+                        "levels": {
+                            "min": 1,
+                            "max": 4
+                        }
+                    },
+                    {
+                        "id": "thorns",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "depth_strider",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "frost_walker",
+                        "levels": {
+                            "min": 1,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "id": "soul_speed",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    },
+                    {
+                        "id": "binding_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "uncommon",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "mobLoot": [
+                    {
+                        "mob": "zombie",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "skeleton",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "stray",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "bogged",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "parched",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    }
+                ],
+                "difficultyToObtain": 3
+            }
         },
         "copper_bulb": {
             "displayName": "Copper Bulb",
             "displayNameGerman": "Kupferleuchte",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false,
+                "luminousLevel": 15
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_chain": {
             "displayName": "Copper Chain",
             "displayNameGerman": "Kupferkette",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "golden_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_chest": {
             "displayName": "Copper Chest",
             "displayNameGerman": "Kupfertruhe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_chestplate": {
             "displayName": "Copper Chestplate",
             "displayNameGerman": "Kupferharnisch",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "armor": {
+                    "armorPoints": 4,
+                    "toughness": 0,
+                    "knockbackResistance": 0
+                },
+                "durability": 176,
+                "enchantability": 8,
+                "possibleEnchantments": [
+                    {
+                        "id": "protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "id": "projectile_protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "blast_protection"
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "fire_protection"
+                    },
+                    {
+                        "id": "thorns",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    },
+                    {
+                        "id": "binding_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "mobLoot": [
+                    {
+                        "mob": "zombie",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "skeleton",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "stray",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "bogged",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "parched",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    }
+                ],
+                "difficultyToObtain": 3
+            }
         },
         "copper_door": {
             "displayName": "Copper Door",
             "displayNameGerman": "Kupfertür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed version only"
+                    }
+                }
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_golem_spawn_egg": {
             "displayName": "Copper Golem Spawn Egg",
             "displayNameGerman": "Kupfergolem-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "copper_golem_statue": {
             "displayName": "Copper Golem Statue",
             "displayNameGerman": "Kupfergolemstatue",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "flammable": false,
+                "catchesFire": false,
+                "bestTools": [
+                    "any"
+                ]
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_grate": {
             "displayName": "Copper Grate",
             "displayNameGerman": "Kupferrost",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_helmet": {
             "displayName": "Copper Helmet",
             "displayNameGerman": "Kupferhelm",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "armor": {
+                    "armorPoints": 2,
+                    "toughness": 0,
+                    "knockbackResistance": 0
+                },
+                "durability": 121,
+                "enchantability": 8,
+                "possibleEnchantments": [
+                    {
+                        "id": "protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "id": "projectile_protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "blast_protection"
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "fire_protection"
+                    },
+                    {
+                        "id": "thorns",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "respiration",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "aqua_affinity",
+                        "levels": 1
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    },
+                    {
+                        "id": "binding_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "mobLoot": [
+                    {
+                        "mob": "zombie",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "skeleton",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "stray",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "bogged",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "parched",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    }
+                ],
+                "difficultyToObtain": 2
+            }
         },
         "copper_hoe": {
             "displayName": "Copper Hoe",
             "displayNameGerman": "Kupferhacke",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "damage": {
+                    "attackDamage": 1,
+                    "attackSpeed": 2
+                },
+                "durability": 190,
+                "enchantability": 13,
+                "possibleEnchantments": [
+                    {
+                        "id": "efficiency",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "fortune",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "silk_touch",
+                        "levels": 1
+                    },
+                    {
+                        "id": "sharpness",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "smite",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "bane_of_arthropods",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_horse_armor": {
             "displayName": "Copper Horse Armor",
             "displayNameGerman": "Kupferner Rossharnisch",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "monster_room",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.194,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "desert_pyramid",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.17,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "end_city",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.044,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "jungle_temple",
+                            "chests": [
+                                {
+                                    "chestName": "jungle_pyramid_chest",
+                                    "chance": 0.044,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "fortress",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.179,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "stronghold",
+                            "chests": [
+                                {
+                                    "chestName": "stronghold_altar_chest",
+                                    "chance": 0.025,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_desert",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.05,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_plains",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.05,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_savanna",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.05,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_snowy",
+                            "chests": [
+                                {
+                                    "chance": 0.05,
+                                    "chestName": "village_weaponsmith_chest",
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_taiga",
+                            "chests": [
+                                {
+                                    "chance": 0.05,
+                                    "chestName": "village_weaponsmith_chest",
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 7
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_ingot": {
             "displayName": "Copper Ingot",
             "displayNameGerman": "Kupferbarren",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "mobLoot": [
+                    {
+                        "mob": "drowned",
+                        "chance": 0.11,
+                        "quantity": {
+                            "min": 0,
+                            "max": 1
+                        }
+                    },
+                    {
+                        "mob": "copper_golem",
+                        "chance": 1,
+                        "quantity": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    }
+                ],
+                "difficultyToObtain": 2,
+                "smelting": {
+                    "smeltable": [
+                        "blast_furnace",
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.35
+                }
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": true
         },
         "copper_lantern": {
             "displayName": "Copper Lantern",
             "displayNameGerman": "Kupferlaterne",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 3.5,
+                "hardness": 3.5,
+                "luminousLevel": 15,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_leggings": {
             "displayName": "Copper Leggings",
             "displayNameGerman": "Kupferbeinschutz",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "armor": {
+                    "armorPoints": 3,
+                    "toughness": 0,
+                    "knockbackResistance": 0
+                },
+                "durability": 165,
+                "enchantability": 8,
+                "possibleEnchantments": [
+                    {
+                        "id": "protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "id": "projectile_protection",
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "blast_protection"
+                    },
+                    {
+                        "levels": {
+                            "max": 4,
+                            "min": 1
+                        },
+                        "id": "fire_protection"
+                    },
+                    {
+                        "id": "thorns",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "swift_sneak",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    },
+                    {
+                        "id": "binding_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "mobLoot": [
+                    {
+                        "mob": "zombie",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "skeleton",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "stray",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "bogged",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    },
+                    {
+                        "mob": "parched",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "only when wearing it"
+                    }
+                ],
+                "difficultyToObtain": 2
+            }
         },
         "copper_nautilus_armor": {
             "displayName": "Copper Nautilus Armor",
             "displayNameGerman": "Kupferner Nautiluspanzer",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "buried_treasure",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.108,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "shipwreck",
+                            "chests": [
+                                {
+                                    "chestName": "shipwreck_supply_chest",
+                                    "chance": 0.108,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chance": 0.108,
+                                    "chestName": "shipwreck_treasure_chest",
+                                    "quantity": 1
+                                },
+                                {
+                                    "chance": 0.108,
+                                    "chestName": "shipwreck_map_chest",
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "ocean_ruin",
+                            "chests": [
+                                {
+                                    "chestName": "ocean_ruin_small_chest",
+                                    "chance": 0.108,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "ocean_ruin_big_chest",
+                                    "chance": 0.108,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 8
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_nugget": {
             "displayName": "Copper Nugget",
             "displayNameGerman": "Kupferklumpen",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2,
+                "smelting": {
+                    "smeltable": [
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.1
+                }
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "copper_ore": {
             "displayName": "Copper Ore",
             "displayNameGerman": "Kupfererz",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 3,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe"
+                ]
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "Most common at y=44"
+                },
+                "difficultyToObtain": 9
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_pickaxe": {
             "displayName": "Copper Pickaxe",
             "displayNameGerman": "Kupferspitzhacke",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "damage": {
+                    "attackDamage": 3,
+                    "attackSpeed": 1.2
+                },
+                "durability": 190,
+                "enchantability": 13,
+                "possibleEnchantments": [
+                    {
+                        "id": "efficiency",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "fortune",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "silk_touch",
+                        "levels": 1
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_shovel": {
             "displayName": "Copper Shovel",
             "displayNameGerman": "Kupferschaufel",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "damage": {
+                    "attackDamage": 3.5,
+                    "attackSpeed": 1
+                },
+                "durability": 190,
+                "enchantability": 13,
+                "possibleEnchantments": [
+                    {
+                        "id": "efficiency",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "fortune",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "silk_touch",
+                        "levels": 1
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_spear": {
             "displayName": "Copper Spear",
             "displayNameGerman": "Kupferspeer",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "damage": {
+                    "attackDamage": 2,
+                    "attackSpeed": 1.18
+                },
+                "durability": 190,
+                "enchantability": 13,
+                "fireResistant": false,
+                "possibleEnchantments": [
+                    {
+                        "id": "sharpness",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "smite",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "bane_of_arthropods",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "looting",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "knockback",
+                        "levels": {
+                            "min": 1,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "id": "fire_aspect",
+                        "levels": {
+                            "min": 1,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "id": "lunge",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    }
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "village_desert",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.306,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_plains",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.306,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_savanna",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.306,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_snowy",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.306,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "village_taiga",
+                            "chests": [
+                                {
+                                    "chestName": "village_weaponsmith_chest",
+                                    "chance": 0.306,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_sword": {
             "displayName": "Copper Sword",
             "displayNameGerman": "Kupferschwert",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "damage": {
+                    "attackDamage": 5,
+                    "attackSpeed": 1.6
+                },
+                "durability": 190,
+                "enchantability": 13,
+                "possibleEnchantments": [
+                    {
+                        "id": "sharpness",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "smite",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "bane_of_arthropods",
+                        "levels": {
+                            "min": 1,
+                            "max": 5
+                        }
+                    },
+                    {
+                        "id": "looting",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "knockback",
+                        "levels": {
+                            "min": 1,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "id": "fire_aspect",
+                        "levels": {
+                            "min": 1,
+                            "max": 2
+                        }
+                    },
+                    {
+                        "id": "sweeping_edge",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 3
+                        }
+                    },
+                    {
+                        "id": "mending",
+                        "levels": 1
+                    },
+                    {
+                        "id": "vanishing_curse",
+                        "levels": 1
+                    }
+                ],
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_torch": {
             "displayName": "Copper Torch",
             "displayNameGerman": "Kupferfackel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0,
+                "hardness": 0,
+                "luminousLevel": 14,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "copper_trapdoor": {
             "displayName": "Copper Trapdoor",
             "displayNameGerman": "Kupferfalltür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cornflower": {
             "displayName": "Cornflower",
             "displayNameGerman": "Kornblume",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": true,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.65
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "biomes": [
+                        "flower_forest",
+                        "meadow",
+                        "plains",
+                        "sunflower_plains"
+                    ],
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "theoretically capable of generating in dripstone cave and deep dark biomes"
+                },
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 1
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "cow_spawn_egg": {
             "displayName": "Cow Spawn Egg",
             "displayNameGerman": "Kuh-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "cracked_deepslate_bricks": {
             "displayName": "Cracked Deepslate Bricks",
             "displayNameGerman": "Rissige Tiefenschieferziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe",
+                    "copper_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 2,
+                "smelting": {
+                    "smeltable": [
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.1
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cracked_deepslate_tiles": {
             "displayName": "Cracked Deepslate Tiles",
             "displayNameGerman": "Rissige Tiefenschieferfliesen",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ancient_city"
+                        ]
+                    }
+                },
+                "smelting": {
+                    "smeltable": [
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.1
+                },
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cracked_nether_bricks": {
             "displayName": "Cracked Nether Bricks",
             "displayNameGerman": "Rissige Netherziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "smelting": {
+                    "smeltable": [
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.1
+                },
+                "difficultyToObtain": 5
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cracked_polished_blackstone_bricks": {
             "displayName": "Cracked Polished Blackstone Bricks",
             "displayNameGerman": "Rissige polierte Schwarzsteinziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "partOfStructures": {
+                        "structures": [
+                            "ruined_portal",
+                            "bastion_remnant"
+                        ]
+                    },
+                    "dimensions": [
+                        "nether"
+                    ]
+                },
+                "difficultyToObtain": 5,
+                "smelting": {
+                    "smeltable": [
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.1
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cracked_stone_bricks": {
             "displayName": "Cracked Stone Bricks",
             "displayNameGerman": "Rissige Steinziegel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "stronghold",
+                            "igloo",
+                            "ocean_ruin",
+                            "ruined_portal",
+                            "trail_ruins"
+                        ],
+                        "comment": "only in igloos with basement, only in 2 out of 13 ruined portal overworld variants"
+                    }
+                },
+                "difficultyToObtain": 2,
+                "smelting": {
+                    "smeltable": [
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.1
+                }
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "crafter": {
             "displayName": "Crafter",
             "displayNameGerman": "Werker",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 3.5,
+                "hardness": 1.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "flammable": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 4
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "crafting_table": {
             "displayName": "Crafting Table",
             "displayNameGerman": "Werkbank",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 2.5,
+                "hardness": 2.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "swamp_hut",
+                            "igloo",
+                            "trail_ruins",
+                            "pillager_outpost",
+                            "trial_chambers",
+                            "village_desert",
+                            "village_savanna",
+                            "village_taiga"
+                        ],
+                        "comment": "In trial chambers hidden in Intersection 2 room"
+                    }
+                },
+                "difficultyToObtain": 1
+            },
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "creaking_heart": {
             "displayName": "Creaking Heart",
             "displayNameGerman": "Knarzherz",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 10,
+                "hardness": 10,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "yes",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "biomes": [
+                        "pale_garden"
+                    ],
+                    "comment": "10% chance per pale oak tree, never exposed to air. Do not generate from saplings!"
+                },
+                "difficultyToObtain": 8
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "creaking_spawn_egg": {
             "displayName": "Creaking Spawn Egg",
             "displayNameGerman": "Knarz-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "creeper_banner_pattern": {
             "displayName": "Banner Pattern",
             "displayNameGerman": "Bannervorlage",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "uncommon",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "craftable": true,
+                "obtainability": "survival",
+                "difficultyToObtain": 10
+            }
         },
         "creeper_head": {
             "displayName": "Creeper Head",
             "displayNameGerman": "Creeperkopf",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 1,
+                "hardness": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "difficultyToObtain": 10,
+                "obtainability": "survival",
+                "craftable": false,
+                "mobLoot": [
+                    {
+                        "mob": "creeper",
+                        "chance": 1,
+                        "quantity": 1,
+                        "comment": "only when killed by a charged creeper"
+                    }
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "uncommon"
         },
         "creeper_spawn_egg": {
             "displayName": "Creeper Spawn Egg",
@@ -11986,8 +16684,54 @@
             "displayName": "Damaged Anvil",
             "displayNameGerman": "Beschädigter Amboss",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 5,
+                "blastResistance": 1200,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trail_ruins",
+                            "woodland_mansion"
+                        ],
+                        "comment": "Only in 'Forge room' in Woodland Mansions, Only in 'Group Hall 1' in Trail Ruins"
+                    }
+                },
+                "difficultyToObtain": 7
+            }
         },
         "dandelion": {
             "displayName": "Dandelion",

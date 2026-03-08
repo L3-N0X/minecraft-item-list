@@ -1,7 +1,6 @@
 import { serve } from "bun";
 import path from "node:path";
 import fs from "node:fs";
-import index from "./index.html";
 
 const isDev = process.env.NODE_ENV !== "production";
 
