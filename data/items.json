@@ -6673,46 +6673,7 @@
             "item": {
                 "fireResistant": false,
                 "durability": 384,
-                "enchantability": 1,
-                "possibleEnchantments": [
-                    {
-                        "id": "power",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "punch",
-                        "levels": {
-                            "min": 1,
-                            "max": 2
-                        }
-                    },
-                    {
-                        "id": "flame",
-                        "levels": 1
-                    },
-                    {
-                        "id": "infinity",
-                        "levels": 1
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ]
+                "enchantability": 1
             },
             "renewable": "yes",
             "stackSize": 1,
@@ -6779,7 +6740,46 @@
                     "quantity": 1,
                     "comment": "Enchanted only"
                 }
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "power",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "punch",
+                    "levels": {
+                        "min": 1,
+                        "max": 2
+                    }
+                },
+                {
+                    "id": "flame",
+                    "levels": 1
+                },
+                {
+                    "id": "infinity",
+                    "levels": 1
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "bowl": {
             "displayName": "Bowl",
@@ -8525,24 +8525,7 @@
             "isBlock": false,
             "item": {
                 "fireResistant": false,
-                "durability": 64,
-                "possibleEnchantments": [
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ]
+                "durability": 64
             },
             "renewable": "yes",
             "stackSize": 1,
@@ -8553,7 +8536,24 @@
                 "obtainability": "survival",
                 "craftable": true,
                 "difficultyToObtain": 3
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "bubble_coral": {
             "displayName": "Bubble Coral",
@@ -9537,24 +9537,7 @@
             "isBlock": false,
             "item": {
                 "fireResistant": false,
-                "durability": 25,
-                "possibleEnchantments": [
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "aqua_affinity",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ]
+                "durability": 25
             },
             "renewable": "yes",
             "stackSize": 64,
@@ -9565,7 +9548,24 @@
                 "obtainability": "survival",
                 "craftable": true,
                 "difficultyToObtain": 5
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "aqua_affinity",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "cartography_table": {
             "displayName": "Cartography Table",
@@ -9671,7 +9671,17 @@
                     }
                 ],
                 "difficultyToObtain": 5
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "cat_spawn_egg": {
             "displayName": "Cat Spawn Egg",
@@ -9809,90 +9819,6 @@
                 },
                 "durability": 195,
                 "enchantability": 12,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "feather_falling",
-                        "levels": {
-                            "min": 1,
-                            "max": 4
-                        }
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "depth_strider",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "frost_walker",
-                        "levels": {
-                            "min": 1,
-                            "max": 2
-                        }
-                    },
-                    {
-                        "id": "soul_speed",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -9947,7 +9873,91 @@
                     ]
                 },
                 "difficultyToObtain": 7
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "feather_falling",
+                    "levels": {
+                        "min": 1,
+                        "max": 4
+                    }
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "depth_strider",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "frost_walker",
+                    "levels": {
+                        "min": 1,
+                        "max": 2
+                    }
+                },
+                {
+                    "id": "soul_speed",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "chainmail_chestplate": {
             "displayName": "Chainmail Chestplate",
@@ -9961,62 +9971,6 @@
                 },
                 "durability": 240,
                 "enchantability": 12,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -10085,7 +10039,63 @@
                         }
                     ]
                 }
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "chainmail_helmet": {
             "displayName": "Chainmail Helmet",
@@ -10099,73 +10109,6 @@
                 },
                 "durability": 165,
                 "enchantability": 12,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "respiration",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "aqua_affinity",
-                        "levels": 1
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -10220,7 +10163,74 @@
                     ]
                 },
                 "difficultyToObtain": 8
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "respiration",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "aqua_affinity",
+                    "levels": 1
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "chainmail_leggings": {
             "displayName": "Chainmail Leggings",
@@ -10234,69 +10244,6 @@
                 },
                 "durability": 225,
                 "enchantability": 12,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "swift_sneak",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -10351,7 +10298,70 @@
                     ]
                 },
                 "difficultyToObtain": 7
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "swift_sneak",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "charcoal": {
             "displayName": "Charcoal",
@@ -11299,7 +11309,6 @@
                 "requiresSpecialToolsToDrop": [
                     "copper_pickaxe",
                     "diamond_pickaxe",
-                    "golden_pickaxe",
                     "iron_pickaxe",
                     "stone_pickaxe",
                     "netherite_pickaxe"
@@ -11311,7 +11320,18 @@
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": true,
-                "difficultyToObtain": 4
+                "difficultyToObtain": 4,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed and oxidized version only"
+                    }
+                }
             },
             "craftingIngredient": true,
             "isArmorTrimMaterial": false
@@ -14078,62 +14098,6 @@
                 },
                 "durability": 190,
                 "enchantability": 13,
-                "possibleEnchantments": [
-                    {
-                        "id": "efficiency",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "fortune",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "silk_touch",
-                        "levels": 1
-                    },
-                    {
-                        "id": "sharpness",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "smite",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "bane_of_arthropods",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -14145,7 +14109,63 @@
                 "difficultyToObtain": 2
             },
             "craftingIngredient": false,
-            "isArmorTrimMaterial": false
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "efficiency",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "fortune",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "silk_touch",
+                    "levels": 1
+                },
+                {
+                    "id": "sharpness",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "smite",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "bane_of_arthropods",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_bars": {
             "displayName": "Copper Bars",
@@ -14211,7 +14231,6 @@
                 "requiresSpecialToolsToDrop": [
                     "copper_pickaxe",
                     "diamond_pickaxe",
-                    "golden_pickaxe",
                     "iron_pickaxe",
                     "stone_pickaxe",
                     "netherite_pickaxe"
@@ -14231,7 +14250,8 @@
                     "partOfStructures": {
                         "structures": [
                             "trial_chambers"
-                        ]
+                        ],
+                        "comment": "waxed and oxidized version only"
                     }
                 }
             },
@@ -14250,90 +14270,6 @@
                 },
                 "durability": 143,
                 "enchantability": 8,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "feather_falling",
-                        "levels": {
-                            "min": 1,
-                            "max": 4
-                        }
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "depth_strider",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "frost_walker",
-                        "levels": {
-                            "min": 1,
-                            "max": 2
-                        }
-                    },
-                    {
-                        "id": "soul_speed",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -14377,7 +14313,91 @@
                     }
                 ],
                 "difficultyToObtain": 3
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "feather_falling",
+                    "levels": {
+                        "min": 1,
+                        "max": 4
+                    }
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "depth_strider",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "frost_walker",
+                    "levels": {
+                        "min": 1,
+                        "max": 2
+                    }
+                },
+                {
+                    "id": "soul_speed",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_bulb": {
             "displayName": "Copper Bulb",
@@ -14402,7 +14422,6 @@
                 "requiresSpecialToolsToDrop": [
                     "copper_pickaxe",
                     "diamond_pickaxe",
-                    "golden_pickaxe",
                     "iron_pickaxe",
                     "stone_pickaxe",
                     "netherite_pickaxe"
@@ -14414,7 +14433,18 @@
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": true,
-                "difficultyToObtain": 5
+                "difficultyToObtain": 5,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed and oxidized version only"
+                    }
+                }
             },
             "craftingIngredient": true,
             "isArmorTrimMaterial": false
@@ -14483,7 +14513,6 @@
                 "requiresSpecialToolsToDrop": [
                     "copper_pickaxe",
                     "diamond_pickaxe",
-                    "golden_pickaxe",
                     "iron_pickaxe",
                     "stone_pickaxe",
                     "netherite_pickaxe"
@@ -14512,62 +14541,6 @@
                 },
                 "durability": 176,
                 "enchantability": 8,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -14611,7 +14584,63 @@
                     }
                 ],
                 "difficultyToObtain": 3
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_door": {
             "displayName": "Copper Door",
@@ -14729,7 +14758,6 @@
                 "requiresSpecialToolsToDrop": [
                     "copper_pickaxe",
                     "diamond_pickaxe",
-                    "golden_pickaxe",
                     "iron_pickaxe",
                     "stone_pickaxe",
                     "netherite_pickaxe"
@@ -14741,7 +14769,18 @@
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": true,
-                "difficultyToObtain": 3
+                "difficultyToObtain": 3,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed and oxidized version only"
+                    }
+                }
             },
             "craftingIngredient": true,
             "isArmorTrimMaterial": false
@@ -14758,73 +14797,6 @@
                 },
                 "durability": 121,
                 "enchantability": 8,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "respiration",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "aqua_affinity",
-                        "levels": 1
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -14868,7 +14840,74 @@
                     }
                 ],
                 "difficultyToObtain": 2
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "respiration",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "aqua_affinity",
+                    "levels": 1
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_hoe": {
             "displayName": "Copper Hoe",
@@ -14881,62 +14920,6 @@
                 },
                 "durability": 190,
                 "enchantability": 13,
-                "possibleEnchantments": [
-                    {
-                        "id": "efficiency",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "fortune",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "silk_touch",
-                        "levels": 1
-                    },
-                    {
-                        "id": "sharpness",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "smite",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "bane_of_arthropods",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -14948,14 +14931,75 @@
                 "difficultyToObtain": 2
             },
             "craftingIngredient": false,
-            "isArmorTrimMaterial": false
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "efficiency",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "fortune",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "silk_touch",
+                    "levels": 1
+                },
+                {
+                    "id": "sharpness",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "smite",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "bane_of_arthropods",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_horse_armor": {
             "displayName": "Copper Horse Armor",
             "displayNameGerman": "Kupferner Rossharnisch",
             "isBlock": false,
             "item": {
-                "fireResistant": false
+                "fireResistant": false,
+                "armor": {
+                    "armorPoints": 4,
+                    "toughness": 0,
+                    "knockbackResistance": 0
+                }
             },
             "renewable": "no",
             "stackSize": 1,
@@ -15169,69 +15213,6 @@
                 },
                 "durability": 165,
                 "enchantability": 8,
-                "possibleEnchantments": [
-                    {
-                        "id": "protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "id": "projectile_protection",
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        }
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "blast_protection"
-                    },
-                    {
-                        "levels": {
-                            "max": 4,
-                            "min": 1
-                        },
-                        "id": "fire_protection"
-                    },
-                    {
-                        "id": "thorns",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "swift_sneak",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    },
-                    {
-                        "id": "binding_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -15275,14 +15256,82 @@
                     }
                 ],
                 "difficultyToObtain": 2
-            }
+            },
+            "possibleEnchantments": [
+                {
+                    "id": "protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "id": "projectile_protection",
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    }
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "blast_protection"
+                },
+                {
+                    "levels": {
+                        "max": 4,
+                        "min": 1
+                    },
+                    "id": "fire_protection"
+                },
+                {
+                    "id": "thorns",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "swift_sneak",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_nautilus_armor": {
             "displayName": "Copper Nautilus Armor",
             "displayNameGerman": "Kupferner Nautiluspanzer",
             "isBlock": false,
             "item": {
-                "fireResistant": false
+                "fireResistant": false,
+                "armor": {
+                    "armorPoints": 4,
+                    "toughness": 0,
+                    "knockbackResistance": 0
+                }
             },
             "renewable": "no",
             "stackSize": 1,
@@ -15391,7 +15440,6 @@
                 "requiresSpecialToolsToDrop": [
                     "copper_pickaxe",
                     "diamond_pickaxe",
-                    "golden_pickaxe",
                     "iron_pickaxe",
                     "netherite_pickaxe",
                     "stone_pickaxe"
@@ -15425,41 +15473,6 @@
                 },
                 "durability": 190,
                 "enchantability": 13,
-                "possibleEnchantments": [
-                    {
-                        "id": "efficiency",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "fortune",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "silk_touch",
-                        "levels": 1
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -15471,7 +15484,42 @@
                 "difficultyToObtain": 2
             },
             "craftingIngredient": false,
-            "isArmorTrimMaterial": false
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "efficiency",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "fortune",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "silk_touch",
+                    "levels": 1
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_shovel": {
             "displayName": "Copper Shovel",
@@ -15484,41 +15532,6 @@
                 },
                 "durability": 190,
                 "enchantability": 13,
-                "possibleEnchantments": [
-                    {
-                        "id": "efficiency",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "fortune",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "silk_touch",
-                        "levels": 1
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -15530,7 +15543,42 @@
                 "difficultyToObtain": 2
             },
             "craftingIngredient": false,
-            "isArmorTrimMaterial": false
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "efficiency",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "fortune",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "silk_touch",
+                    "levels": 1
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_spear": {
             "displayName": "Copper Spear",
@@ -15543,73 +15591,7 @@
                 },
                 "durability": 190,
                 "enchantability": 13,
-                "fireResistant": false,
-                "possibleEnchantments": [
-                    {
-                        "id": "sharpness",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "smite",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "bane_of_arthropods",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "looting",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "knockback",
-                        "levels": {
-                            "min": 1,
-                            "max": 2
-                        }
-                    },
-                    {
-                        "id": "fire_aspect",
-                        "levels": {
-                            "min": 1,
-                            "max": 2
-                        }
-                    },
-                    {
-                        "id": "lunge",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ]
+                "fireResistant": false
             },
             "renewable": "yes",
             "stackSize": 1,
@@ -15674,7 +15656,73 @@
                 "difficultyToObtain": 2
             },
             "craftingIngredient": false,
-            "isArmorTrimMaterial": false
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "sharpness",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "smite",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "bane_of_arthropods",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "looting",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "knockback",
+                    "levels": {
+                        "min": 1,
+                        "max": 2
+                    }
+                },
+                {
+                    "id": "fire_aspect",
+                    "levels": {
+                        "min": 1,
+                        "max": 2
+                    }
+                },
+                {
+                    "id": "lunge",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_sword": {
             "displayName": "Copper Sword",
@@ -15687,72 +15735,6 @@
                 },
                 "durability": 190,
                 "enchantability": 13,
-                "possibleEnchantments": [
-                    {
-                        "id": "sharpness",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "smite",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "bane_of_arthropods",
-                        "levels": {
-                            "min": 1,
-                            "max": 5
-                        }
-                    },
-                    {
-                        "id": "looting",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "knockback",
-                        "levels": {
-                            "min": 1,
-                            "max": 2
-                        }
-                    },
-                    {
-                        "id": "fire_aspect",
-                        "levels": {
-                            "min": 1,
-                            "max": 2
-                        }
-                    },
-                    {
-                        "id": "sweeping_edge",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "unbreaking",
-                        "levels": {
-                            "min": 1,
-                            "max": 3
-                        }
-                    },
-                    {
-                        "id": "mending",
-                        "levels": 1
-                    },
-                    {
-                        "id": "vanishing_curse",
-                        "levels": 1
-                    }
-                ],
                 "fireResistant": false
             },
             "renewable": "yes",
@@ -15764,7 +15746,73 @@
                 "difficultyToObtain": 2
             },
             "craftingIngredient": false,
-            "isArmorTrimMaterial": false
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "sharpness",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "smite",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "bane_of_arthropods",
+                    "levels": {
+                        "min": 1,
+                        "max": 5
+                    }
+                },
+                {
+                    "id": "looting",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "knockback",
+                    "levels": {
+                        "min": 1,
+                        "max": 2
+                    }
+                },
+                {
+                    "id": "fire_aspect",
+                    "levels": {
+                        "min": 1,
+                        "max": 2
+                    }
+                },
+                {
+                    "id": "sweeping_edge",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "copper_torch": {
             "displayName": "Copper Torch",
@@ -15821,7 +15869,6 @@
                 "requiresSpecialToolsToDrop": [
                     "copper_pickaxe",
                     "diamond_pickaxe",
-                    "golden_pickaxe",
                     "iron_pickaxe",
                     "netherite_pickaxe",
                     "stone_pickaxe"
@@ -15833,7 +15880,18 @@
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": true,
-                "difficultyToObtain": 2
+                "difficultyToObtain": 2,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed and oxidized version only"
+                    }
+                }
             },
             "craftingIngredient": true,
             "isArmorTrimMaterial": false
@@ -16389,296 +16447,1842 @@
             },
             "renewable": "yes",
             "stackSize": 64,
-            "rarityTier": "uncommon"
+            "rarityTier": "uncommon",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "binding_curse",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ]
         },
         "creeper_spawn_egg": {
             "displayName": "Creeper Spawn Egg",
             "displayNameGerman": "Creeper-Spawn-Ei",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            }
         },
         "crimson_button": {
             "displayName": "Crimson Button",
             "displayNameGerman": "Karmesinknopf",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.5,
+                "blastResistance": 0.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "craftable": true,
+                "obtainability": "survival",
+                "difficultyToObtain": 5
+            }
         },
         "crimson_door": {
             "displayName": "Crimson Door",
             "displayNameGerman": "Karmesintür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 3,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_fence": {
             "displayName": "Crimson Fence",
             "displayNameGerman": "Karmesinzaun",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_fence_gate": {
             "displayName": "Crimson Fence Gate",
             "displayNameGerman": "Karmesinzauntor",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_fungus": {
             "displayName": "Crimson Fungus",
             "displayNameGerman": "Karmesinpilz",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0,
+                "hardness": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "nether"
+                    ],
+                    "biomes": [
+                        "crimson_forest",
+                        "warped_forest"
+                    ]
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.228,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 7
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 5
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "compostable": {
+                "chance": 0.65
+            }
         },
         "crimson_hanging_sign": {
             "displayName": "Crimson Hanging Sign",
             "displayNameGerman": "Karmesinhängeschild",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1,
+                "blastResistance": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 6
+            }
         },
         "crimson_hyphae": {
             "displayName": "Crimson Hyphae",
             "displayNameGerman": "Karmesinhyphen",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_nylium": {
             "displayName": "Crimson Nylium",
             "displayNameGerman": "Karmesin-Nezel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.4,
+                "hardness": 0.4,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "yes",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "golden_pickaxe",
+                    "diamond_pickaxe",
+                    "netherite_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "nether"
+                    ],
+                    "biomes": [
+                        "crimson_forest"
+                    ]
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.228,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 7
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 9
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "crimson_planks": {
             "displayName": "Crimson Planks",
             "displayNameGerman": "Karmesinbretter",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_pressure_plate": {
             "displayName": "Crimson Pressure Plate",
             "displayNameGerman": "Karmesindruckplatte",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.5,
+                "blastResistance": 0.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_roots": {
             "displayName": "Crimson Roots",
             "displayNameGerman": "Karmesinwurzeln",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0,
+                "hardness": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "nether"
+                    ],
+                    "biomes": [
+                        "crimson_forest",
+                        "warped_forest",
+                        "soul_sand_valley"
+                    ],
+                    "comment": "Rare in warped forest and soul sand valley"
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.228,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 7
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 5
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "compostable": {
+                "chance": 0.65
+            }
         },
         "crimson_shelf": {
             "displayName": "Crimson Shelf",
             "displayNameGerman": "Karmesinregal",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_sign": {
             "displayName": "Crimson Sign",
             "displayNameGerman": "Karmesinschild",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1,
+                "blastResistance": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "isArmorTrimMaterial": false,
+            "craftingIngredient": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_slab": {
             "displayName": "Crimson Slab",
             "displayNameGerman": "Karmesinstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "luminousLevel": 0,
+                "blastResistance": 3,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_stairs": {
             "displayName": "Crimson Stairs",
             "displayNameGerman": "Karmesintreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crimson_stem": {
             "displayName": "Crimson Stem",
             "displayNameGerman": "Karmesinstiel",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "nether"
+                    ],
+                    "biomes": [
+                        "crimson_forest"
+                    ]
+                },
+                "difficultyToObtain": 5
+            }
         },
         "crimson_trapdoor": {
             "displayName": "Crimson Trapdoor",
             "displayNameGerman": "Karmesinfalltür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 3,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            }
         },
         "crossbow": {
             "displayName": "Crossbow",
             "displayNameGerman": "Armbrust",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false,
+                "durability": 465,
+                "enchantability": 1
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_generic_chest",
+                                    "chance": 0.098,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "bastion_bridge_chest",
+                                    "chance": 0.112,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "bastion_generic_chest",
+                                    "chance": 0.067,
+                                    "quantity": 1
+                                }
+                            ],
+                            "comment": "either unenchanted or enchanted in generic chest, only enchanted ones in bridge chest"
+                        },
+                        {
+                            "structure": "trial_chambers",
+                            "chests": [
+                                {
+                                    "chestName": "trial_chamber_vault",
+                                    "chance": 0.07,
+                                    "quantity": 1
+                                },
+                                {
+                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chance": 0.11,
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "pillager_outpost",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 0.5,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "mobLoot": [
+                    {
+                        "mob": "pillager",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "when holding one"
+                    },
+                    {
+                        "mob": "piglin",
+                        "chance": 0.085,
+                        "quantity": 1,
+                        "comment": "when holding one"
+                    }
+                ],
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "fletcher",
+                            "level": "Journeyman (3)",
+                            "probability": 1,
+                            "quantity": 1
+                        }
+                    ]
+                },
+                "difficultyToObtain": 4
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "possibleEnchantments": [
+                {
+                    "id": "quick_charge",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "multishot",
+                    "levels": 1
+                },
+                {
+                    "id": "piercing",
+                    "levels": {
+                        "min": 1,
+                        "max": 4
+                    }
+                },
+                {
+                    "id": "unbreaking",
+                    "levels": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                {
+                    "id": "mending",
+                    "levels": 1
+                },
+                {
+                    "id": "vanishing_curse",
+                    "levels": 1
+                }
+            ],
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            }
         },
         "crying_obsidian": {
             "displayName": "Crying Obsidian",
             "displayNameGerman": "Weinender Obsidian",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 1200,
+                "hardness": 50,
+                "luminousLevel": 10,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "netherite_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld",
+                        "nether"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "ruined_portal"
+                        ]
+                    }
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "bastion_remnant",
+                            "chests": [
+                                {
+                                    "chestName": "bastion_hoglin_stables_chest",
+                                    "chance": 0.228,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 5
+                                    }
+                                },
+                                {
+                                    "chestName": "bastion_treasure_chest",
+                                    "chance": 0.337,
+                                    "quantity": {
+                                        "min": 3,
+                                        "max": 5
+                                    }
+                                },
+                                {
+                                    "chestName": "bastion_generic_chest",
+                                    "chance": 0.19,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 5
+                                    }
+                                },
+                                {
+                                    "chestName": "bastion_bridge_chest",
+                                    "chance": 0.112,
+                                    "quantity": {
+                                        "min": 3,
+                                        "max": 8
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "bartering": {
+                    "chance": 0.0853,
+                    "quantity": {
+                        "min": 1,
+                        "max": 3
+                    }
+                },
+                "difficultyToObtain": 7
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cut_copper": {
             "displayName": "Cut Copper",
             "displayNameGerman": "Geschnittener Kupferblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed and oxidized version only"
+                    }
+                }
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cut_copper_slab": {
             "displayName": "Cut Copper Slab",
             "displayNameGerman": "Geschnittene Kupferstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed version only"
+                    }
+                },
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cut_copper_stairs": {
             "displayName": "Cut Copper Stairs",
             "displayNameGerman": "Geschnittene Kupfertreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 6,
+                "hardness": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "waxed oxidized version only"
+                    }
+                },
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cut_red_sandstone": {
             "displayName": "Cut Red Sandstone",
             "displayNameGerman": "Geschnittener roter Sandstein",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.8,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false,
+                "blastResistance": 0.8
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 7
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cut_red_sandstone_slab": {
             "displayName": "Cut Red Sandstone Slab",
             "displayNameGerman": "Geschnittene rote Sandsteinstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false,
+                "blastResistance": 6
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 7
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cut_sandstone": {
             "displayName": "Cut Sandstone",
             "displayNameGerman": "Geschnittener Sandstein",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.8,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false,
+                "blastResistance": 0.8
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_desert",
+                            "desert_pyramid",
+                            "ocean_ruin"
+                        ],
+                        "comment": "only in warm ocean ruins"
+                    }
+                }
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false
         },
         "cut_sandstone_slab": {
             "displayName": "Cut Sandstone Slab",
             "displayNameGerman": "Geschnittene Sandsteinstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false,
+                "blastResistance": 6
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "cyan_banner": {
             "displayName": "Cyan Banner",
             "displayNameGerman": "Türkises Banner",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1,
+                "blastResistance": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "shepherd",
+                            "level": "Expert (4)",
+                            "probability": 0.94,
+                            "quantity": 1,
+                            "comment": "color is random"
+                        },
+                        {
+                            "profession": "cartographer",
+                            "level": "Expert (4)",
+                            "probability": 1,
+                            "quantity": 1,
+                            "comment": "Only desert and snowy villager"
+                        }
+                    ]
+                },
+                "difficultyToObtain": 8
+            }
         },
         "cyan_bed": {
             "displayName": "Cyan Bed",
             "displayNameGerman": "Türkises Bett",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": true,
+                "waterloggable": false,
+                "isBlockEntity": true,
+                "transparency": "transparent",
+                "luminousLevel": 0,
+                "hardness": 0.2,
+                "blastResistance": 0.2
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "comment": "In trial chambers in various intersections, color is random. In the desert village other bed colors generate as well",
+                        "structures": [
+                            "village_desert",
+                            "trial_chambers"
+                        ]
+                    }
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "shepherd",
+                            "level": "Journeyman (3)",
+                            "probability": 0.95,
+                            "quantity": 1,
+                            "comment": "color is random"
+                        }
+                    ]
+                },
+                "difficultyToObtain": 7
+            }
         },
         "cyan_bundle": {
             "displayName": "Cyan Bundle",
             "displayNameGerman": "Türkises Bündel",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "rarityTier": "common",
+            "stackSize": 1,
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 8
+            }
         },
         "cyan_candle": {
             "displayName": "Cyan Candle",
             "displayNameGerman": "Türkise Kerze",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.1,
+                "blastResistance": 0.1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 9
+            }
         },
         "cyan_carpet": {
             "displayName": "Cyan Carpet",
             "displayNameGerman": "Türkiser Teppich",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.1,
+                "blastResistance": 0.1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 3.35,
+                "numberOfItemsSmelted": 0.335
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion"
+                        ],
+                        "comment": "Bedroom with loft room only"
+                    }
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "shepherd",
+                            "level": "Apprentice (2)",
+                            "probability": 0.68,
+                            "quantity": 4,
+                            "comment": "color is random"
+                        }
+                    ]
+                },
+                "difficultyToObtain": 8
+            }
         },
         "cyan_concrete": {
             "displayName": "Cyan Concrete",
             "displayNameGerman": "Türkiser Beton",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.8,
+                "blastResistance": 1.8,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 8
+            }
         },
         "cyan_concrete_powder": {
             "displayName": "Cyan Concrete Powder",
             "displayNameGerman": "Türkiser Trockenbeton",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.5,
+                "blastResistance": 0.5,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shovel"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 8
+            }
         },
         "cyan_dye": {
             "displayName": "Cyan Dye",
             "displayNameGerman": "Türkiser Farbstoff",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "craftable": true,
+                "obtainability": "survival",
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 3
+                    }
+                },
+                "difficultyToObtain": 8
+            }
         },
         "cyan_glazed_terracotta": {
             "displayName": "Cyan Glazed Terracotta",
             "displayNameGerman": "Türkise glasierte Keramik",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.4,
+                "blastResistance": 1.4,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false,
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trail_ruins"
+                        ]
+                    }
+                },
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "mason",
+                            "level": "Expert (4)",
+                            "probability": 0.74,
+                            "quantity": 1,
+                            "comment": "color is random"
+                        }
+                    ]
+                },
+                "smelting": {
+                    "smeltable": [
+                        "furnace"
+                    ],
+                    "xpFromSmelting": 0.1
+                },
+                "difficultyToObtain": 8
+            }
         },
         "cyan_harness": {
             "displayName": "Cyan Harness",
             "displayNameGerman": "Türkises Geschirr",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 8
+            }
         },
         "cyan_shulker_box": {
             "displayName": "Cyan Shulker Box",
             "displayNameGerman": "Türkise Shulker-Kiste",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 10
+            }
         },
         "cyan_stained_glass": {
             "displayName": "Cyan Stained Glass",
             "displayNameGerman": "Türkises Glas",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.3,
+                "blastResistance": 0.3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "yes",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 8
+            }
         },
         "cyan_stained_glass_pane": {
             "displayName": "Cyan Stained Glass Pane",
             "displayNameGerman": "Türkise Glasscheibe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.3,
+                "blastResistance": 0.3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "catchesFire": false,
+                "flammable": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "yes",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 8
+            }
         },
         "cyan_terracotta": {
             "displayName": "Cyan Terracotta",
             "displayNameGerman": "Türkise Keramik",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.25,
+                "blastResistance": 4.2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "mason",
+                            "level": "Expert (4)",
+                            "probability": 0.74,
+                            "quantity": 1,
+                            "comment": "color is random"
+                        }
+                    ]
+                },
+                "difficultyToObtain": 8
+            }
         },
         "cyan_wool": {
             "displayName": "Cyan Wool",
             "displayNameGerman": "Türkise Wolle",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.8,
+                "blastResistance": 0.8,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shears"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 5,
+                "numberOfItemsSmelted": 0.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion",
+                            "ancient_city"
+                        ],
+                        "comment": "In wool room in woodland mansions, in ancient city in 2/3 camp rooms"
+                    }
+                },
+                "difficultyToObtain": 8,
+                "trading": {
+                    "villagers": [
+                        {
+                            "profession": "shepherd",
+                            "level": "Apprentice (2)",
+                            "probability": 0.68,
+                            "quantity": 1,
+                            "comment": "color is random, possible as 'villager gift'"
+                        }
+                    ]
+                }
+            }
         },
         "damaged_anvil": {
             "displayName": "Damaged Anvil",
@@ -16737,103 +18341,722 @@
             "displayName": "Dandelion",
             "displayNameGerman": "Löwenzahn",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": true,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.65
+            },
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "comment": "Twice as often in jungles, bamboo jungles, sparse jungles, savannas and savanna plateaus. Theoretically capable of generating in Beach, Snowy Beach, Stony Shore, Ocean, Deep Ocean, Cold Ocean, Deep Cold Ocean, Frozen Ocean, Deep Frozen Ocean, Lukewarm Ocean, Deep Lukewarm Ocean, Warm Ocean, Desert, Ice Spikes, Dripstone Caves and Deep Dark but almost never seen there.",
+                    "biomes": [
+                        "plains",
+                        "sunflower_plains",
+                        "savanna",
+                        "savanna_plateau",
+                        "windswept_savanna",
+                        "snowy_plains",
+                        "meadow",
+                        "forest",
+                        "flower_forest",
+                        "birch_forest",
+                        "old_growth_birch_forest",
+                        "taiga",
+                        "old_growth_pine_taiga",
+                        "old_growth_spruce_taiga",
+                        "snowy_taiga",
+                        "jungle",
+                        "bamboo_jungle",
+                        "sparse_jungle",
+                        "dark_forest",
+                        "windswept_hills",
+                        "windswept_gravelly_hills",
+                        "windswept_forest",
+                        "river",
+                        "frozen_river"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "village_plains",
+                            "village_savanna",
+                            "woodland_mansion"
+                        ],
+                        "comment": "potted in woodland mansion"
+                    }
+                },
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 1
+                    }
+                },
+                "difficultyToObtain": 1,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "village_plains",
+                            "chests": [
+                                {
+                                    "chestName": "village_plains_house_chest",
+                                    "chance": 0.228,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
         },
         "danger_pottery_sherd": {
             "displayName": "Danger Pottery Sherd",
             "displayNameGerman": "Gefahren-Töpferscherbe",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 64,
+            "rarityTier": "uncommon",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "trail_ruins",
+                            "chests": [
+                                {
+                                    "chestName": "trail_ruin_rare_suspicious_gravel",
+                                    "chance": 0.083,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "difficultyToObtain": 9
+            }
         },
         "dark_oak_boat": {
             "displayName": "Dark Oak Boat",
             "displayNameGerman": "Schwarzeichenholzboot",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 60,
+                "numberOfItemsSmelted": 6
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_button": {
             "displayName": "Dark Oak Button",
             "displayNameGerman": "Schwarzeichenholzknopf",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.5,
+                "blastResistance": 0.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 5,
+                "numberOfItemsSmelted": 0.5
+            },
+            "obtaining": {
+                "craftable": true,
+                "obtainability": "survival",
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_chest_boat": {
             "displayName": "Dark Oak Boat with Chest",
             "displayNameGerman": "Schwarzeichenholztruhenboot",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "yes",
+            "stackSize": 1,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 60,
+                "numberOfItemsSmelted": 6
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_door": {
             "displayName": "Dark Oak Door",
             "displayNameGerman": "Schwarzeichenholztür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 3,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 10,
+                "numberOfItemsSmelted": 1
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion",
+                            "shipwreck"
+                        ],
+                        "comment": "in master bedroom closets in woodland mansions, only in right-side-up shipwrecks"
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_fence": {
             "displayName": "Dark Oak Fence",
             "displayNameGerman": "Schwarzeichenholzzaun",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "mineshaft",
+                            "woodland_mansion",
+                            "shipwreck",
+                            "pillager_outpost",
+                            "ancient_city"
+                        ],
+                        "comment": "mineshaft in badlands only"
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_fence_gate": {
             "displayName": "Dark Oak Fence Gate",
             "displayNameGerman": "Schwarzeichenholzzauntor",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_hanging_sign": {
             "displayName": "Dark Oak Hanging Sign",
             "displayNameGerman": "Schwarzeichenholzhängeschild",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1,
+                "blastResistance": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "fuel": {
+                "burnTimeSeconds": 40,
+                "numberOfItemsSmelted": 4
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "dark_oak_leaves": {
             "displayName": "Dark Oak Leaves",
             "displayNameGerman": "Schwarzeichenlaub",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.2,
+                "blastResistance": 0.2,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shears",
+                    "hoe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "shears"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "biomes": [
+                        "dark_forest"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion"
+                        ],
+                        "comment": "in single bedroom, nature room and tree chopping room"
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_log": {
             "displayName": "Dark Oak Log",
             "displayNameGerman": "Schwarzeichenstamm",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "pillager_outpost",
+                            "mineshaft",
+                            "woodland_mansion",
+                            "ancient_city",
+                            "shipwreck"
+                        ],
+                        "comment": "badlands mineshaft only"
+                    },
+                    "biomes": [
+                        "dark_forest"
+                    ]
+                },
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.13,
+                        "quantity": 8
+                    }
+                },
+                "difficultyToObtain": 2,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "pillager_outpost",
+                            "chests": [
+                                {
+                                    "chestName": "chest",
+                                    "chance": 1,
+                                    "quantity": {
+                                        "min": 2,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
         },
         "dark_oak_planks": {
             "displayName": "Dark Oak Planks",
             "displayNameGerman": "Schwarzeichenholzbretter",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 1.5,
+                "numberOfItemsSmelted": 15
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "mineshaft",
+                            "woodland_mansion",
+                            "ocean_ruin",
+                            "shipwreck",
+                            "pillager_outpost",
+                            "ancient_city"
+                        ],
+                        "comment": "only in badlands mineshafts"
+                    }
+                },
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_pressure_plate": {
             "displayName": "Dark Oak Pressure Plate",
             "displayNameGerman": "Schwarzeichenholzdruckplatte",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0.5,
+                "blastResistance": 0.5,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 2
+            }
         },
         "dark_oak_sapling": {
             "displayName": "Dark Oak Sapling",
             "displayNameGerman": "Schwarzeichensetzling",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "compostable": {
+                "chance": 0.3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 5,
+                "numberOfItemsSmelted": 0.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion"
+                        ],
+                        "comment": "The 'sapling farm' room always has 58 dark oak saplings"
+                    }
+                },
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "woodland_mansion",
+                            "chests": [
+                                {
+                                    "chestName": "woodland_mansion_sapling_farm_chest",
+                                    "chance": 1,
+                                    "quantity": 28
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "blockLoot": [
+                    {
+                        "chance": 0.05,
+                        "quantity": 1,
+                        "blocks": [
+                            "dark_oak_leaves"
+                        ]
+                    }
+                ],
+                "trading": {
+                    "wanderingTrader": {
+                        "chance": 0.07,
+                        "quantity": 1
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "dark_oak_shelf": {
             "displayName": "Dark Oak Shelf",
             "displayNameGerman": "Schwarzeichenholzregal",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "dark_oak_sign": {
             "displayName": "Dark Oak Sign",
