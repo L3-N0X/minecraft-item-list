@@ -4643,7 +4643,8 @@
                     "iron_pickaxe",
                     "netherite_pickaxe",
                     "stone_pickaxe",
-                    "wooden_pickaxe"
+                    "wooden_pickaxe",
+                    "copper_pickaxe"
                 ]
             }
         },
@@ -4729,7 +4730,8 @@
                     "iron_pickaxe",
                     "netherite_pickaxe",
                     "stone_pickaxe",
-                    "wooden_pickaxe"
+                    "wooden_pickaxe",
+                    "copper_pickaxe"
                 ]
             },
             "renewable": "yes",
@@ -5063,7 +5065,8 @@
                     "netherite_pickaxe",
                     "golden_pickaxe",
                     "diamond_pickaxe",
-                    "iron_pickaxe"
+                    "iron_pickaxe",
+                    "copper_pickaxe"
                 ],
                 "instantBreaking": false
             },
@@ -5124,7 +5127,8 @@
                     "netherite_pickaxe",
                     "golden_pickaxe",
                     "diamond_pickaxe",
-                    "iron_pickaxe"
+                    "iron_pickaxe",
+                    "copper_pickaxe"
                 ],
                 "instantBreaking": false
             },
@@ -5174,7 +5178,8 @@
                     "netherite_pickaxe",
                     "golden_pickaxe",
                     "diamond_pickaxe",
-                    "iron_pickaxe"
+                    "iron_pickaxe",
+                    "copper_pickaxe"
                 ],
                 "instantBreaking": false
             },
@@ -19062,189 +19067,1058 @@
             "displayName": "Dark Oak Sign",
             "displayNameGerman": "Schwarzeichenholzschild",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1,
+                "blastResistance": 1,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 16,
+            "rarityTier": "common",
+            "fuel": {
+                "burnTimeSeconds": 40,
+                "numberOfItemsSmelted": 4
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "dark_oak_slab": {
             "displayName": "Dark Oak Slab",
             "displayNameGerman": "Schwarzeichenholzstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "luminousLevel": 0,
+                "blastResistance": 3,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 7.5,
+                "numberOfItemsSmelted": 0.75
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "shipwreck",
+                            "pillager_outpost"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "dark_oak_stairs": {
             "displayName": "Dark Oak Stairs",
             "displayNameGerman": "Schwarzeichenholztreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "partial",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "woodland_mansion",
+                            "shipwreck",
+                            "pillager_outpost"
+                        ]
+                    }
+                },
+                "difficultyToObtain": 3
+            }
         },
         "dark_oak_trapdoor": {
             "displayName": "Dark Oak Trapdoor",
             "displayNameGerman": "Schwarzeichenholzfalltür",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 3,
+                "blastResistance": 3,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "shipwreck"
+                        ]
+                    }
+                }
+            }
         },
         "dark_oak_wood": {
             "displayName": "Dark Oak Wood",
             "displayNameGerman": "Schwarzeichenholz",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 2,
+                "blastResistance": 2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 3
+            }
         },
         "dark_prismarine": {
             "displayName": "Dark Prismarine",
             "displayNameGerman": "Dunkler Prismarin",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "wooden_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe",
+                    "golden_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "copper_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "partOfStructures": {
+                        "structures": [
+                            "ocean_monument"
+                        ]
+                    },
+                    "dimensions": [
+                        "overworld"
+                    ]
+                },
+                "difficultyToObtain": 4
+            }
         },
         "dark_prismarine_slab": {
             "displayName": "Dark Prismarine Slab",
             "displayNameGerman": "Dunkle Prismarinstufe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "wooden_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe",
+                    "golden_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "copper_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 4
+            }
         },
         "dark_prismarine_stairs": {
             "displayName": "Dark Prismarine Stairs",
             "displayNameGerman": "Dunkle Prismarintreppe",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "requiresSpecialToolsToDrop": [
+                    "wooden_pickaxe",
+                    "stone_pickaxe",
+                    "netherite_pickaxe",
+                    "golden_pickaxe",
+                    "diamond_pickaxe",
+                    "iron_pickaxe",
+                    "copper_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 4
+            }
         },
         "daylight_detector": {
             "displayName": "Daylight Detector",
             "displayNameGerman": "Tageslichtsensor",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0.2,
+                "hardness": 0.2,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "axe"
+                ],
+                "flammable": false,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": 5
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "fuel": {
+                "burnTimeSeconds": 15,
+                "numberOfItemsSmelted": 1.5
+            }
         },
         "dead_brain_coral": {
             "displayName": "Dead Brain Coral",
             "displayNameGerman": "Abgestorbene Hirnkoralle",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_brain_coral_block": {
             "displayName": "Dead Brain Coral Block",
             "displayNameGerman": "Abgestorbener Hirnkorallenblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_brain_coral_fan": {
             "displayName": "Dead Brain Coral Fan",
             "displayNameGerman": "Abgestorbener Hirnkorallenfächer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_bubble_coral": {
             "displayName": "Dead Bubble Coral",
             "displayNameGerman": "Abgestorbene Blasenkoralle",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_bubble_coral_block": {
             "displayName": "Dead Bubble Coral Block",
             "displayNameGerman": "Abgestorbener Blasenkorallenblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_bubble_coral_fan": {
             "displayName": "Dead Bubble Coral Fan",
             "displayNameGerman": "Abgestorbener Blasenkorallenfächer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_bush": {
             "displayName": "Dead Bush",
             "displayNameGerman": "Toter Busch",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "shears"
+                ],
+                "flammable": true,
+                "catchesFire": true
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true,
+                "requiresSpecialToolsToDrop": [
+                    "shears"
+                ]
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "biomes": [
+                        "desert",
+                        "badlands",
+                        "wooded_badlands",
+                        "eroded_badlands",
+                        "swamp",
+                        "mangrove_swamp",
+                        "old_growth_pine_taiga",
+                        "old_growth_spruce_taiga"
+                    ],
+                    "comment": "taiga, desert and badlands are in a ratio of 1:2:20 in terms of the frequency of dead bushes generated",
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers",
+                            "village_desert"
+                        ],
+                        "comment": "In some entrance rooms in trial chambers, in flower pots in desert village houses and trial chambers"
+                    }
+                },
+                "difficultyToObtain": 6,
+                "generatedLoot": {
+                    "structures": [
+                        {
+                            "structure": "village_desert",
+                            "chests": [
+                                {
+                                    "chestName": "village_desert_house_chest",
+                                    "chance": 0.266,
+                                    "quantity": {
+                                        "min": 1,
+                                        "max": 3
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "structure": "trail_ruins",
+                            "chests": [
+                                {
+                                    "chestName": "trail_ruin_common_suspicious_gravel",
+                                    "chance": 0.022,
+                                    "quantity": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "fuel": {
+                "burnTimeSeconds": 5,
+                "numberOfItemsSmelted": 0.5
+            }
         },
         "dead_fire_coral": {
             "displayName": "Dead Fire Coral",
             "displayNameGerman": "Abgestorbene Feuerkoralle",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_fire_coral_block": {
             "displayName": "Dead Fire Coral Block",
             "displayNameGerman": "Abgestorbener Feuerkorallenblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_fire_coral_fan": {
             "displayName": "Dead Fire Coral Fan",
             "displayNameGerman": "Abgestorbener Feuerkorallenfächer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_horn_coral": {
             "displayName": "Dead Horn Coral",
             "displayNameGerman": "Abgestorbene Geweihkoralle",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_horn_coral_block": {
             "displayName": "Dead Horn Coral Block",
             "displayNameGerman": "Abgestorbener Geweihkorallenblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_horn_coral_fan": {
             "displayName": "Dead Horn Coral Fan",
             "displayNameGerman": "Abgestorbener Geweihkorallenfächer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_tube_coral": {
             "displayName": "Dead Tube Coral",
             "displayNameGerman": "Abgestorbene Orgelkoralle",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_tube_coral_block": {
             "displayName": "Dead Tube Coral Block",
             "displayNameGerman": "Abgestorbener Orgelkorallenblock",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 1.5,
+                "blastResistance": 6,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": false,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "pickaxe"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "requiresSpecialToolsToDrop": [
+                    "copper_pickaxe",
+                    "diamond_pickaxe",
+                    "golden_pickaxe",
+                    "iron_pickaxe",
+                    "netherite_pickaxe",
+                    "stone_pickaxe",
+                    "wooden_pickaxe"
+                ],
+                "instantBreaking": false
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "dead_tube_coral_fan": {
             "displayName": "Dead Tube Coral Fan",
             "displayNameGerman": "Abgestorbener Orgelkorallenfächer",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "hardness": 0,
+                "blastResistance": 0,
+                "luminousLevel": 0,
+                "transparency": "transparent",
+                "waterloggable": true,
+                "isBlockEntity": false,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "silk_touch_only",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": false,
+                "difficultyToObtain": 9
+            }
         },
         "debug_stick": {
             "displayName": "Debug Stick",
             "displayNameGerman": "Debug-Stab",
             "isBlock": false,
-            "item": {}
+            "item": {
+                "fireResistant": false
+            },
+            "renewable": "no",
+            "stackSize": 1,
+            "rarityTier": "epic",
+            "obtaining": {
+                "obtainability": "creative_only",
+                "craftable": false,
+                "difficultyToObtain": -1
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "decorated_pot": {
             "displayName": "Decorated Pot",
             "displayNameGerman": "Verzierter Krug",
             "isBlock": true,
-            "block": {},
-            "breaking": {}
+            "block": {
+                "blastResistance": 0,
+                "hardness": 0,
+                "luminousLevel": 0,
+                "transparency": "opaque",
+                "waterloggable": true,
+                "isBlockEntity": true,
+                "bestTools": [
+                    "any"
+                ],
+                "flammable": false,
+                "catchesFire": false
+            },
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": true
+            },
+            "renewable": "yes",
+            "stackSize": 64,
+            "rarityTier": "common",
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "partOfStructures": {
+                        "structures": [
+                            "trial_chambers"
+                        ],
+                        "comment": "with four bricks or three bricks with either flow, guster or scrape pottery sherd"
+                    }
+                },
+                "difficultyToObtain": 3
+            },
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false
         },
         "deepslate": {
             "displayName": "Deepslate",

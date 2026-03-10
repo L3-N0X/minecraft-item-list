@@ -11,7 +11,8 @@
     "cherry_chest_boat",
     "crafter",
     "cyan_bundle",
-    "dark_oak_chest_boat"
+    "dark_oak_chest_boat",
+    "decorated_pot"
   ],
   "redstone": [
     "acacia_button",
@@ -47,7 +48,9 @@
     "dark_oak_fence_gate",
     "dark_oak_door",
     "dark_oak_button",
-    "dark_oak_pressure_plate"
+    "dark_oak_pressure_plate",
+    "dark_oak_trapdoor",
+    "daylight_detector"
   ],
   "leaves": [
     "azalea_leaves",
@@ -67,7 +70,8 @@
     "cherry_sign",
     "crimson_hanging_sign",
     "crimson_sign",
-    "dark_oak_hanging_sign"
+    "dark_oak_hanging_sign",
+    "dark_oak_sign"
   ],
   "hanging_sign": [
     "acacia_hanging_sign",
@@ -75,7 +79,8 @@
     "birch_hanging_sign",
     "cherry_hanging_sign",
     "crimson_hanging_sign",
-    "dark_oak_hanging_sign"
+    "dark_oak_hanging_sign",
+    "dark_oak_sign"
   ],
   "fence_gate": [
     "acacia_fence_gate",
@@ -124,7 +129,8 @@
     "crimson_planks",
     "crimson_stem",
     "dark_oak_log",
-    "dark_oak_planks"
+    "dark_oak_planks",
+    "dark_oak_wood"
   ],
   "planks": [
     "acacia_planks",
@@ -142,7 +148,6 @@
     "dark_oak_sapling"
   ],
   "slab": [
-    "blackstone_slab",
     "acacia_slab",
     "andesite_slab",
     "bamboo_mosaic_slab",
@@ -155,10 +160,12 @@
     "crimson_slab",
     "cut_copper_slab",
     "cut_red_sandstone_slab",
-    "cut_sandstone_slab"
+    "cut_sandstone_slab",
+    "dark_oak_slab",
+    "blackstone_slab",
+    "dark_prismarine_slab"
   ],
   "stairs": [
-    "blackstone_stairs",
     "acacia_stairs",
     "andesite_stairs",
     "bamboo_mosaic_stairs",
@@ -170,7 +177,10 @@
     "cobbled_deepslate_stairs",
     "cobblestone_stairs",
     "crimson_stairs",
-    "cut_copper_stairs"
+    "cut_copper_stairs",
+    "dark_oak_stairs",
+    "blackstone_stairs",
+    "dark_prismarine_stairs"
   ],
   "rail": [
     "activator_rail"
@@ -219,8 +229,8 @@
     "copper_ore"
   ],
   "stone_variant": [
-    "blackstone",
-    "andesite"
+    "andesite",
+    "blackstone"
   ],
   "wall": [
     "andesite_wall",
@@ -268,14 +278,14 @@
     "black_carpet",
     "black_concrete_powder",
     "black_dye",
-    "black_glazed_terracotta",
-    "black_concrete",
     "black_shulker_box",
     "black_harness",
     "black_stained_glass",
     "black_stained_glass_pane",
     "black_terracotta",
-    "black_wool"
+    "black_wool",
+    "black_glazed_terracotta",
+    "black_concrete"
   ],
   "bed": [
     "black_bed",
@@ -296,10 +306,10 @@
     "cyan_carpet"
   ],
   "concrete": [
-    "black_concrete",
     "blue_concrete",
     "brown_concrete",
-    "cyan_concrete"
+    "cyan_concrete",
+    "black_concrete"
   ],
   "concrete_powder": [
     "black_concrete_powder",
@@ -314,10 +324,10 @@
     "cyan_dye"
   ],
   "glazed_terracotta": [
-    "black_glazed_terracotta",
     "blue_glazed_terracotta",
     "brown_glazed_terracotta",
-    "cyan_glazed_terracotta"
+    "cyan_glazed_terracotta",
+    "black_glazed_terracotta"
   ],
   "shulker_box": [
     "black_shulker_box",
@@ -366,12 +376,12 @@
     "cyan_wool"
   ],
   "blackstone": [
-    "blackstone",
-    "blackstone_slab",
-    "blackstone_stairs",
     "blackstone_wall",
     "chiseled_polished_blackstone",
-    "cracked_polished_blackstone_bricks"
+    "cracked_polished_blackstone_bricks",
+    "blackstone",
+    "blackstone_slab",
+    "blackstone_stairs"
   ],
   "boat": [
     "acacia_boat",
@@ -442,7 +452,8 @@
     "birch_trapdoor",
     "cherry_trapdoor",
     "crimson_trapdoor",
-    "copper_trapdoor"
+    "copper_trapdoor",
+    "dark_oak_trapdoor"
   ],
   "andesite": [
     "andesite_slab",
@@ -613,11 +624,31 @@
     "brain_coral_fan",
     "bubble_coral",
     "bubble_coral_block",
-    "bubble_coral_fan"
+    "bubble_coral_fan",
+    "dead_brain_coral",
+    "dead_brain_coral_block",
+    "dead_brain_coral_fan",
+    "dead_bubble_coral",
+    "dead_bubble_coral_block",
+    "dead_bubble_coral_fan",
+    "dead_fire_coral",
+    "dead_fire_coral_block",
+    "dead_fire_coral_fan",
+    "dead_horn_coral",
+    "dead_horn_coral_block",
+    "dead_horn_coral_fan",
+    "dead_tube_coral",
+    "dead_tube_coral_block",
+    "dead_tube_coral_fan"
   ],
   "coral_block": [
     "brain_coral_block",
-    "bubble_coral_block"
+    "bubble_coral_block",
+    "dead_brain_coral_block",
+    "dead_bubble_coral_block",
+    "dead_fire_coral_block",
+    "dead_horn_coral_block",
+    "dead_tube_coral_block"
   ],
   "breeze": [
     "breeze_rod"
@@ -1150,6 +1181,43 @@
     "dark_oak_planks",
     "dark_oak_pressure_plate",
     "dark_oak_sapling",
-    "dark_oak_shelf"
+    "dark_oak_shelf",
+    "dark_oak_sign",
+    "dark_oak_slab",
+    "dark_oak_stairs",
+    "dark_oak_trapdoor",
+    "dark_oak_wood"
+  ],
+  "dark_prismarine": [
+    "dark_prismarine",
+    "dark_prismarine_slab",
+    "dark_prismarine_stairs"
+  ],
+  "prismarine_blocks": [
+    "dark_prismarine"
+  ],
+  "dead_coral": [
+    "dead_brain_coral",
+    "dead_brain_coral_block",
+    "dead_brain_coral_fan",
+    "dead_bubble_coral",
+    "dead_bubble_coral_block",
+    "dead_bubble_coral_fan",
+    "dead_fire_coral",
+    "dead_fire_coral_block",
+    "dead_fire_coral_fan",
+    "dead_horn_coral",
+    "dead_horn_coral_block",
+    "dead_horn_coral_fan",
+    "dead_tube_coral",
+    "dead_tube_coral_block",
+    "dead_tube_coral_fan"
+  ],
+  "dead_coral_block": [
+    "dead_brain_coral_block",
+    "dead_bubble_coral_block",
+    "dead_fire_coral_block",
+    "dead_horn_coral_block",
+    "dead_tube_coral_block"
   ]
 }

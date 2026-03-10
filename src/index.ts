@@ -1,8 +1,16 @@
 import { serve } from "bun";
 import path from "node:path";
 import fs from "node:fs";
+import { AsyncLock, readJSON, safeWriteJSON } from "./lib/server-utils";
 
 const isDev = process.env.NODE_ENV !== "production";
+
+// Use a shared lock for file operations
+const itemsLock = new AsyncLock();
+const categoriesLock = new AsyncLock();
+
+const ITEMS_PATH = "data/items.json";
+const CATEGORIES_PATH = "data/categories.json";
 
 const server = serve({
     routes: {
@@ -47,10 +55,10 @@ const server = serve({
 
         "/api/items/download": {
             async GET() {
-                const file = Bun.file("data/items.json");
+                const file = Bun.file(ITEMS_PATH);
                 return new Response(file, {
                     headers: {
-                        "Content-Disposition": 'attachment; filename="items.json"',
+                        "Content-Disposition": `attachment; filename="${path.basename(ITEMS_PATH)}"`,
                         "Content-Type": "application/json",
                     },
                 });
@@ -59,57 +67,80 @@ const server = serve({
 
         "/api/items": {
             async GET() {
-                const data = await Bun.file("data/items.json").json();
-                // New schema wraps items under an "items" key alongside "minecraft_version"
-                return Response.json(data.items ?? data);
+                // For GET, we don't strictly need a lock if we are fine with potentially stale data,
+                // but using it ensures we aren't reading while a rename is happening.
+                return await itemsLock.runLocked(async () => {
+                    const data = await readJSON<any>(ITEMS_PATH);
+                    return Response.json(data.items ?? data);
+                });
             },
             async POST(req) {
-                const body = await req.json();
-                const { id, data, categories: itemCategories } = body;
-                const jsonData = await Bun.file("data/items.json").json();
-                // Support both new schema ({ minecraft_version, items: {...} }) and legacy flat schema
-                if (jsonData.items !== undefined) {
-                    jsonData.items[id] = data;
-                } else {
-                    jsonData[id] = data;
-                }
-                await Bun.write("data/items.json", JSON.stringify(jsonData, null, 4));
+                try {
+                    const body = await req.json();
+                    const { id, data, categories: itemCategories } = body;
 
-                if (itemCategories) {
-                    const categories = await Bun.file("data/categories.json").json();
-                    // Remove item from all existing categories
-                    for (const catName in categories) {
-                        categories[catName] = categories[catName].filter((itemId: string) => itemId !== id);
-                    }
-                    // Add item to new categories
-                    for (const catName of itemCategories) {
-                        if (!categories[catName]) categories[catName] = [];
-                        if (!categories[catName].includes(id)) {
-                            categories[catName].push(id);
+                    // 1. Update Items
+                    await itemsLock.runLocked(async () => {
+                        const jsonData = await readJSON<any>(ITEMS_PATH);
+                        if (jsonData.items !== undefined) {
+                            jsonData.items[id] = data;
+                        } else {
+                            jsonData[id] = data;
                         }
-                    }
-                    // Clean up empty categories
-                    for (const catName in categories) {
-                        if (categories[catName].length === 0 && catName !== "Uncategorized") {
-                            delete categories[catName];
-                        }
-                    }
-                    await Bun.write("data/categories.json", JSON.stringify(categories, null, 2));
-                }
+                        await safeWriteJSON(ITEMS_PATH, jsonData);
+                    });
 
-                return Response.json({ success: true });
+                    // 2. Update Categories
+                    if (itemCategories) {
+                        await categoriesLock.runLocked(async () => {
+                            const categories = await readJSON<any>(CATEGORIES_PATH);
+                            // Remove item from all existing categories
+                            for (const catName in categories) {
+                                categories[catName] = categories[catName].filter((itemId: string) => itemId !== id);
+                            }
+                            // Add item to new categories
+                            for (const catName of itemCategories) {
+                                if (!categories[catName]) categories[catName] = [];
+                                if (!categories[catName].includes(id)) {
+                                    categories[catName].push(id);
+                                }
+                            }
+                            // Clean up empty categories
+                            for (const catName in categories) {
+                                if (categories[catName].length === 0 && catName !== "Uncategorized") {
+                                    delete categories[catName];
+                                }
+                            }
+                            await safeWriteJSON(CATEGORIES_PATH, categories);
+                        });
+                    }
+
+                    return Response.json({ success: true });
+                } catch (error: any) {
+                    console.error("Error in POST /api/items:", error);
+                    return Response.json({ success: false, error: error.message }, { status: 500 });
+                }
             },
         },
 
         "/api/categories": {
             async GET() {
-                const data = await Bun.file("data/categories.json").json();
-                return Response.json(data);
+                return await categoriesLock.runLocked(async () => {
+                    const data = await readJSON<any>(CATEGORIES_PATH);
+                    return Response.json(data);
+                });
             },
             async POST(req) {
-                const categories = await req.json();
-                await Bun.write("data/categories.json", JSON.stringify(categories, null, 2));
-                return Response.json({ success: true });
+                try {
+                    const categories = await req.json();
+                    await categoriesLock.runLocked(async () => {
+                        await safeWriteJSON(CATEGORIES_PATH, categories);
+                    });
+                    return Response.json({ success: true });
+                } catch (error: any) {
+                    console.error("Error in POST /api/categories:", error);
+                    return Response.json({ success: false, error: error.message }, { status: 500 });
+                }
             },
         },
     },
