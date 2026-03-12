@@ -206,6 +206,7 @@
             "enum": [
                 "ancient_city_normal_chest",
                 "ancient_city_ice_box_chest",
+                "ancient_city_city_center_furnace",
                 "bastion_bridge_chest",
                 "bastion_hoglin_stables_chest",
                 "bastion_treasure_chest",
