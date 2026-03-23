@@ -35,7 +35,10 @@ function Layout({ children }: { children: React.ReactNode }) {
                             <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
                                 List
                             </Link>
-                            <Link to="/bulk" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+                            <Link
+                                to="/bulk"
+                                className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                            >
                                 <TableIcon className="h-3 w-3" />
                                 Bulk Editor
                             </Link>
@@ -56,10 +59,6 @@ function Layout({ children }: { children: React.ReactNode }) {
             </nav>
 
             <main className="container mx-auto p-4 md:p-8">{children}</main>
-
-            <footer className="fixed bottom-0 w-full border-t bg-background/80 backdrop-blur-sm p-3 text-center text-xs text-muted-foreground">
-                <p>Changes are automatically saved to the server.</p>
-            </footer>
         </div>
     );
 }

@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import {
-    ColumnDef,
-    ColumnFiltersState,
-    SortingState,
-    VisibilityState,
+    type ColumnDef,
+    type ColumnFiltersState,
+    type SortingState,
+    type VisibilityState,
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
@@ -14,20 +14,8 @@ import {
 import { useData } from "../context/DataContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Settings2, Tags, ArrowUpDown } from "lucide-react";
@@ -135,7 +123,7 @@ export function BulkEditorView() {
                 if (!value || value.length === 0) return true;
                 const rowCats = row.getValue(id) as string[];
                 return value.some((v: string) => rowCats.includes(v));
-            }
+            },
         },
         {
             accessorKey: "isBlock",
@@ -174,8 +162,8 @@ export function BulkEditorView() {
         initialState: {
             pagination: {
                 pageSize: 50,
-            }
-        }
+            },
+        },
     });
 
     const selectedRows = table.getFilteredSelectedRowModel().rows;
@@ -185,8 +173,8 @@ export function BulkEditorView() {
         const categoryToAssign = bulkActionType === "new" ? newCategoryName : targetCategory;
         if (!categoryToAssign) return;
 
-        const selectedItemIds = selectedRows.map(row => row.original.id);
-        
+        const selectedItemIds = selectedRows.map((row) => row.original.id);
+
         for (const id of selectedItemIds) {
             const currentItemCats = getItemCategories(id);
             if (!currentItemCats.includes(categoryToAssign)) {
@@ -202,12 +190,12 @@ export function BulkEditorView() {
     const toggleAllFiltered = () => {
         const filteredRows = table.getFilteredRowModel().rows;
         const allFilteredSelected = table.getFilteredSelectedRowModel().rows.length === filteredRows.length;
-        
+
         if (allFilteredSelected) {
             setRowSelection({});
         } else {
             const newSelection = {};
-            filteredRows.forEach(row => {
+            filteredRows.forEach((row) => {
                 // @ts-ignore
                 newSelection[row.id] = true;
             });
@@ -222,19 +210,13 @@ export function BulkEditorView() {
                     <Input
                         placeholder="Filter by name..."
                         value={(table.getColumn("displayName")?.getFilterValue() as string) ?? ""}
-                        onChange={(event) =>
-                            table.getColumn("displayName")?.setFilterValue(event.target.value)
-                        }
+                        onChange={(event) => table.getColumn("displayName")?.setFilterValue(event.target.value)}
                         className="max-w-sm"
                     />
-                    <Button 
-                        variant="outline" 
-                        size="sm" 
-                        onClick={toggleAllFiltered}
-                        className="hidden sm:flex"
-                    >
-                        {table.getFilteredSelectedRowModel().rows.length === table.getFilteredRowModel().rows.length && table.getFilteredRowModel().rows.length > 0 
-                            ? "Deselect All Filtered" 
+                    <Button variant="outline" size="sm" onClick={toggleAllFiltered} className="hidden sm:flex">
+                        {table.getFilteredSelectedRowModel().rows.length === table.getFilteredRowModel().rows.length &&
+                        table.getFilteredRowModel().rows.length > 0
+                            ? "Deselect All Filtered"
                             : "Select All Filtered"}
                     </Button>
                     <DropdownMenu>
@@ -254,9 +236,7 @@ export function BulkEditorView() {
                                             key={column.id}
                                             className="capitalize"
                                             checked={column.getIsVisible()}
-                                            onCheckedChange={(value) =>
-                                                column.toggleVisibility(!!value)
-                                            }
+                                            onCheckedChange={(value) => column.toggleVisibility(!!value)}
                                         >
                                             {column.id}
                                         </DropdownMenuCheckboxItem>
@@ -286,10 +266,7 @@ export function BulkEditorView() {
                                         <TableHead key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
-                                                : flexRender(
-                                                      header.column.columnDef.header,
-                                                      header.getContext()
-                                                  )}
+                                                : flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHead>
                                     );
                                 })}
@@ -299,26 +276,17 @@ export function BulkEditorView() {
                     <TableBody>
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    data-state={row.getIsSelected() && "selected"}
-                                >
+                                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext()
-                                            )}
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </TableCell>
                                     ))}
                                 </TableRow>
                             ))
                         ) : (
                             <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    className="h-24 text-center"
-                                >
+                                <TableCell colSpan={columns.length} className="h-24 text-center">
                                     No results.
                                 </TableCell>
                             </TableRow>
@@ -329,8 +297,8 @@ export function BulkEditorView() {
 
             <div className="flex items-center justify-end space-x-2 py-4">
                 <div className="flex-1 text-sm text-muted-foreground">
-                    {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                    {table.getFilteredRowModel().rows.length} row(s) selected.
+                    {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
+                    selected.
                 </div>
                 <div className="space-x-2">
                     <Button
@@ -341,12 +309,7 @@ export function BulkEditorView() {
                     >
                         Previous
                     </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => table.nextPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
+                    <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
                         Next
                     </Button>
                 </div>
@@ -356,17 +319,12 @@ export function BulkEditorView() {
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>Bulk Categorize Items</DialogTitle>
-                        <DialogDescription>
-                            Assign {selectedCount} items to a category.
-                        </DialogDescription>
+                        <DialogDescription>Assign {selectedCount} items to a category.</DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                         <div className="flex flex-col gap-2">
                             <Label>Action Type</Label>
-                            <Select 
-                                value={bulkActionType} 
-                                onValueChange={(v: any) => setBulkActionType(v)}
-                            >
+                            <Select value={bulkActionType} onValueChange={(v: any) => setBulkActionType(v)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select action type" />
                                 </SelectTrigger>
@@ -386,9 +344,13 @@ export function BulkEditorView() {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <ScrollArea className="h-64">
-                                            {Object.keys(categories).sort().map(cat => (
-                                                <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                                            ))}
+                                            {Object.keys(categories)
+                                                .sort()
+                                                .map((cat) => (
+                                                    <SelectItem key={cat} value={cat}>
+                                                        {cat}
+                                                    </SelectItem>
+                                                ))}
                                         </ScrollArea>
                                     </SelectContent>
                                 </Select>
@@ -396,8 +358,8 @@ export function BulkEditorView() {
                         ) : (
                             <div className="flex flex-col gap-2">
                                 <Label>New Category Name</Label>
-                                <Input 
-                                    placeholder="Enter category name..." 
+                                <Input
+                                    placeholder="Enter category name..."
                                     value={newCategoryName}
                                     onChange={(e) => setNewCategoryName(e.target.value)}
                                 />
@@ -405,10 +367,15 @@ export function BulkEditorView() {
                         )}
                     </div>
                     <DialogFooter>
-                        <Button variant="outline" onClick={() => setIsBulkDialogOpen(false)}>Cancel</Button>
-                        <Button 
+                        <Button variant="outline" onClick={() => setIsBulkDialogOpen(false)}>
+                            Cancel
+                        </Button>
+                        <Button
                             onClick={handleBulkAction}
-                            disabled={(bulkActionType === "existing" && !targetCategory) || (bulkActionType === "new" && !newCategoryName)}
+                            disabled={
+                                (bulkActionType === "existing" && !targetCategory) ||
+                                (bulkActionType === "new" && !newCategoryName)
+                            }
                         >
                             Apply to {selectedCount} items
                         </Button>
