@@ -230,7 +230,7 @@
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": true,
-                "difficultyToObtain": 5
+                "difficultyToObtain": 4
             }
         },
         "acacia_leaves": {
@@ -3638,7 +3638,7 @@
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": true,
-                "difficultyToObtain": 5
+                "difficultyToObtain": 4
             }
         },
         "birch_leaves": {

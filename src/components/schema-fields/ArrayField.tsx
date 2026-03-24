@@ -4,19 +4,27 @@ import { cn } from '@/lib/utils'
 import { Plus, Trash2 } from 'lucide-react'
 import { validationBorderColorClass } from '../schemaValidation'
 import type { ValidationEntry } from '../schemaValidation'
+import type {
+    JsonSchemaProperty,
+    SchemaPropertyValue,
+    ItemData,
+} from '../schema-types'
 
 export interface ArrayFieldProps {
     path: (string | number)[]
-    value: any
+    value?: SchemaPropertyValue
     label: string
-    fieldSchema: any
-    onFieldChange: (path: (string | number)[], value: any) => void
+    fieldSchema: JsonSchemaProperty
+    onFieldChange: (
+        path: (string | number)[],
+        value?: SchemaPropertyValue
+    ) => void
     validationEntry?: ValidationEntry
     getChildErr: (path: (string | number)[]) => ValidationEntry | undefined
     renderChildren: (
-        properties: any,
+        properties: Record<string, JsonSchemaProperty> | undefined,
         currentPath: (string | number)[],
-        currentData: any,
+        currentData: ItemData,
         parentRequired?: string[]
     ) => React.ReactNode
 }
@@ -31,7 +39,7 @@ export function ArrayField({
     getChildErr,
     renderChildren,
 }: ArrayFieldProps) {
-    const arrayItems: any[] = Array.isArray(value) ? value : []
+    const arrayItems: SchemaPropertyValue[] = Array.isArray(value) ? value : []
     const itemFieldSchema = fieldSchema.items
     const itemParentRequired: string[] | undefined = Array.isArray(
         itemFieldSchema?.required
@@ -84,7 +92,7 @@ export function ArrayField({
                 </p>
             )}
             <div className="space-y-3">
-                {arrayItems.map((item: any, index: number) => {
+                {arrayItems.map((item, index) => {
                     const itemPath = [...path, index]
                     const itemErr = getChildErr(itemPath)
                     return (
@@ -125,7 +133,7 @@ export function ArrayField({
                                 {renderChildren(
                                     itemFieldSchema.properties,
                                     itemPath,
-                                    item,
+                                    (item as ItemData) ?? {},
                                     itemParentRequired
                                 )}
                             </div>

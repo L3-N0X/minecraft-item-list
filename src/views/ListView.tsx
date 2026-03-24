@@ -29,7 +29,10 @@ function ItemRow({ id }: { id: string }) {
     const navigate = useNavigate()
     const item = items[id]
 
-    const errorCount = useMemo(() => validateItemData(item).size, [item])
+    const errorCount = useMemo(() => {
+        if (!item) return 0
+        return validateItemData(item).size
+    }, [item])
     const categories = useMemo(
         () => getItemCategories(id),
         [id, getItemCategories]

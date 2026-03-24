@@ -1,12 +1,17 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useData } from '@/context/DataContext'
+import { useData, type ItemData } from '@/context/DataContext'
 import { SchemaForm } from '@/components/SchemaForm'
 import { ItemSelector } from '@/components/ItemSelector'
 import { CategorySelector } from '@/components/CategorySelector'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
-import { ChevronLeft, ChevronRight, List, Copy as CopyIcon } from 'lucide-react'
+import {
+    ChevronLeft,
+    ChevronRight,
+    Copy as CopyIcon,
+    ArrowLeft,
+} from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
     Dialog,
@@ -56,13 +61,13 @@ export function EditorView() {
 
     const goToPrev = () => {
         if (currentIndex > 0) {
-            navigate(`/edit/${itemIds[currentIndex - 1]}`)
+            navigate(`/edit/${itemIds[currentIndex - 1]}`, { replace: true })
         }
     }
 
     const goToNext = () => {
         if (currentIndex < itemIds.length - 1) {
-            navigate(`/edit/${itemIds[currentIndex + 1]}`)
+            navigate(`/edit/${itemIds[currentIndex + 1]}`, { replace: true })
         }
     }
 
@@ -75,12 +80,14 @@ export function EditorView() {
         const excludedFields = ['displayName', 'displayNameGerman']
 
         // Create new data object
-        const newData = { ...currentItem }
+        const newData = { ...currentItem } as Record<string, unknown>
 
         // Copy all other fields
         Object.keys(sourceItem).forEach((key) => {
             if (!excludedFields.includes(key)) {
-                newData[key] = JSON.parse(JSON.stringify(sourceItem[key]))
+                newData[key] = JSON.parse(
+                    JSON.stringify((sourceItem as Record<string, unknown>)[key])
+                )
             }
         })
 
@@ -88,7 +95,7 @@ export function EditorView() {
         const sourceCategories = getItemCategories(sourceItemId)
 
         // Perform update
-        updateItem(id, newData, sourceCategories)
+        updateItem(id, newData as ItemData, sourceCategories)
         setIsCopyDialogOpen(false)
         setSourceItemId(undefined)
     }
@@ -96,6 +103,13 @@ export function EditorView() {
     return (
         <div className="max-w-4xl mx-auto space-y-6">
             <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                    <Button variant="ghost" onClick={() => navigate(-1)}>
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        Back to Overview
+                    </Button>
+                </div>
+
                 <div className="flex items-center gap-2">
                     <Button
                         variant="outline"
@@ -106,18 +120,13 @@ export function EditorView() {
                         <ChevronLeft className="h-4 w-4" />
                         Previous
                     </Button>
-                    <Button variant="ghost" onClick={() => navigate('/')}>
-                        <List className="mr-2 h-4 w-4" />
-                        Back to List
-                    </Button>
-                </div>
-
-                <div className="flex items-center gap-2">
                     <div className="min-w-90 text-center">
                         <ItemSelector
                             items={itemIds}
                             selectedItem={id}
-                            onSelect={(newId) => navigate(`/edit/${newId}`)}
+                            onSelect={(newId) =>
+                                navigate(`/edit/${newId}`, { replace: true })
+                            }
                         />
                     </div>
 
@@ -258,7 +267,7 @@ export function EditorView() {
                     <SchemaForm
                         data={currentItem}
                         onChange={(newData) =>
-                            updateItem(id, newData, itemCategories)
+                            updateItem(id, newData as ItemData, itemCategories)
                         }
                     />
 

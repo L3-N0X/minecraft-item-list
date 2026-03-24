@@ -11,10 +11,30 @@ const DATA_DIR = path.join(process.cwd(), 'data')
 const ITEMS_JSON_PATH = path.join(DATA_DIR, 'items.json')
 const CATEGORIES_JSON_PATH = path.join(DATA_DIR, 'categories.json')
 
-async function fetchJSON(url: string) {
+interface ItemData {
+    displayName?: string
+    displayNameGerman?: string
+    isBlock?: boolean
+    item?: Record<string, unknown>
+    block?: Record<string, unknown>
+    breaking?: Record<string, unknown>
+    [key: string]: unknown
+}
+
+interface ExistingData {
+    items?: Record<string, ItemData>
+    [key: string]: unknown
+}
+
+interface ItemList {
+    length: number
+    [index: number]: string
+}
+
+async function fetchJSON<T>(url: string): Promise<T | null> {
     const response = await fetch(url)
     if (!response.ok) return null
-    return response.json()
+    return response.json() as Promise<T>
 }
 
 async function initData() {
@@ -22,11 +42,15 @@ async function initData() {
 
     console.log('Fetching language files, registries and version...')
     const [enUs, deDe, itemNames, blockNames, versionData] = await Promise.all([
-        fetchJSON(`${ASSETS_URL_BASE}/assets/minecraft/lang/en_us.json`),
-        fetchJSON(`${ASSETS_URL_BASE}/assets/minecraft/lang/de_de.json`),
-        fetchJSON(`${REGISTRIES_URL_BASE}/item/data.json`),
-        fetchJSON(`${REGISTRIES_URL_BASE}/block/data.json`),
-        fetchJSON(VERSION_URL),
+        fetchJSON<Record<string, string>>(
+            `${ASSETS_URL_BASE}/assets/minecraft/lang/en_us.json`
+        ),
+        fetchJSON<Record<string, string>>(
+            `${ASSETS_URL_BASE}/assets/minecraft/lang/de_de.json`
+        ),
+        fetchJSON<ItemList>(`${REGISTRIES_URL_BASE}/item/data.json`),
+        fetchJSON<ItemList>(`${REGISTRIES_URL_BASE}/block/data.json`),
+        fetchJSON<{ id: string }>(VERSION_URL),
     ])
 
     if (!itemNames) throw new Error('Failed to fetch item list')
@@ -34,29 +58,29 @@ async function initData() {
 
     const blockSet = new Set<string>(blockNames)
 
-    let existingData: Record<string, any> = {}
+    let existingData: Record<string, ItemData> = {}
     let existingVersion: string | undefined
     if (fs.existsSync(ITEMS_JSON_PATH)) {
-        const raw = JSON.parse(fs.readFileSync(ITEMS_JSON_PATH, 'utf-8'))
-        // Support both flat format and the { minecraft_version, items } wrapper format
+        const raw = JSON.parse(
+            fs.readFileSync(ITEMS_JSON_PATH, 'utf-8')
+        ) as ExistingData
         if (raw.items && typeof raw.items === 'object') {
             existingData = raw.items
-            existingVersion = raw.minecraft_version
+            existingVersion = raw.minecraft_version as string | undefined
         } else {
-            existingData = raw
+            existingData = raw as Record<string, ItemData>
         }
     }
 
-    // Determine the minecraft_version to write: prefer existing, then fetched, then fallback
     const minecraftVersion: string =
-        existingVersion ?? (versionData?.id as string | undefined) ?? 'unknown'
+        existingVersion ?? versionData?.id ?? 'unknown'
 
     let categories: Record<string, string[]> = {}
     if (fs.existsSync(CATEGORIES_JSON_PATH)) {
         categories = JSON.parse(fs.readFileSync(CATEGORIES_JSON_PATH, 'utf-8'))
     }
 
-    const newItems: Record<string, any> = {}
+    const newItems: Record<string, ItemData> = {}
 
     console.log(`Processing ${itemNames.length} items...`)
 

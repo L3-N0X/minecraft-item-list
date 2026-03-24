@@ -30,9 +30,15 @@ import {
 // Types
 // ---------------------------------------------------------------------------
 
+import type {
+    JsonSchemaProperty,
+    SchemaPropertyValue,
+    ItemData,
+} from './schema-types'
+
 interface SchemaFormProps {
-    data: any
-    onChange: (newData: any) => void
+    data: ItemData
+    onChange: (newData: ItemData) => void
 }
 
 // ---------------------------------------------------------------------------
@@ -48,27 +54,28 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
     // Data mutation
     // -----------------------------------------------------------------------
 
-    const handleFieldChange = (path: (string | number)[], value: any) => {
-        const newData = JSON.parse(JSON.stringify(data))
-        let current = newData
+    const handleFieldChange = (
+        path: (string | number)[],
+        value?: SchemaPropertyValue
+    ) => {
+        const newData = JSON.parse(JSON.stringify(data)) as ItemData
+        let current: ItemData | SchemaPropertyValue[] = newData
         for (let i = 0; i < path.length - 1; i++) {
             const segment = path[i] as string | number
             const nextSegment = path[i + 1]
             if (current[segment] === undefined || current[segment] === null) {
                 current[segment] = typeof nextSegment === 'number' ? [] : {}
             }
-            current = current[segment]
+            current = current[segment] as ItemData | SchemaPropertyValue[]
         }
 
-        const lastKey = path[path.length - 1] as string | number
+        const lastKey = path[path.length - 1] as string
         if (value === undefined || value === null || value === '') {
             delete current[lastKey]
         } else {
             current[lastKey] = value
         }
 
-        // When isBlock is toggled, remove the now-irrelevant sub-object so
-        // stale data doesn't cause phantom validation errors.
         if (path.length === 1 && path[0] === 'isBlock') {
             if (value === true) {
                 delete newData.item
@@ -146,188 +153,183 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
     // -----------------------------------------------------------------------
 
     const renderRecursiveFields = (
-        properties: any,
+        properties: Record<string, JsonSchemaProperty> | undefined,
         currentPath: (string | number)[],
-        currentData: any,
+        currentData: ItemData | undefined,
         parentRequired?: string[]
     ): React.ReactNode => {
-        return Object.entries(properties).map(
-            ([key, rawFieldSchema]: [string, any]) => {
-                const path: (string | number)[] = [...currentPath, key]
-                const value = currentData ? currentData[key] : undefined
-                const fieldSchema = resolveSchema(rawFieldSchema)
-                const label = getLabel(key, fieldSchema)
-                // A field is optional when the parent schema explicitly lists required
-                // fields and this key is absent from that list.
-                const isOptional =
-                    parentRequired !== undefined &&
-                    !parentRequired.includes(key)
+        if (!properties) return null
+        return Object.entries(properties).map(([key, rawFieldSchema]) => {
+            const path: (string | number)[] = [...currentPath, key]
+            const value = currentData ? currentData[key] : undefined
+            const fieldSchema = resolveSchema(rawFieldSchema)
+            const label = getLabel(key, fieldSchema)
+            // A field is optional when the parent schema explicitly lists required
+            // fields and this key is absent from that list.
+            const isOptional =
+                parentRequired !== undefined && !parentRequired.includes(key)
 
-                // Enum (single-select)
-                if (fieldSchema.enum) {
-                    return (
-                        <div key={path.join('.')}>
-                            <EnumSelect
-                                label={label}
-                                options={fieldSchema.enum}
-                                value={value}
-                                onChange={(val) => handleFieldChange(path, val)}
-                                triggerClassName={validationRingClass(
-                                    getErr(path)
-                                )}
-                            />
-                            {getErr(path) && (
-                                <p
-                                    className={`text-[11px] leading-tight mt-1 ${getErr(path)!.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
-                                >
-                                    {getErr(path)!.message}
-                                </p>
-                            )}
-                        </div>
-                    )
-                }
-
-                // QuantitySpec (fixed integer or {min, max} range)
-                if (isQuantitySpec(fieldSchema)) {
-                    const err = getErr(path)
-                    return (
-                        <div key={path.join('.')}>
-                            <QuantitySpecField
-                                label={label}
-                                value={value}
-                                onChange={(val) => handleFieldChange(path, val)}
-                                validationEntry={err}
-                            />
-                            {err && (
-                                <p
-                                    className={`text-[11px] leading-tight mt-1 ${err.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
-                                >
-                                    {err.message}
-                                </p>
-                            )}
-                        </div>
-                    )
-                }
-
-                // Array of enums (multi-select)
-                if (fieldSchema.type === 'array' && fieldSchema.items?.enum) {
-                    const options = [...(fieldSchema.items.enum || [])].sort()
-                    const err = getErr(path)
-                    return (
-                        <div key={path.join('.')} className="md:col-span-2">
-                            <MultiEnumSelect
-                                label={label}
-                                options={options}
-                                value={value}
-                                onChange={(val) => handleFieldChange(path, val)}
-                                triggerClassName={validationRingClass(err)}
-                            />
-                            {err && (
-                                <p
-                                    className={`text-[11px] leading-tight mt-1 ${err.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
-                                >
-                                    {err.message}
-                                </p>
-                            )}
-                        </div>
-                    )
-                }
-
-                // String
-                if (fieldSchema.type === 'string') {
-                    return (
-                        <StringField
-                            key={path.join('.')}
-                            path={path}
-                            value={value}
+            // Enum (single-select)
+            if (fieldSchema.enum) {
+                return (
+                    <div key={path.join('.')}>
+                        <EnumSelect
                             label={label}
-                            fieldSchema={fieldSchema}
-                            onFieldChange={handleFieldChange}
-                            validationEntry={getErr(path)}
-                        />
-                    )
-                }
-
-                // Number / Integer
-                if (
-                    fieldSchema.type === 'number' ||
-                    fieldSchema.type === 'integer'
-                ) {
-                    return (
-                        <NumberField
-                            key={path.join('.')}
-                            path={path}
+                            options={fieldSchema.enum}
                             value={value}
-                            label={label}
-                            fieldSchema={fieldSchema}
-                            onFieldChange={handleFieldChange}
-                            validationEntry={getErr(path)}
+                            onChange={(val) => handleFieldChange(path, val)}
+                            triggerClassName={validationRingClass(getErr(path))}
                         />
-                    )
-                }
-
-                // Boolean
-                if (fieldSchema.type === 'boolean') {
-                    const isIsBlockField =
-                        path.length === 1 && path[0] === 'isBlock'
-                    return (
-                        <BooleanField
-                            key={path.join('.')}
-                            path={path}
-                            value={value}
-                            label={label}
-                            onCheckedChange={
-                                isIsBlockField
-                                    ? handleIsBlockChange
-                                    : (checked) =>
-                                          handleFieldChange(path, checked)
-                            }
-                            validationEntry={getErr(path)}
-                        />
-                    )
-                }
-
-                // Array of objects
-                if (
-                    fieldSchema.type === 'array' &&
-                    fieldSchema.items?.type === 'object' &&
-                    fieldSchema.items?.properties
-                ) {
-                    return (
-                        <ArrayField
-                            key={path.join('.')}
-                            path={path}
-                            value={value}
-                            label={label}
-                            fieldSchema={fieldSchema}
-                            onFieldChange={handleFieldChange}
-                            validationEntry={getErr(path)}
-                            getChildErr={getChildErr}
-                            renderChildren={renderRecursiveFields}
-                        />
-                    )
-                }
-
-                // Object (recursive)
-                if (fieldSchema.type === 'object' && fieldSchema.properties) {
-                    return (
-                        <ObjectField
-                            key={path.join('.')}
-                            path={path}
-                            value={value}
-                            label={label}
-                            fieldSchema={fieldSchema}
-                            isOptional={isOptional}
-                            onFieldChange={handleFieldChange}
-                            childValidationEntry={getChildErr(path)}
-                            renderChildren={renderRecursiveFields}
-                        />
-                    )
-                }
-
-                return null
+                        {getErr(path) && (
+                            <p
+                                className={`text-[11px] leading-tight mt-1 ${getErr(path)!.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
+                            >
+                                {getErr(path)!.message}
+                            </p>
+                        )}
+                    </div>
+                )
             }
-        )
+
+            // QuantitySpec (fixed integer or {min, max} range)
+            if (isQuantitySpec(fieldSchema)) {
+                const err = getErr(path)
+                return (
+                    <div key={path.join('.')}>
+                        <QuantitySpecField
+                            label={label}
+                            value={value}
+                            onChange={(val) => handleFieldChange(path, val)}
+                            validationEntry={err}
+                        />
+                        {err && (
+                            <p
+                                className={`text-[11px] leading-tight mt-1 ${err.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
+                            >
+                                {err.message}
+                            </p>
+                        )}
+                    </div>
+                )
+            }
+
+            // Array of enums (multi-select)
+            if (fieldSchema.type === 'array' && fieldSchema.items?.enum) {
+                const options = [...(fieldSchema.items.enum || [])].sort()
+                const err = getErr(path)
+                return (
+                    <div key={path.join('.')} className="md:col-span-2">
+                        <MultiEnumSelect
+                            label={label}
+                            options={options}
+                            value={value}
+                            onChange={(val) => handleFieldChange(path, val)}
+                            triggerClassName={validationRingClass(err)}
+                        />
+                        {err && (
+                            <p
+                                className={`text-[11px] leading-tight mt-1 ${err.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
+                            >
+                                {err.message}
+                            </p>
+                        )}
+                    </div>
+                )
+            }
+
+            // String
+            if (fieldSchema.type === 'string') {
+                return (
+                    <StringField
+                        key={path.join('.')}
+                        path={path}
+                        value={value}
+                        label={label}
+                        fieldSchema={fieldSchema}
+                        onFieldChange={handleFieldChange}
+                        validationEntry={getErr(path)}
+                    />
+                )
+            }
+
+            // Number / Integer
+            if (
+                fieldSchema.type === 'number' ||
+                fieldSchema.type === 'integer'
+            ) {
+                return (
+                    <NumberField
+                        key={path.join('.')}
+                        path={path}
+                        value={value}
+                        label={label}
+                        fieldSchema={fieldSchema}
+                        onFieldChange={handleFieldChange}
+                        validationEntry={getErr(path)}
+                    />
+                )
+            }
+
+            // Boolean
+            if (fieldSchema.type === 'boolean') {
+                const isIsBlockField =
+                    path.length === 1 && path[0] === 'isBlock'
+                return (
+                    <BooleanField
+                        key={path.join('.')}
+                        path={path}
+                        value={value}
+                        label={label}
+                        onCheckedChange={
+                            isIsBlockField
+                                ? handleIsBlockChange
+                                : (checked) => handleFieldChange(path, checked)
+                        }
+                        validationEntry={getErr(path)}
+                    />
+                )
+            }
+
+            // Array of objects
+            if (
+                fieldSchema.type === 'array' &&
+                fieldSchema.items?.type === 'object' &&
+                fieldSchema.items?.properties
+            ) {
+                return (
+                    <ArrayField
+                        key={path.join('.')}
+                        path={path}
+                        value={value}
+                        label={label}
+                        fieldSchema={fieldSchema}
+                        onFieldChange={handleFieldChange}
+                        validationEntry={getErr(path)}
+                        getChildErr={getChildErr}
+                        renderChildren={renderRecursiveFields}
+                    />
+                )
+            }
+
+            // Object (recursive)
+            if (fieldSchema.type === 'object' && fieldSchema.properties) {
+                return (
+                    <ObjectField
+                        key={path.join('.')}
+                        path={path}
+                        value={value}
+                        label={label}
+                        fieldSchema={fieldSchema}
+                        isOptional={isOptional}
+                        onFieldChange={handleFieldChange}
+                        childValidationEntry={getChildErr(path)}
+                        renderChildren={renderRecursiveFields}
+                    />
+                )
+            }
+
+            return null
+        })
     }
 
     // -----------------------------------------------------------------------
@@ -335,7 +337,10 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
     // -----------------------------------------------------------------------
 
     const visibleItemProperties = useMemo(() => {
-        const filtered = { ...itemProperties } as Record<string, any>
+        const filtered = { ...itemProperties } as Record<
+            string,
+            JsonSchemaProperty
+        >
         if (data.isBlock === true) {
             delete filtered.item
         } else {

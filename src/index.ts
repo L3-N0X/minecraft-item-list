@@ -1,16 +1,29 @@
 import { serve } from 'bun'
 import path from 'node:path'
-import fs from 'node:fs'
 import { AsyncLock, readJSON, safeWriteJSON } from './lib/server-utils'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-// Use a shared lock for file operations
 const itemsLock = new AsyncLock()
 const categoriesLock = new AsyncLock()
 
 const ITEMS_PATH = 'data/items.json'
 const CATEGORIES_PATH = 'data/categories.json'
+
+interface ItemsJsonData {
+    items?: Record<string, Record<string, unknown>>
+    [key: string]: unknown
+}
+
+interface CategoriesJsonData {
+    [category: string]: string[]
+}
+
+type ItemUpdatePayload = {
+    id: string
+    data: Record<string, unknown>
+    categories?: string[]
+}
 
 const server = serve({
     routes: {
@@ -72,41 +85,40 @@ const server = serve({
 
         '/api/items': {
             async GET() {
-                // For GET, we don't strictly need a lock if we are fine with potentially stale data,
-                // but using it ensures we aren't reading while a rename is happening.
                 return await itemsLock.runLocked(async () => {
-                    const data = await readJSON<any>(ITEMS_PATH)
+                    const data = await readJSON<ItemsJsonData>(ITEMS_PATH)
                     return Response.json(data.items ?? data)
                 })
             },
             async POST(req) {
                 try {
-                    const body = await req.json()
+                    const body = (await req.json()) as ItemUpdatePayload
                     const { id, data, categories: itemCategories } = body
 
-                    // 1. Update Items
                     await itemsLock.runLocked(async () => {
-                        const jsonData = await readJSON<any>(ITEMS_PATH)
+                        const jsonData =
+                            await readJSON<ItemsJsonData>(ITEMS_PATH)
                         if (jsonData.items !== undefined) {
                             jsonData.items[id] = data
                         } else {
-                            jsonData[id] = data
+                            ;(jsonData as Record<string, unknown>)[id] = data
                         }
                         await safeWriteJSON(ITEMS_PATH, jsonData)
                     })
 
-                    // 2. Update Categories
                     if (itemCategories) {
                         await categoriesLock.runLocked(async () => {
                             const categories =
-                                await readJSON<any>(CATEGORIES_PATH)
-                            // Remove item from all existing categories
+                                await readJSON<CategoriesJsonData>(
+                                    CATEGORIES_PATH
+                                )
                             for (const catName in categories) {
-                                categories[catName] = categories[
-                                    catName
-                                ].filter((itemId: string) => itemId !== id)
+                                if (categories[catName]) {
+                                    categories[catName] = categories[
+                                        catName
+                                    ].filter((itemId) => itemId !== id)
+                                }
                             }
-                            // Add item to new categories
                             for (const catName of itemCategories) {
                                 if (!categories[catName])
                                     categories[catName] = []
@@ -114,9 +126,9 @@ const server = serve({
                                     categories[catName].push(id)
                                 }
                             }
-                            // Clean up empty categories
                             for (const catName in categories) {
                                 if (
+                                    categories[catName] &&
                                     categories[catName].length === 0 &&
                                     catName !== 'Uncategorized'
                                 ) {
@@ -128,10 +140,16 @@ const server = serve({
                     }
 
                     return Response.json({ success: true })
-                } catch (error: any) {
+                } catch (error) {
                     console.error('Error in POST /api/items:', error)
                     return Response.json(
-                        { success: false, error: error.message },
+                        {
+                            success: false,
+                            error:
+                                error instanceof Error
+                                    ? error.message
+                                    : 'Unknown error',
+                        },
                         { status: 500 }
                     )
                 }
@@ -141,7 +159,8 @@ const server = serve({
         '/api/categories': {
             async GET() {
                 return await categoriesLock.runLocked(async () => {
-                    const data = await readJSON<any>(CATEGORIES_PATH)
+                    const data =
+                        await readJSON<CategoriesJsonData>(CATEGORIES_PATH)
                     return Response.json(data)
                 })
             },
@@ -152,10 +171,16 @@ const server = serve({
                         await safeWriteJSON(CATEGORIES_PATH, categories)
                     })
                     return Response.json({ success: true })
-                } catch (error: any) {
+                } catch (error) {
                     console.error('Error in POST /api/categories:', error)
                     return Response.json(
-                        { success: false, error: error.message },
+                        {
+                            success: false,
+                            error:
+                                error instanceof Error
+                                    ? error.message
+                                    : 'Unknown error',
+                        },
                         { status: 500 }
                     )
                 }

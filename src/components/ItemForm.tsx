@@ -4,17 +4,17 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import React from 'react'
 
-export interface ItemData {
+export interface ItemFormData {
     displayName: string
     category: string
     description: string
-    attributes: Record<string, any>
+    attributes: Record<string, unknown>
 }
 
 interface ItemFormProps {
     itemId: string
-    data: ItemData
-    onChange: (updatedData: ItemData) => void
+    data: ItemFormData
+    onChange: (updatedData: ItemFormData) => void
 }
 
 export function ItemForm({ itemId, data, onChange }: ItemFormProps) {
@@ -23,13 +23,12 @@ export function ItemForm({ itemId, data, onChange }: ItemFormProps) {
     )
     const [jsonError, setJsonError] = React.useState<string | null>(null)
 
-    // Update local attributes when data changes from outside (e.g. item switch)
     React.useEffect(() => {
         setLocalAttr(JSON.stringify(data.attributes, null, 2))
         setJsonError(null)
     }, [itemId, data.attributes])
 
-    const handleFieldChange = (field: keyof ItemData, value: any) => {
+    const handleFieldChange = (field: keyof ItemFormData, value: string) => {
         onChange({ ...data, [field]: value })
     }
 
@@ -39,8 +38,8 @@ export function ItemForm({ itemId, data, onChange }: ItemFormProps) {
             const parsed = JSON.parse(value)
             setJsonError(null)
             onChange({ ...data, attributes: parsed })
-        } catch (err: any) {
-            setJsonError(err.message)
+        } catch (err) {
+            setJsonError(err instanceof Error ? err.message : 'Invalid JSON')
         }
     }
 

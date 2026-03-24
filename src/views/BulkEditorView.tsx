@@ -1,7 +1,9 @@
 import React, { useMemo, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
     type ColumnDef,
     type ColumnFiltersState,
+    type Row,
     type SortingState,
     type VisibilityState,
     flexRender,
@@ -13,6 +15,39 @@ import {
 } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useData } from '../context/DataContext'
+import {
+    type ItemData,
+    type Renewable,
+    type RarityTier,
+    type StackSize,
+} from '../types/minecraft'
+
+type FilterOption = {
+    label: string
+    value: string
+    icon?: React.ComponentType<{ className?: string }>
+}
+
+type TableRowData = {
+    id: string
+    displayName: string
+    displayNameGerman: string
+    categories: string[]
+    difficulty: number
+    hasNaturalGen: boolean
+    hasLoot: boolean
+    requiresSilkTouch: boolean
+    craftable: boolean
+    hasMobLoot: boolean
+    hasBlockLoot: boolean
+    hasTrading: boolean
+    hasSmelting: boolean
+    renewable: Renewable
+    isBlock: boolean
+    stackSize: StackSize
+    rarityTier: RarityTier
+    rawItem: ItemData
+}
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -35,6 +70,8 @@ import {
     Settings2,
     Tags,
     ArrowUpDown,
+    ArrowUp,
+    ArrowDown,
     Filter,
     Check,
     X,
@@ -213,28 +250,42 @@ const DataTableFacetedFilter = function DataTableFacetedFilter<TData, TValue>({
     )
 }
 
-const SortableHeader = ({
+const SortableHeader = <TData,>({
     column,
     title,
     isFilterable,
     options,
 }: {
-    column: any
+    column: Column<TData, unknown>
     title: string
     isFilterable?: boolean
-    options?: any[]
+    options?: FilterOption[]
 }) => {
+    const isSorted = column.getIsSorted()
     return (
         <div className="flex flex-col gap-0.5 items-start">
             <Button
                 variant="ghost"
-                onClick={() =>
-                    column.toggleSorting(column.getIsSorted() === 'asc')
-                }
+                onClick={() => {
+                    const current = column.getIsSorted()
+                    if (current === 'asc') {
+                        column.toggleSorting(true) // Set to desc
+                    } else if (current === 'desc') {
+                        column.clearSorting() // Clear sorting
+                    } else {
+                        column.toggleSorting(false) // Set to asc
+                    }
+                }}
                 className="-ml-2 h-8 px-2 font-bold hover:bg-transparent"
             >
                 {title}
-                <ArrowUpDown className="ml-2 h-4 w-4" />
+                {isSorted === 'asc' ? (
+                    <ArrowUp className="ml-2 h-4 w-4" />
+                ) : isSorted === 'desc' ? (
+                    <ArrowDown className="ml-2 h-4 w-4" />
+                ) : (
+                    <ArrowUpDown className="ml-2 h-4 w-4 text-muted-foreground/50" />
+                )}
             </Button>
             {isFilterable && options && (
                 <DataTableFacetedFilter
@@ -265,23 +316,84 @@ const YesNoCell = React.memo(
     )
 )
 
-const binaryFilterFn = (row: any, id: string, filterValues: string[]) => {
+const binaryFilterFn = (
+    row: Row<TableRowData>,
+    id: string,
+    filterValues: string[]
+) => {
     const val = !!row.getValue(id)
     const valStr = val.toString()
     return filterValues.includes(valStr)
 }
 
 export function BulkEditorView() {
-    const { items, itemIds, categories, getItemCategories, updateItem } =
-        useData()
-    const [sorting, setSorting] = useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-        json: false,
-        isBlock: false,
-    })
-    const [rowSelection, setRowSelection] = useState({})
-    const [editingItemId, setEditingItemId] = useState<string | null>(null)
+    const {
+        items,
+        itemIds,
+        categories,
+        getItemCategories,
+        updateItem,
+        bulkEditorState,
+        setBulkEditorState,
+    } = useData()
+    const navigate = useNavigate()
+
+    const { sorting, columnFilters, columnVisibility, rowSelection } =
+        bulkEditorState
+
+    const setSorting = (
+        updaterOrValue: SortingState | ((old: SortingState) => SortingState)
+    ) => {
+        setBulkEditorState((prev) => ({
+            ...prev,
+            sorting:
+                typeof updaterOrValue === 'function'
+                    ? updaterOrValue(prev.sorting)
+                    : updaterOrValue,
+        }))
+    }
+
+    const setColumnFilters = (
+        updaterOrValue:
+            | ColumnFiltersState
+            | ((old: ColumnFiltersState) => ColumnFiltersState)
+    ) => {
+        setBulkEditorState((prev) => ({
+            ...prev,
+            columnFilters:
+                typeof updaterOrValue === 'function'
+                    ? updaterOrValue(prev.columnFilters)
+                    : updaterOrValue,
+        }))
+    }
+
+    const setColumnVisibility = (
+        updaterOrValue:
+            | VisibilityState
+            | ((old: VisibilityState) => VisibilityState)
+    ) => {
+        setBulkEditorState((prev) => ({
+            ...prev,
+            columnVisibility:
+                typeof updaterOrValue === 'function'
+                    ? updaterOrValue(prev.columnVisibility)
+                    : updaterOrValue,
+        }))
+    }
+
+    const setRowSelection = (
+        updaterOrValue:
+            | Record<string, boolean>
+            | ((old: Record<string, boolean>) => Record<string, boolean>)
+    ) => {
+        setBulkEditorState((prev) => ({
+            ...prev,
+            rowSelection:
+                typeof updaterOrValue === 'function'
+                    ? updaterOrValue(prev.rowSelection)
+                    : updaterOrValue,
+        }))
+    }
 
     // Bulk Action State
     const [isBulkDialogOpen, setIsBulkDialogOpen] = useState(false)
@@ -291,9 +403,31 @@ export function BulkEditorView() {
         'existing'
     )
 
-    const data = useMemo(() => {
+    const data = useMemo<TableRowData[]>(() => {
         return itemIds.map((id) => {
             const item = items[id]
+            if (!item) {
+                return {
+                    id,
+                    displayName: '',
+                    displayNameGerman: '',
+                    categories: [],
+                    difficulty: -1,
+                    hasNaturalGen: false,
+                    hasLoot: false,
+                    requiresSilkTouch: false,
+                    craftable: false,
+                    hasMobLoot: false,
+                    hasBlockLoot: false,
+                    hasTrading: false,
+                    hasSmelting: false,
+                    renewable: 'no',
+                    isBlock: false,
+                    stackSize: 64,
+                    rarityTier: 'common',
+                    rawItem: {} as ItemData,
+                }
+            }
             return {
                 id,
                 displayName: item.displayName,
@@ -364,7 +498,7 @@ export function BulkEditorView() {
         }
     }, [categories, data])
 
-    const columns = useMemo<ColumnDef<(typeof data)[0]>[]>(
+    const columns = useMemo<ColumnDef<TableRowData>[]>(
         () => [
             {
                 id: 'select',
@@ -393,17 +527,17 @@ export function BulkEditorView() {
             },
             {
                 id: 'edit',
-                size: 50,
+                size: 40,
                 header: () => null,
                 cell: ({ row }) => (
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8"
-                        onClick={() => setEditingItemId(row.original.id)}
+                        className="h-6 w-6"
+                        onClick={() => navigate(`/edit/${row.original.id}`)}
                         title="Edit item"
                     >
-                        <Pencil className="h-4 w-4" />
+                        <Pencil className="h-3 w-3" />
                     </Button>
                 ),
                 enableSorting: false,
@@ -417,7 +551,7 @@ export function BulkEditorView() {
                 ),
                 cell: ({ row }) => (
                     <div className="font-mono text-xs overflow-hidden text-ellipsis">
-                        {row.getValue('id')}
+                        {row.getValue('id') as string}
                     </div>
                 ),
             },
@@ -429,7 +563,7 @@ export function BulkEditorView() {
                 ),
                 cell: ({ row }) => (
                     <div className="font-medium whitespace-nowrap overflow-hidden text-ellipsis">
-                        {row.getValue('displayName')}
+                        {row.getValue('displayName') as string}
                     </div>
                 ),
             },
@@ -441,7 +575,7 @@ export function BulkEditorView() {
                 ),
                 cell: ({ row }) => (
                     <div className="text-sm text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
-                        {row.getValue('displayNameGerman')}
+                        {row.getValue('displayNameGerman') as string}
                     </div>
                 ),
             },
@@ -472,10 +606,10 @@ export function BulkEditorView() {
                         </div>
                     )
                 },
-                filterFn: (row, id, value) => {
+                filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
                     const rowCats = row.getValue(id) as string[]
-                    return value.some((v: string) => rowCats.includes(v))
+                    return value.some((v) => rowCats.includes(v))
                 },
             },
             {
@@ -499,9 +633,10 @@ export function BulkEditorView() {
                         )
                     return <span>{diff}</span>
                 },
-                filterFn: (row, id, value) => {
+                filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
-                    return value.includes(row.getValue(id).toString())
+                    const val = row.getValue(id) as number
+                    return value.includes(val.toString())
                 },
             },
             {
@@ -516,7 +651,9 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasNaturalGen')} />
+                    <YesNoCell
+                        value={row.getValue('hasNaturalGen') as boolean}
+                    />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -533,7 +670,7 @@ export function BulkEditorView() {
                 ),
                 cell: ({ row }) => (
                     <YesNoCell
-                        value={row.getValue('hasLoot')}
+                        value={row.getValue('hasLoot') as boolean}
                         trueColor="text-emerald-500"
                     />
                 ),
@@ -552,7 +689,7 @@ export function BulkEditorView() {
                 ),
                 cell: ({ row }) => (
                     <YesNoCell
-                        value={row.getValue('requiresSilkTouch')}
+                        value={row.getValue('requiresSilkTouch') as boolean}
                         trueColor="text-blue-500"
                     />
                 ),
@@ -570,7 +707,7 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('craftable')} />
+                    <YesNoCell value={row.getValue('craftable') as boolean} />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -586,7 +723,7 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasMobLoot')} />
+                    <YesNoCell value={row.getValue('hasMobLoot') as boolean} />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -602,7 +739,9 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasBlockLoot')} />
+                    <YesNoCell
+                        value={row.getValue('hasBlockLoot') as boolean}
+                    />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -618,7 +757,7 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasTrading')} />
+                    <YesNoCell value={row.getValue('hasTrading') as boolean} />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -634,7 +773,7 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasSmelting')} />
+                    <YesNoCell value={row.getValue('hasSmelting') as boolean} />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -650,7 +789,7 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => {
-                    const renewable = row.getValue('renewable') as string
+                    const renewable = row.getValue('renewable') as Renewable
                     return (
                         <Badge
                             variant="outline"
@@ -667,9 +806,9 @@ export function BulkEditorView() {
                         </Badge>
                     )
                 },
-                filterFn: (row, id, value) => {
+                filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
-                    return value.includes(row.getValue(id))
+                    return value.includes(row.getValue(id) as string)
                 },
             },
             {
@@ -683,10 +822,13 @@ export function BulkEditorView() {
                         options={filterOptions.stackSize}
                     />
                 ),
-                cell: ({ row }) => <div>{row.getValue('stackSize')}</div>,
-                filterFn: (row, id, value) => {
+                cell: ({ row }) => (
+                    <div>{row.getValue('stackSize') as number}</div>
+                ),
+                filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
-                    return value.includes(row.getValue(id).toString())
+                    const val = row.getValue(id) as number
+                    return value.includes(val.toString())
                 },
             },
             {
@@ -701,15 +843,14 @@ export function BulkEditorView() {
                     />
                 ),
                 cell: ({ row }) => {
-                    const rarity = row.getValue('rarityTier') as string
-                    const colors = {
+                    const rarity = row.getValue('rarityTier') as RarityTier
+                    const colors: Record<string, string> = {
                         common: 'bg-gray-500/10 text-gray-500',
                         uncommon:
                             'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400',
                         rare: 'bg-blue-500/10 text-blue-500',
                         epic: 'bg-purple-500/10 text-purple-500',
                     }
-                    // @ts-ignore
                     return (
                         <Badge
                             variant="outline"
@@ -722,9 +863,9 @@ export function BulkEditorView() {
                         </Badge>
                     )
                 },
-                filterFn: (row, id, value) => {
+                filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
-                    return value.includes(row.getValue(id))
+                    return value.includes(row.getValue(id) as string)
                 },
             },
             {
@@ -798,9 +939,11 @@ export function BulkEditorView() {
         const selectedItemIds = selectedRows.map((row) => row.original.id)
 
         for (const id of selectedItemIds) {
+            const item = items[id]
+            if (!item) continue
             const currentItemCats = getItemCategories(id)
             if (!currentItemCats.includes(categoryToAssign)) {
-                await updateItem(id, items[id], [
+                await updateItem(id, item, [
                     ...currentItemCats,
                     categoryToAssign,
                 ])
@@ -821,9 +964,8 @@ export function BulkEditorView() {
         if (allFilteredSelected) {
             setRowSelection({})
         } else {
-            const newSelection = {}
+            const newSelection: Record<string, boolean> = {}
             filteredRows.forEach((row) => {
-                // @ts-ignore
                 newSelection[row.id] = true
             })
             setRowSelection(newSelection)
@@ -959,6 +1101,7 @@ export function BulkEditorView() {
                         {rows.length > 0 ? (
                             virtualRows.map((virtualRow) => {
                                 const row = rows[virtualRow.index]
+                                if (!row) return null
                                 return (
                                     <TableRow
                                         key={row.id}
@@ -1009,9 +1152,6 @@ export function BulkEditorView() {
                     {table.getFilteredSelectedRowModel().rows.length} of{' '}
                     {table.getFilteredRowModel().rows.length} row(s) selected.
                 </div>
-                <div className="text-xs text-muted-foreground italic">
-                    Showing all {rows.length} items virtualized
-                </div>
             </div>
 
             <Dialog open={isBulkDialogOpen} onOpenChange={setIsBulkDialogOpen}>
@@ -1027,7 +1167,9 @@ export function BulkEditorView() {
                             <Label>Action Type</Label>
                             <Select
                                 value={bulkActionType}
-                                onValueChange={(v: any) => setBulkActionType(v)}
+                                onValueChange={(v: 'existing' | 'new') =>
+                                    setBulkActionType(v)
+                                }
                             >
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select action type" />
@@ -1098,41 +1240,6 @@ export function BulkEditorView() {
                             }
                         >
                             Apply to {selectedCount} items
-                        </Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
-
-            <Dialog
-                open={editingItemId !== null}
-                onOpenChange={() => setEditingItemId(null)}
-            >
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                        <DialogTitle>Edit Item</DialogTitle>
-                        <DialogDescription>
-                            {editingItemId
-                                ? `Editing: ${items[editingItemId]?.displayName || editingItemId}`
-                                : ''}
-                        </DialogDescription>
-                    </DialogHeader>
-                    {editingItemId && (
-                        <div className="py-4">
-                            <pre className="text-xs bg-muted p-4 rounded overflow-auto max-h-[60vh]">
-                                {JSON.stringify(items[editingItemId], null, 2)}
-                            </pre>
-                            <p className="text-sm text-muted-foreground mt-4">
-                                Main editor integration coming soon. For now,
-                                you can copy the item data above.
-                            </p>
-                        </div>
-                    )}
-                    <DialogFooter>
-                        <Button
-                            variant="outline"
-                            onClick={() => setEditingItemId(null)}
-                        >
-                            Close
                         </Button>
                     </DialogFooter>
                 </DialogContent>

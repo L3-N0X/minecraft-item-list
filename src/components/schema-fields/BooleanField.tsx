@@ -3,10 +3,11 @@ import { Switch } from '@/components/ui/switch'
 import { cn } from '@/lib/utils'
 import { validationBorderColorClass } from '../schemaValidation'
 import type { ValidationEntry } from '../schemaValidation'
+import type { SchemaPropertyValue } from '../schema-types'
 
 export interface BooleanFieldProps {
     path: (string | number)[]
-    value: any
+    value?: SchemaPropertyValue
     label: string
     onCheckedChange: (checked: boolean) => void
     validationEntry?: ValidationEntry

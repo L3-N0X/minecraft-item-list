@@ -1,18 +1,21 @@
 import schema from '../schema/schema.json'
+import type { JsonSchemaProperty } from './schema-types'
 
 /**
  * Resolves a JSON Schema $ref string (only supports local "#/..." references)
  * against the root schema object.
  */
-export function resolveRef(ref: string): any {
+export function resolveRef(ref: string): JsonSchemaProperty | undefined {
     if (ref.startsWith('#/')) {
         const parts = ref.slice(2).split('/')
-        let current: any = schema
+        let current: unknown = schema
         for (const part of parts) {
-            current = current[part]
+            if (typeof current !== 'object' || current === null)
+                return undefined
+            current = (current as Record<string, unknown>)[part]
             if (current === undefined) return undefined
         }
-        return current
+        return current as JsonSchemaProperty
     }
     return undefined
 }
@@ -22,14 +25,14 @@ export function resolveRef(ref: string): any {
  * a oneOf with exactly two variants — a plain integer and an object with
  * integer `min` / `max` properties.
  */
-export function isQuantitySpec(fieldSchema: any): boolean {
+export function isQuantitySpec(fieldSchema: JsonSchemaProperty): boolean {
     if (!Array.isArray(fieldSchema?.oneOf) || fieldSchema.oneOf.length !== 2)
         return false
     const hasInteger = fieldSchema.oneOf.some(
-        (o: any) => o.type === 'integer' && !o.properties
+        (o) => o.type === 'integer' && !o.properties
     )
     const hasRange = fieldSchema.oneOf.some(
-        (o: any) =>
+        (o) =>
             o.type === 'object' &&
             o.properties?.min?.type === 'integer' &&
             o.properties?.max?.type === 'integer'
@@ -41,7 +44,9 @@ export function isQuantitySpec(fieldSchema: any): boolean {
  * Resolves a field schema, following top-level $ref and array items.$ref
  * references against the root schema.
  */
-export function resolveSchema(fieldSchema: any): any {
+export function resolveSchema(
+    fieldSchema: JsonSchemaProperty
+): JsonSchemaProperty {
     if (fieldSchema?.$ref) {
         return resolveRef(fieldSchema.$ref) ?? fieldSchema
     }
@@ -58,12 +63,12 @@ export function resolveSchema(fieldSchema: any): any {
  * Derives a human-readable label from a schema key, preferring the schema's
  * own `title` property when present.
  */
-export function getLabel(key: string, fieldSchema: any): string {
+export function getLabel(key: string, fieldSchema: JsonSchemaProperty): string {
     return (
         fieldSchema.title ||
         key
             .split(/(?=[A-Z])|_/)
-            .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
             .join(' ')
     )
 }

@@ -1,5 +1,6 @@
 import Ajv from 'ajv'
 import schema from '../schema/schema.json'
+import type { JsonSchemaProperty, ItemData } from './schema-types'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -20,14 +21,26 @@ export type ValidationMap = Map<string, ValidationEntry>
 
 const ajv = new Ajv({ allErrors: true, strict: false })
 
+interface SchemaRoot {
+    definitions: Record<string, JsonSchemaProperty>
+    properties: {
+        items: {
+            additionalProperties: Record<string, JsonSchemaProperty>
+        }
+    }
+}
+
 /**
  * The item sub-schema with root-level `definitions` merged in so that $ref
  * entries like "#/definitions/stackSizeEnum" resolve correctly (# refers to
  * the compiled schema root).
  */
-export const itemSchema = {
-    definitions: (schema as any).definitions,
-    ...(schema.properties as any).items.additionalProperties,
+export const itemSchema: {
+    definitions: Record<string, JsonSchemaProperty>
+    properties: Record<string, JsonSchemaProperty>
+} = {
+    definitions: (schema as SchemaRoot).definitions,
+    ...(schema as SchemaRoot).properties.items.additionalProperties,
 }
 
 const validateAjv = ajv.compile(itemSchema)
@@ -41,9 +54,13 @@ function instancePathToDot(instancePath: string): string {
     return instancePath.replace(/^\//, '').replace(/\//g, '.')
 }
 
+interface RequiredParams {
+    missingProperty?: string
+}
+
 /** Runs AJV against `data` and returns a map of dot-path → ValidationEntry. */
 export function validateItemData(
-    data: any,
+    data: ItemData,
     debugLabel?: string
 ): ValidationMap {
     const errors: ValidationMap = new Map()
@@ -52,7 +69,8 @@ export function validateItemData(
         let path: string
         if (err.keyword === 'required') {
             const parent = instancePathToDot(err.instancePath)
-            const missing = (err.params as any).missingProperty as string
+            const missing = (err.params as RequiredParams)
+                .missingProperty as string
             path = parent ? `${parent}.${missing}` : missing
         } else {
             path = instancePathToDot(err.instancePath) || '__root__'
@@ -84,7 +102,7 @@ export function validateItemData(
  * Convenience helper: returns just the number of validation errors for an item.
  * Accepts an optional label that will be forwarded to the debug log.
  */
-export function countItemErrors(data: any, debugLabel?: string): number {
+export function countItemErrors(data: ItemData, debugLabel?: string): number {
     return validateItemData(data, debugLabel).size
 }
 

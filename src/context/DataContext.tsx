@@ -7,25 +7,41 @@ import React, {
     useRef,
 } from 'react'
 
-export interface ItemData {
-    displayName: string
-    [key: string]: any
-}
+import {
+    type ItemData,
+    type ItemData as MinecraftItemData,
+} from '../types/minecraft'
 
+import {
+    type ColumnFiltersState,
+    type SortingState,
+    type VisibilityState,
+} from '@tanstack/react-table'
+
+export type { MinecraftItemData as ItemData }
 export type CategoriesData = Record<string, string[]>
 
+interface BulkEditorState {
+    sorting: SortingState
+    columnFilters: ColumnFiltersState
+    columnVisibility: VisibilityState
+    rowSelection: Record<string, boolean>
+}
+
 interface DataContextType {
-    items: Record<string, ItemData>
+    items: Record<string, MinecraftItemData>
     itemIds: string[]
     categories: CategoriesData
     updateItem: (
         id: string,
-        data: ItemData,
+        data: MinecraftItemData,
         itemCategories?: string[]
     ) => Promise<void>
     getItemIndex: (id: string) => number
     getItemCategories: (id: string) => string[]
     isLoading: boolean
+    bulkEditorState: BulkEditorState
+    setBulkEditorState: React.Dispatch<React.SetStateAction<BulkEditorState>>
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined)
@@ -34,6 +50,17 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     const [items, setItems] = useState<Record<string, ItemData>>({})
     const [categories, setCategories] = useState<CategoriesData>({})
     const [isLoading, setIsLoading] = useState(true)
+
+    // Bulk Editor State persistence
+    const [bulkEditorState, setBulkEditorState] = useState<BulkEditorState>({
+        sorting: [],
+        columnFilters: [],
+        columnVisibility: {
+            json: false,
+            isBlock: false,
+        },
+        rowSelection: {},
+    })
 
     // Ref to track pending saves for debouncing
     const saveTimeoutRef = useRef<
@@ -55,7 +82,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
     const getItemCategories = (id: string) => {
         return Object.entries(categories)
-            .filter(([_, itemIds]) => itemIds.includes(id))
+            .filter(([, itemIds]) => itemIds.includes(id))
             .map(([catName]) => catName)
     }
 
@@ -131,6 +158,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
                 getItemIndex,
                 getItemCategories,
                 isLoading,
+                bulkEditorState,
+                setBulkEditorState,
             }}
         >
             {children}

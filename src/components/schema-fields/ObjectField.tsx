@@ -7,19 +7,27 @@ import {
     validationRingClass,
 } from '../schemaValidation'
 import type { ValidationEntry } from '../schemaValidation'
+import type {
+    JsonSchemaProperty,
+    SchemaPropertyValue,
+    ItemData,
+} from '../schema-types'
 
 export interface ObjectFieldProps {
     path: (string | number)[]
-    value: any
+    value?: ItemData
     label: string
-    fieldSchema: any
+    fieldSchema: JsonSchemaProperty
     isOptional?: boolean
-    onFieldChange?: (path: (string | number)[], value: any) => void
+    onFieldChange?: (
+        path: (string | number)[],
+        value?: SchemaPropertyValue
+    ) => void
     childValidationEntry?: ValidationEntry
     renderChildren: (
-        properties: any,
+        properties: Record<string, JsonSchemaProperty> | undefined,
         currentPath: (string | number)[],
-        currentData: any,
+        currentData: ItemData | undefined,
         parentRequired?: string[]
     ) => React.ReactNode
 }

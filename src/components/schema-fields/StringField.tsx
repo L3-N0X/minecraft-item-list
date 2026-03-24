@@ -4,13 +4,17 @@ import { Textarea } from '@/components/ui/textarea'
 import { cn } from '@/lib/utils'
 import { validationRingClass } from '../schemaValidation'
 import type { ValidationEntry } from '../schemaValidation'
+import type { JsonSchemaProperty, SchemaPropertyValue } from '../schema-types'
 
 export interface StringFieldProps {
     path: (string | number)[]
-    value: any
+    value?: SchemaPropertyValue
     label: string
-    fieldSchema: any
-    onFieldChange: (path: (string | number)[], value: any) => void
+    fieldSchema: JsonSchemaProperty
+    onFieldChange: (
+        path: (string | number)[],
+        value?: SchemaPropertyValue
+    ) => void
     validationEntry?: ValidationEntry
 }
 

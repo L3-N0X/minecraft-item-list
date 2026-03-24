@@ -168,11 +168,9 @@
         "spruce_leaves"
     ],
     "sign": [
-        "acacia_hanging_sign",
         "acacia_sign",
         "bamboo_hanging_sign",
         "bamboo_sign",
-        "birch_hanging_sign",
         "birch_sign",
         "cherry_hanging_sign",
         "cherry_sign",
@@ -191,12 +189,12 @@
         "spruce_hanging_sign",
         "spruce_sign",
         "warped_hanging_sign",
-        "warped_sign"
+        "warped_sign",
+        "birch_hanging_sign",
+        "acacia_hanging_sign"
     ],
     "hanging_sign": [
-        "acacia_hanging_sign",
         "bamboo_hanging_sign",
-        "birch_hanging_sign",
         "cherry_hanging_sign",
         "crimson_hanging_sign",
         "dark_oak_hanging_sign",
@@ -206,7 +204,9 @@
         "oak_hanging_sign",
         "pale_oak_hanging_sign",
         "spruce_hanging_sign",
-        "warped_hanging_sign"
+        "warped_hanging_sign",
+        "birch_hanging_sign",
+        "acacia_hanging_sign"
     ],
     "fence_gate": [
         "acacia_fence_gate",
@@ -699,7 +699,8 @@
         "sheaf_pottery_sherd",
         "shelter_pottery_sherd",
         "skull_pottery_sherd",
-        "snort_pottery_sherd"
+        "snort_pottery_sherd",
+        "arms_up_pottery_sherd"
     ],
     "bundle": [
         "black_bundle",
@@ -1102,7 +1103,6 @@
         "acacia_door",
         "acacia_fence",
         "acacia_fence_gate",
-        "acacia_hanging_sign",
         "acacia_log",
         "acacia_planks",
         "acacia_pressure_plate",
@@ -1116,7 +1116,8 @@
         "acacia_chest_boat",
         "acacia_leaves",
         "stripped_acacia_log",
-        "stripped_acacia_wood"
+        "stripped_acacia_wood",
+        "acacia_hanging_sign"
     ],
     "button": [
         "acacia_button",
@@ -1229,7 +1230,8 @@
         "sheaf_pottery_sherd",
         "shelter_pottery_sherd",
         "skull_pottery_sherd",
-        "snort_pottery_sherd"
+        "snort_pottery_sherd",
+        "arms_up_pottery_sherd"
     ],
     "enchanting": ["chipped_anvil", "anvil", "damaged_anvil"],
     "projectile": ["arrow", "spectral_arrow", "tipped_arrow"],
@@ -1352,7 +1354,6 @@
         "birch_planks",
         "birch_log",
         "birch_leaves",
-        "birch_hanging_sign",
         "birch_fence",
         "birch_door",
         "birch_chest_boat",
@@ -1367,7 +1368,8 @@
         "birch_wood",
         "birch_fence_gate",
         "stripped_birch_log",
-        "stripped_birch_wood"
+        "stripped_birch_wood",
+        "birch_hanging_sign"
     ],
     "basalt": ["basalt", "polished_basalt", "smooth_basalt"],
     "furnace": ["blast_furnace", "furnace", "smoker"],
@@ -1684,7 +1686,6 @@
     "chicken": ["chicken", "cooked_chicken"],
     "anvil": ["chipped_anvil", "anvil", "damaged_anvil"],
     "copper": [
-        "copper_axe",
         "copper_chain",
         "copper_chestplate",
         "copper_golem_statue",
@@ -1693,10 +1694,8 @@
         "copper_lantern",
         "copper_leggings",
         "copper_nugget",
-        "copper_spear",
         "copper_shovel",
         "copper_pickaxe",
-        "copper_sword",
         "copper_nautilus_armor",
         "copper_ore",
         "deepslate_copper_ore",
@@ -1820,7 +1819,10 @@
         "weathered_cut_copper_slab",
         "weathered_cut_copper_stairs",
         "weathered_lightning_rod",
-        "copper_hoe"
+        "copper_hoe",
+        "copper_sword",
+        "copper_axe",
+        "copper_spear"
     ],
     "chiseled": [
         "chiseled_deepslate",
@@ -1981,7 +1983,6 @@
         "smooth_stone_slab",
         "smooth_stone",
         "stone",
-        "stone_axe",
         "stone_brick_slab",
         "stone_brick_stairs",
         "stone_brick_wall",
@@ -1991,10 +1992,11 @@
         "stone_pressure_plate",
         "stone_shovel",
         "stone_slab",
-        "stone_spear",
         "stone_stairs",
-        "stone_sword",
         "stone_hoe",
+        "stone_sword",
+        "stone_axe",
+        "stone_spear",
         "wooden_spear"
     ],
     "tuff": [
@@ -2083,46 +2085,27 @@
     "rabbit": ["cooked_rabbit", "rabbit", "rabbit_foot", "rabbit_hide"],
     "salmon": ["cooked_salmon", "salmon"],
     "copper_tools": [
-        "copper_axe",
-        "copper_spear",
         "copper_shovel",
         "copper_pickaxe",
+        "copper_hoe",
         "copper_sword",
-        "copper_hoe"
+        "copper_axe",
+        "copper_spear"
     ],
     "tools": [
-        "copper_axe",
-        "copper_spear",
         "copper_shovel",
         "copper_pickaxe",
-        "copper_sword",
-        "diamond_axe",
         "diamond_pickaxe",
         "diamond_shovel",
-        "diamond_spear",
-        "diamond_sword",
-        "golden_axe",
         "golden_pickaxe",
         "golden_shovel",
-        "golden_spear",
-        "golden_sword",
-        "iron_axe",
         "iron_pickaxe",
         "iron_shovel",
-        "iron_spear",
-        "iron_sword",
-        "netherite_axe",
         "netherite_pickaxe",
         "netherite_shovel",
-        "netherite_spear",
-        "netherite_sword",
         "shears",
-        "stone_axe",
         "stone_pickaxe",
         "stone_shovel",
-        "stone_spear",
-        "stone_sword",
-        "wooden_axe",
         "wooden_hoe",
         "stone_hoe",
         "copper_hoe",
@@ -2132,13 +2115,32 @@
         "netherite_hoe",
         "wooden_pickaxe",
         "wooden_shovel",
-        "wooden_sword"
+        "copper_sword",
+        "diamond_sword",
+        "golden_sword",
+        "iron_sword",
+        "netherite_sword",
+        "stone_sword",
+        "wooden_sword",
+        "copper_axe",
+        "diamond_axe",
+        "iron_axe",
+        "golden_axe",
+        "netherite_axe",
+        "stone_axe",
+        "wooden_axe",
+        "copper_spear",
+        "diamond_spear",
+        "iron_spear",
+        "golden_spear",
+        "netherite_spear",
+        "stone_spear"
     ],
     "axe": [
         "copper_axe",
         "diamond_axe",
-        "golden_axe",
         "iron_axe",
+        "golden_axe",
         "netherite_axe",
         "stone_axe",
         "wooden_axe"
@@ -2312,8 +2314,8 @@
     "spear": [
         "copper_spear",
         "diamond_spear",
-        "golden_spear",
         "iron_spear",
+        "golden_spear",
         "netherite_spear",
         "stone_spear",
         "wooden_spear"
@@ -2622,7 +2624,6 @@
     "diamond": [
         "deepslate_diamond_ore",
         "diamond",
-        "diamond_axe",
         "diamond_block",
         "diamond_boots",
         "diamond_chestplate",
@@ -2633,9 +2634,10 @@
         "diamond_ore",
         "diamond_pickaxe",
         "diamond_shovel",
-        "diamond_spear",
+        "diamond_hoe",
         "diamond_sword",
-        "diamond_hoe"
+        "diamond_axe",
+        "diamond_spear"
     ],
     "diamond_ore": ["deepslate_diamond_ore", "diamond_ore"],
     "emerald": [
@@ -2651,7 +2653,6 @@
         "gold_ingot",
         "gold_nugget",
         "gold_ore",
-        "golden_axe",
         "golden_helmet",
         "golden_chestplate",
         "golden_boots",
@@ -2660,15 +2661,15 @@
         "golden_nautilus_armor",
         "golden_pickaxe",
         "golden_shovel",
-        "golden_spear",
-        "golden_sword",
         "nether_gold_ore",
-        "golden_hoe"
+        "golden_hoe",
+        "golden_sword",
+        "golden_axe",
+        "golden_spear"
     ],
     "gold_ore": ["deepslate_gold_ore", "gold_ore", "nether_gold_ore"],
     "iron": [
         "deepslate_iron_ore",
-        "iron_axe",
         "iron_bars",
         "iron_block",
         "iron_chain",
@@ -2683,11 +2684,12 @@
         "iron_nugget",
         "iron_pickaxe",
         "iron_shovel",
-        "iron_spear",
-        "iron_sword",
         "iron_trapdoor",
         "iron_ore",
-        "iron_hoe"
+        "iron_hoe",
+        "iron_sword",
+        "iron_axe",
+        "iron_spear"
     ],
     "iron_ore": ["deepslate_iron_ore", "iron_ore"],
     "lapis": [
@@ -2699,12 +2701,12 @@
     "lapis_ore": ["deepslate_lapis_ore", "lapis_ore"],
     "redstone_ore": ["deepslate_redstone_ore", "redstone_ore"],
     "diamond_tools": [
-        "diamond_axe",
         "diamond_pickaxe",
         "diamond_shovel",
-        "diamond_spear",
+        "diamond_hoe",
         "diamond_sword",
-        "diamond_hoe"
+        "diamond_axe",
+        "diamond_spear"
     ],
     "diamond_armor": [
         "diamond_boots",
@@ -2823,12 +2825,12 @@
     "item_frame": ["glow_item_frame", "item_frame"],
     "glowstone": ["glowstone", "glowstone_dust"],
     "golden_tools": [
-        "golden_axe",
         "golden_pickaxe",
         "golden_shovel",
-        "golden_spear",
+        "golden_hoe",
         "golden_sword",
-        "golden_hoe"
+        "golden_axe",
+        "golden_spear"
     ],
     "golden_armor": [
         "golden_helmet",
@@ -2896,12 +2898,12 @@
         "mossy_stone_bricks"
     ],
     "iron_tools": [
-        "iron_axe",
         "iron_pickaxe",
         "iron_shovel",
-        "iron_spear",
+        "iron_hoe",
         "iron_sword",
-        "iron_hoe"
+        "iron_axe",
+        "iron_spear"
     ],
     "iron_armor": [
         "iron_chestplate",
@@ -3145,7 +3147,6 @@
         "netherite_chestplate",
         "netherite_boots",
         "netherite_block",
-        "netherite_axe",
         "netherite_horse_armor",
         "netherite_ingot",
         "netherite_leggings",
@@ -3153,17 +3154,18 @@
         "netherite_pickaxe",
         "netherite_scrap",
         "netherite_shovel",
-        "netherite_spear",
+        "netherite_hoe",
         "netherite_sword",
-        "netherite_hoe"
+        "netherite_axe",
+        "netherite_spear"
     ],
     "netherite_tools": [
-        "netherite_axe",
         "netherite_pickaxe",
         "netherite_shovel",
-        "netherite_spear",
+        "netherite_hoe",
         "netherite_sword",
-        "netherite_hoe"
+        "netherite_axe",
+        "netherite_spear"
     ],
     "netherite_armor": [
         "netherite_helmet",
@@ -3501,12 +3503,12 @@
         "stripped_spruce_wood"
     ],
     "stone_tools": [
-        "stone_axe",
         "stone_pickaxe",
         "stone_shovel",
-        "stone_spear",
+        "stone_hoe",
         "stone_sword",
-        "stone_hoe"
+        "stone_axe",
+        "stone_spear"
     ],
     "stripped_log": [
         "stripped_acacia_log",
@@ -3670,20 +3672,20 @@
     ],
     "wind_charge": ["wind_charge"],
     "wooden": [
-        "wooden_axe",
         "wooden_hoe",
         "wooden_pickaxe",
         "wooden_shovel",
-        "wooden_spear",
-        "wooden_sword"
+        "wooden_sword",
+        "wooden_axe",
+        "wooden_spear"
     ],
     "wooden_tools": [
-        "wooden_axe",
         "wooden_hoe",
         "wooden_pickaxe",
         "wooden_shovel",
-        "wooden_spear",
-        "wooden_sword"
+        "wooden_sword",
+        "wooden_axe",
+        "wooden_spear"
     ],
     "yellow": [
         "yellow_banner",
@@ -3701,5 +3703,32 @@
         "yellow_stained_glass_pane",
         "yellow_terracotta",
         "yellow_wool"
+    ],
+    "weapon": [
+        "bow",
+        "copper_sword",
+        "diamond_sword",
+        "golden_sword",
+        "iron_sword",
+        "netherite_sword",
+        "stone_sword",
+        "wooden_sword",
+        "copper_axe",
+        "diamond_axe",
+        "iron_axe",
+        "golden_axe",
+        "netherite_axe",
+        "stone_axe",
+        "wooden_axe",
+        "copper_spear",
+        "diamond_spear",
+        "mace",
+        "iron_spear",
+        "golden_spear",
+        "netherite_spear",
+        "stone_spear",
+        "trident",
+        "wooden_spear",
+        "crossbow"
     ]
 }
