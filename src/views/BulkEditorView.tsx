@@ -68,7 +68,6 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
 import {
     Settings2,
-    Tags,
     ArrowUpDown,
     ArrowUp,
     ArrowDown,
@@ -397,11 +396,79 @@ export function BulkEditorView() {
 
     // Bulk Action State
     const [isBulkDialogOpen, setIsBulkDialogOpen] = useState(false)
+    const [bulkActionTab, setBulkActionTab] = useState<'categorize' | 'field'>(
+        'categorize'
+    )
+
+    // Categorization State
     const [targetCategory, setTargetCategory] = useState<string>('')
     const [newCategoryName, setNewCategoryName] = useState('')
     const [bulkActionType, setBulkActionType] = useState<'existing' | 'new'>(
         'existing'
     )
+
+    // Field Update State
+    const [selectedFieldKey, setSelectedFieldKey] = useState<string>('')
+    const [fieldOperation, setFieldOperation] = useState<
+        'set' | 'add' | 'multiply' | 'toggle'
+    >('set')
+    const [bulkFieldValue, setBulkFieldValue] = useState<string>('')
+
+    const EDITABLE_FIELDS = [
+        { label: 'Is Block', path: ['isBlock'], type: 'boolean' },
+        {
+            label: 'Renewable',
+            path: ['renewable'],
+            type: 'enum',
+            options: ['yes', 'no', 'vault_only'],
+        },
+        {
+            label: 'Stack Size',
+            path: ['stackSize'],
+            type: 'enum',
+            options: ['1', '16', '64'],
+        },
+        {
+            label: 'Rarity Tier',
+            path: ['rarityTier'],
+            type: 'enum',
+            options: ['common', 'uncommon', 'rare', 'epic'],
+        },
+        {
+            label: 'Obtainability',
+            path: ['obtaining', 'obtainability'],
+            type: 'enum',
+            options: ['survival', 'creative_only', 'unobtainable'],
+        },
+        {
+            label: 'Craftable',
+            path: ['obtaining', 'craftable'],
+            type: 'boolean',
+        },
+        {
+            label: 'Difficulty to Obtain',
+            path: ['obtaining', 'difficultyToObtain'],
+            type: 'number',
+        },
+        {
+            label: 'Requires Silk Touch',
+            path: ['breaking', 'requiresSilkTouch'],
+            type: 'enum',
+            options: ['yes', 'no', 'silk_touch_only'],
+        },
+        {
+            label: 'Instant Breaking',
+            path: ['breaking', 'instantBreaking'],
+            type: 'boolean',
+        },
+        {
+            label: 'Fire Resistant',
+            path: ['item', 'fireResistant'],
+            type: 'boolean',
+        },
+        { label: 'Hunger', path: ['edible', 'hunger'], type: 'number' },
+        { label: 'Saturation', path: ['edible', 'saturation'], type: 'number' },
+    ]
 
     const data = useMemo<TableRowData[]>(() => {
         return itemIds.map((id) => {
@@ -931,28 +998,98 @@ export function BulkEditorView() {
     const selectedRows = table.getFilteredSelectedRowModel().rows
     const selectedCount = selectedRows.length
 
-    const handleBulkAction = async () => {
-        const categoryToAssign =
-            bulkActionType === 'new' ? newCategoryName : targetCategory
-        if (!categoryToAssign) return
+    const selectedField = EDITABLE_FIELDS.find(
+        (f) => f.label === selectedFieldKey
+    )
 
+    const applyPatch = (
+        itemData: ItemData,
+        path: string[],
+        op: string,
+        val: string | number | boolean
+    ) => {
+        const newData = JSON.parse(JSON.stringify(itemData))
+        let current = newData
+        for (let i = 0; i < path.length - 1; i++) {
+            const key = path[i]
+            if (key === undefined) continue
+            if (!current[key]) current[key] = {}
+            current = current[key]
+        }
+
+        const lastKey = path[path.length - 1]
+        if (lastKey === undefined) {
+            console.error('Invalid path for patching:', path)
+            return newData
+        }
+        const currentValue = current[lastKey]
+
+        if (op === 'set') {
+            if (selectedField?.type === 'number') {
+                current[lastKey] = Number(val)
+            } else if (selectedField?.type === 'boolean') {
+                current[lastKey] = val === 'true'
+            } else if (
+                selectedField?.type === 'enum' &&
+                selectedField.path[selectedField.path.length - 1] ===
+                    'stackSize'
+            ) {
+                current[lastKey] = Number(val)
+            } else {
+                current[lastKey] = val
+            }
+        } else if (op === 'add') {
+            current[lastKey] = (Number(currentValue) || 0) + Number(val)
+        } else if (op === 'multiply') {
+            current[lastKey] = (Number(currentValue) || 0) * Number(val)
+        } else if (op === 'toggle') {
+            current[lastKey] = !currentValue
+        }
+
+        return newData
+    }
+
+    const handleBulkAction = async () => {
         const selectedItemIds = selectedRows.map((row) => row.original.id)
 
-        for (const id of selectedItemIds) {
-            const item = items[id]
-            if (!item) continue
-            const currentItemCats = getItemCategories(id)
-            if (!currentItemCats.includes(categoryToAssign)) {
-                await updateItem(id, item, [
-                    ...currentItemCats,
-                    categoryToAssign,
-                ])
+        if (bulkActionTab === 'categorize') {
+            const categoryToAssign =
+                bulkActionType === 'new' ? newCategoryName : targetCategory
+            if (!categoryToAssign) return
+
+            for (const id of selectedItemIds) {
+                const item = items[id]
+                if (!item) continue
+                const currentItemCats = getItemCategories(id)
+                if (!currentItemCats.includes(categoryToAssign)) {
+                    await updateItem(id, item, [
+                        ...currentItemCats,
+                        categoryToAssign,
+                    ])
+                }
+            }
+        } else if (bulkActionTab === 'field') {
+            if (!selectedField) return
+
+            for (const id of selectedItemIds) {
+                const item = items[id]
+                if (!item) continue
+
+                const newData = applyPatch(
+                    item,
+                    selectedField.path,
+                    fieldOperation,
+                    bulkFieldValue
+                )
+                await updateItem(id, newData, getItemCategories(id))
             }
         }
 
         setIsBulkDialogOpen(false)
         setRowSelection({})
         setNewCategoryName('')
+        setSelectedFieldKey('')
+        setBulkFieldValue('')
     }
 
     const toggleAllFiltered = () => {
@@ -1054,8 +1191,8 @@ export function BulkEditorView() {
                             size="sm"
                             onClick={() => setIsBulkDialogOpen(true)}
                         >
-                            <Tags className="mr-2 h-4 w-4" />
-                            Bulk Categorize ({selectedCount})
+                            <Settings2 className="mr-2 h-4 w-4" />
+                            Bulk Edit ({selectedCount})
                         </Button>
                     )}
                 </div>
@@ -1155,73 +1292,238 @@ export function BulkEditorView() {
             </div>
 
             <Dialog open={isBulkDialogOpen} onOpenChange={setIsBulkDialogOpen}>
-                <DialogContent>
+                <DialogContent className="max-w-md">
                     <DialogHeader>
-                        <DialogTitle>Bulk Categorize Items</DialogTitle>
+                        <DialogTitle>Bulk Edit Items</DialogTitle>
                         <DialogDescription>
-                            Assign {selectedCount} items to a category.
+                            Apply changes to {selectedCount} selected items.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                         <div className="flex flex-col gap-2">
-                            <Label>Action Type</Label>
+                            <Label>Action Mode</Label>
                             <Select
-                                value={bulkActionType}
-                                onValueChange={(v: 'existing' | 'new') =>
-                                    setBulkActionType(v)
+                                value={bulkActionTab}
+                                onValueChange={(v: 'categorize' | 'field') =>
+                                    setBulkActionTab(v)
                                 }
                             >
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select action type" />
+                                    <SelectValue placeholder="Select action mode" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="existing">
-                                        Add to Existing Category
+                                    <SelectItem value="categorize">
+                                        Categorize
                                     </SelectItem>
-                                    <SelectItem value="new">
-                                        Create New Category
+                                    <SelectItem value="field">
+                                        Update Field
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
 
-                        {bulkActionType === 'existing' ? (
-                            <div className="flex flex-col gap-2">
-                                <Label>Select Category</Label>
-                                <Select
-                                    value={targetCategory}
-                                    onValueChange={setTargetCategory}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select category" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <ScrollArea className="h-64">
-                                            {Object.keys(categories)
-                                                .sort()
-                                                .map((cat) => (
+                        <Separator className="my-2" />
+
+                        {bulkActionTab === 'categorize' ? (
+                            <>
+                                <div className="flex flex-col gap-2">
+                                    <Label>Action Type</Label>
+                                    <Select
+                                        value={bulkActionType}
+                                        onValueChange={(
+                                            v: 'existing' | 'new'
+                                        ) => setBulkActionType(v)}
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select action type" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="existing">
+                                                Add to Existing Category
+                                            </SelectItem>
+                                            <SelectItem value="new">
+                                                Create New Category
+                                            </SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                {bulkActionType === 'existing' ? (
+                                    <div className="flex flex-col gap-2">
+                                        <Label>Select Category</Label>
+                                        <Select
+                                            value={targetCategory}
+                                            onValueChange={setTargetCategory}
+                                        >
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select category" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <ScrollArea className="h-64">
+                                                    {Object.keys(categories)
+                                                        .sort()
+                                                        .map((cat) => (
+                                                            <SelectItem
+                                                                key={cat}
+                                                                value={cat}
+                                                            >
+                                                                {cat}
+                                                            </SelectItem>
+                                                        ))}
+                                                </ScrollArea>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col gap-2">
+                                        <Label>New Category Name</Label>
+                                        <Input
+                                            placeholder="Enter category name..."
+                                            value={newCategoryName}
+                                            onChange={(e) =>
+                                                setNewCategoryName(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <>
+                                <div className="flex flex-col gap-2">
+                                    <Label>Select Field</Label>
+                                    <Select
+                                        value={selectedFieldKey}
+                                        onValueChange={setSelectedFieldKey}
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select field to edit" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <ScrollArea className="h-64">
+                                                {EDITABLE_FIELDS.map((f) => (
                                                     <SelectItem
-                                                        key={cat}
-                                                        value={cat}
+                                                        key={f.label}
+                                                        value={f.label}
                                                     >
-                                                        {cat}
+                                                        {f.label}
                                                     </SelectItem>
                                                 ))}
-                                        </ScrollArea>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                        ) : (
-                            <div className="flex flex-col gap-2">
-                                <Label>New Category Name</Label>
-                                <Input
-                                    placeholder="Enter category name..."
-                                    value={newCategoryName}
-                                    onChange={(e) =>
-                                        setNewCategoryName(e.target.value)
-                                    }
-                                />
-                            </div>
+                                            </ScrollArea>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                {selectedField && (
+                                    <div className="flex flex-col gap-2">
+                                        <Label>Operation</Label>
+                                        <Select
+                                            value={fieldOperation}
+                                            onValueChange={(
+                                                v:
+                                                    | 'set'
+                                                    | 'add'
+                                                    | 'multiply'
+                                                    | 'toggle'
+                                            ) => setFieldOperation(v)}
+                                        >
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select operation" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="set">
+                                                    Set Value
+                                                </SelectItem>
+                                                {selectedField.type ===
+                                                    'number' && (
+                                                    <>
+                                                        <SelectItem value="add">
+                                                            Add / Subtract
+                                                        </SelectItem>
+                                                        <SelectItem value="multiply">
+                                                            Multiply
+                                                        </SelectItem>
+                                                    </>
+                                                )}
+                                                {selectedField.type ===
+                                                    'boolean' && (
+                                                    <SelectItem value="toggle">
+                                                        Toggle
+                                                    </SelectItem>
+                                                )}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                )}
+
+                                {selectedField &&
+                                    fieldOperation !== 'toggle' && (
+                                        <div className="flex flex-col gap-2">
+                                            <Label>Value</Label>
+                                            {selectedField.type === 'enum' ? (
+                                                <Select
+                                                    value={bulkFieldValue}
+                                                    onValueChange={
+                                                        setBulkFieldValue
+                                                    }
+                                                >
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select value" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {selectedField.options?.map(
+                                                            (opt) => (
+                                                                <SelectItem
+                                                                    key={opt}
+                                                                    value={opt}
+                                                                >
+                                                                    {opt}
+                                                                </SelectItem>
+                                                            )
+                                                        )}
+                                                    </SelectContent>
+                                                </Select>
+                                            ) : selectedField.type ===
+                                              'boolean' ? (
+                                                <Select
+                                                    value={bulkFieldValue}
+                                                    onValueChange={
+                                                        setBulkFieldValue
+                                                    }
+                                                >
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select boolean" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="true">
+                                                            True
+                                                        </SelectItem>
+                                                        <SelectItem value="false">
+                                                            False
+                                                        </SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            ) : (
+                                                <Input
+                                                    type={
+                                                        selectedField.type ===
+                                                        'number'
+                                                            ? 'number'
+                                                            : 'text'
+                                                    }
+                                                    placeholder="Enter value..."
+                                                    value={bulkFieldValue}
+                                                    onChange={(e) =>
+                                                        setBulkFieldValue(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+                                            )}
+                                        </div>
+                                    )}
+                            </>
                         )}
                     </div>
                     <DialogFooter>
@@ -1234,9 +1536,14 @@ export function BulkEditorView() {
                         <Button
                             onClick={handleBulkAction}
                             disabled={
-                                (bulkActionType === 'existing' &&
-                                    !targetCategory) ||
-                                (bulkActionType === 'new' && !newCategoryName)
+                                bulkActionTab === 'categorize'
+                                    ? (bulkActionType === 'existing' &&
+                                          !targetCategory) ||
+                                      (bulkActionType === 'new' &&
+                                          !newCategoryName)
+                                    : !selectedField ||
+                                      (fieldOperation !== 'toggle' &&
+                                          !bulkFieldValue)
                             }
                         >
                             Apply to {selectedCount} items

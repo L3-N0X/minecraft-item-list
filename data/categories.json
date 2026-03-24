@@ -495,8 +495,15 @@
         "waxed_weathered_cut_copper_stairs",
         "weathered_cut_copper_stairs"
     ],
-    "rail": ["activator_rail", "detector_rail", "powered_rail", "rail"],
-    "air": ["air"],
+    "rail": [
+        "activator_rail",
+        "detector_rail",
+        "powered_rail",
+        "rail"
+    ],
+    "air": [
+        "air"
+    ],
     "spawn_egg": [
         "allay_spawn_egg",
         "armadillo_spawn_egg",
@@ -617,12 +624,12 @@
         "amethyst_cluster",
         "amethyst_shard",
         "amethyst_block",
-        "budding_amethyst",
         "calcite",
         "large_amethyst_bud",
         "medium_amethyst_bud",
         "small_amethyst_bud",
-        "smooth_basalt"
+        "smooth_basalt",
+        "budding_amethyst"
     ],
     "ores": [
         "ancient_debris",
@@ -761,10 +768,10 @@
         "red_concrete_powder",
         "red_sand",
         "sand",
-        "suspicious_gravel",
-        "suspicious_sand",
         "white_concrete_powder",
-        "yellow_concrete_powder"
+        "yellow_concrete_powder",
+        "suspicious_gravel",
+        "suspicious_sand"
     ],
     "black": [
         "black_candle",
@@ -1233,8 +1240,16 @@
         "snort_pottery_sherd",
         "arms_up_pottery_sherd"
     ],
-    "enchanting": ["chipped_anvil", "anvil", "damaged_anvil"],
-    "projectile": ["arrow", "spectral_arrow", "tipped_arrow"],
+    "enchanting": [
+        "chipped_anvil",
+        "anvil",
+        "damaged_anvil"
+    ],
+    "projectile": [
+        "arrow",
+        "spectral_arrow",
+        "tipped_arrow"
+    ],
     "bucket": [
         "bucket",
         "lava_bucket",
@@ -1262,7 +1277,11 @@
         "azalea",
         "flowering_azalea_leaves"
     ],
-    "potato": ["baked_potato", "poisonous_potato", "potato"],
+    "potato": [
+        "baked_potato",
+        "poisonous_potato",
+        "potato"
+    ],
     "bamboo": [
         "bamboo",
         "bamboo_block",
@@ -1285,8 +1304,13 @@
         "bamboo_trapdoor",
         "stripped_bamboo_block"
     ],
-    "unbreakable": ["bedrock"],
-    "bee": ["bee_nest", "beehive"],
+    "unbreakable": [
+        "bedrock"
+    ],
+    "bee": [
+        "bee_nest",
+        "beehive"
+    ],
     "requires_honey": [
         "beehive",
         "candle",
@@ -1338,7 +1362,12 @@
         "waxed_weathered_cut_copper_stairs",
         "waxed_weathered_lightning_rod"
     ],
-    "crop": ["beetroot", "carrot", "potato", "wheat"],
+    "crop": [
+        "beetroot",
+        "carrot",
+        "potato",
+        "wheat"
+    ],
     "seeds": [
         "beetroot_seeds",
         "melon_seeds",
@@ -1347,8 +1376,14 @@
         "torchflower_seeds",
         "wheat_seeds"
     ],
-    "soup": ["beetroot_soup"],
-    "beetroot": ["beetroot_seeds", "beetroot", "beetroot_soup"],
+    "soup": [
+        "beetroot_soup"
+    ],
+    "beetroot": [
+        "beetroot_seeds",
+        "beetroot",
+        "beetroot_soup"
+    ],
     "birch": [
         "birch_pressure_plate",
         "birch_planks",
@@ -1371,10 +1406,24 @@
         "stripped_birch_wood",
         "birch_hanging_sign"
     ],
-    "basalt": ["basalt", "polished_basalt", "smooth_basalt"],
-    "furnace": ["blast_furnace", "furnace", "smoker"],
-    "blaze": ["blaze_powder", "blaze_rod"],
-    "required_for_ender_eye": ["blaze_powder", "blaze_rod"],
+    "basalt": [
+        "basalt",
+        "polished_basalt",
+        "smooth_basalt"
+    ],
+    "furnace": [
+        "blast_furnace",
+        "furnace",
+        "smoker"
+    ],
+    "blaze": [
+        "blaze_powder",
+        "blaze_rod"
+    ],
+    "required_for_ender_eye": [
+        "blaze_powder",
+        "blaze_rod"
+    ],
     "blue": [
         "blue_bundle",
         "blue_bed",
@@ -1400,7 +1449,11 @@
         "sniffer_egg",
         "turtle_egg"
     ],
-    "ice": ["blue_ice", "ice", "packed_ice"],
+    "ice": [
+        "blue_ice",
+        "ice",
+        "packed_ice"
+    ],
     "armor_trim_smithing_template": [
         "rib_armor_trim_smithing_template",
         "bolt_armor_trim_smithing_template",
@@ -1421,9 +1474,21 @@
         "wayfinder_armor_trim_smithing_template",
         "wild_armor_trim_smithing_template"
     ],
-    "bone": ["bone", "bone_block", "bone_meal"],
-    "book": ["enchanted_book", "writable_book", "book", "written_book"],
-    "bookshelf": ["bookshelf", "chiseled_bookshelf"],
+    "bone": [
+        "bone",
+        "bone_block",
+        "bone_meal"
+    ],
+    "book": [
+        "enchanted_book",
+        "writable_book",
+        "book",
+        "written_book"
+    ],
+    "bookshelf": [
+        "bookshelf",
+        "chiseled_bookshelf"
+    ],
     "banner_pattern": [
         "bordure_indented_banner_pattern",
         "field_masoned_banner_pattern",
@@ -1480,7 +1545,9 @@
         "horn_coral_block",
         "tube_coral_block"
     ],
-    "breeze": ["breeze_rod"],
+    "breeze": [
+        "breeze_rod"
+    ],
     "brick": [
         "brick",
         "brick_slab",
@@ -1521,13 +1588,21 @@
         "red_mushroom_block"
     ],
     "amethyst": [
-        "budding_amethyst",
         "large_amethyst_bud",
         "medium_amethyst_bud",
-        "small_amethyst_bud"
+        "small_amethyst_bud",
+        "budding_amethyst"
     ],
-    "uncolored": ["bundle", "candle", "shulker_box", "terracotta"],
-    "cactus": ["cactus", "cactus_flower"],
+    "uncolored": [
+        "bundle",
+        "candle",
+        "shulker_box",
+        "terracotta"
+    ],
+    "cactus": [
+        "cactus",
+        "cactus_flower"
+    ],
     "sculk": [
         "sculk",
         "sculk_catalyst",
@@ -1535,8 +1610,14 @@
         "sculk_sensor",
         "sculk_shrieker"
     ],
-    "campfire": ["campfire", "soul_campfire"],
-    "carrot": ["carrot", "golden_carrot"],
+    "campfire": [
+        "campfire",
+        "soul_campfire"
+    ],
+    "carrot": [
+        "carrot",
+        "golden_carrot"
+    ],
     "fishing_rod": [
         "fishing_rod",
         "warped_fungus_on_a_stick",
@@ -1554,7 +1635,12 @@
         "smoker",
         "stonecutter"
     ],
-    "pumpkin": ["carved_pumpkin", "jack_o_lantern", "pumpkin", "pumpkin_seeds"],
+    "pumpkin": [
+        "carved_pumpkin",
+        "jack_o_lantern",
+        "pumpkin",
+        "pumpkin_seeds"
+    ],
     "command_block": [
         "chain_command_block",
         "command_block",
@@ -1570,10 +1656,6 @@
         "copper_helmet",
         "copper_leggings",
         "copper_boots",
-        "diamond_boots",
-        "diamond_chestplate",
-        "diamond_helmet",
-        "diamond_leggings",
         "golden_helmet",
         "golden_chestplate",
         "golden_boots",
@@ -1590,16 +1672,20 @@
         "netherite_chestplate",
         "netherite_boots",
         "netherite_leggings",
-        "turtle_helmet"
+        "turtle_helmet",
+        "diamond_boots",
+        "diamond_chestplate",
+        "diamond_helmet",
+        "diamond_leggings"
     ],
     "boots": [
         "chainmail_boots",
         "copper_boots",
-        "diamond_boots",
         "golden_boots",
         "iron_boots",
         "leather_boots",
-        "netherite_boots"
+        "netherite_boots",
+        "diamond_boots"
     ],
     "chainmail": [
         "chainmail_boots",
@@ -1610,30 +1696,30 @@
     "chestplate": [
         "chainmail_chestplate",
         "copper_chestplate",
-        "diamond_chestplate",
         "golden_chestplate",
         "iron_chestplate",
         "leather_chestplate",
-        "netherite_chestplate"
+        "netherite_chestplate",
+        "diamond_chestplate"
     ],
     "helmet": [
         "chainmail_helmet",
         "copper_helmet",
-        "diamond_helmet",
         "golden_helmet",
         "iron_helmet",
         "leather_helmet",
         "netherite_helmet",
-        "turtle_helmet"
+        "turtle_helmet",
+        "diamond_helmet"
     ],
     "leggings": [
         "chainmail_leggings",
         "copper_leggings",
-        "diamond_leggings",
         "golden_leggings",
         "iron_leggings",
         "leather_leggings",
-        "netherite_leggings"
+        "netherite_leggings",
+        "diamond_leggings"
     ],
     "coal": [
         "charcoal",
@@ -1683,8 +1769,15 @@
         "chest_minecart",
         "minecart"
     ],
-    "chicken": ["chicken", "cooked_chicken"],
-    "anvil": ["chipped_anvil", "anvil", "damaged_anvil"],
+    "chicken": [
+        "chicken",
+        "cooked_chicken"
+    ],
+    "anvil": [
+        "chipped_anvil",
+        "anvil",
+        "damaged_anvil"
+    ],
     "copper": [
         "copper_chain",
         "copper_chestplate",
@@ -1834,7 +1927,6 @@
         "chiseled_stone_bricks",
         "chiseled_tuff",
         "chiseled_tuff_bricks",
-        "infested_chiseled_stone_bricks",
         "chiseled_polished_blackstone",
         "chiseled_copper",
         "exposed_chiseled_copper",
@@ -1843,7 +1935,8 @@
         "waxed_exposed_chiseled_copper",
         "waxed_oxidized_chiseled_copper",
         "waxed_weathered_chiseled_copper",
-        "weathered_chiseled_copper"
+        "weathered_chiseled_copper",
+        "infested_chiseled_stone_bricks"
     ],
     "deepslate": [
         "chiseled_deepslate",
@@ -1862,12 +1955,12 @@
         "deepslate_tile_stairs",
         "deepslate_tile_wall",
         "deepslate_tiles",
-        "infested_deepslate",
         "polished_deepslate",
         "polished_deepslate_slab",
         "polished_deepslate_stairs",
         "polished_deepslate_wall",
-        "reinforced_deepslate"
+        "reinforced_deepslate",
+        "infested_deepslate"
     ],
     "nether_bricks": [
         "chiseled_nether_bricks",
@@ -1947,10 +2040,6 @@
     "stone_bricks": [
         "chiseled_stone_bricks",
         "cracked_stone_bricks",
-        "infested_chiseled_stone_bricks",
-        "infested_cracked_stone_bricks",
-        "infested_mossy_stone_bricks",
-        "infested_stone_bricks",
         "mossy_stone_brick_stairs",
         "mossy_stone_brick_slab",
         "mossy_stone_brick_wall",
@@ -1958,7 +2047,11 @@
         "stone_brick_slab",
         "stone_brick_stairs",
         "stone_brick_wall",
-        "stone_bricks"
+        "stone_bricks",
+        "infested_chiseled_stone_bricks",
+        "infested_cracked_stone_bricks",
+        "infested_mossy_stone_bricks",
+        "infested_stone_bricks"
     ],
     "stone": [
         "chiseled_stone_bricks",
@@ -1966,12 +2059,6 @@
         "cobblestone_stairs",
         "cobblestone_slab",
         "cobblestone_wall",
-        "infested_chiseled_stone_bricks",
-        "infested_cobblestone",
-        "infested_cracked_stone_bricks",
-        "infested_mossy_stone_bricks",
-        "infested_stone",
-        "infested_stone_bricks",
         "mossy_cobblestone_slab",
         "mossy_cobblestone",
         "mossy_cobblestone_wall",
@@ -1997,7 +2084,13 @@
         "stone_sword",
         "stone_axe",
         "stone_spear",
-        "wooden_spear"
+        "wooden_spear",
+        "infested_chiseled_stone_bricks",
+        "infested_cobblestone",
+        "infested_cracked_stone_bricks",
+        "infested_mossy_stone_bricks",
+        "infested_stone",
+        "infested_stone_bricks"
     ],
     "tuff": [
         "chiseled_tuff",
@@ -2018,30 +2111,35 @@
     "chorus": [
         "chorus_flower",
         "chorus_fruit",
-        "chorus_plant",
-        "popped_chorus_fruit"
+        "popped_chorus_fruit",
+        "chorus_plant"
     ],
-    "clay": ["clay", "clay_ball"],
-    "eyeblossom": ["closed_eyeblossom"],
+    "clay": [
+        "clay",
+        "clay_ball"
+    ],
+    "eyeblossom": [
+        "closed_eyeblossom"
+    ],
     "mineral": [
         "coal",
-        "diamond",
         "emerald",
         "flint",
         "gold_ingot",
         "iron_ingot",
         "lapis_lazuli",
         "quartz",
-        "redstone"
+        "redstone",
+        "diamond"
     ],
     "dirt": [
         "coarse_dirt",
         "dirt",
-        "dirt_path",
         "grass_block",
         "mycelium",
         "podzol",
-        "rooted_dirt"
+        "rooted_dirt",
+        "dirt_path"
     ],
     "cobbled": [
         "cobbled_deepslate",
@@ -2062,14 +2160,25 @@
         "cobblestone_stairs",
         "cobblestone_slab",
         "cobblestone_wall",
-        "infested_cobblestone",
         "mossy_cobblestone_slab",
         "mossy_cobblestone",
-        "mossy_cobblestone_wall"
+        "mossy_cobblestone_wall",
+        "infested_cobblestone"
     ],
-    "cocoa": ["cocoa_beans"],
-    "cod": ["cod", "cooked_cod"],
-    "fish": ["cod", "cooked_cod", "pufferfish", "salmon", "tropical_fish"],
+    "cocoa": [
+        "cocoa_beans"
+    ],
+    "cod": [
+        "cod",
+        "cooked_cod"
+    ],
+    "fish": [
+        "cod",
+        "cooked_cod",
+        "pufferfish",
+        "salmon",
+        "tropical_fish"
+    ],
     "cooked": [
         "cooked_beef",
         "cooked_chicken",
@@ -2079,11 +2188,28 @@
         "cooked_rabbit",
         "cooked_salmon"
     ],
-    "beef": ["cooked_beef", "beef"],
-    "mutton": ["cooked_mutton", "mutton"],
-    "porkchop": ["cooked_porkchop", "porkchop"],
-    "rabbit": ["cooked_rabbit", "rabbit", "rabbit_foot", "rabbit_hide"],
-    "salmon": ["cooked_salmon", "salmon"],
+    "beef": [
+        "cooked_beef",
+        "beef"
+    ],
+    "mutton": [
+        "cooked_mutton",
+        "mutton"
+    ],
+    "porkchop": [
+        "cooked_porkchop",
+        "porkchop"
+    ],
+    "rabbit": [
+        "cooked_rabbit",
+        "rabbit",
+        "rabbit_foot",
+        "rabbit_hide"
+    ],
+    "salmon": [
+        "cooked_salmon",
+        "salmon"
+    ],
     "copper_tools": [
         "copper_shovel",
         "copper_pickaxe",
@@ -2095,8 +2221,6 @@
     "tools": [
         "copper_shovel",
         "copper_pickaxe",
-        "diamond_pickaxe",
-        "diamond_shovel",
         "golden_pickaxe",
         "golden_shovel",
         "iron_pickaxe",
@@ -2109,41 +2233,43 @@
         "wooden_hoe",
         "stone_hoe",
         "copper_hoe",
-        "diamond_hoe",
         "golden_hoe",
         "iron_hoe",
         "netherite_hoe",
         "wooden_pickaxe",
         "wooden_shovel",
         "copper_sword",
-        "diamond_sword",
         "golden_sword",
         "iron_sword",
         "netherite_sword",
         "stone_sword",
         "wooden_sword",
         "copper_axe",
-        "diamond_axe",
         "iron_axe",
         "golden_axe",
         "netherite_axe",
         "stone_axe",
         "wooden_axe",
         "copper_spear",
-        "diamond_spear",
         "iron_spear",
         "golden_spear",
         "netherite_spear",
-        "stone_spear"
+        "stone_spear",
+        "diamond_axe",
+        "diamond_hoe",
+        "diamond_pickaxe",
+        "diamond_sword",
+        "diamond_shovel",
+        "diamond_spear"
     ],
     "axe": [
         "copper_axe",
-        "diamond_axe",
         "iron_axe",
         "golden_axe",
         "netherite_axe",
         "stone_axe",
-        "wooden_axe"
+        "wooden_axe",
+        "diamond_axe"
     ],
     "copper_bars": [
         "copper_bars",
@@ -2247,10 +2373,10 @@
         "wooden_hoe",
         "stone_hoe",
         "copper_hoe",
-        "diamond_hoe",
         "golden_hoe",
         "iron_hoe",
-        "netherite_hoe"
+        "netherite_hoe",
+        "diamond_hoe"
     ],
     "horse_armor": [
         "diamond_horse_armor",
@@ -2260,7 +2386,9 @@
         "leather_horse_armor",
         "netherite_horse_armor"
     ],
-    "ingot": ["copper_ingot"],
+    "ingot": [
+        "copper_ingot"
+    ],
     "lantern": [
         "copper_lantern",
         "exposed_copper_lantern",
@@ -2290,46 +2418,61 @@
         "iron_nautilus_armor",
         "netherite_nautilus_armor"
     ],
-    "nugget": ["copper_nugget", "gold_nugget", "iron_nugget"],
-    "copper_ore": ["copper_ore", "deepslate_copper_ore"],
-    "coal_ore": ["coal_ore", "deepslate_coal_ore"],
+    "nugget": [
+        "copper_nugget",
+        "gold_nugget",
+        "iron_nugget"
+    ],
+    "copper_ore": [
+        "copper_ore",
+        "deepslate_copper_ore"
+    ],
+    "coal_ore": [
+        "coal_ore",
+        "deepslate_coal_ore"
+    ],
     "pickaxe": [
         "copper_pickaxe",
-        "diamond_pickaxe",
         "golden_pickaxe",
         "iron_pickaxe",
         "netherite_pickaxe",
         "stone_pickaxe",
-        "wooden_pickaxe"
+        "wooden_pickaxe",
+        "diamond_pickaxe"
     ],
     "shovel": [
         "copper_shovel",
-        "diamond_shovel",
         "golden_shovel",
         "iron_shovel",
         "netherite_shovel",
         "stone_shovel",
-        "wooden_shovel"
+        "wooden_shovel",
+        "diamond_shovel"
     ],
     "spear": [
         "copper_spear",
-        "diamond_spear",
         "iron_spear",
         "golden_spear",
         "netherite_spear",
         "stone_spear",
-        "wooden_spear"
+        "wooden_spear",
+        "diamond_spear"
     ],
     "sword": [
         "copper_sword",
-        "diamond_sword",
         "golden_sword",
         "iron_sword",
         "netherite_sword",
         "stone_sword",
-        "wooden_sword"
+        "wooden_sword",
+        "diamond_sword"
     ],
-    "torch": ["copper_torch", "redstone_torch", "soul_torch", "torch"],
+    "torch": [
+        "copper_torch",
+        "redstone_torch",
+        "soul_torch",
+        "torch"
+    ],
     "deepslate_bricks": [
         "cracked_deepslate_bricks",
         "deepslate_brick_slab",
@@ -2342,8 +2485,8 @@
         "cracked_deepslate_tiles",
         "cracked_nether_bricks",
         "cracked_stone_bricks",
-        "infested_cracked_stone_bricks",
-        "cracked_polished_blackstone_bricks"
+        "cracked_polished_blackstone_bricks",
+        "infested_cracked_stone_bricks"
     ],
     "deepslate_tiles": [
         "cracked_deepslate_tiles",
@@ -2366,7 +2509,10 @@
         "polished_blackstone_brick_stairs",
         "polished_blackstone_brick_slab"
     ],
-    "crafting": ["crafting_table", "crafter"],
+    "crafting": [
+        "crafting_table",
+        "crafter"
+    ],
     "pale_oak": [
         "creaking_heart",
         "pale_oak_boat",
@@ -2425,7 +2571,10 @@
         "stripped_warped_hyphae",
         "warped_hyphae"
     ],
-    "nylium": ["crimson_nylium", "warped_nylium"],
+    "nylium": [
+        "crimson_nylium",
+        "warped_nylium"
+    ],
     "roots": [
         "crimson_roots",
         "hanging_roots",
@@ -2433,9 +2582,16 @@
         "muddy_mangrove_roots",
         "warped_roots"
     ],
-    "bow": ["crossbow"],
-    "can_fire_arrow": ["crossbow"],
-    "obsidian": ["crying_obsidian", "obsidian"],
+    "bow": [
+        "crossbow"
+    ],
+    "can_fire_arrow": [
+        "crossbow"
+    ],
+    "obsidian": [
+        "crying_obsidian",
+        "obsidian"
+    ],
     "cut_copper": [
         "cut_copper",
         "cut_copper_slab",
@@ -2623,30 +2779,36 @@
     ],
     "diamond": [
         "deepslate_diamond_ore",
-        "diamond",
+        "diamond_horse_armor",
+        "diamond_nautilus_armor",
+        "diamond_ore",
+        "diamond_axe",
         "diamond_block",
         "diamond_boots",
         "diamond_chestplate",
         "diamond_helmet",
-        "diamond_horse_armor",
-        "diamond_leggings",
-        "diamond_nautilus_armor",
-        "diamond_ore",
-        "diamond_pickaxe",
-        "diamond_shovel",
         "diamond_hoe",
+        "diamond_leggings",
+        "diamond_pickaxe",
         "diamond_sword",
-        "diamond_axe",
+        "diamond",
+        "diamond_shovel",
         "diamond_spear"
     ],
-    "diamond_ore": ["deepslate_diamond_ore", "diamond_ore"],
+    "diamond_ore": [
+        "deepslate_diamond_ore",
+        "diamond_ore"
+    ],
     "emerald": [
         "deepslate_emerald_ore",
         "emerald",
         "emerald_block",
         "emerald_ore"
     ],
-    "emerald_ore": ["deepslate_emerald_ore", "emerald_ore"],
+    "emerald_ore": [
+        "deepslate_emerald_ore",
+        "emerald_ore"
+    ],
     "gold": [
         "deepslate_gold_ore",
         "gold_block",
@@ -2667,7 +2829,11 @@
         "golden_axe",
         "golden_spear"
     ],
-    "gold_ore": ["deepslate_gold_ore", "gold_ore", "nether_gold_ore"],
+    "gold_ore": [
+        "deepslate_gold_ore",
+        "gold_ore",
+        "nether_gold_ore"
+    ],
     "iron": [
         "deepslate_iron_ore",
         "iron_bars",
@@ -2691,21 +2857,30 @@
         "iron_axe",
         "iron_spear"
     ],
-    "iron_ore": ["deepslate_iron_ore", "iron_ore"],
+    "iron_ore": [
+        "deepslate_iron_ore",
+        "iron_ore"
+    ],
     "lapis": [
         "deepslate_lapis_ore",
         "lapis_block",
         "lapis_lazuli",
         "lapis_ore"
     ],
-    "lapis_ore": ["deepslate_lapis_ore", "lapis_ore"],
-    "redstone_ore": ["deepslate_redstone_ore", "redstone_ore"],
+    "lapis_ore": [
+        "deepslate_lapis_ore",
+        "lapis_ore"
+    ],
+    "redstone_ore": [
+        "deepslate_redstone_ore",
+        "redstone_ore"
+    ],
     "diamond_tools": [
-        "diamond_pickaxe",
-        "diamond_shovel",
-        "diamond_hoe",
-        "diamond_sword",
         "diamond_axe",
+        "diamond_hoe",
+        "diamond_pickaxe",
+        "diamond_sword",
+        "diamond_shovel",
         "diamond_spear"
     ],
     "diamond_armor": [
@@ -2723,16 +2898,35 @@
         "polished_diorite_slab",
         "polished_diorite"
     ],
-    "potion": ["dragon_breath", "lingering_potion", "potion", "splash_potion"],
-    "dried_kelp": ["dried_kelp", "dried_kelp_block"],
-    "kelp": ["dried_kelp", "dried_kelp_block", "kelp"],
-    "golden_apple": ["enchanted_golden_apple"],
+    "potion": [
+        "dragon_breath",
+        "lingering_potion",
+        "potion",
+        "splash_potion"
+    ],
+    "dried_kelp": [
+        "dried_kelp",
+        "dried_kelp_block"
+    ],
+    "kelp": [
+        "dried_kelp",
+        "dried_kelp_block",
+        "kelp"
+    ],
+    "golden_apple": [
+        "enchanted_golden_apple"
+    ],
     "enchanted_in_inventory": [
         "enchanted_book",
         "enchanted_golden_apple",
         "nether_star"
     ],
-    "explosive": ["end_crystal", "respawn_anchor", "tnt", "tnt_minecart"],
+    "explosive": [
+        "end_crystal",
+        "respawn_anchor",
+        "tnt",
+        "tnt_minecart"
+    ],
     "end_stone": [
         "end_stone",
         "end_stone_brick_slab",
@@ -2816,14 +3010,39 @@
         "sugar",
         "turtle_helmet"
     ],
-    "can_make_fire": ["fire_charge", "flint_and_steel"],
-    "firework": ["firework_rocket", "firework_star"],
-    "pottery_sherd_breaking": ["flow_pottery_sherd", "scrape_pottery_sherd"],
-    "pot": ["decorated_pot", "flower_pot"],
-    "glass_pane": ["glass_pane"],
-    "melon": ["glistering_melon_slice", "melon", "melon_seeds", "melon_slice"],
-    "item_frame": ["glow_item_frame", "item_frame"],
-    "glowstone": ["glowstone", "glowstone_dust"],
+    "can_make_fire": [
+        "fire_charge",
+        "flint_and_steel"
+    ],
+    "firework": [
+        "firework_rocket",
+        "firework_star"
+    ],
+    "pottery_sherd_breaking": [
+        "flow_pottery_sherd",
+        "scrape_pottery_sherd"
+    ],
+    "pot": [
+        "decorated_pot",
+        "flower_pot"
+    ],
+    "glass_pane": [
+        "glass_pane"
+    ],
+    "melon": [
+        "glistering_melon_slice",
+        "melon",
+        "melon_seeds",
+        "melon_slice"
+    ],
+    "item_frame": [
+        "glow_item_frame",
+        "item_frame"
+    ],
+    "glowstone": [
+        "glowstone",
+        "glowstone_dust"
+    ],
     "golden_tools": [
         "golden_pickaxe",
         "golden_shovel",
@@ -2885,17 +3104,17 @@
         "infested_chiseled_stone_bricks",
         "infested_cobblestone",
         "infested_cracked_stone_bricks",
-        "infested_mossy_stone_bricks",
         "infested_deepslate",
+        "infested_mossy_stone_bricks",
         "infested_stone",
         "infested_stone_bricks"
     ],
     "mossy_stone": [
-        "infested_mossy_stone_bricks",
         "mossy_stone_brick_stairs",
         "mossy_stone_brick_slab",
         "mossy_stone_brick_wall",
-        "mossy_stone_bricks"
+        "mossy_stone_bricks",
+        "infested_mossy_stone_bricks"
     ],
     "iron_tools": [
         "iron_pickaxe",
@@ -2933,7 +3152,10 @@
         "stripped_jungle_log",
         "stripped_jungle_wood"
     ],
-    "fern": ["fern", "large_fern"],
+    "fern": [
+        "fern",
+        "large_fern"
+    ],
     "leather": [
         "leather",
         "leather_boots",
@@ -3040,8 +3262,14 @@
         "stripped_mangrove_log",
         "stripped_mangrove_wood"
     ],
-    "mangrove_roots": ["mangrove_roots", "muddy_mangrove_roots"],
-    "map": ["filled_map", "map"],
+    "mangrove_roots": [
+        "mangrove_roots",
+        "muddy_mangrove_roots"
+    ],
+    "map": [
+        "filled_map",
+        "map"
+    ],
     "moss": [
         "moss_block",
         "moss_carpet",
@@ -3061,14 +3289,20 @@
         "mossy_stone_brick_wall",
         "mossy_stone_bricks"
     ],
-    "mud": ["mud"],
+    "mud": [
+        "mud"
+    ],
     "mud_brick": [
         "mud_brick_stairs",
         "mud_brick_slab",
         "mud_brick_wall",
         "mud_bricks"
     ],
-    "stew": ["mushroom_stew", "rabbit_stew", "suspicious_stew"],
+    "stew": [
+        "mushroom_stew",
+        "rabbit_stew",
+        "suspicious_stew"
+    ],
     "music_disc": [
         "music_disc_13",
         "music_disc_11",
@@ -3115,8 +3349,13 @@
         "music_disc_tears",
         "music_disc_lava_chicken"
     ],
-    "nether_ore": ["nether_gold_ore", "nether_quartz_ore"],
-    "quartz_ore": ["nether_quartz_ore"],
+    "nether_ore": [
+        "nether_gold_ore",
+        "nether_quartz_ore"
+    ],
+    "quartz_ore": [
+        "nether_quartz_ore"
+    ],
     "warped": [
         "nether_sprouts",
         "stripped_warped_stem",
@@ -3140,8 +3379,15 @@
         "warped_trapdoor",
         "warped_wart_block"
     ],
-    "nether_wart": ["nether_wart", "warped_wart_block", "nether_wart_block"],
-    "nether_wart_block": ["warped_wart_block", "nether_wart_block"],
+    "nether_wart": [
+        "nether_wart",
+        "warped_wart_block",
+        "nether_wart_block"
+    ],
+    "nether_wart_block": [
+        "warped_wart_block",
+        "nether_wart_block"
+    ],
     "netherite": [
         "netherite_helmet",
         "netherite_chestplate",
@@ -3200,8 +3446,13 @@
         "pearlescent_froglight",
         "verdant_froglight"
     ],
-    "trial_key": ["trial_key", "ominous_trial_key"],
-    "eye_blossom": ["open_eyeblossom"],
+    "trial_key": [
+        "trial_key",
+        "ominous_trial_key"
+    ],
+    "eye_blossom": [
+        "open_eyeblossom"
+    ],
     "orange": [
         "orange_banner",
         "orange_bed",
@@ -3271,7 +3522,11 @@
         "weathered_copper_trapdoor",
         "weathered_lightning_rod"
     ],
-    "pale_moss": ["pale_hanging_moss", "pale_moss_block", "pale_moss_carpet"],
+    "pale_moss": [
+        "pale_hanging_moss",
+        "pale_moss_block",
+        "pale_moss_carpet"
+    ],
     "pink": [
         "pink_banner",
         "pink_bed",
@@ -3289,9 +3544,18 @@
         "pink_terracotta",
         "pink_wool"
     ],
-    "piston": ["piston", "sticky_piston"],
-    "pticher_plant": ["pitcher_plant", "pitcher_pod"],
-    "dripstone": ["dripstone_block", "pointed_dripstone"],
+    "piston": [
+        "piston",
+        "sticky_piston"
+    ],
+    "pticher_plant": [
+        "pitcher_plant",
+        "pitcher_pod"
+    ],
+    "dripstone": [
+        "dripstone_block",
+        "pointed_dripstone"
+    ],
     "polished": [
         "cracked_polished_blackstone_bricks",
         "polished_andesite",
@@ -3337,7 +3601,10 @@
         "polished_blackstone",
         "polished_blackstone_pressure_plate"
     ],
-    "stone_button": ["polished_blackstone_button", "stone_button"],
+    "stone_button": [
+        "polished_blackstone_button",
+        "stone_button"
+    ],
     "polished_deepslate": [
         "polished_deepslate",
         "polished_deepslate_slab",
@@ -3376,7 +3643,9 @@
         "prismarine_brick_stairs",
         "prismarine_bricks"
     ],
-    "pie": ["pumpkin_pie"],
+    "pie": [
+        "pumpkin_pie"
+    ],
     "purple": [
         "purple_banner",
         "purple_bed",
@@ -3394,8 +3663,15 @@
         "purple_terracotta",
         "purple_wool"
     ],
-    "purpur": ["purpur_block", "purpur_pillar", "purpur_slab", "purpur_stairs"],
-    "quartz_bricks": ["quartz_bricks"],
+    "purpur": [
+        "purpur_block",
+        "purpur_pillar",
+        "purpur_slab",
+        "purpur_stairs"
+    ],
+    "quartz_bricks": [
+        "quartz_bricks"
+    ],
     "raw_mineral": [
         "raw_copper_block",
         "raw_copper",
@@ -3409,10 +3685,22 @@
         "raw_gold_block",
         "raw_iron_block"
     ],
-    "raw_gold": ["raw_gold_block", "raw_gold"],
-    "raw_copper": ["raw_copper_block", "raw_copper"],
-    "raw_iron": ["raw_iron", "raw_iron_block"],
-    "compass": ["compass", "recovery_compass"],
+    "raw_gold": [
+        "raw_gold_block",
+        "raw_gold"
+    ],
+    "raw_copper": [
+        "raw_copper_block",
+        "raw_copper"
+    ],
+    "raw_iron": [
+        "raw_iron",
+        "raw_iron_block"
+    ],
+    "compass": [
+        "compass",
+        "recovery_compass"
+    ],
     "red": [
         "red_banner",
         "red_bed",
@@ -3436,20 +3724,50 @@
         "red_nether_brick_wall",
         "red_nether_bricks"
     ],
-    "sand": ["red_sand", "sand"],
-    "red_sand": ["red_sand"],
-    "tulip": ["orange_tulip", "red_tulip", "white_tulip"],
-    "redstone_dust": ["redstone", "redstone_block", "redstone_ore"],
-    "sculk_sensor": ["calibrated_sculk_sensor", "sculk_sensor"],
-    "grass": ["short_dry_grass", "short_grass", "tall_dry_grass", "tall_grass"],
-    "dry_grass": ["short_dry_grass", "tall_dry_grass"],
-    "slime": ["slime_ball", "slime_block"],
+    "sand": [
+        "red_sand",
+        "sand"
+    ],
+    "red_sand": [
+        "red_sand"
+    ],
+    "tulip": [
+        "orange_tulip",
+        "red_tulip",
+        "white_tulip"
+    ],
+    "redstone_dust": [
+        "redstone",
+        "redstone_block",
+        "redstone_ore"
+    ],
+    "sculk_sensor": [
+        "calibrated_sculk_sensor",
+        "sculk_sensor"
+    ],
+    "grass": [
+        "short_dry_grass",
+        "short_grass",
+        "tall_dry_grass",
+        "tall_grass"
+    ],
+    "dry_grass": [
+        "short_dry_grass",
+        "tall_dry_grass"
+    ],
+    "slime": [
+        "slime_ball",
+        "slime_block"
+    ],
     "amethyst_bud": [
         "large_amethyst_bud",
         "medium_amethyst_bud",
         "small_amethyst_bud"
     ],
-    "dripleaf": ["big_dripleaf", "small_dripleaf"],
+    "dripleaf": [
+        "big_dripleaf",
+        "small_dripleaf"
+    ],
     "smooth_quartz": [
         "smooth_quartz",
         "smooth_quartz_slab",
@@ -3465,9 +3783,20 @@
         "smooth_sandstone_stairs",
         "smooth_sandstone_slab"
     ],
-    "smooth_stone": ["smooth_stone_slab", "smooth_stone"],
-    "chicken_egg": ["blue_egg", "brown_egg", "egg"],
-    "snow": ["snowball", "snow_block", "snow"],
+    "smooth_stone": [
+        "smooth_stone_slab",
+        "smooth_stone"
+    ],
+    "chicken_egg": [
+        "blue_egg",
+        "brown_egg",
+        "egg"
+    ],
+    "snow": [
+        "snowball",
+        "snow_block",
+        "snow"
+    ],
     "soul": [
         "soul_campfire",
         "soul_lantern",
@@ -3475,11 +3804,26 @@
         "soul_soil",
         "soul_torch"
     ],
-    "wither_spawning": ["soul_sand", "soul_soil"],
-    "spawner": ["spawner", "trial_spawner"],
-    "arrow": ["arrow", "spectral_arrow", "tipped_arrow"],
-    "spider_eye": ["spider_eye"],
-    "sponge": ["sponge", "wet_sponge"],
+    "wither_spawning": [
+        "soul_sand",
+        "soul_soil"
+    ],
+    "spawner": [
+        "spawner",
+        "trial_spawner"
+    ],
+    "arrow": [
+        "arrow",
+        "spectral_arrow",
+        "tipped_arrow"
+    ],
+    "spider_eye": [
+        "spider_eye"
+    ],
+    "sponge": [
+        "sponge",
+        "wet_sponge"
+    ],
     "spruce": [
         "spruce_boat",
         "spruce_button",
@@ -3523,7 +3867,9 @@
         "stripped_spruce_log",
         "stripped_warped_stem"
     ],
-    "stripped_bamboo": ["stripped_bamboo_block"],
+    "stripped_bamboo": [
+        "stripped_bamboo_block"
+    ],
     "stripped_wood": [
         "stripped_acacia_wood",
         "stripped_birch_wood",
@@ -3537,18 +3883,39 @@
         "stripped_spruce_wood",
         "stripped_warped_hyphae"
     ],
-    "tall_grass": ["tall_dry_grass", "tall_grass"],
-    "test_block": ["test_block", "test_instance_block"],
-    "torchflower": ["torchflower", "torchflower_seeds"],
+    "tall_grass": [
+        "tall_dry_grass",
+        "tall_grass"
+    ],
+    "test_block": [
+        "test_block",
+        "test_instance_block"
+    ],
+    "torchflower": [
+        "torchflower",
+        "torchflower_seeds"
+    ],
     "tuff_bricks": [
         "tuff_brick_slab",
         "tuff_brick_wall",
         "tuff_brick_stairs",
         "tuff_bricks"
     ],
-    "turtle": ["turtle_egg", "turtle_helmet", "turtle_scute"],
-    "vines": ["glow_berries", "vine", "twisting_vines", "weeping_vines"],
-    "on_a_stick": ["warped_fungus_on_a_stick", "carrot_on_a_stick"],
+    "turtle": [
+        "turtle_egg",
+        "turtle_helmet",
+        "turtle_scute"
+    ],
+    "vines": [
+        "glow_berries",
+        "vine",
+        "twisting_vines",
+        "weeping_vines"
+    ],
+    "on_a_stick": [
+        "warped_fungus_on_a_stick",
+        "carrot_on_a_stick"
+    ],
     "water_bucket": [
         "axolotl_bucket",
         "cod_bucket",
@@ -3652,7 +4019,10 @@
         "weathered_cut_copper_stairs",
         "weathered_lightning_rod"
     ],
-    "wheat": ["wheat", "wheat_seeds"],
+    "wheat": [
+        "wheat",
+        "wheat_seeds"
+    ],
     "white": [
         "white_banner",
         "white_bed",
@@ -3670,7 +4040,9 @@
         "white_terracotta",
         "white_wool"
     ],
-    "wind_charge": ["wind_charge"],
+    "wind_charge": [
+        "wind_charge"
+    ],
     "wooden": [
         "wooden_hoe",
         "wooden_pickaxe",
@@ -3707,21 +4079,18 @@
     "weapon": [
         "bow",
         "copper_sword",
-        "diamond_sword",
         "golden_sword",
         "iron_sword",
         "netherite_sword",
         "stone_sword",
         "wooden_sword",
         "copper_axe",
-        "diamond_axe",
         "iron_axe",
         "golden_axe",
         "netherite_axe",
         "stone_axe",
         "wooden_axe",
         "copper_spear",
-        "diamond_spear",
         "mace",
         "iron_spear",
         "golden_spear",
@@ -3729,6 +4098,29 @@
         "stone_spear",
         "trident",
         "wooden_spear",
-        "crossbow"
+        "crossbow",
+        "diamond_axe",
+        "diamond_sword",
+        "diamond_spear"
+    ],
+    "breackable_unobtainable": [
+        "chorus_plant",
+        "budding_amethyst",
+        "frogspawn",
+        "end_portal_frame",
+        "dirt_path",
+        "infested_chiseled_stone_bricks",
+        "infested_cobblestone",
+        "infested_cracked_stone_bricks",
+        "infested_deepslate",
+        "infested_mossy_stone_bricks",
+        "infested_stone",
+        "infested_stone_bricks",
+        "spawner",
+        "suspicious_gravel",
+        "suspicious_sand",
+        "trial_spawner",
+        "vault",
+        "farmland"
     ]
 }
