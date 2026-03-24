@@ -43,7 +43,9 @@
         "waxed_weathered_copper_chest",
         "waxed_exposed_copper_chest",
         "exposed_copper_chest",
-        "weathered_copper_chest"
+        "weathered_copper_chest",
+        "white_bundle",
+        "yellow_bundle"
     ],
     "redstone": [
         "acacia_button",
@@ -579,7 +581,17 @@
         "villager_spawn_egg",
         "vindicator_spawn_egg",
         "wandering_trader_spawn_egg",
-        "warden_spawn_egg"
+        "warden_spawn_egg",
+        "witch_spawn_egg",
+        "wither_skeleton_spawn_egg",
+        "wither_spawn_egg",
+        "wolf_spawn_egg",
+        "zoglin_spawn_egg",
+        "zombie_horse_spawn_egg",
+        "zombie_nautilus_spawn_egg",
+        "zombie_spawn_egg",
+        "zombie_villager_spawn_egg",
+        "zombified_piglin_spawn_egg"
     ],
     "flower": [
         "allium",
@@ -603,7 +615,10 @@
         "rose_bush",
         "spore_blossom",
         "sunflower",
-        "torchflower"
+        "torchflower",
+        "white_tulip",
+        "wildflowers",
+        "wither_rose"
     ],
     "geode": [
         "amethyst_cluster",
@@ -708,7 +723,9 @@
         "orange_bundle",
         "pink_bundle",
         "purple_bundle",
-        "red_bundle"
+        "red_bundle",
+        "white_bundle",
+        "yellow_bundle"
     ],
     "candle": [
         "black_candle",
@@ -725,7 +742,9 @@
         "orange_candle",
         "pink_candle",
         "purple_candle",
-        "red_candle"
+        "red_candle",
+        "white_candle",
+        "yellow_candle"
     ],
     "gravity": [
         "black_concrete_powder",
@@ -749,7 +768,9 @@
         "red_sand",
         "sand",
         "suspicious_gravel",
-        "suspicious_sand"
+        "suspicious_sand",
+        "white_concrete_powder",
+        "yellow_concrete_powder"
     ],
     "black": [
         "black_candle",
@@ -782,7 +803,9 @@
         "orange_bed",
         "pink_bed",
         "purple_bed",
-        "red_bed"
+        "red_bed",
+        "white_bed",
+        "yellow_bed"
     ],
     "banner": [
         "black_banner",
@@ -798,7 +821,9 @@
         "orange_banner",
         "pink_banner",
         "purple_banner",
-        "red_banner"
+        "red_banner",
+        "white_banner",
+        "yellow_banner"
     ],
     "carpet": [
         "black_carpet",
@@ -816,7 +841,9 @@
         "pale_moss_carpet",
         "pink_carpet",
         "purple_carpet",
-        "red_carpet"
+        "red_carpet",
+        "white_carpet",
+        "yellow_carpet"
     ],
     "concrete": [
         "blue_concrete",
@@ -832,7 +859,9 @@
         "orange_concrete",
         "pink_concrete",
         "purple_concrete",
-        "red_concrete"
+        "red_concrete",
+        "white_concrete",
+        "yellow_concrete"
     ],
     "concrete_powder": [
         "black_concrete_powder",
@@ -848,7 +877,9 @@
         "orange_concrete_powder",
         "pink_concrete_powder",
         "purple_concrete_powder",
-        "red_concrete_powder"
+        "red_concrete_powder",
+        "white_concrete_powder",
+        "yellow_concrete_powder"
     ],
     "dye": [
         "black_dye",
@@ -864,7 +895,9 @@
         "orange_dye",
         "pink_dye",
         "purple_dye",
-        "red_dye"
+        "red_dye",
+        "white_dye",
+        "yellow_dye"
     ],
     "glazed_terracotta": [
         "blue_glazed_terracotta",
@@ -880,7 +913,9 @@
         "orange_glazed_terracotta",
         "pink_glazed_terracotta",
         "purple_glazed_terracotta",
-        "red_glazed_terracotta"
+        "red_glazed_terracotta",
+        "white_glazed_terracotta",
+        "yellow_glazed_terracotta"
     ],
     "shulker_box": [
         "black_shulker_box",
@@ -897,7 +932,9 @@
         "pink_shulker_box",
         "purple_shulker_box",
         "red_shulker_box",
-        "shulker_box"
+        "shulker_box",
+        "white_shulker_box",
+        "yellow_shulker_box"
     ],
     "harness": [
         "black_harness",
@@ -913,7 +950,9 @@
         "orange_harness",
         "pink_harness",
         "purple_harness",
-        "red_harness"
+        "red_harness",
+        "white_harness",
+        "yellow_harness"
     ],
     "stained_glass": [
         "black_stained_glass",
@@ -929,7 +968,9 @@
         "orange_stained_glass",
         "pink_stained_glass",
         "purple_stained_glass",
-        "red_stained_glass"
+        "red_stained_glass",
+        "white_stained_glass",
+        "yellow_stained_glass"
     ],
     "glass": [
         "black_stained_glass",
@@ -962,7 +1003,11 @@
         "purple_stained_glass_pane",
         "red_stained_glass",
         "red_stained_glass_pane",
-        "tinted_glass"
+        "tinted_glass",
+        "white_stained_glass",
+        "white_stained_glass_pane",
+        "yellow_stained_glass",
+        "yellow_stained_glass_pane"
     ],
     "stained_glass_pane": [
         "black_stained_glass_pane",
@@ -978,7 +1023,9 @@
         "orange_stained_glass_pane",
         "pink_stained_glass_pane",
         "purple_stained_glass_pane",
-        "red_stained_glass_pane"
+        "red_stained_glass_pane",
+        "white_stained_glass_pane",
+        "yellow_stained_glass_pane"
     ],
     "terracotta": [
         "black_terracotta",
@@ -995,7 +1042,9 @@
         "pink_terracotta",
         "purple_terracotta",
         "red_terracotta",
-        "terracotta"
+        "terracotta",
+        "white_terracotta",
+        "yellow_terracotta"
     ],
     "wool": [
         "black_wool",
@@ -1011,7 +1060,9 @@
         "lime_wool",
         "magenta_wool",
         "orange_wool",
-        "red_wool"
+        "red_wool",
+        "white_wool",
+        "yellow_wool"
     ],
     "blackstone": [
         "blackstone_wall",
@@ -1312,14 +1363,16 @@
     "crop": [
         "beetroot",
         "carrot",
-        "potato"
+        "potato",
+        "wheat"
     ],
     "seeds": [
         "beetroot_seeds",
         "melon_seeds",
         "pitcher_pod",
         "pumpkin_seeds",
-        "torchflower_seeds"
+        "torchflower_seeds",
+        "wheat_seeds"
     ],
     "soup": [
         "beetroot_soup"
@@ -1416,7 +1469,8 @@
         "tide_armor_trim_smithing_template",
         "vex_armor_trim_smithing_template",
         "ward_armor_trim_smithing_template",
-        "wayfinder_armor_trim_smithing_template"
+        "wayfinder_armor_trim_smithing_template",
+        "wild_armor_trim_smithing_template"
     ],
     "bone": [
         "bone",
@@ -1424,8 +1478,10 @@
         "bone_meal"
     ],
     "book": [
+        "enchanted_book",
+        "writable_book",
         "book",
-        "enchanted_book"
+        "written_book"
     ],
     "bookshelf": [
         "bookshelf",
@@ -1726,7 +1782,6 @@
         "copper_chestplate",
         "copper_golem_statue",
         "copper_helmet",
-        "copper_hoe",
         "copper_ingot",
         "copper_lantern",
         "copper_leggings",
@@ -1857,7 +1912,8 @@
         "weathered_cut_copper",
         "weathered_cut_copper_slab",
         "weathered_cut_copper_stairs",
-        "weathered_lightning_rod"
+        "weathered_lightning_rod",
+        "copper_hoe"
     ],
     "chiseled": [
         "chiseled_deepslate",
@@ -2024,14 +2080,15 @@
         "stone_brick_wall",
         "stone_bricks",
         "stone_button",
-        "stone_hoe",
         "stone_pickaxe",
         "stone_pressure_plate",
         "stone_shovel",
         "stone_slab",
         "stone_spear",
         "stone_stairs",
-        "stone_sword"
+        "stone_sword",
+        "stone_hoe",
+        "wooden_spear"
     ],
     "tuff": [
         "chiseled_tuff",
@@ -2153,50 +2210,55 @@
     ],
     "copper_tools": [
         "copper_axe",
-        "copper_hoe",
         "copper_spear",
         "copper_shovel",
         "copper_pickaxe",
-        "copper_sword"
+        "copper_sword",
+        "copper_hoe"
     ],
     "tools": [
         "copper_axe",
-        "copper_hoe",
         "copper_spear",
         "copper_shovel",
         "copper_pickaxe",
         "copper_sword",
         "diamond_axe",
-        "diamond_hoe",
         "diamond_pickaxe",
         "diamond_shovel",
         "diamond_spear",
         "diamond_sword",
         "golden_axe",
-        "golden_hoe",
         "golden_pickaxe",
         "golden_shovel",
         "golden_spear",
         "golden_sword",
         "iron_axe",
-        "iron_hoe",
         "iron_pickaxe",
         "iron_shovel",
         "iron_spear",
         "iron_sword",
         "netherite_axe",
-        "netherite_hoe",
         "netherite_pickaxe",
         "netherite_shovel",
         "netherite_spear",
         "netherite_sword",
         "shears",
         "stone_axe",
-        "stone_hoe",
         "stone_pickaxe",
         "stone_shovel",
         "stone_spear",
-        "stone_sword"
+        "stone_sword",
+        "wooden_axe",
+        "wooden_hoe",
+        "stone_hoe",
+        "copper_hoe",
+        "diamond_hoe",
+        "golden_hoe",
+        "iron_hoe",
+        "netherite_hoe",
+        "wooden_pickaxe",
+        "wooden_shovel",
+        "wooden_sword"
     ],
     "axe": [
         "copper_axe",
@@ -2204,7 +2266,8 @@
         "golden_axe",
         "iron_axe",
         "netherite_axe",
-        "stone_axe"
+        "stone_axe",
+        "wooden_axe"
     ],
     "copper_bars": [
         "copper_bars",
@@ -2305,12 +2368,13 @@
         "weathered_copper_grate"
     ],
     "hoe": [
+        "wooden_hoe",
+        "stone_hoe",
         "copper_hoe",
         "diamond_hoe",
         "golden_hoe",
         "iron_hoe",
-        "netherite_hoe",
-        "stone_hoe"
+        "netherite_hoe"
     ],
     "horse_armor": [
         "diamond_horse_armor",
@@ -2371,7 +2435,8 @@
         "golden_pickaxe",
         "iron_pickaxe",
         "netherite_pickaxe",
-        "stone_pickaxe"
+        "stone_pickaxe",
+        "wooden_pickaxe"
     ],
     "shovel": [
         "copper_shovel",
@@ -2379,7 +2444,8 @@
         "golden_shovel",
         "iron_shovel",
         "netherite_shovel",
-        "stone_shovel"
+        "stone_shovel",
+        "wooden_shovel"
     ],
     "spear": [
         "copper_spear",
@@ -2387,7 +2453,8 @@
         "golden_spear",
         "iron_spear",
         "netherite_spear",
-        "stone_spear"
+        "stone_spear",
+        "wooden_spear"
     ],
     "sword": [
         "copper_sword",
@@ -2395,7 +2462,8 @@
         "golden_sword",
         "iron_sword",
         "netherite_sword",
-        "stone_sword"
+        "stone_sword",
+        "wooden_sword"
     ],
     "torch": [
         "copper_torch",
@@ -2469,7 +2537,9 @@
     "mob_head": [
         "creeper_head",
         "piglin_head",
-        "skeleton_skull"
+        "skeleton_skull",
+        "wither_skeleton_skull",
+        "zombie_head"
     ],
     "crimson": [
         "crimson_button",
@@ -2713,7 +2783,6 @@
         "diamond_boots",
         "diamond_chestplate",
         "diamond_helmet",
-        "diamond_hoe",
         "diamond_horse_armor",
         "diamond_leggings",
         "diamond_nautilus_armor",
@@ -2721,7 +2790,8 @@
         "diamond_pickaxe",
         "diamond_shovel",
         "diamond_spear",
-        "diamond_sword"
+        "diamond_sword",
+        "diamond_hoe"
     ],
     "diamond_ore": [
         "deepslate_diamond_ore",
@@ -2747,7 +2817,6 @@
         "golden_helmet",
         "golden_chestplate",
         "golden_boots",
-        "golden_hoe",
         "golden_horse_armor",
         "golden_leggings",
         "golden_nautilus_armor",
@@ -2755,7 +2824,8 @@
         "golden_shovel",
         "golden_spear",
         "golden_sword",
-        "nether_gold_ore"
+        "nether_gold_ore",
+        "golden_hoe"
     ],
     "gold_ore": [
         "deepslate_gold_ore",
@@ -2772,7 +2842,6 @@
         "iron_boots",
         "iron_door",
         "iron_helmet",
-        "iron_hoe",
         "iron_horse_armor",
         "iron_ingot",
         "iron_leggings",
@@ -2783,7 +2852,8 @@
         "iron_spear",
         "iron_sword",
         "iron_trapdoor",
-        "iron_ore"
+        "iron_ore",
+        "iron_hoe"
     ],
     "iron_ore": [
         "deepslate_iron_ore",
@@ -2805,11 +2875,11 @@
     ],
     "diamond_tools": [
         "diamond_axe",
-        "diamond_hoe",
         "diamond_pickaxe",
         "diamond_shovel",
         "diamond_spear",
-        "diamond_sword"
+        "diamond_sword",
+        "diamond_hoe"
     ],
     "diamond_armor": [
         "diamond_boots",
@@ -2973,11 +3043,11 @@
     ],
     "golden_tools": [
         "golden_axe",
-        "golden_hoe",
         "golden_pickaxe",
         "golden_shovel",
         "golden_spear",
-        "golden_sword"
+        "golden_sword",
+        "golden_hoe"
     ],
     "golden_armor": [
         "golden_helmet",
@@ -3046,11 +3116,11 @@
     ],
     "iron_tools": [
         "iron_axe",
-        "iron_hoe",
         "iron_pickaxe",
         "iron_shovel",
         "iron_spear",
-        "iron_sword"
+        "iron_sword",
+        "iron_hoe"
     ],
     "iron_armor": [
         "iron_chestplate",
@@ -3322,7 +3392,6 @@
         "netherite_boots",
         "netherite_block",
         "netherite_axe",
-        "netherite_hoe",
         "netherite_horse_armor",
         "netherite_ingot",
         "netherite_leggings",
@@ -3331,15 +3400,16 @@
         "netherite_scrap",
         "netherite_shovel",
         "netherite_spear",
-        "netherite_sword"
+        "netherite_sword",
+        "netherite_hoe"
     ],
     "netherite_tools": [
         "netherite_axe",
-        "netherite_hoe",
         "netherite_pickaxe",
         "netherite_shovel",
         "netherite_spear",
-        "netherite_sword"
+        "netherite_sword",
+        "netherite_hoe"
     ],
     "netherite_armor": [
         "netherite_helmet",
@@ -3661,7 +3731,8 @@
     ],
     "tulip": [
         "orange_tulip",
-        "red_tulip"
+        "red_tulip",
+        "white_tulip"
     ],
     "redstone_dust": [
         "redstone",
@@ -3748,7 +3819,8 @@
         "spider_eye"
     ],
     "sponge": [
-        "sponge"
+        "sponge",
+        "wet_sponge"
     ],
     "spruce": [
         "spruce_boat",
@@ -3774,11 +3846,11 @@
     ],
     "stone_tools": [
         "stone_axe",
-        "stone_hoe",
         "stone_pickaxe",
         "stone_shovel",
         "stone_spear",
-        "stone_sword"
+        "stone_sword",
+        "stone_hoe"
     ],
     "stripped_log": [
         "stripped_acacia_log",
@@ -3834,8 +3906,9 @@
     ],
     "vines": [
         "glow_berries",
+        "vine",
         "twisting_vines",
-        "vine"
+        "weeping_vines"
     ],
     "on_a_stick": [
         "warped_fungus_on_a_stick",
@@ -3943,5 +4016,62 @@
         "weathered_cut_copper_slab",
         "weathered_cut_copper_stairs",
         "weathered_lightning_rod"
+    ],
+    "wheat": [
+        "wheat",
+        "wheat_seeds"
+    ],
+    "white": [
+        "white_banner",
+        "white_bed",
+        "white_bundle",
+        "white_candle",
+        "white_carpet",
+        "white_concrete",
+        "white_concrete_powder",
+        "white_dye",
+        "white_glazed_terracotta",
+        "white_harness",
+        "white_shulker_box",
+        "white_stained_glass",
+        "white_stained_glass_pane",
+        "white_terracotta",
+        "white_wool"
+    ],
+    "wind_charge": [
+        "wind_charge"
+    ],
+    "wooden": [
+        "wooden_axe",
+        "wooden_hoe",
+        "wooden_pickaxe",
+        "wooden_shovel",
+        "wooden_spear",
+        "wooden_sword"
+    ],
+    "wooden_tools": [
+        "wooden_axe",
+        "wooden_hoe",
+        "wooden_pickaxe",
+        "wooden_shovel",
+        "wooden_spear",
+        "wooden_sword"
+    ],
+    "yellow": [
+        "yellow_banner",
+        "yellow_bed",
+        "yellow_bundle",
+        "yellow_candle",
+        "yellow_carpet",
+        "yellow_concrete",
+        "yellow_concrete_powder",
+        "yellow_dye",
+        "yellow_glazed_terracotta",
+        "yellow_harness",
+        "yellow_shulker_box",
+        "yellow_stained_glass",
+        "yellow_stained_glass_pane",
+        "yellow_terracotta",
+        "yellow_wool"
     ]
 }
