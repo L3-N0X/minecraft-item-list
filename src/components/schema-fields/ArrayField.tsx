@@ -1,24 +1,24 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { Plus, Trash2 } from "lucide-react";
-import { validationBorderColorClass } from "../schemaValidation";
-import type { ValidationEntry } from "../schemaValidation";
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { Plus, Trash2 } from 'lucide-react'
+import { validationBorderColorClass } from '../schemaValidation'
+import type { ValidationEntry } from '../schemaValidation'
 
 export interface ArrayFieldProps {
-    path: (string | number)[];
-    value: any;
-    label: string;
-    fieldSchema: any;
-    onFieldChange: (path: (string | number)[], value: any) => void;
-    validationEntry?: ValidationEntry;
-    getChildErr: (path: (string | number)[]) => ValidationEntry | undefined;
+    path: (string | number)[]
+    value: any
+    label: string
+    fieldSchema: any
+    onFieldChange: (path: (string | number)[], value: any) => void
+    validationEntry?: ValidationEntry
+    getChildErr: (path: (string | number)[]) => ValidationEntry | undefined
     renderChildren: (
         properties: any,
         currentPath: (string | number)[],
         currentData: any,
-        parentRequired?: string[],
-    ) => React.ReactNode;
+        parentRequired?: string[]
+    ) => React.ReactNode
 }
 
 export function ArrayField({
@@ -31,54 +31,68 @@ export function ArrayField({
     getChildErr,
     renderChildren,
 }: ArrayFieldProps) {
-    const arrayItems: any[] = Array.isArray(value) ? value : [];
-    const itemFieldSchema = fieldSchema.items;
-    const itemParentRequired: string[] | undefined = Array.isArray(itemFieldSchema?.required)
+    const arrayItems: any[] = Array.isArray(value) ? value : []
+    const itemFieldSchema = fieldSchema.items
+    const itemParentRequired: string[] | undefined = Array.isArray(
+        itemFieldSchema?.required
+    )
         ? itemFieldSchema.required
-        : undefined;
+        : undefined
 
     const handleAddItem = () => {
-        onFieldChange(path, [...arrayItems, {}]);
-    };
+        onFieldChange(path, [...arrayItems, {}])
+    }
 
     const handleRemoveItem = (index: number) => {
-        const next = arrayItems.filter((_, i) => i !== index);
-        onFieldChange(path, next.length > 0 ? next : undefined);
-    };
+        const next = arrayItems.filter((_, i) => i !== index)
+        onFieldChange(path, next.length > 0 ? next : undefined)
+    }
 
     return (
         <div className="space-y-3 md:col-span-2">
             <div className="flex items-center gap-3">
-                <h4 className="font-bold text-sm text-primary uppercase tracking-wider">{label}</h4>
+                <h4 className="font-bold text-sm text-primary uppercase tracking-wider">
+                    {label}
+                </h4>
                 <div className="h-px flex-1 bg-muted" />
                 {validationEntry && (
                     <span
                         className={cn(
-                            "text-xs font-normal",
-                            validationEntry.severity === "error" ? "text-red-400" : "text-yellow-500/90",
+                            'text-xs font-normal',
+                            validationEntry.severity === 'error'
+                                ? 'text-red-400'
+                                : 'text-yellow-500/90'
                         )}
                     >
                         {validationEntry.message}
                     </span>
                 )}
-                <Button type="button" size="sm" variant="outline" className="h-7 px-2 text-xs gap-1" onClick={handleAddItem}>
+                <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className="h-7 px-2 text-xs gap-1"
+                    onClick={handleAddItem}
+                >
                     <Plus className="h-3 w-3" />
                     Add
                 </Button>
             </div>
             {arrayItems.length === 0 && (
-                <p className="text-xs text-muted-foreground italic px-1">No entries yet — click Add to create one.</p>
+                <p className="text-xs text-muted-foreground italic px-1">
+                    No entries yet — click Add to create one.
+                </p>
             )}
             <div className="space-y-3">
                 {arrayItems.map((item: any, index: number) => {
-                    const itemPath = [...path, index];
-                    const itemErr = getChildErr(itemPath);
+                    const itemPath = [...path, index]
+                    const itemErr = getChildErr(itemPath)
                     return (
                         <div
                             key={index}
                             className={cn(
-                                "p-3 border-2 rounded-lg bg-card shadow-sm space-y-4",
-                                validationBorderColorClass(itemErr),
+                                'p-3 border-2 rounded-lg bg-card shadow-sm space-y-4',
+                                validationBorderColorClass(itemErr)
                             )}
                         >
                             <div className="flex items-center justify-between gap-2">
@@ -88,8 +102,10 @@ export function ArrayField({
                                 {itemErr && (
                                     <span
                                         className={cn(
-                                            "text-xs flex-1",
-                                            itemErr.severity === "error" ? "text-red-400" : "text-yellow-500/90",
+                                            'text-xs flex-1',
+                                            itemErr.severity === 'error'
+                                                ? 'text-red-400'
+                                                : 'text-yellow-500/90'
                                         )}
                                     >
                                         {itemErr.message}
@@ -106,12 +122,17 @@ export function ArrayField({
                                 </Button>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {renderChildren(itemFieldSchema.properties, itemPath, item, itemParentRequired)}
+                                {renderChildren(
+                                    itemFieldSchema.properties,
+                                    itemPath,
+                                    item,
+                                    itemParentRequired
+                                )}
                             </div>
                         </div>
-                    );
+                    )
                 })}
             </div>
         </div>
-    );
+    )
 }
