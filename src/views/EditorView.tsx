@@ -146,11 +146,11 @@ export function EditorView() {
                 <CardHeader className="border-b bg-muted/30">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center gap-4">
-                            <div className="w-16 h-16 bg-background rounded-md border flex items-center justify-center p-2">
+                            <div className="w-16 h-16 bg-card/60 rounded-md border flex items-center justify-center p-2">
                                 <img
                                     src={`/renders/${items[id]?.isBlock ? 'blocks' : 'items'}/${id}.png`}
                                     alt=""
-                                    className="w-full h-full object-contain image-pixelated"
+                                    className="w-full h-full object-contain"
                                     onError={(e) => {
                                         if (
                                             e.currentTarget.src.includes(
@@ -166,7 +166,7 @@ export function EditorView() {
                                 />
                             </div>
                             <div>
-                                <CardTitle className="text-3xl font-mono">
+                                <CardTitle className="text-2xl font-mono">
                                     {id}
                                 </CardTitle>
                                 <p className="text-sm text-muted-foreground mt-1">
@@ -174,88 +174,89 @@ export function EditorView() {
                                 </p>
                             </div>
                         </div>
-
-                        <Dialog
-                            open={isCopyDialogOpen}
-                            onOpenChange={setIsCopyDialogOpen}
-                        >
-                            <DialogTrigger asChild>
-                                <Button variant="outline">
-                                    <CopyIcon className="mr-2 h-4 w-4" />
-                                    Copy from Item
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent className="sm:max-w-150">
-                                <form
-                                    className="contents"
-                                    onSubmit={(e) => {
-                                        e.preventDefault()
-                                        handleCopy()
-                                    }}
-                                >
-                                    <DialogHeader>
-                                        <DialogTitle>
-                                            Copy details from another item
-                                        </DialogTitle>
-                                        <DialogDescription>
-                                            Select an item to copy its
-                                            properties and categories. Names and
-                                            textures will not be copied.
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <div className="py-6">
-                                        <Label
-                                            htmlFor="source-item"
-                                            className="mb-2 block"
-                                        >
-                                            Source Item
-                                        </Label>
-                                        <ItemSelector
-                                            items={itemIds.filter(
-                                                (itemId) => itemId !== id
-                                            )}
-                                            selectedItem={sourceItemId}
-                                            onSelect={(newId) => {
-                                                setSourceItemId(newId)
-                                                // After selection, focus the copy button so the next Enter confirms
-                                                setTimeout(
-                                                    () =>
-                                                        copyButtonRef.current?.focus(),
-                                                    50
-                                                )
-                                            }}
-                                            autoOpen={true}
-                                            onConfirm={handleCopy}
-                                        />
-                                    </div>
-                                    <DialogFooter>
-                                        <Button
-                                            variant="outline"
-                                            type="button"
-                                            onClick={() =>
-                                                setIsCopyDialogOpen(false)
-                                            }
-                                        >
-                                            Cancel
-                                        </Button>
-                                        <Button
-                                            ref={copyButtonRef}
-                                            type="submit"
-                                            disabled={!sourceItemId}
-                                        >
-                                            Copy Details
-                                        </Button>
-                                    </DialogFooter>
-                                </form>
-                            </DialogContent>
-                        </Dialog>
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-8">
                     <div className="space-y-2 pb-6 border-b">
-                        <Label className="text-lg font-semibold">
-                            Categories
-                        </Label>
+                        <div className="flex">
+                            <Label className="text-lg font-semibold flex-1">
+                                Categories
+                            </Label>
+                            <Dialog
+                                open={isCopyDialogOpen}
+                                onOpenChange={setIsCopyDialogOpen}
+                            >
+                                <DialogTrigger asChild>
+                                    <Button variant="outline">
+                                        <CopyIcon className="mr-2 h-4 w-4" />
+                                        Copy from Item
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent className="sm:max-w-150">
+                                    <form
+                                        className="contents"
+                                        onSubmit={(e) => {
+                                            e.preventDefault()
+                                            handleCopy()
+                                        }}
+                                    >
+                                        <DialogHeader>
+                                            <DialogTitle>
+                                                Copy details from another item
+                                            </DialogTitle>
+                                            <DialogDescription>
+                                                Select an item to copy its
+                                                properties and categories. Names
+                                                and textures will not be copied.
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="py-6">
+                                            <Label
+                                                htmlFor="source-item"
+                                                className="mb-2 block"
+                                            >
+                                                Source Item
+                                            </Label>
+                                            <ItemSelector
+                                                items={itemIds.filter(
+                                                    (itemId) => itemId !== id
+                                                )}
+                                                selectedItem={sourceItemId}
+                                                onSelect={(newId) => {
+                                                    setSourceItemId(newId)
+                                                    // After selection, focus the copy button so the next Enter confirms
+                                                    setTimeout(
+                                                        () =>
+                                                            copyButtonRef.current?.focus(),
+                                                        50
+                                                    )
+                                                }}
+                                                autoOpen={true}
+                                                onConfirm={handleCopy}
+                                            />
+                                        </div>
+                                        <DialogFooter>
+                                            <Button
+                                                variant="outline"
+                                                type="button"
+                                                onClick={() =>
+                                                    setIsCopyDialogOpen(false)
+                                                }
+                                            >
+                                                Cancel
+                                            </Button>
+                                            <Button
+                                                ref={copyButtonRef}
+                                                type="submit"
+                                                disabled={!sourceItemId}
+                                            >
+                                                Copy Details
+                                            </Button>
+                                        </DialogFooter>
+                                    </form>
+                                </DialogContent>
+                            </Dialog>
+                        </div>
                         <CategorySelector
                             selectedCategories={itemCategories}
                             onChange={(newCats) =>
@@ -263,7 +264,6 @@ export function EditorView() {
                             }
                         />
                     </div>
-
                     <SchemaForm
                         data={currentItem}
                         onChange={(newData) =>

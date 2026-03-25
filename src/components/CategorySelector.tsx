@@ -61,7 +61,7 @@ export function CategorySelector({
                 {selectedCategories.map((category) => (
                     <Badge
                         key={category}
-                        variant="secondary"
+                        variant="outline"
                         className="flex items-center gap-1"
                     >
                         {category}

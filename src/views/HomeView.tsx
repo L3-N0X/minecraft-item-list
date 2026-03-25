@@ -1,8 +1,15 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react'
 import { useData, type ItemData } from '../context/DataContext'
 import { Input } from '@/components/ui/input'
-import { Search, X } from 'lucide-react'
 import { Card } from '@/components/ui/card'
+import { Kbd, KbdGroup } from '@/components/ui/kbd'
+import {
+    ArrowUpIcon,
+    ArrowDownIcon,
+    MagnifyingGlassIcon,
+    XIcon,
+    CaretRightIcon,
+} from '@phosphor-icons/react'
 
 export function HomeView() {
     const { items, itemIds } = useData()
@@ -10,6 +17,7 @@ export function HomeView() {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
     const inputRef = useRef<HTMLInputElement>(null)
+    const scrollContainerRef = useRef<HTMLDivElement>(null)
 
     // Global Ctrl+K handler
     useEffect(() => {
@@ -76,15 +84,32 @@ export function HomeView() {
         return results.slice(0, 50)
     }, [search, items, itemIds])
 
+    // Scroll selected item into view
+    useEffect(() => {
+        if (scrollContainerRef.current && filteredResults.length > 0) {
+            const selectedElement = scrollContainerRef.current.children[
+                selectedIndex
+            ] as HTMLElement
+            if (selectedElement) {
+                selectedElement.scrollIntoView({
+                    block: 'nearest',
+                    behavior: 'smooth',
+                })
+            }
+        }
+    }, [selectedIndex, filteredResults])
+
     // Reset selection when search changes
     useEffect(() => {
         setSelectedIndex(0)
+        // Auto-select if there is exactly one result
         if (filteredResults.length === 1 && filteredResults[0] !== undefined) {
             setSelectedItemId(filteredResults[0].id)
-        } else {
+        } else if (search.trim() === '') {
+            // Only clear selection if search is empty
             setSelectedItemId(null)
         }
-    }, [search, filteredResults])
+    }, [search, filteredResults.length])
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (filteredResults.length === 0) return
@@ -111,96 +136,151 @@ export function HomeView() {
     }
 
     const selectedItem = selectedItemId ? items[selectedItemId] : null
+    const isSearching = search.trim().length > 0
 
     return (
         <div
-            className={`flex flex-col items-center transition-all duration-500 ease-in-out ${selectedItemId ? 'pt-4' : 'pt-[15vh]'} min-h-[85vh] gap-6 max-w-2xl mx-auto px-4`}
+            className={`flex flex-col items-center transition-all duration-500 ease-in-out ${selectedItemId || isSearching ? 'pt-0' : 'pt-[8vh]'} min-h-[85vh] gap-3 max-w-2xl mx-auto px-4`}
         >
-            <div
-                className={`w-full space-y-4 transition-all duration-500 ${selectedItemId ? 'scale-95 opacity-80' : ''}`}
-            >
-                {!selectedItemId && (
-                    <div className="space-y-1 text-center animate-in fade-in slide-in-from-top-4 duration-500">
-                        <h1 className="text-3xl font-extrabold tracking-tight">
+            <div className="w-full space-y-4">
+                <div
+                    className={`flex flex-col items-center space-y-4 text-center transition-all duration-500 ease-in-out ${
+                        selectedItemId || isSearching
+                            ? 'h-0 opacity-0 pointer-events-none -translate-y-4 overflow-hidden'
+                            : 'h-auto opacity-100'
+                    }`}
+                >
+                    <div className="space-y-1">
+                        <h1 className="text-4xl font-black tracking-tight">
                             MC Item Search
                         </h1>
-                        <p className="text-muted-foreground text-sm">
+                        <p className="text-muted-foreground text-base">
                             Type to find, arrows to navigate, Enter to select.
                         </p>
                     </div>
-                )}
+                </div>
 
                 <div className="relative group">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                    <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors z-20 pointer-events-none" />
                     <Input
                         ref={inputRef}
                         type="text"
-                        placeholder="Search items... (Ctrl+K)"
-                        className="pl-11 h-12 text-lg rounded-xl shadow-md border-primary/10 focus-visible:ring-primary bg-background/50 backdrop-blur-sm"
+                        placeholder="Search items..."
+                        className="h-14 text-2xl pl-12 pr-12 rounded-2xl shadow-xl border-primary/20 focus-visible:ring-primary bg-background/60 backdrop-blur-xl transition-all duration-300 group-focus-within:shadow-primary/10 relative z-10"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         onKeyDown={handleKeyDown}
                     />
-                    {search && (
+                    {search ? (
                         <button
                             onClick={() => {
                                 setSearch('')
                                 setSelectedItemId(null)
+                                inputRef.current?.focus()
                             }}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-1 hover:bg-muted rounded-full transition-colors z-20"
                         >
-                            <X className="h-4 w-4" />
+                            <XIcon className="h-5 w-5" />
                         </button>
+                    ) : (
+                        <KbdGroup className="absolute right-4 top-1/2 -translate-y-1/2 z-20">
+                            <Kbd className="text-sm p-2">Ctrl</Kbd>
+                            <Kbd className="text-sm p-2">K</Kbd>
+                        </KbdGroup>
                     )}
                 </div>
             </div>
 
             {search && !selectedItemId && (
-                <div className="w-full animate-in fade-in slide-in-from-top-2 duration-300">
+                <div className="w-full animate-in fade-in slide-in-from-top-2 duration-500 flex flex-col">
                     {filteredResults.length > 0 ? (
-                        <div className="space-y-1">
-                            {filteredResults.map(({ id, item }, index) => (
-                                <Card
-                                    key={id}
-                                    onClick={() => setSelectedItemId(id)}
-                                    onMouseEnter={() => setSelectedIndex(index)}
-                                    className={`group px-3 py-1.5 flex items-center hover:bg-primary/5 transition-all cursor-pointer border-muted shadow-sm ${
-                                        selectedIndex === index
-                                            ? 'ring-2 ring-primary border-primary/50 bg-primary/5'
-                                            : ''
-                                    }`}
+                        <>
+                            <div className="relative z-20 rounded-2xl border border-white/10 bg-background/40 backdrop-blur-xl shadow-2xl overflow-hidden">
+                                <div
+                                    ref={scrollContainerRef}
+                                    className="max-h-[55vh] overflow-y-auto"
                                 >
-                                    <div className="grid grid-cols-[40px_1fr] items-center gap-3 w-full">
-                                        <div className="flex justify-center p-1 rounded bg-muted/30 group-hover:bg-primary/10 transition-colors">
-                                            <img
-                                                src={`/renders/${item.isBlock ? 'blocks' : 'items'}/${id}.png`}
-                                                alt=""
-                                                className="h-7 w-7 object-contain image-pixelated"
-                                                onError={(e) => {
-                                                    const target =
-                                                        e.currentTarget
-                                                    if (
-                                                        target.src.includes(
-                                                            '/blocks/'
-                                                        )
-                                                    ) {
-                                                        target.src = `/renders/items/${id}.png`
-                                                    } else {
-                                                        target.src =
-                                                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                                    }
+                                    {filteredResults.map(
+                                        ({ id, item }, index) => (
+                                            <div
+                                                key={id}
+                                                onClick={() => {
+                                                    setSelectedIndex(index)
+                                                    setSelectedItemId(id)
                                                 }}
-                                            />
-                                        </div>
-                                        <span className="font-bold text-sm truncate text-left">
-                                            {item.displayName}
-                                        </span>
+                                                className={`group px-4 py-2 flex items-center gap-4 transition-all cursor-pointer border-b border-white/5 last:border-b-0 ${
+                                                    selectedIndex === index
+                                                        ? 'bg-primary/20'
+                                                        : 'hover:bg-white/10'
+                                                }`}
+                                            >
+                                                <div className="shrink-0 w-8 h-8 flex items-center justify-center">
+                                                    <img
+                                                        src={`/renders/${item.isBlock ? 'blocks' : 'items'}/${id}.png`}
+                                                        alt=""
+                                                        className="h-8 w-8 object-contain image-pixelated"
+                                                        onError={(e) => {
+                                                            const target =
+                                                                e.currentTarget
+                                                            if (
+                                                                target.src.includes(
+                                                                    '/blocks/'
+                                                                )
+                                                            ) {
+                                                                target.src = `/renders/items/${id}.png`
+                                                            } else {
+                                                                target.src =
+                                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                                            }
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="flex flex-col min-w-0">
+                                                    <span
+                                                        className={`font-bold text-lg leading-tight truncate transition-colors ${selectedIndex === index ? 'text-primary' : 'text-foreground/90 group-hover:text-foreground'}`}
+                                                    >
+                                                        {item.displayName}
+                                                    </span>
+                                                    <span className="text-[11px] font-mono text-muted-foreground truncate opacity-70">
+                                                        {id.replace(
+                                                            'minecraft:',
+                                                            ''
+                                                        )}
+                                                    </span>
+                                                </div>
+                                                {selectedIndex === index && (
+                                                    <div className="ml-auto text-primary">
+                                                        <CaretRightIcon className="h-4 w-4" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                            <div className="z-10 -mt-3 pt-5 pb-2.5 px-6 rounded-b-2xl border-x border-b border-white/10 bg-black/40 backdrop-blur-xl flex justify-end items-center gap-4 text-[10px] text-muted-foreground font-bold uppercase tracking-widest">
+                                <div className="flex items-center gap-2">
+                                    <div className="flex gap-1">
+                                        <Kbd className="text-[9px] bg-white/5 border-white/10 py-0 px-1.5">
+                                            <ArrowUpIcon className="h-3 w-3" />
+                                        </Kbd>
+                                        <Kbd className="text-[9px] bg-white/5 border-white/10 py-0 px-1.5">
+                                            <ArrowDownIcon className="h-3 w-3" />
+                                        </Kbd>
                                     </div>
-                                </Card>
-                            ))}
-                        </div>
+                                    <span>Select</span>
+                                </div>
+                                <span className="opacity-20 text-xs">|</span>
+                                <div className="flex items-center gap-2">
+                                    <Kbd className="text-[9px] bg-white/5 border-white/10 py-0 px-1.5">
+                                        Enter
+                                    </Kbd>
+                                    <span>Open</span>
+                                </div>
+                            </div>
+                        </>
                     ) : (
-                        <div className="text-center py-12 bg-muted/20 rounded-2xl border-dashed border-2">
+                        <div className="text-center py-12 bg-background/20 backdrop-blur-md rounded-2xl border-dashed border-2 border-white/10">
                             <p className="text-muted-foreground italic">
                                 No matches found for "{search}"
                             </p>
@@ -211,13 +291,22 @@ export function HomeView() {
 
             {selectedItemId && selectedItem && (
                 <div className="w-full animate-in fade-in zoom-in slide-in-from-bottom-8 duration-500 flex-1">
-                    <Card className="h-full border-2 border-primary/10 bg-primary/5 rounded-3xl p-8 flex flex-col items-center gap-6 shadow-2xl overflow-auto">
-                        <div className="flex items-center gap-6 w-full max-w-3xl border-b pb-6">
-                            <div className="p-6 bg-background rounded-2xl shadow-inner border">
+                    <Card className="h-full border-2 border-primary/10 bg-background/40 backdrop-blur-xl rounded-3xl p-8 flex flex-col items-center gap-6 shadow-2xl overflow-auto">
+                        <div className="flex items-center gap-6 w-full max-w-3xl border-b border-white/10 pb-6">
+                            <div className="p-6 bg-background/40 backdrop-blur-md rounded-2xl shadow-inner border border-white/10">
                                 <img
                                     src={`/renders/${selectedItem.isBlock ? 'blocks' : 'items'}/${selectedItemId}.png`}
                                     alt={selectedItem.displayName}
                                     className="h-24 w-24 object-contain image-pixelated"
+                                    onError={(e) => {
+                                        const target = e.currentTarget
+                                        if (target.src.includes('/blocks/')) {
+                                            target.src = `/renders/items/${selectedItemId}.png`
+                                        } else {
+                                            target.src =
+                                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                        }
+                                    }}
                                 />
                             </div>
                             <div className="flex flex-col gap-1">
@@ -237,7 +326,7 @@ export function HomeView() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
                             {/* Placeholder for more specific item data */}
-                            <div className="col-span-full py-20 flex flex-col items-center justify-center text-muted-foreground border-2 border-dashed rounded-2xl bg-background/50">
+                            <div className="col-span-full py-20 flex flex-col items-center justify-center text-muted-foreground border-2 border-dashed border-white/10 rounded-2xl bg-background/20">
                                 <p className="text-lg font-medium">
                                     Detailed item statistics and properties
                                 </p>

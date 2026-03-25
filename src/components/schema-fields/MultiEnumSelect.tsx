@@ -56,7 +56,7 @@ export function MultiEnumSelect({
                 {selectedValues.map((item) => (
                     <Badge
                         key={item}
-                        variant="secondary"
+                        variant="outline"
                         className="flex items-center gap-1 py-0.5"
                     >
                         {item}

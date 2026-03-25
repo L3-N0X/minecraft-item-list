@@ -109,6 +109,7 @@ import {
     CommandList,
     CommandSeparator,
 } from '@/components/ui/command'
+import { PencilIcon } from '@phosphor-icons/react'
 
 interface DataTableFacetedFilterProps<TData, TValue> {
     column?: Column<TData, TValue>
@@ -143,7 +144,7 @@ const DataTableFacetedFilter = function DataTableFacetedFilter<TData, TValue>({
                                 className="mx-2 h-4"
                             />
                             <Badge
-                                variant="secondary"
+                                variant="outline"
                                 className="rounded-sm px-1 font-normal lg:hidden"
                             >
                                 {selectedValues.size}
@@ -151,7 +152,7 @@ const DataTableFacetedFilter = function DataTableFacetedFilter<TData, TValue>({
                             <div className="hidden space-x-1 lg:flex">
                                 {selectedValues.size > 2 ? (
                                     <Badge
-                                        variant="secondary"
+                                        variant="outline"
                                         className="rounded-sm px-1 font-normal"
                                     >
                                         {selectedValues.size} selected
@@ -163,7 +164,7 @@ const DataTableFacetedFilter = function DataTableFacetedFilter<TData, TValue>({
                                         )
                                         .map((option) => (
                                             <Badge
-                                                variant="secondary"
+                                                variant="outline"
                                                 key={option.value}
                                                 className="rounded-sm px-1 font-normal"
                                             >
@@ -664,7 +665,7 @@ export function BulkEditorView() {
                             {cats.map((cat) => (
                                 <Badge
                                     key={cat}
-                                    variant="secondary"
+                                    variant="outline"
                                     className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
                                 >
                                     {cat}
@@ -1141,7 +1142,6 @@ export function BulkEditorView() {
                     </div>
                     <Button
                         variant="outline"
-                        size="sm"
                         onClick={toggleAllFiltered}
                         className="hidden sm:flex"
                     >
@@ -1153,11 +1153,7 @@ export function BulkEditorView() {
                     </Button>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="ml-auto"
-                            >
+                            <Button variant="outline" className="ml-auto">
                                 <Settings2 className="mr-2 h-4 w-4" />
                                 Columns
                             </Button>
@@ -1184,26 +1180,25 @@ export function BulkEditorView() {
                     </DropdownMenu>
                 </div>
 
-                <div className="ml-2">
-                    {selectedCount > 0 && (
-                        <Button
-                            variant="default"
-                            size="sm"
-                            onClick={() => setIsBulkDialogOpen(true)}
-                        >
-                            <Settings2 className="mr-2 h-4 w-4" />
-                            Bulk Edit ({selectedCount})
-                        </Button>
-                    )}
-                </div>
+                {selectedCount > 0 && (
+                    <Button
+                        variant="default"
+                        className="ml-2"
+                        size="sm"
+                        onClick={() => setIsBulkDialogOpen(true)}
+                    >
+                        <PencilIcon className="mr-2 h-4 w-4" />
+                        Bulk Edit ({selectedCount})
+                    </Button>
+                )}
             </div>
 
             <div
-                className="rounded-md border overflow-auto relative flex-1"
+                className="rounded-md border bg-background/40 overflow-auto relative flex-1"
                 ref={tableContainerRef}
             >
                 <Table className="table-fixed min-w-full">
-                    <TableHeader className="sticky top-0 bg-background z-10 shadow-sm">
+                    <TableHeader className="sticky top-0 bg-background/80 z-10 shadow-sm">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
