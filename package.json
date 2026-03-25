@@ -25,6 +25,7 @@
         "@tanstack/react-table": "^8.21.3",
         "@tanstack/react-virtual": "^3.13.23",
         "ajv": "^8.18.0",
+        "bun-react-template": ".",
         "canvas": "^3.2.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",

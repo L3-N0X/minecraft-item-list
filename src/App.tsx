@@ -4,8 +4,9 @@ import { DataProvider, useData } from './context/DataContext'
 import { ListView } from './views/ListView'
 import { EditorView } from './views/EditorView'
 import { BulkEditorView } from './views/BulkEditorView'
+import { HomeView } from './views/HomeView'
 import { Button } from '@/components/ui/button'
-import { Download, Copy, Table as TableIcon } from 'lucide-react'
+import { Download, Copy, Table as TableIcon, List as ListIcon, Search as SearchIcon } from 'lucide-react'
 import { ThemeProvider } from './components/theme-provider'
 import { ThemeToggle } from './components/ThemeToggle'
 import { Link } from 'react-router-dom'
@@ -36,8 +37,16 @@ function Layout({ children }: { children: React.ReactNode }) {
                         <div className="hidden md:flex items-center gap-4">
                             <Link
                                 to="/"
-                                className="text-sm font-medium hover:text-primary transition-colors"
+                                className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
                             >
+                                <SearchIcon className="h-3 w-3" />
+                                Search
+                            </Link>
+                            <Link
+                                to="/list"
+                                className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                            >
+                                <ListIcon className="h-3 w-3" />
                                 List
                             </Link>
                             <Link
@@ -83,7 +92,8 @@ export function App() {
                 <BrowserRouter>
                     <Layout>
                         <Routes>
-                            <Route path="/" element={<ListView />} />
+                            <Route path="/" element={<HomeView />} />
+                            <Route path="/list" element={<ListView />} />
                             <Route path="/edit/:id" element={<EditorView />} />
                             <Route path="/bulk" element={<BulkEditorView />} />
                         </Routes>
