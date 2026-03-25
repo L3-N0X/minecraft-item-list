@@ -6,16 +6,16 @@ import { EditorView } from './views/EditorView'
 import { BulkEditorView } from './views/BulkEditorView'
 import { HomeView } from './views/HomeView'
 import { Button } from '@/components/ui/button'
-import {
-    Download,
-    Table as TableIcon,
-    List as ListIcon,
-    Search as SearchIcon,
-} from 'lucide-react'
 import { ThemeProvider } from './components/theme-provider'
 import { ThemeToggle } from './components/ThemeToggle'
 import { Link } from 'react-router-dom'
 import './index.css'
+import {
+    DownloadIcon,
+    GridFourIcon,
+    ListIcon,
+    MagnifyingGlassIcon,
+} from '@phosphor-icons/react'
 
 function Layout({ children }: { children: React.ReactNode }) {
     // const { items } = useData()
@@ -35,32 +35,58 @@ function Layout({ children }: { children: React.ReactNode }) {
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-6">
                         <Link to="/" className="flex items-center gap-2">
+                            <img
+                                src="public/logo.png"
+                                alt="Logo"
+                                className="h-6 w-6"
+                            />
                             <span className="font-bold text-xl tracking-tight">
                                 MC Item List
                             </span>
                         </Link>
                         <div className="hidden md:flex items-center gap-4">
-                            <Link
-                                to="/"
-                                className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                asChild
+                                className="px-3 h-9"
                             >
-                                <SearchIcon className="h-3 w-3" />
-                                Search
-                            </Link>
-                            <Link
-                                to="/list"
-                                className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                                <Link
+                                    to="/"
+                                    className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                                >
+                                    <MagnifyingGlassIcon className="h-5 w-5" />
+                                    Search
+                                </Link>
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                asChild
+                                className="px-3 h-9"
                             >
-                                <ListIcon className="h-3 w-3" />
-                                List
-                            </Link>
-                            <Link
-                                to="/bulk"
-                                className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                                <Link
+                                    to="/list"
+                                    className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                                >
+                                    <ListIcon className="h-5 w-5" />
+                                    List
+                                </Link>
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                asChild
+                                className="px-3 h-9"
                             >
-                                <TableIcon className="h-3 w-3" />
-                                Bulk Editor
-                            </Link>
+                                <Link
+                                    to="/bulk"
+                                    className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                                >
+                                    <GridFourIcon className="h-5 w-5" />
+                                    Bulk Editor
+                                </Link>
+                            </Button>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -70,7 +96,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                             size="sm"
                             onClick={downloadJson}
                         >
-                            <Download className="mr-2 h-4 w-4" />
+                            <DownloadIcon className="mr-2 h-4 w-4" />
                             Download
                         </Button>
                     </div>

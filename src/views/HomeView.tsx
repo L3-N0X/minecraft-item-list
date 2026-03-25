@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react'
 import { useData, type ItemData } from '../context/DataContext'
 import { Input } from '@/components/ui/input'
-import { Card } from '@/components/ui/card'
 import { ItemDetailPanel } from '@/components/ItemDetailPanel'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import {
@@ -10,6 +9,7 @@ import {
     MagnifyingGlassIcon,
     XIcon,
     CaretRightIcon,
+    SmileyXEyesIcon,
 } from '@phosphor-icons/react'
 
 export function HomeView() {
@@ -367,8 +367,15 @@ export function HomeView() {
                         </>
                     ) : (
                         <div className="text-center py-12 bg-background/20 backdrop-blur-md rounded-2xl border-dashed border-2 border-white/10">
-                            <p className="text-muted-foreground italic">
-                                No matches found for "{search}"
+                            <SmileyXEyesIcon
+                                weight="duotone"
+                                className="mx-auto mb-4 h-16 w-16 text-muted-foreground"
+                            />
+                            <p className="text-muted-foreground">
+                                No results were found for
+                            </p>
+                            <p className="text-xl font-mono text-muted-foreground/80 mt-3">
+                                "{search}"
                             </p>
                         </div>
                     )}
@@ -378,45 +385,12 @@ export function HomeView() {
             <div className="w-full">
                 {selectedItemId && selectedItem && (
                     <div className="w-full animate-in fade-in zoom-in slide-in-from-bottom-8 duration-500 flex-1">
-                        <Card className="h-full border-2 border-primary/10 bg-background/40 backdrop-blur-xl rounded-3xl p-8 flex flex-col items-center gap-6 shadow-2xl overflow-auto">
-                            <div className="flex items-center gap-6 w-full max-w-3xl border-b border-white/10 pb-6">
-                                <div className="p-6 bg-background/40 backdrop-blur-md rounded-2xl shadow-inner border border-white/10">
-                                    <img
-                                        src={`/renders/${selectedItem.isBlock ? 'blocks' : 'items'}/${selectedItemId}.png`}
-                                        alt={selectedItem.displayName}
-                                        className="h-24 w-24 object-contain image-pixelated"
-                                        onError={(e) => {
-                                            const target = e.currentTarget
-                                            if (
-                                                target.src.includes('/blocks/')
-                                            ) {
-                                                target.src = `/renders/items/${selectedItemId}.png`
-                                            } else {
-                                                target.src =
-                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                            }
-                                        }}
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                    <h2 className="text-4xl font-black tracking-tight">
-                                        {selectedItem.displayName}
-                                    </h2>
-                                    <p className="text-xl font-mono text-muted-foreground">
-                                        {selectedItemId}
-                                    </p>
-                                    {selectedItem.displayNameGerman && (
-                                        <p className="text-lg text-muted-foreground/80 italic">
-                                            {selectedItem.displayNameGerman}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
+                        <div className="h-full rounded-3xl p-2 flex flex-col items-center overflow-auto">
                             <ItemDetailPanel
                                 item={selectedItem}
                                 itemId={selectedItemId}
                             />
-                        </Card>
+                        </div>
                     </div>
                 )}
             </div>
