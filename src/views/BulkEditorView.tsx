@@ -51,7 +51,6 @@ type TableRowData = {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
-    Table,
     TableBody,
     TableCell,
     TableHead,
@@ -301,7 +300,7 @@ const SortableHeader = <TData,>({
 const YesNoCell = React.memo(
     ({
         value,
-        trueColor = 'text-green-500',
+        trueColor = 'dark:text-green-400 text-green-800',
     }: {
         value: boolean
         trueColor?: string
@@ -739,7 +738,7 @@ export function BulkEditorView() {
                 cell: ({ row }) => (
                     <YesNoCell
                         value={row.getValue('hasLoot') as boolean}
-                        trueColor="text-emerald-500"
+                        trueColor="dark:text-green-400 text-green-600"
                     />
                 ),
                 filterFn: binaryFilterFn,
@@ -758,7 +757,7 @@ export function BulkEditorView() {
                 cell: ({ row }) => (
                     <YesNoCell
                         value={row.getValue('requiresSilkTouch') as boolean}
-                        trueColor="text-blue-500"
+                        trueColor="dark:text-blue-400 text-blue-600"
                     />
                 ),
                 filterFn: binaryFilterFn,
@@ -864,10 +863,10 @@ export function BulkEditorView() {
                             className={cn(
                                 'text-[10px] rounded-sm',
                                 renewable === 'yes'
-                                    ? 'border-green-500 text-green-500'
+                                    ? 'border-green-700 text-green-800 dark:border-green-400 dark:text-green-400'
                                     : renewable === 'vault_only'
-                                      ? 'border-blue-500 text-blue-500'
-                                      : 'border-red-500 text-red-500'
+                                      ? 'border-blue-700 text-blue-800 dark:border-blue-400 dark:text-blue-400'
+                                      : 'border-red-700 text-red-800 dark:border-red-400 dark:text-red-400'
                             )}
                         >
                             {renewable === 'vault_only' ? 'Vault' : renewable}
@@ -913,11 +912,11 @@ export function BulkEditorView() {
                 cell: ({ row }) => {
                     const rarity = row.getValue('rarityTier') as RarityTier
                     const colors: Record<string, string> = {
-                        common: 'bg-gray-500/10 text-gray-500',
+                        common: 'dark:bg-gray-500/10 dark:text-gray-500 bg-white/10 text-gray-800 dark:border-gray-400 border-gray-700',
                         uncommon:
-                            'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400',
-                        rare: 'bg-blue-500/10 text-blue-500',
-                        epic: 'bg-purple-500/10 text-purple-500',
+                            'dark:bg-yellow-500/10 dark:text-yellow-400 bg-yellow-100/10 text-yellow-800 border-yellow-700 dark:border-yellow-500',
+                        rare: 'dark:bg-blue-500/10 dark:text-blue-400 bg-blue-100/10 text-blue-800 border-blue-700 dark:border-blue-500',
+                        epic: 'dark:bg-purple-500/10 dark:text-purple-400 bg-purple-100/10 text-purple-800 border-purple-700 dark:border-purple-500',
                     }
                     return (
                         <Badge
@@ -1197,8 +1196,10 @@ export function BulkEditorView() {
                 className="rounded-md border bg-background/40 overflow-auto relative flex-1"
                 ref={tableContainerRef}
             >
-                <Table className="table-fixed min-w-full">
-                    <TableHeader className="sticky top-0 bg-background/80 z-10 shadow-sm">
+                {/* <Table className="table-fixed min-w-full">
+                 */}
+                <table className="w-full caption-bottom text-sm table-fixed min-w-full">
+                    <TableHeader className="sticky top-0 z-10 shadow-sm bg-background">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
@@ -1276,7 +1277,7 @@ export function BulkEditorView() {
                             </TableRow>
                         )}
                     </TableBody>
-                </Table>
+                </table>
             </div>
 
             <div className="flex items-center justify-between shrink-0 py-2">

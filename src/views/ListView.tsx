@@ -85,7 +85,7 @@ function ItemRow({ id }: { id: string }) {
                     ))}
                 </div>
             </TableCell>
-            <TableCell className="text-right">
+            <TableCell>
                 {errorCount > 0 ? (
                     <Badge
                         variant="destructive"
@@ -96,7 +96,7 @@ function ItemRow({ id }: { id: string }) {
                 ) : (
                     <Badge
                         variant="outline"
-                        className="text-[12px] px-2 py-0.5 h-auto gap-1 text-emerald-600 dark:text-emerald-400 border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950/40"
+                        className="text-[12px] px-2 py-0.5 h-auto gap-1 text-emerald-800 dark:text-emerald-400 border-emerald-700 dark:border-emerald-700 bg-emerald-100/30 dark:bg-emerald-950/40"
                     >
                         <CheckCircle2 className="h-3.5 w-3.5" />
                         OK
@@ -239,7 +239,7 @@ export function ListView() {
                                     <TableHead className="min-w-35">
                                         Categories
                                     </TableHead>
-                                    <TableHead className="text-right w-20">
+                                    <TableHead className="w-20">
                                         Issues
                                     </TableHead>
                                 </TableRow>
