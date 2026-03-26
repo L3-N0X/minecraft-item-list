@@ -129,7 +129,7 @@
 
 .dark {
     --background: oklch(14.479% 0.00002 271.152);
-    --foreground: oklch(0.985 0 0);
+    --foreground: oklch(0.975 0 0);
     --card: oklch(0.205 0 0);
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(19.955% 0.01586 149.004);
@@ -232,9 +232,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        opacity: 0.05;
+        opacity: 0.03;
         z-index: 1;
         pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.99' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
     }
 }

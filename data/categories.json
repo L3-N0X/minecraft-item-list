@@ -752,7 +752,6 @@
         "blue_concrete_powder",
         "brown_concrete_powder",
         "chipped_anvil",
-        "anvil",
         "damaged_anvil",
         "cyan_concrete_powder",
         "gravel",
@@ -771,7 +770,8 @@
         "white_concrete_powder",
         "yellow_concrete_powder",
         "suspicious_gravel",
-        "suspicious_sand"
+        "suspicious_sand",
+        "anvil"
     ],
     "black": [
         "black_candle",
@@ -1242,8 +1242,8 @@
     ],
     "enchanting": [
         "chipped_anvil",
-        "anvil",
-        "damaged_anvil"
+        "damaged_anvil",
+        "anvil"
     ],
     "projectile": [
         "arrow",
@@ -1775,8 +1775,8 @@
     ],
     "anvil": [
         "chipped_anvil",
-        "anvil",
-        "damaged_anvil"
+        "damaged_anvil",
+        "anvil"
     ],
     "copper": [
         "copper_chain",
