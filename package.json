@@ -10,7 +10,7 @@
         "build": "vite build",
         "start": "NODE_ENV=production bun src/index.ts",
         "init-data": "bun scripts/init-data.ts",
-        "lint": "eslint .",
+        "lint": "concurrently \"tsc -b --noEmit\" \"eslint . --ext .ts,.tsx\"",
         "format": "bunx prettier --write ."
     },
     "dependencies": {

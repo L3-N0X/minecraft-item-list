@@ -26,10 +26,7 @@ interface ExistingData {
     [key: string]: unknown
 }
 
-interface ItemList {
-    length: number
-    [index: number]: string
-}
+type ItemList = string[]
 
 async function fetchJSON<T>(url: string): Promise<T | null> {
     const response = await fetch(url)

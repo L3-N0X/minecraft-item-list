@@ -38,9 +38,11 @@ interface SchemaRoot {
 export const itemSchema: {
     definitions: Record<string, JsonSchemaProperty>
     properties: Record<string, JsonSchemaProperty>
+    required?: string[]
 } = {
-    definitions: (schema as SchemaRoot).definitions,
-    ...(schema as SchemaRoot).properties.items.additionalProperties,
+    definitions: (schema as any).definitions,
+    properties: (schema as any).properties.items.additionalProperties.properties,
+    required: (schema as any).properties.items.additionalProperties.required,
 }
 
 const validateAjv = ajv.compile(itemSchema)
