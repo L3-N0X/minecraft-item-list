@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { ItemData } from '@/context/DataContext'
 import { useData } from '@/context/DataContext'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card'
-import { InfoIcon, SmileySadIcon } from '@phosphor-icons/react'
+import { InfoIcon, SmileySadIcon, ArrowsClockwise } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 
 interface ItemDetailPanelProps {
@@ -118,6 +118,103 @@ function GlassPanel({
     )
 }
 
+function FlippableGlassPanel({
+    children,
+    comment,
+    className,
+    contentClassName,
+    title,
+}: {
+    children: React.ReactNode
+    comment?: string
+    className?: string
+    contentClassName?: string
+    title?: string
+}) {
+    const [isFlipped, setIsFlipped] = useState(false)
+
+    if (!comment) {
+        return (
+            <GlassPanel
+                className={className}
+                contentClassName={contentClassName}
+                title={title}
+            >
+                {children}
+            </GlassPanel>
+        )
+    }
+
+    return (
+        <div
+            className={cn('relative perspective-1000', className)}
+            style={{ perspective: '1000px' }}
+        >
+            <div
+                className={cn(
+                    'relative w-full h-full transition-transform duration-500 transform-style-3d cursor-pointer',
+                    isFlipped && 'rotate-y-180'
+                )}
+                style={{
+                    transformStyle: 'preserve-3d',
+                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                }}
+                onClick={() => setIsFlipped(!isFlipped)}
+            >
+                {/* Front */}
+                {!isFlipped && (
+                    <div
+                        className="absolute w-full h-full backface-hidden"
+                        style={{ backfaceVisibility: 'hidden' }}
+                    >
+                        <GlassPanel
+                            className="h-full hover:scale-[1.01] transition-transform"
+                            contentClassName={contentClassName}
+                            title={title}
+                        >
+                            {children}
+                            <div className="absolute top-2 right-2">
+                                <ArrowsClockwise
+                                    className="w-4 h-4 text-muted-foreground/40 hover:text-muted-foreground/70 transition-colors"
+                                    weight="bold"
+                                />
+                            </div>
+                        </GlassPanel>
+                    </div>
+                )}
+
+                {/* Back */}
+                {isFlipped && (
+                    <div
+                        className="absolute w-full h-full backface-hidden"
+                        style={{
+                            backfaceVisibility: 'hidden',
+                            transform: 'rotateY(180deg)',
+                        }}
+                    >
+                        <GlassPanel className="h-full" title={title}>
+                            <div className="flex-1 flex flex-col items-center justify-center p-6 gap-3">
+                                <InfoIcon className="w-8 h-8 text-muted-foreground/60" />
+                                <p className="text-sm text-muted-foreground/80 text-center leading-relaxed">
+                                    {comment}
+                                </p>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="mt-2 text-xs"
+                                >
+                                    <ArrowsClockwise className="w-3 h-3 mr-1" />
+                                    Flip Back
+                                </Button>
+                            </div>
+                        </GlassPanel>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+}
+
 function FoodBar({
     hunger,
     className,
@@ -212,11 +309,91 @@ function ItemIcon({ item }: { item: string }) {
     )
 }
 
+function BiomeIcon({ biome }: { biome: string }) {
+    return (
+        <div className="flex flex-col items-center gap-1 p-1.5" title={biome}>
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden border border-white/10">
+                <img
+                    src={`/biomes/${biome}.png`}
+                    alt={biome}
+                    className="w-full h-full object-cover image-pixelated"
+                    onError={(e) => {
+                        e.currentTarget.src =
+                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                    }}
+                />
+            </div>
+            <span className="text-[9px] text-center text-muted-foreground/80 max-w-15 leading-tight">
+                {biome.replace(/_/g, ' ')}
+            </span>
+        </div>
+    )
+}
+
+function StructureIcon({ structure }: { structure: string }) {
+    return (
+        <div
+            className="flex flex-col items-center gap-1 p-1.5"
+            title={structure}
+        >
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden border border-white/10">
+                <img
+                    src={`/structures/${structure}.png`}
+                    alt={structure}
+                    className="w-full h-full object-cover image-pixelated"
+                    onError={(e) => {
+                        e.currentTarget.src =
+                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                    }}
+                />
+            </div>
+            <span className="text-[9px] text-center text-muted-foreground/80 max-w-15 leading-tight">
+                {structure.replace(/_/g, ' ')}
+            </span>
+        </div>
+    )
+}
+
+function DimensionBadge({ dimension }: { dimension: string }) {
+    const getDimensionColor = (dim: string) => {
+        if (dim.includes('nether'))
+            return 'bg-red-500/20 text-red-300 border-red-500/30'
+        if (dim.includes('end'))
+            return 'bg-purple-500/20 text-purple-300 border-purple-500/30'
+        return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+    }
+
+    return (
+        <Badge
+            variant="outline"
+            className={cn(
+                'text-[10px] px-2.5 py-0.5 uppercase tracking-[0.15em] font-bold',
+                getDimensionColor(dimension)
+            )}
+        >
+            {dimension.replace(/_/g, ' ')}
+        </Badge>
+    )
+}
+
 function formatNumber(num: number | undefined) {
     if (num === undefined) return 'Unknown'
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M'
     if (num >= 1000) return (num / 1000).toFixed(1) + 'K'
     return num.toString()
+}
+
+function formatQuantity(
+    quantity: number | { min: number; max: number } | undefined
+): string {
+    if (quantity === undefined) return '?'
+    if (typeof quantity === 'number') return quantity.toString()
+    return `${quantity.min}-${quantity.max}`
+}
+
+function formatChance(chance: number | undefined): string {
+    if (chance === undefined) return '?'
+    return `${(chance * 100).toFixed(1)}%`
 }
 
 export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
@@ -285,7 +462,6 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
 
         return result
     }
-
     const hasEdible =
         item.edible &&
         (item.edible.hunger !== undefined ||
@@ -296,7 +472,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     const hasBreaking = item.isBlock && item.breaking
 
     return (
-        <div className="w-full grid grid-rows-5 grid-cols-12 gap-2 animate-in fade-in duration-700 pb-12 max-w-300 mx-auto">
+        <div className="w-full grid grid-rows-9 grid-cols-12 gap-2 animate-in fade-in duration-700 pb-12 max-w-300 mx-auto">
             {/* ROW 1: HEADER */}
             <GlassPanel className="md:col-span-2 aspect-square flex items-center justify-center p-4">
                 <img
@@ -664,8 +840,8 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             </GlassPanel>
 
             {/* Breaking Panel */}
-            <GlassPanel className="md:col-span-4 min-h-35" title="Breaking">
-                {hasBreaking && (
+            {hasBreaking && (
+                <GlassPanel className="md:col-span-4 min-h-35" title="Breaking">
                     <div className="flex-1 flex flex-col justify-center mb-3">
                         <div className="grid grid-cols-3 h-1/2">
                             <StatItem
@@ -718,8 +894,227 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             </span>
                         )}
                     </div>
+                </GlassPanel>
+            )}
+
+            {/* ROW 5-6: GENERATED LOOT */}
+            <FlippableGlassPanel
+                className="md:col-span-9 row-span-2"
+                title="Generated Loot"
+                comment={
+                    item.obtaining.generatedLoot?.structures.find(
+                        (s) => s.comment
+                    )?.comment
+                }
+                contentClassName="p-4 h-full overflow-hidden"
+            >
+                {item.obtaining.generatedLoot &&
+                item.obtaining.generatedLoot.structures.length > 0 ? (
+                    <div className="flex flex-col gap-3 h-full overflow-y-auto scrollbar-thin pr-2">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm">
+                                <thead className="sticky top-0 bg-background backdrop-blur-sm z-10">
+                                    <tr className="border-b border-muted-foreground/20">
+                                        <th className="text-left py-2 px-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                                            Structure
+                                        </th>
+                                        <th className="text-left py-2 px-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                                            Chest
+                                        </th>
+                                        <th className="text-right py-2 px-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                                            Chance
+                                        </th>
+                                        <th className="text-right py-2 px-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                                            Quantity
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {/* Sort structures by their highest chest chance, then sort chests within each structure */}
+                                    {[
+                                        ...item.obtaining.generatedLoot
+                                            .structures,
+                                    ]
+                                        .sort((a, b) => {
+                                            const maxChanceA = Math.max(
+                                                ...a.chests.map((c) => c.chance)
+                                            )
+                                            const maxChanceB = Math.max(
+                                                ...b.chests.map((c) => c.chance)
+                                            )
+                                            return maxChanceB - maxChanceA
+                                        })
+                                        .map((structureData) => {
+                                            // Sort chests within structure by chance (descending)
+                                            const sortedChests = [
+                                                ...structureData.chests,
+                                            ].sort(
+                                                (a, b) => b.chance - a.chance
+                                            )
+                                            return sortedChests.map(
+                                                (chest, chestIdx) => (
+                                                    <tr
+                                                        key={`${structureData.structure}-${chestIdx}`}
+                                                        className="border-b border-muted-foreground/10 transition-colors"
+                                                    >
+                                                        {chestIdx === 0 && (
+                                                            <td
+                                                                rowSpan={
+                                                                    sortedChests.length
+                                                                }
+                                                                className="py-2 px-3 align-middle"
+                                                            >
+                                                                <div className="flex items-center gap-2">
+                                                                    <div className="w-8 h-8 flex items-center justify-center">
+                                                                        <img
+                                                                            src={`/structures/${structureData.structure}.png`}
+                                                                            alt={
+                                                                                structureData.structure
+                                                                            }
+                                                                            className="w-full h-full object-contain image-pixelated"
+                                                                            onError={(
+                                                                                e
+                                                                            ) => {
+                                                                                e.currentTarget.src =
+                                                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                                                            }}
+                                                                        />
+                                                                    </div>
+                                                                    <span className="font-mono text-xs">
+                                                                        {structureData.structure.replace(
+                                                                            /_/g,
+                                                                            ' '
+                                                                        )}
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                        )}
+                                                        <td className="py-2 px-3 font-mono text-xs">
+                                                            {chest.chestName.replace(
+                                                                /_/g,
+                                                                ' '
+                                                            )}
+                                                        </td>
+                                                        <td className="py-2 px-3 text-right font-mono text-xs text-emerald-400/80">
+                                                            {formatChance(
+                                                                chest.chance
+                                                            )}
+                                                        </td>
+                                                        <td className="py-2 px-3 text-right font-mono text-xs">
+                                                            {formatQuantity(
+                                                                chest.quantity
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )
+                                        })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                        <InfoIcon
+                            weight="thin"
+                            className="w-12 h-12 mb-2 text-muted-foreground/50"
+                        />
+                        <div className="text-muted-foreground/60 text-sm mt-1.5 font-bold">
+                            This item is not in any loot tables
+                        </div>
+                    </div>
                 )}
-            </GlassPanel>
+            </FlippableGlassPanel>
+
+            {/* ROW 4: NATURAL GENERATION */}
+            <FlippableGlassPanel
+                className="md:col-span-12 row-span-2 max-h-72"
+                title="Natural Generation"
+                comment={item.obtaining.naturalGeneration?.comment}
+                contentClassName="p-4 h-full overflow-hidden"
+            >
+                {item.obtaining.naturalGeneration ? (
+                    <div className="flex flex-col gap-4 h-full overflow-y-auto scrollbar-thin pr-2">
+                        {/* Dimensions */}
+                        <div className="flex flex-col gap-2">
+                            <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                                Dimensions
+                            </span>
+                            <div className="flex flex-wrap gap-2">
+                                {item.obtaining.naturalGeneration.dimensions.map(
+                                    (dim) => (
+                                        <DimensionBadge
+                                            key={dim}
+                                            dimension={dim}
+                                        />
+                                    )
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Biomes */}
+                        {item.obtaining.naturalGeneration.biomes &&
+                            item.obtaining.naturalGeneration.biomes.length >
+                                0 && (
+                                <div className="flex flex-col gap-2">
+                                    <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                                        Biomes
+                                    </span>
+                                    <div className="flex flex-wrap gap-2 justify-start">
+                                        {item.obtaining.naturalGeneration.biomes.map(
+                                            (biome) => (
+                                                <BiomeIcon
+                                                    key={biome}
+                                                    biome={biome}
+                                                />
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
+                        {/* Structures */}
+                        {item.obtaining.naturalGeneration.partOfStructures && (
+                            <div className="flex flex-col gap-2">
+                                <div className="flex items-baseline gap-2">
+                                    <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                                        Part of Structures
+                                    </span>
+                                    {item.obtaining.naturalGeneration
+                                        .partOfStructures.comment && (
+                                        <span className="text-xs text-muted-foreground/60 italic">
+                                            {
+                                                item.obtaining.naturalGeneration
+                                                    .partOfStructures.comment
+                                            }
+                                        </span>
+                                    )}
+                                </div>
+                                <div className="flex flex-wrap gap-2 justify-start">
+                                    {item.obtaining.naturalGeneration.partOfStructures.structures.map(
+                                        (structure) => (
+                                            <StructureIcon
+                                                key={structure}
+                                                structure={structure}
+                                            />
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                        <InfoIcon
+                            weight="thin"
+                            className="w-12 h-12 mb-2 text-muted-foreground/50"
+                        />
+                        <div className="text-muted-foreground/60 text-sm mt-1.5 font-bold">
+                            This item does not naturally generate in the world
+                        </div>
+                    </div>
+                )}
+            </FlippableGlassPanel>
         </div>
     )
 }
