@@ -1,6 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react'
 import type { ItemData } from '@/context/DataContext'
 import { useData } from '@/context/DataContext'
+import { useGridBalancer } from '@/hooks/useGridBalancer'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card'
@@ -91,18 +92,23 @@ function GlassPanel({
     className,
     contentClassName,
     title,
+    style,
+    ...rest
 }: {
     children: React.ReactNode
     className?: string
     contentClassName?: string
     title?: string
-}) {
+    style?: React.CSSProperties
+} & React.HTMLAttributes<HTMLDivElement>) {
     return (
         <div
             className={cn(
                 'relative bg-white/4 dark:bg-black/30 backdrop-blur z-5 rounded-2xl flex flex-col border dark:border-border border-white/40 overflow-hidden',
                 className
             )}
+            style={style}
+            {...rest}
         >
             {title && (
                 <div className="px-4 pt-3.5 flex items-center justify-center shrink-0">
@@ -455,6 +461,9 @@ function formatChance(chance: number | undefined): string {
 }
 
 export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
+    const gridRef = useRef<HTMLDivElement>(null)
+    const { dummyPanels } = useGridBalancer(gridRef)
+
     const { getItemCategories } = useData()
     const categories = getItemCategories(itemId)
     const blockLoots = item.obtaining.blockLoot ?? []
@@ -671,7 +680,10 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     const hasStructures = structures.length > 0
 
     return (
-        <div className="w-full grid grid-cols-12 auto-rows-[160px] grid-flow-row-dense gap-2 md:gap-3 animate-in fade-in duration-700 pb-12 max-w-350 mx-auto">
+        <div
+            ref={gridRef}
+            className="w-full grid grid-cols-12 auto-rows-[160px] grid-flow-row-dense gap-2 md:gap-3 animate-in fade-in duration-700 pb-12 max-w-350 mx-auto"
+        >
             {/* ROW 1: HEADER */}
             <GlassPanel className="md:col-span-2 flex items-center justify-center p-4">
                 <img
@@ -2004,6 +2016,23 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     </div>
                 )}
             </FlippableGlassPanel>
+
+            {/* Dummy Panels to fill grid holes */}
+            {dummyPanels.map((dummy) => (
+                <GlassPanel
+                    key={dummy.id}
+                    data-dummy
+                    className={cn(
+                        'opacity-0 pointer-events-none transition-all duration-500 ease-in-out',
+                        `md:col-span-${dummy.colSpan}`
+                    )}
+                    style={{
+                        gridColumn: `span ${dummy.colSpan} / span ${dummy.colSpan}`,
+                    }}
+                >
+                    <div className="w-full h-full" />
+                </GlassPanel>
+            ))}
         </div>
     )
 }
