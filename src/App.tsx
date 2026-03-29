@@ -97,7 +97,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                             onClick={downloadJson}
                         >
                             <DownloadIcon className="mr-2 h-4 w-4" />
-                            Download
+                            Download List
                         </Button>
                     </div>
                 </div>
