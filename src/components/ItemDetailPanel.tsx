@@ -201,7 +201,7 @@ function FlippableGlassPanel({
                 >
                     <GlassPanel className="h-full" title={title}>
                         <div className="flex-1 flex flex-col items-center justify-center px-3 py-1 gap-1 overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-muted-foreground/30 mb-5">
-                            <div className="flex flex-col items-center h-full">
+                            <div className="flex flex-col items-center justify-around h-full">
                                 <ExclamationMarkIcon
                                     className="w-8 h-8 min-h-8 dark:text-red-400/40 dark:hover:text-red-400/70 text-red-800/40 hover:text-red-800/70"
                                     weight="duotone"
@@ -323,7 +323,7 @@ function ItemIcon({ item }: { item: string }) {
 function BiomeIcon({ biome }: { biome: string }) {
     return (
         <div
-            className="flex flex-col items-center gap-2 py-2 px-1 w-20 shrink-0"
+            className="flex flex-col items-center gap-2 py-2 px-1 w-full shrink-0"
             title={biome}
         >
             <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
@@ -338,7 +338,7 @@ function BiomeIcon({ biome }: { biome: string }) {
                     }}
                 />
             </div>
-            <span className="text-[10px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
+            <span className="text-[10px] text-center text-foreground font-mono leading-tight capitalize tracking-tight">
                 {biome.replace(/_/g, ' ')}
             </span>
         </div>
@@ -348,7 +348,7 @@ function BiomeIcon({ biome }: { biome: string }) {
 function StructureIcon({ structure }: { structure: string }) {
     return (
         <div
-            className="flex flex-col items-center gap-1 p-1 w-20 shrink-0"
+            className="flex flex-col items-center gap-2 py-2 px-1 w-full shrink-0"
             title={structure}
         >
             <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
@@ -363,7 +363,7 @@ function StructureIcon({ structure }: { structure: string }) {
                     }}
                 />
             </div>
-            <span className="text-[10px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
+            <span className="text-[10px] text-center text-foreground font-mono leading-tight capitalize tracking-tight">
                 {structure.replace(/_/g, ' ')}
             </span>
         </div>
@@ -547,11 +547,11 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
         []
     )
     const biomesDragProps = useMemo(
-        () => setupDragScroll(biomesScrollRef, 'horizontal'),
+        () => setupDragScroll(biomesScrollRef, 'both'),
         []
     )
     const structuresDragProps = useMemo(
-        () => setupDragScroll(structuresScrollRef, 'horizontal'),
+        () => setupDragScroll(structuresScrollRef, 'both'),
         []
     )
     const tradingDragProps = useMemo(
@@ -632,6 +632,17 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     const hasCompostable = !!item.compostable
     const hasBlockStats = item.isBlock && item.block
     const hasItemStats = !item.isBlock && item.item
+    const itemStatCount = function () {
+        if (hasBlockStats) return 8
+        let count = 0
+        if (item.item?.armor?.armorPoints !== undefined) count += 3
+        if (item.item?.damage !== undefined) count += 2
+        if (item.item?.enchantability !== undefined) count++
+        if (item.item?.durability !== undefined) count++
+        if (item.item?.fireResistant !== undefined) count++
+        return count
+    }
+
     const hasBreaking = item.isBlock && item.breaking
 
     const mobLoot = item.obtaining.mobLoot ?? []
@@ -855,7 +866,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             <img
                                 src="/renders/blocks/furnace.png"
                                 alt="furnace"
-                                className="h-10 w-10 drop-shadow-sm grayscale opacity-40 object-contain image-pixelated"
+                                className="h-14 w-14 drop-shadow-sm grayscale opacity-40 object-contain image-pixelated"
                                 onError={(e) => {
                                     e.currentTarget.src =
                                         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
@@ -922,7 +933,11 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
 
             {/* Block Properties 4x2 grid */}
             <GlassPanel
-                className="md:col-span-3 row-span-2"
+                className={cn(
+                    itemStatCount() > 3 ? 'md:row-span-2' : 'md:row-span-1',
+                    'md:col-span-3'
+                )}
+                // "md:col-span-3 row-span-2"
                 title="Properties"
                 contentClassName="flex flex-col overflow-y-auto"
             >
@@ -1274,8 +1289,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         className={cn(
                             !item.possibleEnchantments ||
                                 item.possibleEnchantments.length === 0
-                                ? 'md:col-span-2 row-span-1'
-                                : 'md:col-span-4 row-span-2'
+                                ? 'md:col-span-2'
+                                : 'md:col-span-4',
+                            !item.possibleEnchantments ||
+                                item.possibleEnchantments.length <= 4
+                                ? 'md:row-span-1'
+                                : 'md:row-span-2'
                         )}
                         title="Enchantments"
                         contentClassName="flex flex-col overflow-y-auto"
@@ -1290,7 +1309,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     maxLevel > 1
                                         ? ROMAN_NUMERALS[maxLevel] ||
                                           maxLevel.toString()
-                                        : '-'
+                                        : '/'
                                 const name = ench.id.replace(/_/g, ' ')
 
                                 return (
@@ -1522,7 +1541,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             >
                 {item.obtaining.generatedLoot &&
                 item.obtaining.generatedLoot.structures.length > 0 ? (
-                    <div className="flex flex-col gap-3 h-full overflow-y-auto scrollbar-thin pr-2">
+                    <div className="flex flex-col gap-3 h-full overflow-y-auto scrollbar-thin px-2">
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm">
                                 <thead className="sticky top-0 bg-background backdrop-blur-md z-10">
@@ -1752,7 +1771,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 title="Dimensions"
                 contentClassName="flex justify-center items-center"
             >
-                <div className="flex flex-wrap flex-1 justify-center items-center gap-1 mb-5">
+                <div className="flex flex-col flex-1 justify-center items-center gap-1 mb-5">
                     {item.obtaining.naturalGeneration?.dimensions.map((dim) => (
                         <DimensionItem key={dim} dimension={dim} />
                     ))}
@@ -1777,8 +1796,8 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             <FlippableGlassPanel
                 className={cn(
                     hasBiomes
-                        ? biomes.length < 4
-                            ? `md:col-span-${biomes.length * 2} row-span-1`
+                        ? biomes.length <= 4
+                            ? `md:col-span-${Math.max(3, Math.min(6, biomes.length * 2))} row-span-1`
                             : 'md:col-span-6 row-span-2'
                         : 'md:col-span-3 row-span-1'
                 )}
@@ -1790,8 +1809,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     <div
                         ref={biomesScrollRef}
                         className={cn(
-                            'flex flex-row flex-wrap gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none',
-                            biomes.length < 4 && 'justify-center'
+                            'grid gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none content-start pt-2',
+                            biomes.length === 1
+                                ? 'grid-cols-1'
+                                : biomes.length === 2
+                                  ? 'grid-cols-2'
+                                  : biomes.length === 3
+                                    ? 'grid-cols-3'
+                                    : 'grid-cols-4'
                         )}
                         {...biomesDragProps}
                     >
@@ -1819,8 +1844,8 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             <FlippableGlassPanel
                 className={cn(
                     hasStructures
-                        ? structures.length < 4
-                            ? `md:col-span-${structures.length * 2} row-span-1`
+                        ? structures.length <= 4
+                            ? `md:col-span-${Math.max(3, Math.min(6, structures.length * 2))} row-span-1`
                             : 'md:col-span-6 row-span-2'
                         : 'md:col-span-3 row-span-1'
                 )}
@@ -1834,8 +1859,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     <div
                         ref={structuresScrollRef}
                         className={cn(
-                            'flex flex-row flex-wrap gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none',
-                            structures.length < 4 && 'justify-center'
+                            'grid gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none content-start pt-4',
+                            structures.length === 1
+                                ? 'grid-cols-1'
+                                : structures.length === 2
+                                  ? 'grid-cols-2'
+                                  : structures.length === 3
+                                    ? 'grid-cols-3'
+                                    : 'grid-cols-4'
                         )}
                         {...structuresDragProps}
                     >

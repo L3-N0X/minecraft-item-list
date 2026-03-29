@@ -202,7 +202,7 @@ export function HomeView() {
         <div
             className={`flex flex-col items-center transition-all duration-500 ease-in-out ${selectedItemId || isSearching ? 'pt-0' : 'pt-[8vh]'} min-h-[85vh] gap-3 ${selectedItemId ? 'max-w-7xl' : 'max-w-2xl'} mx-auto px-4 w-full`}
         >
-            <div className="max-w-2xl mx-auto w-full space-y-4">
+            <div className="max-w-2xl mx-auto w-full space-y-2">
                 <div
                     className={`flex flex-col items-center space-y-4 text-center transition-all duration-500 ease-in-out ${
                         selectedItemId || isSearching
@@ -214,7 +214,7 @@ export function HomeView() {
                         <h1 className="text-4xl font-black tracking-tight">
                             MC Item Search
                         </h1>
-                        <p className="text-muted-foreground text-base">
+                        <p className="text-muted-foreground text-base mb-3">
                             Type to find, arrows to navigate, Enter to select.
                         </p>
                     </div>

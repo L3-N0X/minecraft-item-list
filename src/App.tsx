@@ -103,7 +103,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                 </div>
             </nav>
 
-            <main className="container mx-auto p-4 md:p-8">{children}</main>
+            <main className="container mx-auto p-4 md:p-2">{children}</main>
         </div>
     )
 }
