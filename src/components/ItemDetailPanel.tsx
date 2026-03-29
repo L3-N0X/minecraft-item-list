@@ -321,8 +321,11 @@ function ItemIcon({ item }: { item: string }) {
 
 function BiomeIcon({ biome }: { biome: string }) {
     return (
-        <div className="flex flex-col items-center gap-1 p-1.5" title={biome}>
-            <div className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden border border-white/10 shrink-0">
+        <div
+            className="flex flex-col items-center gap-2 p-1.5 w-24 shrink-0"
+            title={biome}
+        >
+            <div className="w-16 h-16 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
                 <img
                     src={`/biomes/${biome}.png`}
                     alt={biome}
@@ -334,7 +337,7 @@ function BiomeIcon({ biome }: { biome: string }) {
                     }}
                 />
             </div>
-            <span className="text-[9px] text-center text-muted-foreground/80 max-w-15 leading-tight truncate">
+            <span className="text-[11px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
                 {biome.replace(/_/g, ' ')}
             </span>
         </div>
@@ -344,10 +347,10 @@ function BiomeIcon({ biome }: { biome: string }) {
 function StructureIcon({ structure }: { structure: string }) {
     return (
         <div
-            className="flex flex-col items-center gap-1 p-1.5"
+            className="flex flex-col items-center gap-2 p-1.5 w-24 shrink-0"
             title={structure}
         >
-            <div className="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden border border-white/10 shrink-0">
+            <div className="w-16 h-16 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
                 <img
                     src={`/structures/${structure}.png`}
                     alt={structure}
@@ -359,7 +362,7 @@ function StructureIcon({ structure }: { structure: string }) {
                     }}
                 />
             </div>
-            <span className="text-[9px] text-center text-muted-foreground/80 max-w-15 leading-tight truncate">
+            <span className="text-[11px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
                 {structure.replace(/_/g, ' ')}
             </span>
         </div>
@@ -619,6 +622,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     const hasBlockStats = item.isBlock && item.block
     const hasItemStats = !item.isBlock && item.item
     const hasBreaking = item.isBlock && item.breaking
+
+    const biomes = item.obtaining.naturalGeneration?.biomes ?? []
+    const structures =
+        item.obtaining.naturalGeneration?.partOfStructures?.structures ?? []
+    const hasBiomes = biomes.length > 0
+    const hasStructures = structures.length > 0
 
     return (
         <div className="w-full grid grid-cols-12 auto-rows-[160px] grid-flow-row-dense gap-2 md:gap-3 animate-in fade-in duration-700 pb-12 max-w-350 mx-auto">
@@ -1086,7 +1095,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             </div>
                         ) : (
                             // <div className="flex-1 flex items-center justify-center">
-                            <span className="text-[10px] uppercase tracking-[0.2em] mb-5 text-center text-muted-foreground font-semibold">
+                            <span className="text-[10px] uppercase tracking-[0.2em] mb-5 text-center text-muted-foreground">
                                 {item.obtaining.obtainability === 'survival'
                                     ? 'Drops by Hand'
                                     : 'Does not drop'}
@@ -1099,7 +1108,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
 
             {/* Mob Loot Panel */}
             <GlassPanel
-                className="md:col-span-9 row-span-1"
+                className={cn(
+                    !item.obtaining.mobLoot ||
+                        item.obtaining.mobLoot.length === 0
+                        ? 'md:col-span-2 row-span-1'
+                        : 'md:col-span-9 row-span-1'
+                )}
                 title="Mob Loot"
                 contentClassName="overflow-hidden"
             >
@@ -1147,7 +1161,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             weight="thin"
                             className="w-12 h-12 mb-2 text-muted-foreground/50"
                         />
-                        <div className="text-muted-foreground/60 text-sm mt-1.5">
+                        <div className="text-muted-foreground/60 text-xs mt-1.5 px-3 text-center">
                             No Mob Drops This Item
                         </div>
                     </div>
@@ -1189,7 +1203,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 weight="thin"
                                 className="w-12 h-12 flex-1 text-muted-foreground/50"
                             />
-                            <div className="text-muted-foreground/60 text-sm font-bold mb-5">
+                            <div className="text-muted-foreground/60 text-xs mb-5">
                                 Not Edible
                             </div>
                         </div>
@@ -1215,7 +1229,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             {(item.compostable!.chance * 100).toFixed(0)}%
                         </div>
                     ) : (
-                        <div className="text-muted-foreground/60 flex text-sm font-bold mb-5 tracking-tight">
+                        <div className="text-muted-foreground/60 flex text-xs mb-5 tracking-tight">
                             Not Compostable
                         </div>
                     )}
@@ -1272,7 +1286,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 weight="thin"
                                 className="w-12 h-12 text-muted-foreground/50"
                             />
-                            <div className="text-muted-foreground/60 text-center text-sm mt-1.5">
+                            <div className="text-muted-foreground/60 text-center text-xs p-2 mt-1.5">
                                 Item cannot be enchanted
                             </div>
                         </div>
@@ -1581,7 +1595,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             weight="thin"
                             className="w-12 h-12 mb-2 text-muted-foreground/50"
                         />
-                        <div className="text-muted-foreground/60 text-center text-sm mt-1.5">
+                        <div className="text-muted-foreground/60 text-center text-xs mt-1.5">
                             This item is not in any loot tables
                         </div>
                     </div>
@@ -1609,8 +1623,8 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     weight="thin"
                                     className="w-12 h-12 flex-1 text-muted-foreground/50"
                                 />
-                                <div className="text-muted-foreground/60 text-sm text-center mb-5">
-                                    No Special Block Drops This Item
+                                <div className="text-muted-foreground/60 text-xs px-3 text-center mb-5">
+                                    No special block drops this item
                                 </div>
                             </div>
                         )
@@ -1654,10 +1668,10 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             {/* Dimension Panel 1x3 */}
             <GlassPanel
                 className="md:col-span-3"
-                title="Natural Generation"
+                title="Dimensions"
                 contentClassName="flex justify-center items-center"
             >
-                <div className="flex flex-wrap justify-center items-center gap-1">
+                <div className="flex flex-wrap justify-center items-center gap-1 mb-5">
                     {item.obtaining.naturalGeneration?.dimensions.map((dim) => (
                         <DimensionItem key={dim} dimension={dim} />
                     ))}
@@ -1669,7 +1683,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     weight="thin"
                                     className="w-12 h-12 flex-1 text-muted-foreground/50"
                                 />
-                                <div className="text-muted-foreground/60 text-sm mb-5 font-bold text-center">
+                                <div className="text-muted-foreground/60 text-xs mb-5 text-center">
                                     Does not naturally generate in any
                                     dimensions
                                 </div>
@@ -1678,73 +1692,26 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 </div>
             </GlassPanel>
 
-            {/* ROW 4: NATURAL GENERATION */}
+            {/* Biomes Panel */}
             <FlippableGlassPanel
-                className="md:col-span-12 row-span-2"
-                title="Natural Generation"
+                className={cn(
+                    hasBiomes
+                        ? 'md:col-span-6 row-span-2'
+                        : 'md:col-span-3 row-span-1'
+                )}
+                title="In Biomes"
                 comment={item.obtaining.naturalGeneration?.comment}
                 contentClassName="p-4 overflow-hidden"
             >
-                {item.obtaining.naturalGeneration ? (
-                    <div className="flex flex-col gap-4 h-full overflow-y-auto scrollbar-thin pr-2">
-                        {/* Biomes */}
-                        {item.obtaining.naturalGeneration.biomes &&
-                            item.obtaining.naturalGeneration.biomes.length >
-                                0 && (
-                                <div className="flex flex-col gap-2">
-                                    <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
-                                        Biomes
-                                    </span>
-                                    <div
-                                        ref={biomesScrollRef}
-                                        className="flex flex-row overflow-x-auto scrollbar-hidden gap-2 cursor-grab active:cursor-grabbing select-none"
-                                        {...biomesDragProps}
-                                    >
-                                        {item.obtaining.naturalGeneration.biomes.map(
-                                            (biome) => (
-                                                <BiomeIcon
-                                                    key={biome}
-                                                    biome={biome}
-                                                />
-                                            )
-                                        )}
-                                    </div>
-                                </div>
-                            )}
-
-                        {/* Structures */}
-                        {item.obtaining.naturalGeneration.partOfStructures && (
-                            <div className="flex flex-col gap-2">
-                                <div className="flex items-baseline gap-2">
-                                    <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
-                                        Part of Structures
-                                    </span>
-                                    {item.obtaining.naturalGeneration
-                                        .partOfStructures.comment && (
-                                        <span className="text-xs text-muted-foreground/60 italic">
-                                            {
-                                                item.obtaining.naturalGeneration
-                                                    .partOfStructures.comment
-                                            }
-                                        </span>
-                                    )}
-                                </div>
-                                <div
-                                    ref={structuresScrollRef}
-                                    className="flex flex-row overflow-x-auto scrollbar-hidden gap-2 cursor-grab active:cursor-grabbing select-none"
-                                    {...structuresDragProps}
-                                >
-                                    {item.obtaining.naturalGeneration.partOfStructures.structures.map(
-                                        (structure) => (
-                                            <StructureIcon
-                                                key={structure}
-                                                structure={structure}
-                                            />
-                                        )
-                                    )}
-                                </div>
-                            </div>
-                        )}
+                {hasBiomes ? (
+                    <div
+                        ref={biomesScrollRef}
+                        className="flex flex-row flex-wrap gap-2 h-full overflow-y-auto scrollbar-thin pr-2 cursor-grab active:cursor-grabbing select-none"
+                        {...biomesDragProps}
+                    >
+                        {biomes.map((biome) => (
+                            <BiomeIcon key={biome} biome={biome} />
+                        ))}
                     </div>
                 ) : (
                     <div className="flex-1 flex flex-col items-center justify-center">
@@ -1752,9 +1719,47 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             weight="thin"
                             className="w-12 h-12 mb-2 text-muted-foreground/50"
                         />
-                        <div className="text-muted-foreground/60 text-sm mt-1.5 font-bold">
-                            This item does not naturally generate in the world
-                            as a block
+                        <div className="text-muted-foreground/60 text-xs mt-1.5 text-center">
+                            Does not generate in any specific biome
+                        </div>
+                    </div>
+                )}
+            </FlippableGlassPanel>
+
+            {/* Structures Panel */}
+            <FlippableGlassPanel
+                className={cn(
+                    hasStructures
+                        ? 'md:col-span-6 row-span-2'
+                        : 'md:col-span-3 row-span-1'
+                )}
+                title="Structures"
+                comment={
+                    item.obtaining.naturalGeneration?.partOfStructures?.comment
+                }
+                contentClassName="p-4 overflow-hidden"
+            >
+                {hasStructures ? (
+                    <div
+                        ref={structuresScrollRef}
+                        className="flex flex-row flex-wrap gap-2 h-full overflow-y-auto scrollbar-thin pr-2 cursor-grab active:cursor-grabbing select-none"
+                        {...structuresDragProps}
+                    >
+                        {structures.map((structure) => (
+                            <StructureIcon
+                                key={structure}
+                                structure={structure}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                        <InfoIcon
+                            weight="thin"
+                            className="w-12 h-12 mb-2 text-muted-foreground/50"
+                        />
+                        <div className="text-muted-foreground/60 text-xs mt-1.5 text-center">
+                            Does not generate within any structure
                         </div>
                     </div>
                 )}
