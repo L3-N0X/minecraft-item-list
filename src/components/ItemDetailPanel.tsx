@@ -4,12 +4,7 @@ import { useData } from '@/context/DataContext'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card'
-import {
-    InfoIcon,
-    SmileySadIcon,
-    ExclamationMarkIcon,
-    ArrowsClockwiseIcon,
-} from '@phosphor-icons/react'
+import { ExclamationMarkIcon, ArrowsClockwiseIcon } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 
 interface ItemDetailPanelProps {
@@ -169,43 +164,49 @@ function FlippableGlassPanel({
                 onClick={() => setIsFlipped(!isFlipped)}
             >
                 {/* Front */}
-                {!isFlipped && (
-                    <div
-                        className="absolute w-full h-full backface-hidden"
-                        style={{ backfaceVisibility: 'hidden' }}
+                <div
+                    className="absolute w-full h-full backface-hidden"
+                    style={{
+                        backfaceVisibility: 'hidden',
+                        opacity: isFlipped ? 0 : 1,
+                        transition: 'opacity 0s 150ms',
+                        pointerEvents: isFlipped ? 'none' : 'auto',
+                    }}
+                >
+                    <GlassPanel
+                        className="h-full hover:scale-[1.01] transition-transform"
+                        contentClassName={contentClassName}
+                        title={title}
                     >
-                        <GlassPanel
-                            className="h-full hover:scale-[1.01] transition-transform"
-                            contentClassName={contentClassName}
-                            title={title}
-                        >
-                            {children}
-                            <div className="absolute top-2 right-2">
-                                <ExclamationMarkIcon
-                                    className="w-6 h-6 dark:text-red-400/40 dark:hover:text-red-400/70 text-red-800/40 hover:text-red-800/70 transition-colors"
-                                    weight="duotone"
-                                />
-                            </div>
-                        </GlassPanel>
-                    </div>
-                )}
+                        {children}
+                        <div className="absolute top-2 right-2">
+                            <ExclamationMarkIcon
+                                className="w-6 h-6 dark:text-red-400/40 dark:hover:text-red-400/70 text-red-800/40 hover:text-red-800/70 transition-colors"
+                                weight="duotone"
+                            />
+                        </div>
+                    </GlassPanel>
+                </div>
 
                 {/* Back */}
-                {isFlipped && (
-                    <div
-                        className="absolute w-full h-full backface-hidden"
-                        style={{
-                            backfaceVisibility: 'hidden',
-                            transform: 'rotateY(180deg)',
-                        }}
-                    >
-                        <GlassPanel className="h-full" title={title}>
-                            <div className="flex-1 flex flex-col items-center justify-center p-6 gap-3">
+                <div
+                    className="absolute w-full h-full backface-hidden"
+                    style={{
+                        backfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                        opacity: isFlipped ? 1 : 0,
+                        transition: 'opacity 0s 250ms',
+                        pointerEvents: isFlipped ? 'auto' : 'none',
+                    }}
+                >
+                    <GlassPanel className="h-full" title={title}>
+                        <div className="flex-1 flex flex-col items-center justify-center px-3 py-1 gap-1 overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-muted-foreground/30 mb-5">
+                            <div className="flex flex-col items-center h-full">
                                 <ExclamationMarkIcon
-                                    className="w-8 h-8 dark:text-red-400/40 dark:hover:text-red-400/70 text-red-800/40 hover:text-red-800/70"
+                                    className="w-8 h-8 min-h-8 dark:text-red-400/40 dark:hover:text-red-400/70 text-red-800/40 hover:text-red-800/70"
                                     weight="duotone"
                                 />
-                                <p className="text-sm text-muted-foreground/80 text-center leading-relaxed">
+                                <p className="text-sm text-muted-foreground/80 text-center">
                                     {comment}
                                 </p>
                                 <Button
@@ -217,9 +218,9 @@ function FlippableGlassPanel({
                                     Flip Back
                                 </Button>
                             </div>
-                        </GlassPanel>
-                    </div>
-                )}
+                        </div>
+                    </GlassPanel>
+                </div>
             </div>
         </div>
     )
@@ -322,10 +323,10 @@ function ItemIcon({ item }: { item: string }) {
 function BiomeIcon({ biome }: { biome: string }) {
     return (
         <div
-            className="flex flex-col items-center gap-2 p-1.5 w-24 shrink-0"
+            className="flex flex-col items-center gap-2 py-2 px-1 w-20 shrink-0"
             title={biome}
         >
-            <div className="w-16 h-16 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
+            <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
                 <img
                     src={`/biomes/${biome}.png`}
                     alt={biome}
@@ -337,7 +338,7 @@ function BiomeIcon({ biome }: { biome: string }) {
                     }}
                 />
             </div>
-            <span className="text-[11px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
+            <span className="text-[10px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
                 {biome.replace(/_/g, ' ')}
             </span>
         </div>
@@ -347,10 +348,10 @@ function BiomeIcon({ biome }: { biome: string }) {
 function StructureIcon({ structure }: { structure: string }) {
     return (
         <div
-            className="flex flex-col items-center gap-2 p-1.5 w-24 shrink-0"
+            className="flex flex-col items-center gap-1 p-1 w-20 shrink-0"
             title={structure}
         >
-            <div className="w-16 h-16 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
+            <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
                 <img
                     src={`/structures/${structure}.png`}
                     alt={structure}
@@ -362,7 +363,7 @@ function StructureIcon({ structure }: { structure: string }) {
                     }}
                 />
             </div>
-            <span className="text-[11px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
+            <span className="text-[10px] text-center text-foreground font-bold leading-tight uppercase tracking-tight">
                 {structure.replace(/_/g, ' ')}
             </span>
         </div>
@@ -456,12 +457,18 @@ function formatChance(chance: number | undefined): string {
 export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     const { getItemCategories } = useData()
     const categories = getItemCategories(itemId)
+    const blockLoots = item.obtaining.blockLoot ?? []
+    const totalBlocks = blockLoots.reduce(
+        (acc, loot) => acc + (loot.blocks?.length ?? 0),
+        0
+    )
 
     // Scroll Refs
     const mobLootScrollRef = useRef<HTMLDivElement>(null)
     const biomesScrollRef = useRef<HTMLDivElement>(null)
     const structuresScrollRef = useRef<HTMLDivElement>(null)
     const tradingScrollRef = useRef<HTMLDivElement>(null)
+    const blockLootScrollRef = useRef<HTMLDivElement>(null)
 
     // Reusable drag-to-scroll logic
     const setupDragScroll = (
@@ -551,6 +558,10 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
         () => setupDragScroll(tradingScrollRef, 'horizontal'),
         []
     )
+    const blockLootDragProps = useMemo(
+        () => setupDragScroll(blockLootScrollRef, 'horizontal'),
+        []
+    )
 
     const getRarityColor = (tier: string) => {
         switch (tier) {
@@ -622,6 +633,13 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     const hasBlockStats = item.isBlock && item.block
     const hasItemStats = !item.isBlock && item.item
     const hasBreaking = item.isBlock && item.breaking
+
+    const mobLoot = item.obtaining.mobLoot ?? []
+    const hasMobLoot = mobLoot.length > 0
+    const tradingVillagers = item.obtaining.trading?.villagers ?? []
+    const hasWanderingTrader = !!item.obtaining.trading?.wanderingTrader
+    const traderCount = tradingVillagers.length + (hasWanderingTrader ? 1 : 0)
+    const hasTrading = traderCount > 0
 
     const biomes = item.obtaining.naturalGeneration?.biomes ?? []
     const structures =
@@ -789,13 +807,13 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     />
                     <div
                         className={cn(
-                            'text-xs font-bold tracking-tight mt-1',
+                            'text-xs font-mono tracking-tight mt-1',
                             item.obtaining.craftable
                                 ? 'text-emerald-400/90'
                                 : 'dark:text-red-400/80 text-red-700/80'
                         )}
                     >
-                        {item.obtaining.craftable ? 'YES' : 'NO'}
+                        {item.obtaining.craftable ? 'Yes' : 'No'}
                     </div>
                 </div>
             </GlassPanel>
@@ -847,15 +865,15 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     </div>
                     <div
                         className={cn(
-                            'text-xs font-bold tracking-tight mb-5',
+                            'text-xs font-mono tracking-tight mb-5',
                             (item.obtaining.smelting?.smeltable.length ?? 0) > 0
                                 ? 'text-emerald-400/90'
                                 : 'dark:text-red-400/80 text-red-700/80'
                         )}
                     >
                         {(item.obtaining.smelting?.smeltable.length ?? 0) > 0
-                            ? 'YES'
-                            : 'NO'}
+                            ? 'Yes'
+                            : 'No'}
                     </div>
                 </div>
             </GlassPanel>
@@ -1109,21 +1127,23 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             {/* Mob Loot Panel */}
             <GlassPanel
                 className={cn(
-                    !item.obtaining.mobLoot ||
-                        item.obtaining.mobLoot.length === 0
-                        ? 'md:col-span-2 row-span-1'
-                        : 'md:col-span-9 row-span-1'
+                    hasMobLoot
+                        ? mobLoot.length >= 2
+                            ? 'md:col-span-9'
+                            : 'md:col-span-5'
+                        : 'md:col-span-2',
+                    'row-span-1'
                 )}
                 title="Mob Loot"
                 contentClassName="overflow-hidden"
             >
-                {item.obtaining.mobLoot && item.obtaining.mobLoot.length > 0 ? (
+                {hasMobLoot ? (
                     <div
                         ref={mobLootScrollRef}
                         className="flex flex-row h-full overflow-x-auto scrollbar-hidden items-center cursor-grab select-none active:cursor-grabbing"
                         {...mobLootDragProps}
                     >
-                        {item.obtaining.mobLoot.map((loot, idx) => (
+                        {mobLoot.map((loot, idx) => (
                             <React.Fragment key={idx}>
                                 <div className="flex flex-none items-center gap-4 px-6 min-w-50 h-3/4">
                                     <MobIcon mob={loot.mob} />
@@ -1147,9 +1167,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                         )) || <div className="mt-1" />}
                                     </div>
                                 </div>
-                                {idx <
-                                    (item.obtaining.mobLoot?.length ?? 0) -
-                                        1 && (
+                                {idx < mobLoot.length - 1 && (
                                     <div className="h-[50%] w-px bg-white/10 shrink-0" />
                                 )}
                             </React.Fragment>
@@ -1157,11 +1175,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     </div>
                 ) : (
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <InfoIcon
-                            weight="thin"
-                            className="w-12 h-12 mb-2 text-muted-foreground/50"
+                        <img
+                            className="w-12 h-12 mb-2 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                            src="/entities/creeper.png"
+                            alt="no mob loot"
                         />
-                        <div className="text-muted-foreground/60 text-xs mt-1.5 px-3 text-center">
+                        <div className="text-muted-foreground/60 text-xs px-2 text-center">
                             No Mob Drops This Item
                         </div>
                     </div>
@@ -1169,130 +1188,147 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             </GlassPanel>
 
             {/* Edible Panel */}
-            <GlassPanel className="md:col-span-3" title="Edible">
-                <div className="flex flex-1 items-center h-full flex-col gap-3">
-                    {hasEdible ? (
-                        <>
-                            <FoodBar
-                                hunger={item.edible!.hunger}
-                                className="pt-4"
-                            />
-                            <div className="grid grid-cols-3 w-full">
-                                <StatItem
-                                    label="Hunger"
-                                    reverseLabel
-                                    value={item.edible?.hunger}
-                                />
-                                <StatItem
-                                    label="Saturate"
-                                    reverseLabel
-                                    value={item.edible?.saturation}
-                                />
-                                <StatItem
-                                    label="Always"
-                                    reverseLabel
-                                    value={formatBoolean(
-                                        item.edible?.alwaysConsumable
-                                    )}
-                                />
-                            </div>
-                        </>
-                    ) : (
-                        <div className="flex flex-col items-center justify-center h-full flex-1">
-                            <SmileySadIcon
-                                weight="thin"
-                                className="w-12 h-12 flex-1 text-muted-foreground/50"
-                            />
-                            <div className="text-muted-foreground/60 text-xs mb-5">
-                                Not Edible
-                            </div>
-                        </div>
+            {!item.isBlock && (
+                <GlassPanel
+                    className={cn(
+                        hasEdible ? 'md:col-span-3' : 'md:col-span-2'
                     )}
-                </div>
-            </GlassPanel>
+                    title="Edible"
+                >
+                    <div className="flex flex-1 items-center h-full flex-col gap-3">
+                        {hasEdible ? (
+                            <>
+                                <FoodBar
+                                    hunger={item.edible!.hunger}
+                                    className="pt-4"
+                                />
+                                <div className="grid grid-cols-3 w-full">
+                                    <StatItem
+                                        label="Hunger"
+                                        reverseLabel
+                                        value={item.edible?.hunger}
+                                    />
+                                    <StatItem
+                                        label="Saturate"
+                                        reverseLabel
+                                        value={item.edible?.saturation}
+                                    />
+                                    <StatItem
+                                        label="Always"
+                                        reverseLabel
+                                        value={formatBoolean(
+                                            item.edible?.alwaysConsumable
+                                        )}
+                                    />
+                                </div>
+                            </>
+                        ) : (
+                            <div className="flex flex-col items-center justify-center h-full flex-1 pb-5">
+                                <div className="flex flex-1 items-center justify-center">
+                                    <img
+                                        src="/food.png"
+                                        alt="not edible"
+                                        className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                    />
+                                </div>
+                                <div className="text-muted-foreground/60 text-xs">
+                                    Not Edible
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </GlassPanel>
+            )}
 
             {/* Compostable Panel */}
-            <GlassPanel
-                className="md:col-span-2 flex flex-col items-center justify-center"
-                title="Compostable"
-            >
-                <div className="flex flex-1 flex-col items-center justify-center">
-                    <div className="flex flex-1 items-center justify-center">
-                        <img
-                            src="/renders/blocks/composter.png"
-                            alt="compost"
-                            className={`h-12 w-12 drop-shadow-sm ${hasCompostable ? '' : 'grayscale opacity-70'}`}
-                        />
+            {hasCompostable && (
+                <GlassPanel
+                    className="md:col-span-2 flex flex-col items-center justify-center"
+                    title="Compostable"
+                >
+                    <div className="flex flex-1 flex-col items-center justify-center">
+                        <div className="flex flex-1 items-center justify-center">
+                            <img
+                                src="/renders/blocks/composter.png"
+                                alt="compost"
+                                className={`h-12 w-12 drop-shadow-sm ${hasCompostable ? '' : 'grayscale opacity-70'}`}
+                            />
+                        </div>
+                        {hasCompostable ? (
+                            <div className="text-2xl font-bold text-emerald-400/80 tracking-tighter">
+                                {(item.compostable!.chance * 100).toFixed(0)}%
+                            </div>
+                        ) : (
+                            <div className="text-muted-foreground/60 flex text-xs mb-5 tracking-tight">
+                                Not Compostable
+                            </div>
+                        )}
                     </div>
-                    {hasCompostable ? (
-                        <div className="text-2xl font-bold text-emerald-400/80 tracking-tighter">
-                            {(item.compostable!.chance * 100).toFixed(0)}%
-                        </div>
-                    ) : (
-                        <div className="text-muted-foreground/60 flex text-xs mb-5 tracking-tight">
-                            Not Compostable
-                        </div>
-                    )}
-                </div>
-            </GlassPanel>
+                </GlassPanel>
+            )}
 
             {/* Enchantments Panel */}
-            <GlassPanel
-                className={cn(
-                    !item.possibleEnchantments ||
-                        item.possibleEnchantments.length === 0
-                        ? 'md:col-span-2 row-span-1'
-                        : 'md:col-span-4 row-span-2'
-                )}
-                title="Enchantments"
-                contentClassName="flex flex-col overflow-y-auto"
-            >
-                <div className="flex-1 flex flex-col mt-2.5 gap-0.5 pb-4">
-                    {item.possibleEnchantments?.map((ench) => {
-                        const maxLevel =
-                            typeof ench.levels === 'number'
-                                ? ench.levels
-                                : ench.levels.max
-                        const roman =
-                            maxLevel > 1
-                                ? ROMAN_NUMERALS[maxLevel] ||
-                                  maxLevel.toString()
-                                : '-'
-                        const name = ench.id.replace(/_/g, ' ')
+            {item.possibleEnchantments &&
+                item.possibleEnchantments.length > 0 && (
+                    <GlassPanel
+                        className={cn(
+                            !item.possibleEnchantments ||
+                                item.possibleEnchantments.length === 0
+                                ? 'md:col-span-2 row-span-1'
+                                : 'md:col-span-4 row-span-2'
+                        )}
+                        title="Enchantments"
+                        contentClassName="flex flex-col overflow-y-auto"
+                    >
+                        <div className="flex-1 flex flex-col gap-0.5 pb-5 pt-2">
+                            {item.possibleEnchantments?.map((ench) => {
+                                const maxLevel =
+                                    typeof ench.levels === 'number'
+                                        ? ench.levels
+                                        : ench.levels.max
+                                const roman =
+                                    maxLevel > 1
+                                        ? ROMAN_NUMERALS[maxLevel] ||
+                                          maxLevel.toString()
+                                        : '-'
+                                const name = ench.id.replace(/_/g, ' ')
 
-                        return (
-                            <div
-                                key={ench.id}
-                                className="flex items-center justify-between gap-1 py-1 px-4"
-                            >
-                                <span className="text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground font-semibold leading-tight">
-                                    {name}
-                                </span>
-                                {/* {roman ? ( */}
-                                <>
-                                    <div className="flex-1 border-t border-muted-foreground/30 mx-2 border-dashed shrink-0" />
-                                    <span className="text-sm tracking-tight text-right font-mono font-bold dark:text-purple-400/80 text-purple-800/80 shrink-0">
-                                        {roman}
-                                    </span>
-                                </>
-                                {/* ) : null} */}
-                            </div>
-                        )
-                    })}
-                    {!item.possibleEnchantments ||
-                    item.possibleEnchantments.length === 0 ? (
-                        <div className="flex-1 flex flex-col items-center justify-center">
-                            <InfoIcon
-                                weight="thin"
-                                className="w-12 h-12 text-muted-foreground/50"
-                            />
-                            <div className="text-muted-foreground/60 text-center text-xs p-2 mt-1.5">
-                                Item cannot be enchanted
-                            </div>
+                                return (
+                                    <div
+                                        key={ench.id}
+                                        className="flex items-center justify-between gap-1 py-1 px-4"
+                                    >
+                                        <span className="text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground font-semibold leading-tight">
+                                            {name}
+                                        </span>
+                                        {/* {roman ? ( */}
+                                        <>
+                                            <div className="flex-1 border-t border-muted-foreground/30 mx-2 border-dashed shrink-0" />
+                                            <span className="text-sm tracking-tight text-right font-mono font-bold dark:text-purple-400/80 text-purple-800/80 shrink-0">
+                                                {roman}
+                                            </span>
+                                        </>
+                                        {/* ) : null} */}
+                                    </div>
+                                )
+                            })}
+                            {!item.possibleEnchantments ||
+                            item.possibleEnchantments.length === 0 ? (
+                                <div className="flex-1 flex flex-col items-center justify-center">
+                                    <div className="flex-1 flex items-center justify-center">
+                                        <img
+                                            className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                            src="/renders/items/enchanted_book.png"
+                                        />
+                                    </div>
+                                    <div className="text-muted-foreground/60 text-center px-2 text-xs">
+                                        Item cannot be enchanted
+                                    </div>
+                                </div>
+                            ) : null}
                         </div>
-                    ) : null}
-                </div>
-            </GlassPanel>
+                    </GlassPanel>
+                )}
 
             {/* Fishing Panel */}
             {item.obtaining.fishing && (
@@ -1329,10 +1365,10 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 <FlippableGlassPanel
                     className="md:col-span-2"
                     title="Bartering"
-                    comment={item.obtaining.bartering.comment}
-                    contentClassName="flex flex-col items-center justify-center"
+                    comment={item.obtaining.bartering?.comment}
+                    contentClassName="flex flex-col items-center justify-center pb-5"
                 >
-                    <div className="flex-1 flex flex-col items-center justify-center gap-1.5 pt-2">
+                    <div className="flex-1 flex flex-col items-center justify-center gap-1.5">
                         <img
                             src="/bartering.png"
                             alt="Bartering"
@@ -1346,23 +1382,26 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             Piglin
                         </span>
                     </div>
-                    <div className="flex gap-2 items-baseline mb-4">
+                    <div className="flex gap-2 items-baseline">
                         <span className="text-base font-semibold font-mono text-emerald-400/90 leading-none">
-                            {formatChance(item.obtaining.bartering.chance)}
+                            {formatChance(item.obtaining.bartering?.chance)}
                         </span>
                         <div className="shrink-0 h-3 w-px bg-white/20" />
                         <span className="text-sm font-mono text-muted-foreground tracking-tighter">
-                            {formatQuantity(item.obtaining.bartering.quantity)}x
+                            {formatQuantity(item.obtaining.bartering?.quantity)}
+                            x
                         </span>
                     </div>
                 </FlippableGlassPanel>
             )}
 
             {/* Trading Panel */}
-            {((item.obtaining.trading?.villagers?.length ?? 0) > 0 ||
-                item.obtaining.trading?.wanderingTrader) && (
+            {hasTrading && (
                 <GlassPanel
-                    className="md:col-span-8 row-span-1"
+                    className={cn(
+                        traderCount >= 2 ? 'md:col-span-8' : 'md:col-span-5',
+                        'row-span-1'
+                    )}
                     title="Trading"
                     contentClassName="overflow-hidden"
                 >
@@ -1371,13 +1410,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         className="flex flex-row h-full overflow-x-auto scrollbar-hidden items-center cursor-grab select-none active:cursor-grabbing"
                         {...tradingDragProps}
                     >
-                        {item.obtaining.trading?.villagers?.map((v, idx) => (
+                        {tradingVillagers.map((v, idx) => (
                             <React.Fragment key={idx}>
-                                <div className="flex flex-none items-center gap-4 px-6 min-w-50 h-3/4">
-                                    <div className="w-20 h-20 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
+                                <div className="flex flex-none items-center gap-2 px-5 min-w-50 h-3/4">
+                                    <div className="w-16 h-16 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
                                         <img
                                             src={`/entities/villager_${v.profession}.png`}
                                             alt={v.profession}
+                                            draggable={false}
                                             className="w-full h-full object-contain image-pixelated drop-shadow-sm p-1"
                                             onError={(e) => {
                                                 e.currentTarget.src =
@@ -1408,18 +1448,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                         )}
                                     </div>
                                 </div>
-                                {(idx <
-                                    (item.obtaining.trading?.villagers
-                                        ?.length ?? 0) -
-                                        1 ||
-                                    item.obtaining.trading
-                                        ?.wanderingTrader) && (
+                                {(idx < tradingVillagers.length - 1 ||
+                                    hasWanderingTrader) && (
                                     <div className="h-[50%] w-px bg-white/10 shrink-0" />
                                 )}
                             </React.Fragment>
                         ))}
-                        {item.obtaining.trading?.wanderingTrader && (
-                            <div className="flex flex-none items-center gap-4 px-6 min-w-50 h-3/4">
+                        {hasWanderingTrader && (
+                            <div className="flex flex-none items-center gap-2 px-5 min-w-50 h-3/4">
                                 <div className="w-20 h-20 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
                                     <img
                                         src="/entities/wandering_trader.png"
@@ -1438,25 +1474,25 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     <div className="flex gap-2 items-baseline mt-1">
                                         <span className="text-base font-semibold font-mono text-emerald-400/90 leading-none">
                                             {formatChance(
-                                                item.obtaining.trading
-                                                    .wanderingTrader.chance
+                                                item.obtaining.trading!
+                                                    .wanderingTrader!.chance
                                             )}
                                         </span>
                                         <div className="shrink-0 h-3 w-px bg-white/20" />
                                         <span className="text-sm font-mono text-muted-foreground tracking-tighter">
                                             {formatQuantity(
-                                                item.obtaining.trading
-                                                    .wanderingTrader.quantity
+                                                item.obtaining.trading!
+                                                    .wanderingTrader!.quantity
                                             )}
                                             x
                                         </span>
                                     </div>
-                                    {item.obtaining.trading.wanderingTrader
+                                    {item.obtaining.trading!.wanderingTrader!
                                         .comment && (
                                         <p className="text-[10px] text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
                                             {
-                                                item.obtaining.trading
-                                                    .wanderingTrader.comment
+                                                item.obtaining.trading!
+                                                    .wanderingTrader!.comment
                                             }
                                         </p>
                                     )}
@@ -1482,7 +1518,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         (s) => s.comment
                     )?.comment
                 }
-                contentClassName="p-4 overflow-hidden"
+                contentClassName="pb-5 overflow-hidden"
             >
                 {item.obtaining.generatedLoot &&
                 item.obtaining.generatedLoot.structures.length > 0 ? (
@@ -1591,11 +1627,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     </div>
                 ) : (
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <InfoIcon
-                            weight="thin"
-                            className="w-12 h-12 mb-2 text-muted-foreground/50"
-                        />
-                        <div className="text-muted-foreground/60 text-center text-xs mt-1.5">
+                        <div className="flex flex-1 items-center justify-center">
+                            <img
+                                className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                src="/renders/blocks/chest.png"
+                                alt="No Generated Loot"
+                            />
+                        </div>
+                        <div className="text-muted-foreground/60 text-center text-xs">
                             This item is not in any loot tables
                         </div>
                     </div>
@@ -1603,67 +1642,109 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             </FlippableGlassPanel>
 
             {/* Block Loot Panel */}
-            <GlassPanel
-                className={cn(
-                    item.obtaining.blockLoot?.[0]?.blocks?.[0]
-                        ? 'md:col-span-3 row-span-1'
-                        : 'md:col-span-2 row-span-1'
-                )}
-                title="Block Loot"
-                contentClassName="flex flex-col items-center justify-center"
-            >
-                {(() => {
-                    const blockLoot = item.obtaining.blockLoot?.[0]
-                    const firstBlock = blockLoot?.blocks?.[0]
-
-                    if (!blockLoot || !firstBlock) {
-                        return (
-                            <div className="flex-1 flex flex-col items-center justify-center">
-                                <InfoIcon
-                                    weight="thin"
-                                    className="w-12 h-12 flex-1 text-muted-foreground/50"
-                                />
-                                <div className="text-muted-foreground/60 text-xs px-3 text-center mb-5">
-                                    No special block drops this item
-                                </div>
+            {totalBlocks > 0 && (
+                <GlassPanel
+                    className={cn(
+                        totalBlocks > 1
+                            ? 'md:col-span-4 row-span-1'
+                            : totalBlocks === 1
+                              ? 'md:col-span-3 row-span-1'
+                              : 'md:col-span-2 row-span-1'
+                    )}
+                    title="Block Loot"
+                    contentClassName="overflow-hidden"
+                >
+                    {totalBlocks > 0 ? (
+                        <div
+                            ref={blockLootScrollRef}
+                            className={cn(
+                                'flex h-full pb-2 scrollbar-hidden cursor-grab select-none active:cursor-grabbing',
+                                totalBlocks > 1
+                                    ? 'flex-row items-center overflow-x-auto'
+                                    : 'flex-col items-center justify-center'
+                            )}
+                            {...blockLootDragProps}
+                        >
+                            {(() => {
+                                const flattenedBlocks = blockLoots.flatMap(
+                                    (loot) =>
+                                        loot.blocks.map((block) => ({
+                                            block,
+                                            loot,
+                                        }))
+                                )
+                                return flattenedBlocks.map(
+                                    ({ block, loot }, idx) => (
+                                        <React.Fragment key={`${block}-${idx}`}>
+                                            <div className="flex flex-none flex-col items-center justify-center gap-1 px-4">
+                                                <div className="flex flex-col items-center justify-center gap-1.5">
+                                                    <img
+                                                        src={`/renders/blocks/${block}.png`}
+                                                        alt={block}
+                                                        draggable={false}
+                                                        className="h-12 w-12 drop-shadow-sm object-contain image-pixelated"
+                                                        onError={(e) => {
+                                                            const target =
+                                                                e.currentTarget
+                                                            if (
+                                                                target.src.includes(
+                                                                    '/blocks/'
+                                                                )
+                                                            ) {
+                                                                target.src = `/renders/items/${block}.png`
+                                                            } else {
+                                                                target.src =
+                                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                                            }
+                                                        }}
+                                                    />
+                                                    <span className="text-[11px] font-bold font-mono text-center tracking-tight text-foreground/80 uppercase px-2 leading-tight">
+                                                        {block.replace(
+                                                            /_/g,
+                                                            ' '
+                                                        )}
+                                                    </span>
+                                                </div>
+                                                <div className="flex gap-2 items-baseline">
+                                                    <span className="text-base font-semibold font-mono text-emerald-400/90 leading-none">
+                                                        {formatChance(
+                                                            loot.chance
+                                                        )}
+                                                    </span>
+                                                    <div className="shrink-0 h-3 w-px bg-white/20" />
+                                                    <span className="text-sm font-mono text-muted-foreground tracking-tighter">
+                                                        {formatQuantity(
+                                                            loot.quantity
+                                                        )}
+                                                        x
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            {totalBlocks > 1 &&
+                                                idx <
+                                                    flattenedBlocks.length -
+                                                        1 && (
+                                                    <div className="h-[50%] w-px bg-white/10 shrink-0" />
+                                                )}
+                                        </React.Fragment>
+                                    )
+                                )
+                            })()}
+                        </div>
+                    ) : (
+                        <div className="flex-1 flex flex-col items-center justify-center">
+                            <img
+                                className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                src="/renders/blocks/grass_block.png"
+                                alt="No Block Loot"
+                            />
+                            <div className="text-muted-foreground/60 text-xs px-3 text-center mb-5">
+                                No special block drops this item
                             </div>
-                        )
-                    }
-
-                    return (
-                        <>
-                            <div className="flex-1 flex flex-col items-center justify-center gap-1.5 pt-2">
-                                <img
-                                    src={`/renders/blocks/${firstBlock}.png`}
-                                    alt={firstBlock}
-                                    className="h-12 w-12 drop-shadow-sm object-contain image-pixelated"
-                                    onError={(e) => {
-                                        const target = e.currentTarget
-                                        if (target.src.includes('/blocks/')) {
-                                            target.src = `/renders/items/${firstBlock}.png`
-                                        } else {
-                                            target.src =
-                                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                        }
-                                    }}
-                                />
-                                <span className="text-[11px] font-bold font-mono text-center tracking-tight text-foreground/80 uppercase px-2 leading-tight">
-                                    {firstBlock.replace(/_/g, ' ')}
-                                </span>
-                            </div>
-                            <div className="flex gap-2 items-baseline mb-5">
-                                <span className="text-base font-semibold font-mono text-emerald-400/90 leading-none">
-                                    {formatChance(blockLoot.chance)}
-                                </span>
-                                <div className="shrink-0 h-3 w-px bg-white/20" />
-                                <span className="text-sm font-mono text-muted-foreground tracking-tighter">
-                                    {formatQuantity(blockLoot.quantity)}x
-                                </span>
-                            </div>
-                        </>
-                    )
-                })()}
-            </GlassPanel>
+                        </div>
+                    )}
+                </GlassPanel>
+            )}
 
             {/* Dimension Panel 1x3 */}
             <GlassPanel
@@ -1671,7 +1752,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 title="Dimensions"
                 contentClassName="flex justify-center items-center"
             >
-                <div className="flex flex-wrap justify-center items-center gap-1 mb-5">
+                <div className="flex flex-wrap flex-1 justify-center items-center gap-1 mb-5">
                     {item.obtaining.naturalGeneration?.dimensions.map((dim) => (
                         <DimensionItem key={dim} dimension={dim} />
                     ))}
@@ -1679,11 +1760,11 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         0 ||
                         (item.obtaining.naturalGeneration === undefined && (
                             <div className="flex-1 flex flex-col items-center justify-center h-full">
-                                <InfoIcon
-                                    weight="thin"
-                                    className="w-12 h-12 flex-1 text-muted-foreground/50"
+                                <img
+                                    className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                    src="/renders/blocks/end_portal_frame.png"
                                 />
-                                <div className="text-muted-foreground/60 text-xs mb-5 text-center">
+                                <div className="text-muted-foreground/60 text-xs text-center">
                                     Does not naturally generate in any
                                     dimensions
                                 </div>
@@ -1696,17 +1777,22 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             <FlippableGlassPanel
                 className={cn(
                     hasBiomes
-                        ? 'md:col-span-6 row-span-2'
+                        ? biomes.length < 4
+                            ? `md:col-span-${biomes.length * 2} row-span-1`
+                            : 'md:col-span-6 row-span-2'
                         : 'md:col-span-3 row-span-1'
                 )}
                 title="In Biomes"
                 comment={item.obtaining.naturalGeneration?.comment}
-                contentClassName="p-4 overflow-hidden"
+                contentClassName="pb-5 overflow-hidden px-4"
             >
                 {hasBiomes ? (
                     <div
                         ref={biomesScrollRef}
-                        className="flex flex-row flex-wrap gap-2 h-full overflow-y-auto scrollbar-thin pr-2 cursor-grab active:cursor-grabbing select-none"
+                        className={cn(
+                            'flex flex-row flex-wrap gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none',
+                            biomes.length < 4 && 'justify-center'
+                        )}
                         {...biomesDragProps}
                     >
                         {biomes.map((biome) => (
@@ -1715,12 +1801,15 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     </div>
                 ) : (
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <InfoIcon
-                            weight="thin"
-                            className="w-12 h-12 mb-2 text-muted-foreground/50"
-                        />
-                        <div className="text-muted-foreground/60 text-xs mt-1.5 text-center">
-                            Does not generate in any specific biome
+                        <div className="flex-1 flex items-center justify-center">
+                            <img
+                                className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm rounded-lg"
+                                src="/biomes/ice_spikes.png"
+                                alt="No Biomes"
+                            />
+                        </div>
+                        <div className="text-muted-foreground/60 text-xs text-center">
+                            Does not generate in specific biomes
                         </div>
                     </div>
                 )}
@@ -1730,19 +1819,24 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             <FlippableGlassPanel
                 className={cn(
                     hasStructures
-                        ? 'md:col-span-6 row-span-2'
+                        ? structures.length < 4
+                            ? `md:col-span-${structures.length * 2} row-span-1`
+                            : 'md:col-span-6 row-span-2'
                         : 'md:col-span-3 row-span-1'
                 )}
                 title="Structures"
                 comment={
                     item.obtaining.naturalGeneration?.partOfStructures?.comment
                 }
-                contentClassName="p-4 overflow-hidden"
+                contentClassName="pb-5 overflow-hidden px-4"
             >
                 {hasStructures ? (
                     <div
                         ref={structuresScrollRef}
-                        className="flex flex-row flex-wrap gap-2 h-full overflow-y-auto scrollbar-thin pr-2 cursor-grab active:cursor-grabbing select-none"
+                        className={cn(
+                            'flex flex-row flex-wrap gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none',
+                            structures.length < 4 && 'justify-center'
+                        )}
                         {...structuresDragProps}
                     >
                         {structures.map((structure) => (
@@ -1754,11 +1848,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     </div>
                 ) : (
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <InfoIcon
-                            weight="thin"
-                            className="w-12 h-12 mb-2 text-muted-foreground/50"
-                        />
-                        <div className="text-muted-foreground/60 text-xs mt-1.5 text-center">
+                        <div className="flex flex-1 justify-center items-center">
+                            <img
+                                className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm rounded-lg"
+                                src="/structures/village_plains.png"
+                                alt="No Structures"
+                            />
+                        </div>
+                        <div className="text-muted-foreground/60 text-xs text-center">
                             Does not generate within any structure
                         </div>
                     </div>
