@@ -651,12 +651,12 @@
         "redstone_ore"
     ],
     "stone_variant": [
-        "andesite",
         "blackstone",
         "deepslate",
+        "tuff",
         "diorite",
         "granite",
-        "tuff"
+        "andesite"
     ],
     "wall": [
         "andesite_wall",
@@ -754,7 +754,6 @@
         "chipped_anvil",
         "damaged_anvil",
         "cyan_concrete_powder",
-        "gravel",
         "gray_concrete_powder",
         "green_concrete_powder",
         "light_blue_concrete_powder",
@@ -771,7 +770,8 @@
         "yellow_concrete_powder",
         "suspicious_gravel",
         "suspicious_sand",
-        "anvil"
+        "anvil",
+        "gravel"
     ],
     "black": [
         "black_candle",
@@ -1211,12 +1211,12 @@
     ],
     "andesite": [
         "andesite_slab",
-        "andesite",
         "andesite_stairs",
         "andesite_wall",
         "polished_andesite",
         "polished_andesite_stairs",
-        "polished_andesite_slab"
+        "polished_andesite_slab",
+        "andesite"
     ],
     "pottery_sherd_brushing_only": [
         "angler_pottery_sherd",
@@ -1486,8 +1486,8 @@
         "written_book"
     ],
     "bookshelf": [
-        "bookshelf",
-        "chiseled_bookshelf"
+        "chiseled_bookshelf",
+        "bookshelf"
     ],
     "banner_pattern": [
         "bordure_indented_banner_pattern",
@@ -1604,11 +1604,11 @@
         "cactus_flower"
     ],
     "sculk": [
-        "sculk",
         "sculk_catalyst",
         "calibrated_sculk_sensor",
         "sculk_sensor",
-        "sculk_shrieker"
+        "sculk_shrieker",
+        "sculk"
     ],
     "campfire": [
         "campfire",
@@ -2069,7 +2069,6 @@
         "mossy_stone_bricks",
         "smooth_stone_slab",
         "smooth_stone",
-        "stone",
         "stone_brick_slab",
         "stone_brick_stairs",
         "stone_brick_wall",
@@ -2090,7 +2089,8 @@
         "infested_cracked_stone_bricks",
         "infested_mossy_stone_bricks",
         "infested_stone",
-        "infested_stone_bricks"
+        "infested_stone_bricks",
+        "stone"
     ],
     "tuff": [
         "chiseled_tuff",
@@ -2134,12 +2134,12 @@
     ],
     "dirt": [
         "coarse_dirt",
-        "dirt",
-        "grass_block",
         "mycelium",
         "podzol",
         "rooted_dirt",
-        "dirt_path"
+        "dirt_path",
+        "dirt",
+        "grass_block"
     ],
     "cobbled": [
         "cobbled_deepslate",
@@ -2890,13 +2890,13 @@
         "diamond_leggings"
     ],
     "diorite": [
-        "diorite",
         "diorite_slab",
         "diorite_stairs",
         "diorite_wall",
         "polished_diorite_stairs",
         "polished_diorite_slab",
-        "polished_diorite"
+        "polished_diorite",
+        "diorite"
     ],
     "potion": [
         "dragon_breath",
@@ -3006,9 +3006,9 @@
         "rabbit_foot",
         "slime_block",
         "spider_eye",
-        "stone",
         "sugar",
-        "turtle_helmet"
+        "turtle_helmet",
+        "stone"
     ],
     "can_make_fire": [
         "fire_charge",
@@ -3058,13 +3058,13 @@
         "golden_leggings"
     ],
     "granite": [
-        "granite",
         "granite_slab",
         "granite_stairs",
         "granite_wall",
         "polished_granite_stairs",
         "polished_granite_slab",
-        "polished_granite"
+        "polished_granite",
+        "granite"
     ],
     "gray": [
         "gray_banner",

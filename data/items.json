@@ -411,7 +411,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.204,
                                     "quantity": {
                                         "min": 3,
@@ -1096,7 +1096,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.397,
                                     "quantity": {
                                         "min": 8,
@@ -1228,7 +1228,8 @@
                 "naturalGeneration": {
                     "dimensions": [
                         "overworld"
-                    ]
+                    ],
+                    "comment": "in many biomes underground"
                 }
             }
         },
@@ -1831,7 +1832,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_entrance_chest",
+                                    "chestName": "trial_chambers_entrance_chest",
                                     "chance": 0.551,
                                     "quantity": {
                                         "min": 5,
@@ -1839,7 +1840,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.285,
                                     "quantity": {
                                         "min": 2,
@@ -1847,7 +1848,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_chamber_dispenser",
+                                    "chestName": "trial_chambers_chamber_dispenser",
                                     "chance": 0.138,
                                     "quantity": {
                                         "min": 4,
@@ -1855,7 +1856,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_corridor_dispenser",
+                                    "chestName": "trial_chambers_corridor_dispenser",
                                     "chance": 1,
                                     "quantity": {
                                         "min": 4,
@@ -1863,7 +1864,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.31,
                                     "quantity": {
                                         "min": 2,
@@ -1871,7 +1872,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.373,
                                     "quantity": {
                                         "min": 4,
@@ -2509,7 +2510,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.196,
                                     "quantity": {
                                         "min": 1,
@@ -2669,7 +2670,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chestName": "trial_chambers_intersection_barrel",
                                     "chance": 0.493,
                                     "quantity": {
                                         "min": 5,
@@ -2677,7 +2678,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.196,
                                     "quantity": {
                                         "min": 3,
@@ -6197,7 +6198,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.063,
                                     "quantity": 1
                                 }
@@ -6455,7 +6456,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.204,
                                     "quantity": {
                                         "min": 2,
@@ -6642,13 +6643,17 @@
                         ]
                     }
                 },
+                "difficultyToObtain": 4,
                 "trading": {
-                    "wanderingTrader": {
-                        "chance": 0.67,
-                        "quantity": 1
-                    }
-                },
-                "difficultyToObtain": 4
+                    "villagers": [
+                        {
+                            "profession": "librarian",
+                            "level": "Novice (1)",
+                            "probability": 0.67,
+                            "quantity": 1
+                        }
+                    ]
+                }
             }
         },
         "bordure_indented_banner_pattern": {
@@ -6696,7 +6701,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.104,
                                     "quantity": 1
                                 }
@@ -7024,7 +7029,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_trial_spawner",
+                                    "chestName": "trial_chambers_trial_spawner",
                                     "chance": 0.15,
                                     "quantity": {
                                         "min": 1,
@@ -8724,7 +8729,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chestName": "trial_chambers_intersection_barrel",
                                     "chance": 0.059,
                                     "quantity": {
                                         "min": 1,
@@ -9192,7 +9197,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.397,
                                     "quantity": {
                                         "min": 1,
@@ -13394,7 +13399,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chestName": "trial_chambers_intersection_barrel",
                                     "chance": 0.059,
                                     "quantity": 1
                                 }
@@ -13594,7 +13599,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_onimous_trial_spawner",
+                                    "chestName": "trial_chambers_onimous_trial_spawner",
                                     "chance": 0.21,
                                     "quantity": {
                                         "min": 1,
@@ -13653,7 +13658,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_trial_spawner",
+                                    "chestName": "trial_chambers_trial_spawner",
                                     "chance": 0.15,
                                     "quantity": 1
                                 }
@@ -17083,12 +17088,12 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.07,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.11,
                                     "quantity": 1
                                 }
@@ -21041,7 +21046,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.215,
                                     "quantity": {
                                         "min": 1,
@@ -21049,7 +21054,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.085,
                                     "quantity": {
                                         "min": 1,
@@ -21057,7 +21062,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.014,
                                     "quantity": {
                                         "min": 1,
@@ -21065,7 +21070,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chestName": "trial_chambers_intersection_barrel",
                                     "chance": 0.059,
                                     "quantity": {
                                         "min": 1,
@@ -21073,7 +21078,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.264,
                                     "quantity": {
                                         "min": 2,
@@ -21203,22 +21208,22 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chestName": "trial_chambers_intersection_barrel",
                                     "chance": 0.059,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.112,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.035,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.083,
                                     "quantity": 1
                                 }
@@ -21355,17 +21360,17 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.003,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.023,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.028,
                                     "quantity": 1
                                 }
@@ -21650,12 +21655,12 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.035,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.083,
                                     "quantity": 1
                                 }
@@ -22457,7 +22462,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.112,
                                     "quantity": 1
                                 }
@@ -22933,7 +22938,8 @@
                 "naturalGeneration": {
                     "dimensions": [
                         "overworld"
-                    ]
+                    ],
+                    "comment": "in any biome underground"
                 },
                 "difficultyToObtain": 1,
                 "trading": {
@@ -23138,7 +23144,8 @@
                             "trail_ruins",
                             "trial_chambers"
                         ]
-                    }
+                    },
+                    "comment": "in many Biomes and below the surface as patches"
                 },
                 "difficultyToObtain": 1
             },
@@ -23744,7 +23751,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_chamber_dispenser",
+                                    "chestName": "trial_chambers_chamber_dispenser",
                                     "chance": 0.069,
                                     "quantity": {
                                         "min": 4,
@@ -24011,7 +24018,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.356,
                                     "quantity": {
                                         "min": 1,
@@ -24019,7 +24026,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.562,
                                     "quantity": {
                                         "min": 4,
@@ -24027,7 +24034,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.384,
                                     "quantity": {
                                         "min": 2,
@@ -24239,17 +24246,17 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.014,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.138,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.112,
                                     "quantity": {
                                         "min": 1,
@@ -24424,7 +24431,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.225,
                                     "quantity": 1
                                 }
@@ -24928,7 +24935,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.196,
                                     "quantity": {
                                         "min": 1,
@@ -26062,7 +26069,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_chamber_dispenser",
+                                    "chestName": "trial_chambers_chamber_dispenser",
                                     "chance": 0.207,
                                     "quantity": {
                                         "min": 4,
@@ -26597,7 +26604,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.225,
                                     "quantity": 1
                                 }
@@ -26630,7 +26637,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.15,
                                     "quantity": 1
                                 }
@@ -27450,7 +27457,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.373,
                                     "quantity": {
                                         "min": 2,
@@ -28469,12 +28476,12 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.083,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.083,
                                     "quantity": 1
                                 }
@@ -28564,7 +28571,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chestName": "trial_chambers_intersection_barrel",
                                     "chance": 0.223,
                                     "quantity": 1
                                 }
@@ -28900,7 +28907,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.14,
                                     "quantity": {
                                         "min": 1,
@@ -28908,7 +28915,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.07,
                                     "quantity": {
                                         "min": 1,
@@ -29807,7 +29814,7 @@
                         {
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_intersection_barrel",
+                                    "chestName": "trial_chambers_intersection_barrel",
                                     "chance": 0.223,
                                     "quantity": 1
                                 }
@@ -30221,7 +30228,8 @@
                             "village_desert"
                         ],
                         "comment": "in armorer houses only"
-                    }
+                    },
+                    "comment": "in many biomes underground"
                 },
                 "difficultyToObtain": 1
             },
@@ -30411,7 +30419,8 @@
                             "village_taiga",
                             "ancient_city"
                         ]
-                    }
+                    },
+                    "comment": "In many biomes, not listed"
                 },
                 "difficultyToObtain": 10
             },
@@ -30449,7 +30458,8 @@
                     "dimensions": [
                         "overworld",
                         "nether"
-                    ]
+                    ],
+                    "comment": "in many biomes and underground"
                 },
                 "bartering": {
                     "chance": 0.0853,
@@ -31948,7 +31958,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.042,
                                     "quantity": 1
                                 }
@@ -32233,7 +32243,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.075,
                                     "quantity": 1
                                 }
@@ -32347,7 +32357,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.24,
                                     "quantity": {
                                         "min": 1,
@@ -32387,7 +32397,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.102,
                                     "quantity": {
                                         "min": 2,
@@ -32395,7 +32405,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_entrance_chest",
+                                    "chestName": "trial_chambers_entrance_chest",
                                     "chance": 0.551,
                                     "quantity": {
                                         "min": 2,
@@ -33192,12 +33202,12 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.102,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.07,
                                     "quantity": 1
                                 }
@@ -33401,12 +33411,12 @@
                         {
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.11,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_intersection_chest",
+                                    "chestName": "trial_chambers_intersection_chest",
                                     "chance": 0.397,
                                     "quantity": {
                                         "min": 1,
@@ -33868,7 +33878,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.07,
                                     "quantity": 1
                                 }
@@ -34618,7 +34628,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.285,
                                     "quantity": {
                                         "min": 1,
@@ -34626,7 +34636,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.24,
                                     "quantity": {
                                         "min": 1,
@@ -42776,7 +42786,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.204,
                                     "quantity": 1
                                 }
@@ -42946,7 +42956,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.204,
                                     "quantity": {
                                         "min": 2,
@@ -44095,7 +44105,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.075,
                                     "quantity": 1
                                 }
@@ -44127,7 +44137,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.014,
                                     "quantity": 1
                                 }
@@ -44347,7 +44357,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.042,
                                     "quantity": 1
                                 }
@@ -47650,12 +47660,12 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.165,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.139,
                                     "quantity": 1
                                 }
@@ -47688,7 +47698,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_onimous_trial_spawner",
+                                    "chestName": "trial_chambers_onimous_trial_spawner",
                                     "chance": 0.3,
                                     "quantity": 1
                                 }
@@ -55722,7 +55732,7 @@
                     "dimensions": [
                         "overworld"
                     ],
-                    "comment": "only in copper ore veins below y=0, most common at y=-35"
+                    "comment": "only in iron ore veins below y=0, most common at y=-35"
                 },
                 "difficultyToObtain": 3
             },
@@ -58738,7 +58748,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.196,
                                     "quantity": {
                                         "min": 2,
@@ -58831,7 +58841,15 @@
                         }
                     ]
                 },
-                "difficultyToObtain": 7
+                "difficultyToObtain": 7,
+                "naturalGeneration": {
+                    "dimensions": [
+                        "overworld"
+                    ],
+                    "biomes": [
+                        "deep_dark"
+                    ]
+                }
             },
             "craftingIngredient": false,
             "isArmorTrimMaterial": false
@@ -59449,7 +59467,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.104,
                                     "quantity": 1
                                 }
@@ -61201,7 +61219,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_chamber_dispenser",
+                                    "chestName": "trial_chambers_chamber_dispenser",
                                     "chance": 0.207,
                                     "quantity": {
                                         "min": 4,
@@ -62780,7 +62798,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_entrance_chest",
+                                    "chestName": "trial_chambers_entrance_chest",
                                     "chance": 0.31,
                                     "quantity": {
                                         "min": 2,
@@ -62978,7 +62996,8 @@
                             "trail_ruins",
                             "trial_chambers"
                         ]
-                    }
+                    },
+                    "comment": "in many biomes"
                 },
                 "difficultyToObtain": 1,
                 "generatedLoot": {
@@ -63051,7 +63070,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.196,
                                     "quantity": 1
                                 }
@@ -63500,12 +63519,12 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.196,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.373,
                                     "quantity": 1
                                 }
@@ -66113,7 +66132,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.204,
                                     "quantity": {
                                         "min": 3,
@@ -66121,7 +66140,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.196,
                                     "quantity": {
                                         "min": 3,
@@ -66345,17 +66364,17 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_trial_spawner",
+                                    "chestName": "trial_chambers_trial_spawner",
                                     "chance": 0.5,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_decorated_pot",
+                                    "chestName": "trial_chambers_decorated_pot",
                                     "chance": 0.028,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_entrance_chest",
+                                    "chestName": "trial_chambers_entrance_chest",
                                     "chance": 0.068,
                                     "quantity": 1
                                 }
@@ -66435,7 +66454,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.021,
                                     "quantity": 1
                                 }
@@ -66845,7 +66864,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_corridor_barrel",
+                                    "chestName": "trial_chambers_corridor_barrel",
                                     "chance": 0.284,
                                     "quantity": {
                                         "min": 8,
@@ -66853,7 +66872,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_supply_chest",
+                                    "chestName": "trial_chambers_supply_chest",
                                     "chance": 0.204,
                                     "quantity": {
                                         "min": 5,
@@ -68388,12 +68407,12 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_chamber_dispenser",
+                                    "chestName": "trial_chambers_chamber_dispenser",
                                     "chance": 0.138,
                                     "quantity": 1
                                 },
                                 {
-                                    "chestName": "trial_chamber_water_dispenser",
+                                    "chestName": "trial_chambers_water_dispenser",
                                     "chance": 1,
                                     "quantity": 1
                                 }
@@ -72725,7 +72744,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_vault",
+                                    "chestName": "trial_chambers_vault",
                                     "chance": 0.24,
                                     "quantity": {
                                         "min": 1,
@@ -72733,7 +72752,7 @@
                                     }
                                 },
                                 {
-                                    "chestName": "trial_chamber_ominous_vault",
+                                    "chestName": "trial_chambers_ominous_vault",
                                     "chance": 0.474,
                                     "quantity": {
                                         "min": 8,
@@ -72967,7 +72986,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chamber_entrance_chest",
+                                    "chestName": "trial_chambers_entrance_chest",
                                     "chance": 0.551,
                                     "quantity": 1
                                 }

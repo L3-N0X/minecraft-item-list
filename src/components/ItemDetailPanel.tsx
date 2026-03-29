@@ -463,6 +463,13 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
         0
     )
 
+    const generatedLootStructures =
+        item.obtaining.generatedLoot?.structures ?? []
+    const totalLootRows = generatedLootStructures.reduce(
+        (acc, s) => acc + s.chests.length,
+        0
+    )
+
     // Scroll Refs
     const mobLootScrollRef = useRef<HTMLDivElement>(null)
     const biomesScrollRef = useRef<HTMLDivElement>(null)
@@ -655,7 +662,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     const biomes = item.obtaining.naturalGeneration?.biomes ?? []
     const structures =
         item.obtaining.naturalGeneration?.partOfStructures?.structures ?? []
-    const hasBiomes = biomes.length > 0
+    const hasBiomes =
+        biomes.length > 0 ||
+        (item.obtaining.naturalGeneration !== undefined &&
+            biomes.length === 0 &&
+            item.obtaining.naturalGeneration.comment !== undefined &&
+            item.obtaining.naturalGeneration.comment.length === 0)
     const hasStructures = structures.length > 0
 
     return (
@@ -1261,12 +1273,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     className="md:col-span-2 flex flex-col items-center justify-center"
                     title="Compostable"
                 >
-                    <div className="flex flex-1 flex-col items-center justify-center">
+                    <div className="flex flex-1 flex-col items-center justify-center pb-5">
                         <div className="flex flex-1 items-center justify-center">
                             <img
                                 src="/renders/blocks/composter.png"
                                 alt="compost"
-                                className={`h-12 w-12 drop-shadow-sm ${hasCompostable ? '' : 'grayscale opacity-70'}`}
+                                className={`h-12 w-12 mt-2 drop-shadow-sm ${hasCompostable ? '' : 'grayscale opacity-70'}`}
                             />
                         </div>
                         {hasCompostable ? (
@@ -1274,7 +1286,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 {(item.compostable!.chance * 100).toFixed(0)}%
                             </div>
                         ) : (
-                            <div className="text-muted-foreground/60 flex text-xs mb-5 tracking-tight">
+                            <div className="text-muted-foreground/60 flex text-xs tracking-tight">
                                 Not Compostable
                             </div>
                         )}
@@ -1431,16 +1443,16 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     >
                         {tradingVillagers.map((v, idx) => (
                             <React.Fragment key={idx}>
-                                <div className="flex flex-none items-center gap-2 px-5 min-w-50 h-3/4">
-                                    <div className="w-16 h-16 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
+                                <div className="flex flex-none  gap-2 px-5 min-w-50 h-3/4">
+                                    <div className="w-20 h-20 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
                                         <img
-                                            src={`/entities/villager_${v.profession}.png`}
+                                            src={`/villagers/${v.profession}.png`}
                                             alt={v.profession}
                                             draggable={false}
                                             className="w-full h-full object-contain image-pixelated drop-shadow-sm p-1"
                                             onError={(e) => {
                                                 e.currentTarget.src =
-                                                    '/renders/items/villager_spawn_egg.png'
+                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                                             }}
                                         />
                                     </div>
@@ -1523,20 +1535,17 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             )}
 
             {/* ROW 5-6: GENERATED LOOT */}
-            <FlippableGlassPanel
+            <GlassPanel
                 className={cn(
                     item.obtaining.generatedLoot &&
                         item.obtaining.generatedLoot.structures.length > 0
-                        ? 'md:col-span-9 row-span-2'
+                        ? cn(
+                              'md:col-span-9',
+                              totalLootRows <= 2 ? 'row-span-1' : 'row-span-2'
+                          )
                         : 'md:col-span-3 row-span-1'
                 )}
                 title="Generated Loot"
-                comment={
-                    // TODO: This code is bad, comments are per Structure!
-                    item.obtaining.generatedLoot?.structures.find(
-                        (s) => s.comment
-                    )?.comment
-                }
                 contentClassName="pb-5 overflow-hidden"
             >
                 {item.obtaining.generatedLoot &&
@@ -1582,62 +1591,142 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             ].sort(
                                                 (a, b) => b.chance - a.chance
                                             )
+                                            const cleanStructureName =
+                                                structureData.structure
+                                                    .replace(/_/g, ' ')
+                                                    .split(' ')
+                                                    .map(
+                                                        (word) =>
+                                                            word
+                                                                .charAt(0)
+                                                                .toUpperCase() +
+                                                            word.slice(1)
+                                                    )
+                                                    .join(' ')
+
                                             return sortedChests.map(
-                                                (chest, chestIdx) => (
-                                                    <tr
-                                                        key={`${structureData.structure}-${chestIdx}`}
-                                                        className="border-b border-muted-foreground/10 transition-colors"
-                                                    >
-                                                        {chestIdx === 0 && (
-                                                            <td
-                                                                rowSpan={
-                                                                    sortedChests.length
-                                                                }
-                                                                className="py-2 px-3 align-middle"
-                                                            >
-                                                                <div className="flex items-center gap-2">
-                                                                    <div className="w-6 h-6 flex items-center justify-center">
-                                                                        <img
-                                                                            src={`/structures/${structureData.structure}.png`}
-                                                                            alt={
-                                                                                structureData.structure
+                                                (chest, chestIdx) => {
+                                                    const structurePrefix =
+                                                        structureData.structure +
+                                                        '_'
+                                                    let rawChestName =
+                                                        chest.chestName
+                                                    if (
+                                                        rawChestName.startsWith(
+                                                            structurePrefix
+                                                        )
+                                                    ) {
+                                                        rawChestName =
+                                                            rawChestName.substring(
+                                                                structurePrefix.length
+                                                            )
+                                                    }
+                                                    const cleanChestName =
+                                                        rawChestName
+                                                            .replace(/_/g, ' ')
+                                                            .split(' ')
+                                                            .map(
+                                                                (word) =>
+                                                                    word
+                                                                        .charAt(
+                                                                            0
+                                                                        )
+                                                                        .toUpperCase() +
+                                                                    word.slice(
+                                                                        1
+                                                                    )
+                                                            )
+                                                            .join(' ')
+
+                                                    return (
+                                                        <tr
+                                                            key={`${structureData.structure}-${chestIdx}`}
+                                                            className="border-b border-muted-foreground/10 transition-colors"
+                                                        >
+                                                            {chestIdx === 0 && (
+                                                                <td
+                                                                    rowSpan={
+                                                                        sortedChests.length
+                                                                    }
+                                                                    className="py-2 px-3 align-middle"
+                                                                >
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-6 h-6 flex items-center justify-center">
+                                                                            <img
+                                                                                src={`/structures/${structureData.structure}.png`}
+                                                                                alt={
+                                                                                    structureData.structure
+                                                                                }
+                                                                                className="w-full h-full object-contain image-pixelated"
+                                                                                onError={(
+                                                                                    e
+                                                                                ) => {
+                                                                                    e.currentTarget.src =
+                                                                                        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                                                                }}
+                                                                            />
+                                                                        </div>
+                                                                        <span className="font-mono text-xs">
+                                                                            {
+                                                                                cleanStructureName
                                                                             }
-                                                                            className="w-full h-full object-contain image-pixelated"
-                                                                            onError={(
-                                                                                e
-                                                                            ) => {
-                                                                                e.currentTarget.src =
-                                                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                                                            }}
-                                                                        />
-                                                                    </div>
-                                                                    <span className="font-mono text-xs">
-                                                                        {structureData.structure.replace(
-                                                                            /_/g,
-                                                                            ' '
+                                                                        </span>
+                                                                        {structureData.comment && (
+                                                                            <HoverCard
+                                                                                openDelay={
+                                                                                    100
+                                                                                }
+                                                                                closeDelay={
+                                                                                    100
+                                                                                }
+                                                                            >
+                                                                                <HoverCardTrigger
+                                                                                    asChild
+                                                                                >
+                                                                                    <ExclamationMarkIcon
+                                                                                        className="w-4 h-4 dark:text-amber-400/60 dark:hover:text-amber-400 text-amber-600/60 hover:text-amber-600 cursor-help transition-colors shrink-0"
+                                                                                        weight="bold"
+                                                                                    />
+                                                                                </HoverCardTrigger>
+                                                                                <HoverCardContent
+                                                                                    side="top"
+                                                                                    className="w-80 p-3 bg-neutral-100 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 shadow-xl"
+                                                                                >
+                                                                                    <div className="flex gap-2.5 items-start">
+                                                                                        <div className="shrink-0 mt-0.5">
+                                                                                            <ExclamationMarkIcon
+                                                                                                className="w-4 h-4 dark:text-amber-400 text-amber-600"
+                                                                                                weight="bold"
+                                                                                            />
+                                                                                        </div>
+                                                                                        <p className="text-xs leading-relaxed text-foreground/80">
+                                                                                            {
+                                                                                                structureData.comment
+                                                                                            }
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </HoverCardContent>
+                                                                            </HoverCard>
                                                                         )}
-                                                                    </span>
-                                                                </div>
+                                                                    </div>
+                                                                </td>
+                                                            )}
+                                                            <td className="py-2 px-3 font-mono text-xs">
+                                                                {cleanChestName}
                                                             </td>
-                                                        )}
-                                                        <td className="py-2 px-3 font-mono text-xs">
-                                                            {chest.chestName.replace(
-                                                                /_/g,
-                                                                ' '
-                                                            )}
-                                                        </td>
-                                                        <td className="py-2 px-3 text-right font-mono text-xs text-emerald-400/80">
-                                                            {formatChance(
-                                                                chest.chance
-                                                            )}
-                                                        </td>
-                                                        <td className="py-2 px-3 text-right font-mono text-xs">
-                                                            {formatQuantity(
-                                                                chest.quantity
-                                                            )}
-                                                        </td>
-                                                    </tr>
-                                                )
+                                                            <td className="py-2 px-3 text-right font-mono text-xs text-emerald-400/80">
+                                                                {formatChance(
+                                                                    chest.chance
+                                                                )}
+                                                            </td>
+                                                            <td className="py-2 px-3 text-right font-mono text-xs">
+                                                                {formatQuantity(
+                                                                    chest.quantity
+                                                                )}
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                }
                                             )
                                         })}
                                 </tbody>
@@ -1658,7 +1747,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         </div>
                     </div>
                 )}
-            </FlippableGlassPanel>
+            </GlassPanel>
 
             {/* Block Loot Panel */}
             {totalBlocks > 0 && (
@@ -1768,7 +1857,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             {/* Dimension Panel 1x3 */}
             <GlassPanel
                 className="md:col-span-3"
-                title="Dimensions"
+                title="Generates In"
                 contentClassName="flex justify-center items-center"
             >
                 <div className="flex flex-col flex-1 justify-center items-center gap-1 mb-5">
@@ -1801,7 +1890,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             : 'md:col-span-6 row-span-2'
                         : 'md:col-span-3 row-span-1'
                 )}
-                title="In Biomes"
+                title="Biome Generation"
                 comment={item.obtaining.naturalGeneration?.comment}
                 contentClassName="pb-5 overflow-hidden px-4"
             >
@@ -1810,7 +1899,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         ref={biomesScrollRef}
                         className={cn(
                             'grid gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none content-start pt-2',
-                            biomes.length === 1
+                            biomes.length >= 0 && biomes.length < 2
                                 ? 'grid-cols-1'
                                 : biomes.length === 2
                                   ? 'grid-cols-2'
@@ -1823,6 +1912,29 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         {biomes.map((biome) => (
                             <BiomeIcon key={biome} biome={biome} />
                         ))}
+                        {item.obtaining.naturalGeneration !== undefined &&
+                            biomes.length === 0 &&
+                            item.obtaining.naturalGeneration.comment !==
+                                undefined &&
+                            item.obtaining.naturalGeneration.comment.length ===
+                                0 && (
+                                <div className="flex flex-col items-center gap-2 py-2 px-1 w-full shrink-0">
+                                    <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
+                                        <img
+                                            src={`/dimensions/overworld.png`}
+                                            className="w-full h-full object-cover image-pixelated"
+                                            draggable={false}
+                                            onError={(e) => {
+                                                e.currentTarget.src =
+                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                            }}
+                                        />
+                                    </div>
+                                    <span className="text-[10px] text-center text-foreground font-mono leading-tight capitalize tracking-tight">
+                                        Multiple biomes, see comment
+                                    </span>
+                                </div>
+                            )}
                     </div>
                 ) : (
                     <div className="flex-1 flex flex-col items-center justify-center">
@@ -1849,7 +1961,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             : 'md:col-span-6 row-span-2'
                         : 'md:col-span-3 row-span-1'
                 )}
-                title="Structures"
+                title="Part of Structures"
                 comment={
                     item.obtaining.naturalGeneration?.partOfStructures?.comment
                 }
