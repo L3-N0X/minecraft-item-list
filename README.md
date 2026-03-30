@@ -12,6 +12,8 @@ Visit the live site: [https://l3-n0x.github.io/minecraft-item-list/](https://l3-
     </a>
 </div>
 
+---
+
 **Minecraft Item List** is a powerful, data-rich web application hosted on GitHub Pages designed for quickly finding, filtering, and exploring every detail of Minecraft items. 
 
 Built with a focus on precision and utility, this project leverages a hand-written, deeply structured JSON database to provide insights that are often difficult to aggregate from standard sources. Whether you are a plugin developer, a technical player, or just curious about item mechanics, this tool offers a comprehensive overview of the Minecraft ecosystem.
