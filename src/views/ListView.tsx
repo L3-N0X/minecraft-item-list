@@ -169,7 +169,7 @@ export function ListView() {
         )
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 py-4">
             {/* ── Header ── */}
             <div className="flex justify-between items-end">
                 <div>

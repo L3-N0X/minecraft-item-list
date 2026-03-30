@@ -3,7 +3,6 @@
         "black_bundle",
         "bamboo_chest_raft",
         "acacia_chest_boat",
-        "barrel",
         "birch_chest_boat",
         "blue_bundle",
         "brown_bundle",
@@ -45,7 +44,8 @@
         "exposed_copper_chest",
         "weathered_copper_chest",
         "white_bundle",
-        "yellow_bundle"
+        "yellow_bundle",
+        "barrel"
     ],
     "redstone": [
         "acacia_button",
@@ -1633,7 +1633,10 @@
         "loom",
         "smithing_table",
         "smoker",
-        "stonecutter"
+        "stonecutter",
+        "barrel",
+        "cauldron",
+        "composter"
     ],
     "pumpkin": [
         "carved_pumpkin",

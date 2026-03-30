@@ -104,7 +104,7 @@ function GlassPanel({
     return (
         <div
             className={cn(
-                'relative bg-white/4 dark:bg-black/30 backdrop-blur z-5 rounded-2xl flex flex-col border dark:border-border border-white/40 overflow-hidden',
+                'relative bg-white/4 dark:bg-white/2 backdrop-blur z-5 rounded-2xl flex flex-col border dark:border-white/10 border-white/40 overflow-hidden',
                 className
             )}
             style={style}
@@ -682,7 +682,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
     return (
         <div
             ref={gridRef}
-            className="w-full grid grid-cols-12 auto-rows-[160px] grid-flow-row-dense gap-2 md:gap-3 animate-in fade-in duration-700 pb-12 max-w-350 mx-auto"
+            className="w-full grid md:grid-cols-12 auto-rows-[160px] grid-flow-row-dense gap-2 md:gap-3 animate-in fade-in duration-700 pb-12 max-w-350 mx-auto"
         >
             {/* ROW 1: HEADER */}
             <GlassPanel className="md:col-span-2 flex items-center justify-center p-4">
@@ -792,11 +792,11 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             {/* Big 1x1 Difficulty Panel */}
             <GlassPanel
                 className="md:col-span-2"
-                contentClassName="flex flex-col items-center justify-center"
+                contentClassName="flex flex-col items-center justify-center pb-5"
                 title="Difficulty"
             >
                 {item.obtaining.difficultyToObtain < 0 ? (
-                    <div className="text-lg font-bold text-center font-mono text-foreground/90 tracking-tighter mb-4">
+                    <div className="text-lg flex-1 font-bold text-center justify-center items-center font-mono text-foreground/90 tracking-tighter flex">
                         {item.obtaining.obtainability === 'unobtainable' ? (
                             <p className="dark:text-red-400/80 text-red-800/80">
                                 Not
@@ -815,14 +815,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     </div>
                 ) : (
                     <>
-                        <div className="flex-1 flex justify-center items-center text-6xl font-black font-mono text-foreground/90 tracking-tighter leading-none">
+                        <div className="flex-1 flex justify-center items-center mt-1 text-6xl font-black font-mono text-foreground/90 leading-none">
                             {item.obtaining.difficultyToObtain}
                         </div>
-                        <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold mb-5">
-                            to obtain
-                        </p>
                     </>
                 )}
+                <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                    to obtain
+                </p>
             </GlassPanel>
 
             {/* Craftable Panel */}
@@ -1415,15 +1415,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         <img
                             src="/bartering.png"
                             alt="Bartering"
-                            className="h-12 w-12 drop-shadow-sm object-contain image-pixelated"
+                            className="h-18 w-18 drop-shadow-sm object-contain"
                             onError={(e) => {
                                 e.currentTarget.src =
-                                    '/renders/items/gold_ingot.png'
+                                    '/renders/blocks/piglin_head.png'
                             }}
                         />
-                        <span className="text-[11px] font-bold font-mono text-center tracking-tight text-foreground/80 uppercase px-2 leading-tight">
-                            Piglin
-                        </span>
                     </div>
                     <div className="flex gap-2 items-baseline">
                         <span className="text-base font-semibold font-mono text-emerald-400/90 leading-none">
@@ -1473,7 +1470,9 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             {v.profession.replace(/_/g, ' ')}
                                         </span>
                                         <span className="text-[10px] text-muted-foreground/60 uppercase font-black">
-                                            Level {v.level}
+                                            {v.level
+                                                .replace('(', '[')
+                                                .replace(')', ']')}
                                         </span>
                                         <div className="flex gap-2 items-baseline mt-1">
                                             <span className="text-base font-semibold font-mono text-emerald-400/90 leading-none">
@@ -1485,7 +1484,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             </span>
                                         </div>
                                         {v.comment && (
-                                            <p className="text-[10px] text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
+                                            <p className="text-xs text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
                                                 {v.comment}
                                             </p>
                                         )}
@@ -1893,77 +1892,6 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 </div>
             </GlassPanel>
 
-            {/* Biomes Panel */}
-            <FlippableGlassPanel
-                className={cn(
-                    hasBiomes
-                        ? biomes.length <= 4
-                            ? `md:col-span-${Math.max(3, Math.min(6, biomes.length * 2))} row-span-1`
-                            : 'md:col-span-6 row-span-2'
-                        : 'md:col-span-3 row-span-1'
-                )}
-                title="Biome Generation"
-                comment={item.obtaining.naturalGeneration?.comment}
-                contentClassName="pb-5 overflow-hidden px-4"
-            >
-                {hasBiomes ? (
-                    <div
-                        ref={biomesScrollRef}
-                        className={cn(
-                            'grid gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none content-start pt-2',
-                            biomes.length >= 0 && biomes.length < 2
-                                ? 'grid-cols-1'
-                                : biomes.length === 2
-                                  ? 'grid-cols-2'
-                                  : biomes.length === 3
-                                    ? 'grid-cols-3'
-                                    : 'grid-cols-4'
-                        )}
-                        {...biomesDragProps}
-                    >
-                        {biomes.map((biome) => (
-                            <BiomeIcon key={biome} biome={biome} />
-                        ))}
-                        {item.obtaining.naturalGeneration !== undefined &&
-                            biomes.length === 0 &&
-                            item.obtaining.naturalGeneration.comment !==
-                                undefined &&
-                            item.obtaining.naturalGeneration.comment.length ===
-                                0 && (
-                                <div className="flex flex-col items-center gap-2 py-2 px-1 w-full shrink-0">
-                                    <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
-                                        <img
-                                            src={`/dimensions/overworld.png`}
-                                            className="w-full h-full object-cover image-pixelated"
-                                            draggable={false}
-                                            onError={(e) => {
-                                                e.currentTarget.src =
-                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                            }}
-                                        />
-                                    </div>
-                                    <span className="text-[10px] text-center text-foreground font-mono leading-tight capitalize tracking-tight">
-                                        Multiple biomes, see comment
-                                    </span>
-                                </div>
-                            )}
-                    </div>
-                ) : (
-                    <div className="flex-1 flex flex-col items-center justify-center">
-                        <div className="flex-1 flex items-center justify-center">
-                            <img
-                                className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm rounded-lg"
-                                src="/biomes/ice_spikes.png"
-                                alt="No Biomes"
-                            />
-                        </div>
-                        <div className="text-muted-foreground/60 text-xs text-center">
-                            Does not generate in specific biomes
-                        </div>
-                    </div>
-                )}
-            </FlippableGlassPanel>
-
             {/* Structures Panel */}
             <FlippableGlassPanel
                 className={cn(
@@ -2012,6 +1940,80 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         </div>
                         <div className="text-muted-foreground/60 text-xs text-center">
                             Does not generate within any structure
+                        </div>
+                    </div>
+                )}
+            </FlippableGlassPanel>
+
+            {/* Biomes Panel */}
+            <FlippableGlassPanel
+                className={cn(
+                    hasBiomes
+                        ? biomes.length <= 4
+                            ? `md:col-span-${Math.max(3, Math.min(6, biomes.length * 2))} row-span-1`
+                            : 'md:col-span-6 row-span-2'
+                        : 'md:col-span-3 row-span-1'
+                )}
+                title="Biome Generation"
+                comment={item.obtaining.naturalGeneration?.comment}
+                contentClassName="pb-5 overflow-hidden px-4"
+            >
+                {(item.obtaining.naturalGeneration !== undefined &&
+                    item.obtaining.naturalGeneration.comment !== undefined &&
+                    item.obtaining.naturalGeneration.comment.length > 0) ||
+                biomes.length > 0 ? (
+                    <div
+                        ref={biomesScrollRef}
+                        className={cn(
+                            'grid gap-1 h-full overflow-y-auto scrollbar-thin pr-1 cursor-grab active:cursor-grabbing select-none content-start pt-2',
+                            biomes.length >= 0 && biomes.length < 2
+                                ? 'grid-cols-1'
+                                : biomes.length === 2
+                                  ? 'grid-cols-2'
+                                  : biomes.length === 3
+                                    ? 'grid-cols-3'
+                                    : 'grid-cols-4'
+                        )}
+                        {...biomesDragProps}
+                    >
+                        {biomes.map((biome) => (
+                            <BiomeIcon key={biome} biome={biome} />
+                        ))}
+                        {item.obtaining.naturalGeneration !== undefined &&
+                            biomes.length === 0 &&
+                            item.obtaining.naturalGeneration.comment !==
+                                undefined &&
+                            item.obtaining.naturalGeneration.comment.length >
+                                0 && (
+                                <div className="flex flex-col items-center gap-2 py-2 px-1 w-full shrink-0">
+                                    <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
+                                        <img
+                                            src={`/dimensions/overworld.png`}
+                                            className="w-full h-full object-cover image-pixelated"
+                                            draggable={false}
+                                            onError={(e) => {
+                                                e.currentTarget.src =
+                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                            }}
+                                        />
+                                    </div>
+                                    <span className="text-[10px] text-center text-foreground font-mono leading-tight capitalize tracking-tight">
+                                        Multiple biomes, see comment
+                                    </span>
+                                </div>
+                            )}
+                    </div>
+                ) : (
+                    <div className="flex-1 flex flex-col items-center justify-center">
+                        <div className="flex-1 flex items-center justify-center">
+                            <img
+                                className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm rounded-lg"
+                                src="/biomes/ice_spikes.png"
+                                alt="No Biomes"
+                            />
+                        </div>
+                        <div className="text-muted-foreground/60 text-xs text-center">
+                            Does not generate in specific biomes
                         </div>
                     </div>
                 )}

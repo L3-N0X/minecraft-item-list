@@ -145,14 +145,11 @@ export function HomeView() {
     useEffect(() => {
         setSelectedIndex(0)
         setDisplayLimit(50)
-        // Auto-select if there is exactly one result
-        if (filteredResults.length === 1 && filteredResults[0] !== undefined) {
-            setSelectedItemId(filteredResults[0].id)
-        } else if (search.trim() === '') {
+        if (search.trim() === '') {
             // Only clear selection if search is empty
             setSelectedItemId(null)
         }
-    }, [search, filteredResults.length])
+    }, [search])
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (filteredResults.length === 0) return
@@ -195,17 +192,24 @@ export function HomeView() {
         }
     }
 
-    const selectedItem = selectedItemId ? items[selectedItemId] : null
+    const autoSelectedId = useMemo(() => {
+        return search.trim() !== '' && filteredResults.length === 1
+            ? filteredResults[0]?.id
+            : null
+    }, [search, filteredResults])
+
+    const activeItemId = selectedItemId || autoSelectedId
+    const selectedItem = activeItemId ? items[activeItemId] : null
     const isSearching = search.trim().length > 0
 
     return (
         <div
-            className={`flex flex-col items-center transition-all duration-500 ease-in-out ${selectedItemId || isSearching ? 'pt-0' : 'pt-[8vh]'} min-h-[85vh] gap-3 ${selectedItemId ? 'max-w-7xl' : 'max-w-2xl'} mx-auto px-4 w-full`}
+            className={`flex flex-col items-center transition-all duration-500 ease-in-out ${activeItemId || isSearching ? 'pt-0' : 'pt-[8vh]'} min-h-[85vh] gap-3 ${activeItemId ? 'max-w-7xl' : 'max-w-2xl'} mx-auto w-full`}
         >
             <div className="max-w-2xl mx-auto w-full space-y-2">
                 <div
                     className={`flex flex-col items-center space-y-4 text-center transition-all duration-500 ease-in-out ${
-                        selectedItemId || isSearching
+                        activeItemId || isSearching
                             ? 'h-0 opacity-0 pointer-events-none -translate-y-4 overflow-hidden'
                             : 'h-auto opacity-100'
                     }`}
@@ -256,7 +260,7 @@ export function HomeView() {
                 </div>
             </div>
 
-            {search && !selectedItemId && (
+            {search && !activeItemId && (
                 <div className="w-full animate-in fade-in slide-in-from-top-2 duration-500 flex flex-col">
                     {filteredResults.length > 0 ? (
                         <>
@@ -383,12 +387,15 @@ export function HomeView() {
             )}
 
             <div className="w-full">
-                {selectedItemId && selectedItem && (
-                    <div className="w-full animate-in fade-in zoom-in slide-in-from-bottom-8 duration-500 flex-1">
+                {activeItemId && selectedItem && (
+                    <div
+                        key={activeItemId}
+                        className="w-full animate-in fade-in zoom-in slide-in-from-bottom-8 duration-500 flex-1"
+                    >
                         <div className="h-full rounded-3xl p-2 flex flex-col items-center overflow-auto">
                             <ItemDetailPanel
                                 item={selectedItem}
-                                itemId={selectedItemId}
+                                itemId={activeItemId}
                             />
                         </div>
                     </div>

@@ -1110,8 +1110,8 @@ export function BulkEditorView() {
     }
 
     return (
-        <div className="w-full flex flex-col h-[calc(100vh-140px)] gap-4">
-            <div className="flex items-center justify-between shrink-0">
+        <div className="w-full flex flex-col h-[calc(100vh-80px)] gap-1 py-2">
+            <div className="flex items-center justify-between shrink-0 mb-2">
                 <div className="flex items-center gap-2 flex-1">
                     <div className="flex items-center gap-2 max-w-sm flex-1">
                         <Input
@@ -1283,7 +1283,7 @@ export function BulkEditorView() {
             <div className="flex items-center justify-between shrink-0 py-2">
                 <div className="text-sm text-muted-foreground">
                     {table.getFilteredSelectedRowModel().rows.length} of{' '}
-                    {table.getFilteredRowModel().rows.length} row(s) selected.
+                    {table.getFilteredRowModel().rows.length} rows selected
                 </div>
             </div>
 
