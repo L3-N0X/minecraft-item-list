@@ -340,7 +340,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             >
                 <div className="flex flex-col items-center justify-center gap-2 mt-2">
                     <img
-                        src={getAssetPath('/crafting_yes.png')}
+                        src={getAssetPath('/items/crafting_table.png')}
                         alt="craftable"
                         className={`h-16 w-16 drop-shadow-sm mt-2 ${item.obtaining.craftable ? '' : 'grayscale opacity-50'}`}
                         onError={(e) => {
@@ -959,7 +959,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     >
                         {tradingVillagers.map((v, idx) => (
                             <React.Fragment key={idx}>
-                                <div className="flex flex-none  gap-2 px-5 min-w-50 h-3/4">
+                                <div className="flex flex-1 gap-2 px-5 min-w-52 h-4/5">
                                     <div className="w-20 h-20 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
                                         <img
                                             src={getAssetPath(
@@ -974,7 +974,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             }}
                                         />
                                     </div>
-                                    <div className="flex flex-col h-full py-1 min-w-24">
+                                    <div className="flex flex-col flex-1 h-full py-1 min-w-24">
                                         <span className="text-base font-bold min-w-0 uppercase tracking-tight text-foreground/90 truncate">
                                             {v.profession.replace(/_/g, ' ')}
                                         </span>
@@ -993,7 +993,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             </span>
                                         </div>
                                         {v.comment && (
-                                            <p className="text-xs text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
+                                            <p className="text-xs text-muted-foreground/70 italic leading-tight line-clamp-2 mt-0.5">
                                                 {v.comment}
                                             </p>
                                         )}
@@ -1014,6 +1014,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                         )}
                                         alt="Wandering Trader"
                                         className="w-full h-full object-contain image-pixelated drop-shadow-sm p-1"
+                                        draggable={false}
                                         onError={(e) => {
                                             e.currentTarget.src = getAssetPath(
                                                 '/items/wandering_trader_spawn_egg.png'

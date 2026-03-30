@@ -25,7 +25,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     const location = useLocation()
 
     const downloadJson = () => {
-        window.location.href = '/api/items/download'
+        window.location.href = getAssetPath('/data/items.json')
     }
 
     const isActive = (path: string) => location.pathname === path
