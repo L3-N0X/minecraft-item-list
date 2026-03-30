@@ -5,8 +5,6 @@ import path from 'path'
 
 export default defineConfig({
     plugins: [react(), tailwindcss()],
-    // Set base path for GitHub Pages deployment
-    base: process.env.NODE_ENV === 'production' ? '/minecraft-item-list/' : '/',
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
