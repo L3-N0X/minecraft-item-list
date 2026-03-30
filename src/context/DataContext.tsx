@@ -60,6 +60,16 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         columnVisibility: {
             json: false,
             isBlock: false,
+            id: false,
+            displayNameGerman: false,
+            craftable: false,
+            hasMobLoot: false,
+            hasBlockLoot: false,
+            hasTrading: false,
+            hasSmelting: false,
+            renewable: false,
+            stackSize: false,
+            rarityTier: false,
         },
         rowSelection: {},
     })

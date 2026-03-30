@@ -41,7 +41,7 @@ import {
     HoverCardTrigger,
     HoverCardContent,
 } from '@/components/ui/hover-card'
-import { Settings2, X, Pencil } from 'lucide-react'
+import { Settings2, X, Pencil, Download, Copy } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
     Dialog,
@@ -184,6 +184,14 @@ export function BulkEditorView() {
 
     // Bulk Action State
     const [isBulkDialogOpen, setIsBulkDialogOpen] = useState(false)
+    const [isExportDialogOpen, setIsExportDialogOpen] = useState(false)
+    const [exportType, setExportType] = useState<'id' | 'name'>('id')
+    const [exportCase, setExportCase] = useState<'original' | 'caps'>(
+        'original'
+    )
+    const [exportSeparator, setExportSeparator] = useState<
+        'comma' | 'comma-space' | 'newline' | 'newline-comma'
+    >('comma-space')
     const [bulkActionTab, setBulkActionTab] = useState<'categorize' | 'field'>(
         'categorize'
     )
@@ -1392,17 +1400,28 @@ export function BulkEditorView() {
                     </DropdownMenu>
                 </div>
 
-                {selectedCount > 0 && !isStaticMode && (
+                <div className="flex items-center gap-2 ml-2">
                     <Button
-                        variant="default"
-                        className="ml-2"
+                        variant="outline"
                         size="sm"
-                        onClick={() => setIsBulkDialogOpen(true)}
+                        onClick={() => setIsExportDialogOpen(true)}
+                        disabled={selectedCount === 0}
                     >
-                        <PencilIcon className="mr-2 h-4 w-4" />
-                        Bulk Edit ({selectedCount})
+                        <Download className="mr-2 h-4 w-4" />
+                        Export {selectedCount > 0 ? `(${selectedCount})` : ''}
                     </Button>
-                )}
+
+                    {selectedCount > 0 && !isStaticMode && (
+                        <Button
+                            variant="default"
+                            size="sm"
+                            onClick={() => setIsBulkDialogOpen(true)}
+                        >
+                            <PencilIcon className="mr-2 h-4 w-4" />
+                            Bulk Edit ({selectedCount})
+                        </Button>
+                    )}
+                </div>
             </div>
 
             <div
@@ -1499,6 +1518,210 @@ export function BulkEditorView() {
                     {table.getFilteredRowModel().rows.length} rows selected
                 </div>
             </div>
+
+            <Dialog
+                open={isExportDialogOpen}
+                onOpenChange={setIsExportDialogOpen}
+            >
+                <DialogContent className="max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>Export Selected Items</DialogTitle>
+                        <DialogDescription>
+                            Configure and export {selectedCount} items.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="flex flex-col gap-2">
+                                <Label>Export Property</Label>
+                                <Select
+                                    value={exportType}
+                                    onValueChange={(v: 'id' | 'name') =>
+                                        setExportType(v)
+                                    }
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="id">
+                                            Item IDs
+                                        </SelectItem>
+                                        <SelectItem value="name">
+                                            Item Names
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <Label>Case</Label>
+                                <Select
+                                    value={exportCase}
+                                    onValueChange={(v: 'original' | 'caps') =>
+                                        setExportCase(v)
+                                    }
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="original">
+                                            Original
+                                        </SelectItem>
+                                        <SelectItem value="caps">
+                                            ALL CAPS
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <Label>Separator</Label>
+                            <Select
+                                value={exportSeparator}
+                                onValueChange={(
+                                    v:
+                                        | 'comma'
+                                        | 'comma-space'
+                                        | 'newline'
+                                        | 'newline-comma'
+                                ) => setExportSeparator(v)}
+                            >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="comma">Comma</SelectItem>
+                                    <SelectItem value="comma-space">
+                                        Comma + Space
+                                    </SelectItem>
+                                    <SelectItem value="newline">
+                                        Newline
+                                    </SelectItem>
+                                    <SelectItem value="newline-comma">
+                                        Newline + Comma
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <Label>Preview</Label>
+                            <div className="bg-muted p-2 rounded-md text-xs font-mono break-all max-h-48 overflow-y-auto whitespace-pre-wrap">
+                                {(() => {
+                                    const itemsToExport = selectedRows.map(
+                                        (row) => {
+                                            let text =
+                                                exportType === 'id'
+                                                    ? row.original.id
+                                                    : row.original.displayName
+                                            if (exportCase === 'caps') {
+                                                text = text.toUpperCase()
+                                            }
+                                            return text
+                                        }
+                                    )
+
+                                    const sepMap = {
+                                        comma: ',',
+                                        'comma-space': ', ',
+                                        newline: '\n',
+                                        'newline-comma': ',\n',
+                                    }
+
+                                    return itemsToExport.join(
+                                        sepMap[exportSeparator]
+                                    )
+                                })()}
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter className="flex flex-wrap gap-2 sm:justify-between">
+                        <Button
+                            variant="outline"
+                            onClick={() => setIsExportDialogOpen(false)}
+                        >
+                            Close
+                        </Button>
+                        <div className="flex gap-2">
+                            <Button
+                                variant="secondary"
+                                onClick={() => {
+                                    const itemsToExport = selectedRows.map(
+                                        (row) => {
+                                            let text =
+                                                exportType === 'id'
+                                                    ? row.original.id
+                                                    : row.original.displayName
+                                            if (exportCase === 'caps') {
+                                                text = text.toUpperCase()
+                                            }
+                                            return text
+                                        }
+                                    )
+
+                                    const sepMap = {
+                                        comma: ',',
+                                        'comma-space': ', ',
+                                        newline: '\n',
+                                        'newline-comma': ',\n',
+                                    }
+
+                                    const content = itemsToExport.join(
+                                        sepMap[exportSeparator]
+                                    )
+                                    const blob = new Blob([content], {
+                                        type: 'text/plain',
+                                    })
+                                    const url = URL.createObjectURL(blob)
+                                    const a = document.createElement('a')
+                                    a.href = url
+                                    a.download = `mc-items-export-${exportType}.txt`
+                                    document.body.appendChild(a)
+                                    a.click()
+                                    document.body.removeChild(a)
+                                    URL.revokeObjectURL(url)
+                                }}
+                            >
+                                <Download className="mr-2 h-4 w-4" />
+                                Download .txt
+                            </Button>
+                            <Button
+                                onClick={() => {
+                                    const itemsToExport = selectedRows.map(
+                                        (row) => {
+                                            let text =
+                                                exportType === 'id'
+                                                    ? row.original.id
+                                                    : row.original.displayName
+                                            if (exportCase === 'caps') {
+                                                text = text.toUpperCase()
+                                            }
+                                            return text
+                                        }
+                                    )
+
+                                    const sepMap = {
+                                        comma: ',',
+                                        'comma-space': ', ',
+                                        newline: '\n',
+                                        'newline-comma': ',\n',
+                                    }
+
+                                    const content = itemsToExport.join(
+                                        sepMap[exportSeparator]
+                                    )
+                                    navigator.clipboard.writeText(content)
+                                }}
+                            >
+                                <Copy className="mr-2 h-4 w-4" />
+                                Copy
+                            </Button>
+                        </div>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
 
             <Dialog open={isBulkDialogOpen} onOpenChange={setIsBulkDialogOpen}>
                 <DialogContent className="max-w-md">
