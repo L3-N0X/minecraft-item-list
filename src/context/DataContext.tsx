@@ -18,6 +18,8 @@ import {
     type VisibilityState,
 } from '@tanstack/react-table'
 
+import { getDataUrl } from '../lib/utils'
+
 export type { MinecraftItemData as ItemData }
 export type CategoriesData = Record<string, string[]>
 
@@ -80,9 +82,11 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     >({})
 
     useEffect(() => {
-        const itemsUrl = isStaticMode ? '/data/items.json' : '/api/items'
+        const itemsUrl = isStaticMode
+            ? getDataUrl('/data/items.json')
+            : '/api/items'
         const categoriesUrl = isStaticMode
-            ? '/data/categories.json'
+            ? getDataUrl('/data/categories.json')
             : '/api/categories'
 
         Promise.all([

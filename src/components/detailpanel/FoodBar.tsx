@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils'
 import type React from 'react'
 
+import { getAssetPath } from '@/lib/utils'
+
 export function FoodBar({
     hunger,
     className,
@@ -15,7 +17,7 @@ export function FoodBar({
         <div className={cn('flex gap-0.5', className)}>
             {halfIcon && (
                 <img
-                    src="/food_half.png"
+                    src={getAssetPath("/food_half.png")}
                     alt="half food"
                     className="w-4 image-pixelated"
                 />
@@ -23,7 +25,7 @@ export function FoodBar({
             {Array.from({ length: fullIcons }).map((_, i) => (
                 <img
                     key={i}
-                    src="/food.png"
+                    src={getAssetPath("/food.png")}
                     alt="food"
                     className="w-4 image-pixelated"
                 />

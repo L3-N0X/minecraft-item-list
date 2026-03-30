@@ -17,6 +17,7 @@ import {
     ListMagnifyingGlassIcon,
     MagnifyingGlassIcon,
 } from '@phosphor-icons/react'
+import { getAssetPath } from './lib/utils'
 
 function Layout({ children }: { children: React.ReactNode }) {
     const { isStaticMode } = useData()
@@ -35,7 +36,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                     <div className="flex items-center gap-6">
                         <Link to="/" className="flex items-center gap-2">
                             <img
-                                src="/logo.png"
+                                src={getAssetPath('/logo.png')}
                                 alt="Logo"
                                 className="h-6 w-6"
                             />
