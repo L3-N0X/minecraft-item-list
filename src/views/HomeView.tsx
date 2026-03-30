@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useData, type ItemData } from '../context/DataContext'
 import { Input } from '@/components/ui/input'
 import { ItemDetailPanel } from '@/components/ItemDetailPanel'
@@ -401,8 +402,15 @@ export function HomeView() {
                     </div>
                 )}
             </div>
-            <div className="absolute bottom-4 dark:text-primary/15 text-primary/20">
-                by l3_n0x
+            <div className="absolute bottom-4 dark:text-primary/15 text-primary/20 flex items-center gap-2">
+                <span>by l3_n0x</span>
+                <span className="opacity-50">·</span>
+                <Link
+                    to="/impressum"
+                    className="hover:text-primary/30 dark:hover:text-primary/25 transition-colors"
+                >
+                    Impressum
+                </Link>
             </div>
         </div>
     )

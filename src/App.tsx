@@ -5,6 +5,7 @@ import { ListView } from './views/ListView'
 import { EditorView } from './views/EditorView'
 import { BulkEditorView } from './views/BulkEditorView'
 import { HomeView } from './views/HomeView'
+import { ImpressumView } from './views/ImpressumView'
 import { Button } from '@/components/ui/button'
 import { ThemeProvider } from './components/theme-provider'
 import { ThemeToggle } from './components/ThemeToggle'
@@ -17,7 +18,7 @@ import {
     ListMagnifyingGlassIcon,
     MagnifyingGlassIcon,
 } from '@phosphor-icons/react'
-import { getAssetPath } from './lib/utils'
+import { cn, getAssetPath } from './lib/utils'
 
 function Layout({ children }: { children: React.ReactNode }) {
     const { isStaticMode } = useData()
@@ -46,10 +47,14 @@ function Layout({ children }: { children: React.ReactNode }) {
                         </Link>
                         <div className="hidden md:flex items-center gap-4">
                             <Button
-                                variant={isActive('/') ? 'secondary' : 'ghost'}
+                                variant="ghost"
                                 size="sm"
                                 asChild
-                                className="px-3 h-9"
+                                className={cn(
+                                    'px-3 h-9',
+                                    isActive('/') &&
+                                        'bg-primary/6 text-primary hover:bg-primary/20'
+                                )}
                             >
                                 <Link
                                     to="/"
@@ -61,14 +66,14 @@ function Layout({ children }: { children: React.ReactNode }) {
                             </Button>
                             {!isStaticMode && (
                                 <Button
-                                    variant={
-                                        isActive('/list')
-                                            ? 'secondary'
-                                            : 'ghost'
-                                    }
+                                    variant="ghost"
                                     size="sm"
                                     asChild
-                                    className="px-3 h-9"
+                                    className={cn(
+                                        'px-3 h-9',
+                                        isActive('/list') &&
+                                            'bg-primary/6 text-primary hover:bg-primary/20'
+                                    )}
                                 >
                                     <Link
                                         to="/list"
@@ -80,12 +85,14 @@ function Layout({ children }: { children: React.ReactNode }) {
                                 </Button>
                             )}
                             <Button
-                                variant={
-                                    isActive('/bulk') ? 'secondary' : 'ghost'
-                                }
+                                variant="ghost"
                                 size="sm"
                                 asChild
-                                className="px-3 h-9"
+                                className={cn(
+                                    'px-3 h-9',
+                                    isActive('/bulk') &&
+                                        'bg-primary/6 text-primary hover:bg-primary/20'
+                                )}
                             >
                                 <Link
                                     to="/bulk"
@@ -126,13 +133,17 @@ export function App() {
     return (
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <DataProvider>
-                <BrowserRouter>
+                <BrowserRouter basename={import.meta.env.BASE_URL}>
                     <Layout>
                         <Routes>
                             <Route path="/" element={<HomeView />} />
                             <Route path="/list" element={<ListView />} />
                             <Route path="/edit/:id" element={<EditorView />} />
                             <Route path="/bulk" element={<BulkEditorView />} />
+                            <Route
+                                path="/impressum"
+                                element={<ImpressumView />}
+                            />
                         </Routes>
                     </Layout>
                 </BrowserRouter>
