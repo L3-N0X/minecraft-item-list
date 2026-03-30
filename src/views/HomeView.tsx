@@ -218,7 +218,7 @@ export function HomeView() {
                 >
                     <div className="space-y-1">
                         <h1 className="text-4xl font-black tracking-tight">
-                            MC Item Search
+                            Minecraft Item Search
                         </h1>
                         <p className="text-muted-foreground text-base mb-3">
                             Type to find, arrows to navigate, Enter to select.

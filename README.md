@@ -1,4 +1,10 @@
-# Minecraft Item List ⚒️
+![title-banner](public/title-banner.png)
+
+[![Maintenance](https://img.shields.io/badge/Maintained-yes-37503d.svg)](https://GitHub.com/L3-N0X/minecraft-item-list/graphs/commit-activity)
+[![GitHub issues](https://img.shields.io/github/issues/L3-N0X/minecraft-item-list.svg?color=37503d)](https://github.com/L3-N0X/minecraft-item-list/issues)
+[![GitHub Release](https://img.shields.io/github/v/release/L3-N0X/minecraft-item-list?color=37503d&link=https%3A%2F%2Fgithub.com%2FL3-N0X%2Fminecraft-item-list%2Freleases)](https://github.com/L3-N0X/minecraft-item-list/releases)
+[![GitHub License](https://img.shields.io/github/license/L3-N0X/minecraft-item-list?color=37503d)](https://github.com/L3-N0X/minecraft-item-list/blob/master/LICENSE)
+
 
 **Minecraft Item List** is a powerful, data-rich web application hosted on GitHub Pages designed for quickly finding, filtering, and exploring every detail of Minecraft items. 
 
@@ -25,6 +31,7 @@ Every item in the list contains a wealth of information defined by our rigorous 
     *   **Loot Tables:** Exact chances and quantities for chests, mob drops, and block drops.
     *   **Trading:** Villager professions, levels, and probability for trades.
     *   **Special Methods:** Fishing categories, piglin bartering, and smelting recipes (including XP rewards).
+*  **And much more!**
 
 ## 🏆 Difficulty to Obtain Score
 

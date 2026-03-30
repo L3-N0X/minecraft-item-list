@@ -35,15 +35,17 @@ function Layout({ children }: { children: React.ReactNode }) {
             <nav className="border-b bg-background/50 backdrop-blur-md sticky top-0 z-50">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-6">
-                        <Link to="/" className="flex items-center gap-2">
+                        <Link to="/" className="flex items-center gap-2.5">
                             <img
-                                src={getAssetPath('/logo.png')}
+                                src={getAssetPath(
+                                    '/items/green_terracotta.png'
+                                )}
                                 alt="Logo"
-                                className="h-6 w-6"
+                                className="h-7 w-7 mt-1"
                             />
-                            <span className="font-bold text-xl tracking-tight">
-                                MC Item List
-                            </span>
+                            <p className="font-black text-2xl tracking-tight">
+                                Minecraft Item List
+                            </p>
                         </Link>
                         <div className="hidden md:flex items-center gap-4">
                             <Button
