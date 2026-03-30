@@ -13,7 +13,7 @@ export default defineConfig({
     server: {
         watch: {
             ignored: [
-                path.resolve(__dirname, 'data/**'),
+                path.resolve(__dirname, 'public/data/**'),
                 '**/node_modules/**',
                 '**/dist/**',
                 '**/.git/**',

@@ -7,7 +7,7 @@ const REGISTRIES_URL_BASE =
     'https://raw.githubusercontent.com/misode/mcmeta/refs/heads/registries'
 const VERSION_URL = `${REGISTRIES_URL_BASE}/version.json`
 
-const DATA_DIR = path.join(process.cwd(), 'data')
+const DATA_DIR = path.join(process.cwd(), 'public', 'data')
 const ITEMS_JSON_PATH = path.join(DATA_DIR, 'items.json')
 const CATEGORIES_JSON_PATH = path.join(DATA_DIR, 'categories.json')
 

@@ -7,8 +7,8 @@ const isDev = process.env.NODE_ENV !== 'production'
 const itemsLock = new AsyncLock()
 const categoriesLock = new AsyncLock()
 
-const ITEMS_PATH = 'data/items.json'
-const CATEGORIES_PATH = 'data/categories.json'
+const ITEMS_PATH = 'public/data/items.json'
+const CATEGORIES_PATH = 'public/data/categories.json'
 
 interface ItemsJsonData {
     items?: Record<string, Record<string, unknown>>

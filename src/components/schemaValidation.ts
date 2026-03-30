@@ -41,7 +41,8 @@ export const itemSchema: {
     required?: string[]
 } = {
     definitions: (schema as any).definitions,
-    properties: (schema as any).properties.items.additionalProperties.properties,
+    properties: (schema as any).properties.items.additionalProperties
+        .properties,
     required: (schema as any).properties.items.additionalProperties.required,
 }
 

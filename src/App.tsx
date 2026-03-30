@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { DataProvider } from './context/DataContext'
+import { DataProvider, useData } from './context/DataContext'
 import { ListView } from './views/ListView'
 import { EditorView } from './views/EditorView'
 import { BulkEditorView } from './views/BulkEditorView'
@@ -18,16 +18,11 @@ import {
 } from '@phosphor-icons/react'
 
 function Layout({ children }: { children: React.ReactNode }) {
-    // const { items } = useData()
+    const { isStaticMode } = useData()
 
     const downloadJson = () => {
         window.location.href = '/api/items/download'
     }
-
-    // const copyToClipboard = () => {
-    //     navigator.clipboard.writeText(JSON.stringify(items, null, 2))
-    //     alert('Full items.json copied to clipboard!')
-    // }
 
     return (
         <div className="min-h-screen text-foreground pb-20">
@@ -59,20 +54,22 @@ function Layout({ children }: { children: React.ReactNode }) {
                                     Search
                                 </Link>
                             </Button>
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                asChild
-                                className="px-3 h-9"
-                            >
-                                <Link
-                                    to="/list"
-                                    className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                            {!isStaticMode && (
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    asChild
+                                    className="px-3 h-9"
                                 >
-                                    <ListIcon className="h-5 w-5" />
-                                    List
-                                </Link>
-                            </Button>
+                                    <Link
+                                        to="/list"
+                                        className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                                    >
+                                        <ListIcon className="h-5 w-5" />
+                                        List
+                                    </Link>
+                                </Button>
+                            )}
                             <Button
                                 variant="ghost"
                                 size="sm"
@@ -84,7 +81,9 @@ function Layout({ children }: { children: React.ReactNode }) {
                                     className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
                                 >
                                     <GridFourIcon className="h-5 w-5" />
-                                    Bulk Editor
+                                    {isStaticMode
+                                        ? 'Custom List'
+                                        : 'Bulk Editor'}
                                 </Link>
                             </Button>
                         </div>

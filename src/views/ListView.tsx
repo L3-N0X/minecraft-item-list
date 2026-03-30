@@ -26,7 +26,7 @@ import { MagnifyingGlassIcon } from '@phosphor-icons/react'
 const PAGE_SIZE = 75
 
 function ItemRow({ id }: { id: string }) {
-    const { items, getItemCategories } = useData()
+    const { items, getItemCategories, isStaticMode } = useData()
     const navigate = useNavigate()
     const item = items[id]
 
@@ -41,8 +41,8 @@ function ItemRow({ id }: { id: string }) {
 
     return (
         <TableRow
-            className="cursor-pointer hover:bg-muted/50"
-            onClick={() => navigate(`/edit/${id}`)}
+            className={`${isStaticMode ? '' : 'cursor-pointer'} hover:bg-muted/50`}
+            onClick={() => !isStaticMode && navigate(`/edit/${id}`)}
         >
             <TableCell className="w-12 py-2">
                 <img
@@ -85,30 +85,33 @@ function ItemRow({ id }: { id: string }) {
                     ))}
                 </div>
             </TableCell>
-            <TableCell>
-                {errorCount > 0 ? (
-                    <Badge
-                        variant="destructive"
-                        className="text-[12px] px-3 py-0.5 h-auto font-mono tabular-nums"
-                    >
-                        {errorCount}
-                    </Badge>
-                ) : (
-                    <Badge
-                        variant="outline"
-                        className="text-[12px] px-2 py-0.5 h-auto gap-1 text-emerald-800 dark:text-emerald-400 border-emerald-700 dark:border-emerald-700 bg-emerald-100/30 dark:bg-emerald-950/40"
-                    >
-                        <CheckCircle2 className="h-3.5 w-3.5" />
-                        OK
-                    </Badge>
-                )}
-            </TableCell>
+            {!isStaticMode && (
+                <TableCell>
+                    {errorCount > 0 ? (
+                        <Badge
+                            variant="destructive"
+                            className="text-[12px] px-3 py-0.5 h-auto font-mono tabular-nums"
+                        >
+                            {errorCount}
+                        </Badge>
+                    ) : (
+                        <Badge
+                            variant="outline"
+                            className="text-[12px] px-2 py-0.5 h-auto gap-1 text-emerald-800 dark:text-emerald-400 border-emerald-700 dark:border-emerald-700 bg-emerald-100/30 dark:bg-emerald-950/40"
+                        >
+                            <CheckCircle2 className="h-3.5 w-3.5" />
+                            OK
+                        </Badge>
+                    )}
+                </TableCell>
+            )}
         </TableRow>
     )
 }
 
 export function ListView() {
-    const { items, itemIds, getItemCategories, isLoading } = useData()
+    const { items, itemIds, getItemCategories, isLoading, isStaticMode } =
+        useData()
     const [search, setSearch] = useState('')
     const deferredSearch = useDeferredValue(search)
     const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
@@ -239,9 +242,11 @@ export function ListView() {
                                     <TableHead className="min-w-35">
                                         Categories
                                     </TableHead>
-                                    <TableHead className="w-20">
-                                        Issues
-                                    </TableHead>
+                                    {!isStaticMode && (
+                                        <TableHead className="w-20">
+                                            Issues
+                                        </TableHead>
+                                    )}
                                 </TableRow>
                             </TableHeader>
                             <TableBody>

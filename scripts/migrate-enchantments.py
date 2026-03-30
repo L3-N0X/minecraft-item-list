@@ -25,7 +25,7 @@ Usage:
 Options:
     --dry           Perform a dry run: print what would change without writing anything.
     --backup        Rename the original file to items.json.bak before overwriting it.
-    --input PATH    Path to the input items.json  (default: data/items.json)
+    --input PATH    Path to the input items.json  (default: public/data/items.json)
     --output PATH   Path to write the migrated file (default: same as input)
 """
 
@@ -52,9 +52,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--input",
-        default=os.path.join("data", "items.json"),
+        default=os.path.join("public", "data", "items.json"),
         metavar="PATH",
-        help="Path to the source items.json (default: data/items.json).",
+        help="Path to the source items.json (default: public/data/items.json).",
     )
     parser.add_argument(
         "--output",

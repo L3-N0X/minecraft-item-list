@@ -8,6 +8,8 @@
         "dev:backend": "bun --hot src/index.ts",
         "dev:frontend": "vite",
         "build": "vite build",
+        "build:static": "VITE_STATIC_MODE=true vite build",
+        "preview": "vite preview",
         "start": "NODE_ENV=production bun src/index.ts",
         "init-data": "bun scripts/init-data.ts",
         "lint": "concurrently \"tsc -b --noEmit\" \"eslint . --ext .ts,.tsx\"",

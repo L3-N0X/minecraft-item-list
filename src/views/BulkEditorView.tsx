@@ -121,6 +121,7 @@ export function BulkEditorView() {
         updateItem,
         bulkEditorState,
         setBulkEditorState,
+        isStaticMode,
     } = useData()
     const navigate = useNavigate()
 
@@ -308,8 +309,8 @@ export function BulkEditorView() {
                     item.obtaining?.naturalGeneration?.partOfStructures
                         ?.structures ?? [],
                 generatedLoot:
-                    item.obtaining?.generatedLoot?.structures.flatMap(
-                        (s) => s.chests.map((c) => c.chestName)
+                    item.obtaining?.generatedLoot?.structures.flatMap((s) =>
+                        s.chests.map((c) => c.chestName)
                     ) ?? [],
                 rawItem: item,
             }
@@ -356,7 +357,7 @@ export function BulkEditorView() {
         const biomesSet = new Set<string>()
         data.forEach((d) => d.biomes.forEach((b) => biomesSet.add(b)))
         const biomeOptions = [
-            { label: '❌ None', value: '__NO_BIOME__' },
+            { label: '⬢ None', value: '__NO_BIOME__' },
             ...Array.from(biomesSet)
                 .sort()
                 .map((biome) => ({
@@ -370,8 +371,8 @@ export function BulkEditorView() {
         const structuresSet = new Set<string>()
         data.forEach((d) => d.structures.forEach((s) => structuresSet.add(s)))
         const structureOptions = [
-            { label: '🏘️ Any Village', value: '__ANY_VILLAGE__' },
-            { label: '❌ None', value: '__NO_STRUCTURE__' },
+            { label: '⬢ Any Village', value: '__ANY_VILLAGE__' },
+            { label: '⬢ None', value: '__NO_STRUCTURE__' },
             ...Array.from(structuresSet)
                 .sort()
                 .map((structure) => ({
@@ -387,10 +388,10 @@ export function BulkEditorView() {
             d.generatedLoot.forEach((l) => generatedLootSet.add(l))
         )
         const generatedLootOptions = [
-            { label: '📦 Any Chest', value: '__ANY_CHEST__' },
-            { label: '🪨 Any Suspicious Block', value: '__ANY_SUSPICIOUS__' },
-            { label: '🚫 No Chest', value: '__NO_CHEST__' },
-            { label: '❌ No Loot', value: '__NO_LOOT__' },
+            { label: '⬢ Any Chest', value: '__ANY_CHEST__' },
+            { label: '⬢ Any Suspicious Block', value: '__ANY_SUSPICIOUS__' },
+            { label: '⬢ No Chest', value: '__NO_CHEST__' },
+            { label: '⬢ Not Lootable', value: '__NO_LOOT__' },
             ...Array.from(generatedLootSet)
                 .sort()
                 .map((loot) => ({
@@ -414,34 +415,37 @@ export function BulkEditorView() {
         }
     }, [categories, data])
 
-    const columns = useMemo<ColumnDef<TableRowData>[]>(
-        () => [
-            {
-                id: 'select',
-                size: 40,
-                header: ({ table }) => (
-                    <Checkbox
-                        checked={
-                            table.getIsAllRowsSelected() ||
-                            (table.getIsSomeRowsSelected() && 'indeterminate')
-                        }
-                        onCheckedChange={(value) =>
-                            table.toggleAllRowsSelected(!!value)
-                        }
-                        aria-label="Select all"
-                    />
-                ),
-                cell: ({ row }) => (
-                    <Checkbox
-                        checked={row.getIsSelected()}
-                        onCheckedChange={(value) => row.toggleSelected(!!value)}
-                        aria-label="Select row"
-                    />
-                ),
-                enableSorting: false,
-                enableHiding: false,
-            },
-            {
+    const columns = useMemo<ColumnDef<TableRowData>[]>(() => {
+        const cols: ColumnDef<TableRowData>[] = []
+
+        cols.push({
+            id: 'select',
+            size: 40,
+            header: ({ table }) => (
+                <Checkbox
+                    checked={
+                        table.getIsAllRowsSelected() ||
+                        (table.getIsSomeRowsSelected() && 'indeterminate')
+                    }
+                    onCheckedChange={(value) =>
+                        table.toggleAllRowsSelected(!!value)
+                    }
+                    aria-label="Select all"
+                />
+            ),
+            cell: ({ row }) => (
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+            ),
+            enableSorting: false,
+            enableHiding: false,
+        })
+
+        if (!isStaticMode) {
+            cols.push({
                 id: 'edit',
                 size: 40,
                 header: () => null,
@@ -458,7 +462,10 @@ export function BulkEditorView() {
                 ),
                 enableSorting: false,
                 enableHiding: false,
-            },
+            })
+        }
+
+        cols.push(
             {
                 accessorKey: 'id',
                 size: 150,
@@ -863,7 +870,31 @@ export function BulkEditorView() {
                 filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
                     const rowBiomes = row.getValue(id) as string[]
-                    return value.some((v) => rowBiomes.includes(v))
+
+                    // Handle special filters
+                    const specialFilters = value.filter((v) =>
+                        v.startsWith('__')
+                    )
+                    const normalFilters = value.filter(
+                        (v) => !v.startsWith('__')
+                    )
+
+                    const results: boolean[] = []
+
+                    // Check special filters
+                    if (specialFilters.includes('__NO_BIOME__')) {
+                        results.push(rowBiomes.length === 0)
+                    }
+
+                    // Check normal filters
+                    if (normalFilters.length > 0) {
+                        results.push(
+                            normalFilters.some((v) => rowBiomes.includes(v))
+                        )
+                    }
+
+                    // Combine with OR logic
+                    return results.length > 0 ? results.some((r) => r) : true
                 },
             },
             {
@@ -945,7 +976,7 @@ export function BulkEditorView() {
                 filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
                     const rowStructures = row.getValue(id) as string[]
-                    
+
                     // Handle special filters
                     const specialFilters = value.filter((v) =>
                         v.startsWith('__')
@@ -953,9 +984,9 @@ export function BulkEditorView() {
                     const normalFilters = value.filter(
                         (v) => !v.startsWith('__')
                     )
-                    
+
                     const results: boolean[] = []
-                    
+
                     // Check special filters
                     if (specialFilters.includes('__ANY_VILLAGE__')) {
                         const hasVillage = rowStructures.some((s) =>
@@ -963,18 +994,18 @@ export function BulkEditorView() {
                         )
                         results.push(hasVillage)
                     }
-                    
+
                     if (specialFilters.includes('__NO_STRUCTURE__')) {
                         results.push(rowStructures.length === 0)
                     }
-                    
+
                     // Check normal filters
                     if (normalFilters.length > 0) {
                         results.push(
                             normalFilters.some((v) => rowStructures.includes(v))
                         )
                     }
-                    
+
                     // Combine with OR logic
                     return results.length > 0 ? results.some((r) => r) : true
                 },
@@ -1064,7 +1095,7 @@ export function BulkEditorView() {
                 filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
                     const rowLoot = row.getValue(id) as string[]
-                    
+
                     // Handle special filters
                     const specialFilters = value.filter((v) =>
                         v.startsWith('__')
@@ -1072,17 +1103,18 @@ export function BulkEditorView() {
                     const normalFilters = value.filter(
                         (v) => !v.startsWith('__')
                     )
-                    
+
                     const results: boolean[] = []
-                    
+
                     // Check special filters
                     if (specialFilters.includes('__ANY_CHEST__')) {
                         const hasChest = rowLoot.some(
-                            (loot) => loot === 'chest' || loot.endsWith('_chest')
+                            (loot) =>
+                                loot === 'chest' || loot.endsWith('_chest')
                         )
                         results.push(hasChest)
                     }
-                    
+
                     if (specialFilters.includes('__ANY_SUSPICIOUS__')) {
                         const hasSuspicious = rowLoot.some(
                             (loot) =>
@@ -1091,25 +1123,26 @@ export function BulkEditorView() {
                         )
                         results.push(hasSuspicious)
                     }
-                    
+
                     if (specialFilters.includes('__NO_CHEST__')) {
                         const hasNoChest = !rowLoot.some(
-                            (loot) => loot === 'chest' || loot.endsWith('_chest')
+                            (loot) =>
+                                loot === 'chest' || loot.endsWith('_chest')
                         )
                         results.push(hasNoChest)
                     }
-                    
+
                     if (specialFilters.includes('__NO_LOOT__')) {
                         results.push(rowLoot.length === 0)
                     }
-                    
+
                     // Check normal filters
                     if (normalFilters.length > 0) {
                         results.push(
                             normalFilters.some((v) => rowLoot.includes(v))
                         )
                     }
-                    
+
                     // Combine with OR logic (any filter match returns true)
                     return results.length > 0 ? results.some((r) => r) : true
                 },
@@ -1130,10 +1163,11 @@ export function BulkEditorView() {
                         </pre>
                     )
                 },
-            },
-        ],
-        [filterOptions]
-    )
+            }
+        )
+
+        return cols
+    }, [filterOptions, isStaticMode, navigate])
 
     const table = useReactTable({
         data,
@@ -1358,7 +1392,7 @@ export function BulkEditorView() {
                     </DropdownMenu>
                 </div>
 
-                {selectedCount > 0 && (
+                {selectedCount > 0 && !isStaticMode && (
                     <Button
                         variant="default"
                         className="ml-2"

@@ -40,6 +40,7 @@ interface DataContextType {
     getItemIndex: (id: string) => number
     getItemCategories: (id: string) => string[]
     isLoading: boolean
+    isStaticMode: boolean
     bulkEditorState: BulkEditorState
     setBulkEditorState: React.Dispatch<React.SetStateAction<BulkEditorState>>
 }
@@ -47,6 +48,7 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined)
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
+    const isStaticMode = import.meta.env.VITE_STATIC_MODE === 'true'
     const [items, setItems] = useState<Record<string, ItemData>>({})
     const [categories, setCategories] = useState<CategoriesData>({})
     const [isLoading, setIsLoading] = useState(true)
@@ -68,15 +70,22 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     >({})
 
     useEffect(() => {
+        const itemsUrl = isStaticMode ? '/data/items.json' : '/api/items'
+        const categoriesUrl = isStaticMode
+            ? '/data/categories.json'
+            : '/api/categories'
+
         Promise.all([
-            fetch('/api/items').then((res) => res.json()),
-            fetch('/api/categories').then((res) => res.json()),
+            fetch(itemsUrl).then((res) => res.json()),
+            fetch(categoriesUrl).then((res) => res.json()),
         ]).then(([itemsData, categoriesData]) => {
-            setItems(itemsData)
+            // Normalize items data if it's wrapped in { items: ... }
+            const normalizedItems = itemsData.items ?? itemsData
+            setItems(normalizedItems)
             setCategories(categoriesData)
             setIsLoading(false)
         })
-    }, [])
+    }, [isStaticMode])
 
     const itemIds = useMemo(() => Object.keys(items).sort(), [items])
 
@@ -115,6 +124,11 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
                 }
                 return next
             })
+        }
+
+        // Disable save to server if in static mode
+        if (isStaticMode) {
+            return
         }
 
         // Clear existing timeout for this item if any
@@ -158,6 +172,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
                 getItemIndex,
                 getItemCategories,
                 isLoading,
+                isStaticMode,
                 bulkEditorState,
                 setBulkEditorState,
             }}

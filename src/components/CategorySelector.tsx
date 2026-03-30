@@ -22,11 +22,13 @@ import {
 interface CategorySelectorProps {
     selectedCategories: string[]
     onChange: (categories: string[]) => void
+    disabled?: boolean
 }
 
 export function CategorySelector({
     selectedCategories,
     onChange,
+    disabled,
 }: CategorySelectorProps) {
     const [open, setOpen] = React.useState(false)
     const [inputValue, setInputValue] = React.useState('')
@@ -96,6 +98,7 @@ export function CategorySelector({
                         role="combobox"
                         aria-expanded={open}
                         className="w-full justify-between"
+                        disabled={disabled}
                     >
                         Select categories...
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
