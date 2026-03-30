@@ -7,7 +7,7 @@
 
 <div align="center">
     <a href="https://l3-n0x.github.io/minecraft-item-list/">
-        <img src="public/preview.png" alt="Preview" width="60%">
+        <img src="public/preview.png" alt="Preview" width="100%">
     </a>
 </div>
 
