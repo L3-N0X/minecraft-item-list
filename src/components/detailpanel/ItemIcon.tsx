@@ -8,7 +8,7 @@ export function ItemIcon({ item }: { item: string }) {
             title={item}
         >
             <img
-                src={getAssetPath(`/renders/items/${item}.png`)}
+                src={getAssetPath(`/items/${item}.png`)}
                 alt={item}
                 className="w-full h-full object-contain image-pixelated"
                 onError={(e) => {

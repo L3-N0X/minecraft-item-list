@@ -288,7 +288,7 @@ export function HomeView() {
                                                 <div className="shrink-0 w-8 h-8 flex items-center justify-center">
                                                     <img
                                                         src={getAssetPath(
-                                                            `/renders/${item.isBlock ? 'blocks' : 'items'}/${id}.png`
+                                                            `/items/${id}.png`
                                                         )}
                                                         alt=""
                                                         className="h-8 w-8 object-contain image-pixelated"
@@ -302,7 +302,7 @@ export function HomeView() {
                                                             ) {
                                                                 target.src =
                                                                     getAssetPath(
-                                                                        `/renders/items/${id}.png`
+                                                                        `/items/${id}.png`
                                                                     )
                                                             } else {
                                                                 target.src =

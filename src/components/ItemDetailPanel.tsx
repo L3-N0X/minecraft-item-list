@@ -200,21 +200,13 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             {/* ROW 1: HEADER */}
             <GlassPanel className="md:col-span-2 flex items-center justify-center p-4">
                 <img
-                    src={getAssetPath(
-                        `/renders/${item.isBlock ? 'blocks' : 'items'}/${itemId}.png`
-                    )}
+                    src={getAssetPath(`/items/${itemId}.png`)}
                     alt={item.displayName}
                     className="w-full h-full object-contain drop-shadow-md transition-transform hover:scale-105 duration-500"
                     onError={(e) => {
                         const target = e.currentTarget
-                        if (target.src.includes('/blocks/')) {
-                            target.src = getAssetPath(
-                                `/renders/items/${itemId}.png`
-                            )
-                        } else {
-                            target.src =
-                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                        }
+                        target.src =
+                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                     }}
                 />
             </GlassPanel>
@@ -383,15 +375,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     <React.Fragment key={furnace}>
                                         <img
                                             key={furnace}
-                                            src={
-                                                furnace === 'campfire'
-                                                    ? getAssetPath(
-                                                          '/renders/items/campfire.png'
-                                                      )
-                                                    : getAssetPath(
-                                                          `/renders/blocks/${furnace}.png`
-                                                      )
-                                            }
+                                            src={`/items/${furnace}.png`}
                                             alt={furnace}
                                             className="h-10 w-10 drop-shadow-sm object-contain image-pixelated"
                                             title={furnace.replace(/_/g, ' ')}
@@ -408,9 +392,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             )
                         ) : (
                             <img
-                                src={getAssetPath(
-                                    '/renders/blocks/furnace.png'
-                                )}
+                                src={getAssetPath('/items/furnace.png')}
                                 alt="furnace"
                                 className="h-14 w-14 drop-shadow-sm grayscale opacity-40 object-contain image-pixelated"
                                 onError={(e) => {
@@ -810,9 +792,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     <div className="flex flex-1 flex-col items-center justify-center pb-5">
                         <div className="flex flex-1 items-center justify-center">
                             <img
-                                src={getAssetPath(
-                                    '/renders/blocks/composter.png'
-                                )}
+                                src={getAssetPath('/items/composter.png')}
                                 alt="compost"
                                 className={`h-12 w-12 mt-2 drop-shadow-sm ${hasCompostable ? '' : 'grayscale opacity-70'}`}
                             />
@@ -886,7 +866,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                         <img
                                             className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
                                             src={getAssetPath(
-                                                '/renders/items/enchanted_book.png'
+                                                '/items/enchanted_book.png'
                                             )}
                                         />
                                     </div>
@@ -909,7 +889,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 >
                     <div className="flex-1 flex flex-col items-center justify-center gap-1">
                         <img
-                            src={getAssetPath('/renders/items/fishing_rod.png')}
+                            src={getAssetPath('/items/fishing_rod.png')}
                             alt="Fishing"
                             className="h-10 w-10 drop-shadow-sm object-contain image-pixelated"
                         />
@@ -944,7 +924,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             className="h-18 w-18 drop-shadow-sm object-contain"
                             onError={(e) => {
                                 e.currentTarget.src = getAssetPath(
-                                    '/renders/blocks/piglin_head.png'
+                                    '/items/piglin_head.png'
                                 )
                             }}
                         />
@@ -1036,7 +1016,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                         className="w-full h-full object-contain image-pixelated drop-shadow-sm p-1"
                                         onError={(e) => {
                                             e.currentTarget.src = getAssetPath(
-                                                '/renders/items/wandering_trader_spawn_egg.png'
+                                                '/items/wandering_trader_spawn_egg.png'
                                             )
                                         }}
                                     />
@@ -1283,7 +1263,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         <div className="flex flex-1 items-center justify-center">
                             <img
                                 className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
-                                src={getAssetPath('/renders/blocks/chest.png')}
+                                src={getAssetPath('/items/chest.png')}
                                 alt="No Generated Loot"
                             />
                         </div>
@@ -1333,7 +1313,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                                 <div className="flex flex-col items-center justify-center gap-1.5">
                                                     <img
                                                         src={getAssetPath(
-                                                            `/renders/blocks/${block}.png`
+                                                            `/blocks/${block}.png`
                                                         )}
                                                         alt={block}
                                                         draggable={false}
@@ -1348,7 +1328,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                                             ) {
                                                                 target.src =
                                                                     getAssetPath(
-                                                                        `/renders/items/${block}.png`
+                                                                        `/items/${block}.png`
                                                                     )
                                                             } else {
                                                                 target.src =
@@ -1393,9 +1373,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         <div className="flex-1 flex flex-col items-center justify-center">
                             <img
                                 className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
-                                src={getAssetPath(
-                                    '/renders/blocks/grass_block.png'
-                                )}
+                                src={getAssetPath('/items/grass_block.png')}
                                 alt="No Block Loot"
                             />
                             <div className="text-muted-foreground/60 text-xs px-3 text-center mb-5">
@@ -1423,7 +1401,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 <img
                                     className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
                                     src={getAssetPath(
-                                        '/renders/blocks/end_portal_frame.png'
+                                        '/items/end_portal_frame.png'
                                     )}
                                 />
                                 <div className="text-muted-foreground/60 text-xs text-center">

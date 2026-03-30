@@ -47,15 +47,13 @@ function ItemRow({ id }: { id: string }) {
         >
             <TableCell className="w-12 py-2">
                 <img
-                    src={getAssetPath(
-                        `/renders/${item?.isBlock ? 'blocks' : 'items'}/${id}.png`
-                    )}
+                    src={getAssetPath(`/items/${id}.png`)}
                     alt=""
                     className="w-8 h-8 object-contain image-pixelated"
                     onError={(e) => {
                         if (e.currentTarget.src.includes('/blocks/')) {
                             e.currentTarget.src = getAssetPath(
-                                `/renders/items/${id}.png`
+                                `/items/${id}.png`
                             )
                         } else {
                             e.currentTarget.src =

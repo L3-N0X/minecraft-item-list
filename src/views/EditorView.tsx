@@ -149,24 +149,12 @@ export function EditorView() {
                         <div className="flex items-center gap-4">
                             <div className="w-16 h-16 bg-card/60 rounded-md border flex items-center justify-center p-2">
                                 <img
-                                    src={getAssetPath(
-                                        `/renders/${items[id]?.isBlock ? 'blocks' : 'items'}/${id}.png`
-                                    )}
+                                    src={getAssetPath(`/items/${id}.png`)}
                                     alt=""
                                     className="w-full h-full object-contain"
                                     onError={(e) => {
-                                        if (
-                                            e.currentTarget.src.includes(
-                                                '/blocks/'
-                                            )
-                                        ) {
-                                            e.currentTarget.src = getAssetPath(
-                                                `/renders/items/${id}.png`
-                                            )
-                                        } else {
-                                            e.currentTarget.src =
-                                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                        }
+                                        e.currentTarget.src =
+                                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                                     }}
                                 />
                             </div>
