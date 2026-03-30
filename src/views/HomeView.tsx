@@ -12,6 +12,7 @@ import {
     CaretRightIcon,
     SmileyXEyesIcon,
 } from '@phosphor-icons/react'
+import { getAssetPath } from '@/lib/utils'
 
 export function HomeView() {
     const { items, itemIds } = useData()
@@ -286,7 +287,9 @@ export function HomeView() {
                                             >
                                                 <div className="shrink-0 w-8 h-8 flex items-center justify-center">
                                                     <img
-                                                        src={`/renders/${item.isBlock ? 'blocks' : 'items'}/${id}.png`}
+                                                        src={getAssetPath(
+                                                            `/renders/${item.isBlock ? 'blocks' : 'items'}/${id}.png`
+                                                        )}
                                                         alt=""
                                                         className="h-8 w-8 object-contain image-pixelated"
                                                         onError={(e) => {
@@ -297,7 +300,10 @@ export function HomeView() {
                                                                     '/blocks/'
                                                                 )
                                                             ) {
-                                                                target.src = `/renders/items/${id}.png`
+                                                                target.src =
+                                                                    getAssetPath(
+                                                                        `/renders/items/${id}.png`
+                                                                    )
                                                             } else {
                                                                 target.src =
                                                                     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='

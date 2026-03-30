@@ -22,6 +22,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog'
+import { getAssetPath } from '@/lib/utils'
 
 export function EditorView() {
     const { id } = useParams<{ id: string }>()
@@ -148,7 +149,9 @@ export function EditorView() {
                         <div className="flex items-center gap-4">
                             <div className="w-16 h-16 bg-card/60 rounded-md border flex items-center justify-center p-2">
                                 <img
-                                    src={`/renders/${items[id]?.isBlock ? 'blocks' : 'items'}/${id}.png`}
+                                    src={getAssetPath(
+                                        `/renders/${items[id]?.isBlock ? 'blocks' : 'items'}/${id}.png`
+                                    )}
                                     alt=""
                                     className="w-full h-full object-contain"
                                     onError={(e) => {
@@ -157,7 +160,9 @@ export function EditorView() {
                                                 '/blocks/'
                                             )
                                         ) {
-                                            e.currentTarget.src = `/renders/items/${id}.png`
+                                            e.currentTarget.src = getAssetPath(
+                                                `/renders/items/${id}.png`
+                                            )
                                         } else {
                                             e.currentTarget.src =
                                                 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='

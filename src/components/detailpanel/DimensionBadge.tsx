@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn, getAssetPath } from '@/lib/utils'
 import type React from 'react'
 
 export function DimensionBadge({ dimension }: { dimension: string }) {
@@ -11,7 +11,7 @@ export function DimensionBadge({ dimension }: { dimension: string }) {
     return (
         <div className="flex justify-center items-center border rounded-lg pr-2.5 gap-3 h-8 pl-1">
             <img
-                src={`/dimensions/${dimension}.png`}
+                src={getAssetPath(`/dimensions/${dimension}.png`)}
                 alt={dimension}
                 className="w-6 h-6 rounded-sm object-cover image-pixelated"
                 onError={(e) => {

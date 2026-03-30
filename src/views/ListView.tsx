@@ -22,6 +22,7 @@ import { Badge } from '@/components/ui/badge'
 import { validateItemData } from '@/components/schemaValidation'
 import { X, CheckCircle2 } from 'lucide-react'
 import { MagnifyingGlassIcon } from '@phosphor-icons/react'
+import { getAssetPath } from '@/lib/utils'
 
 const PAGE_SIZE = 75
 
@@ -46,12 +47,16 @@ function ItemRow({ id }: { id: string }) {
         >
             <TableCell className="w-12 py-2">
                 <img
-                    src={`/renders/${item?.isBlock ? 'blocks' : 'items'}/${id}.png`}
+                    src={getAssetPath(
+                        `/renders/${item?.isBlock ? 'blocks' : 'items'}/${id}.png`
+                    )}
                     alt=""
                     className="w-8 h-8 object-contain image-pixelated"
                     onError={(e) => {
                         if (e.currentTarget.src.includes('/blocks/')) {
-                            e.currentTarget.src = `/renders/items/${id}.png`
+                            e.currentTarget.src = getAssetPath(
+                                `/renders/items/${id}.png`
+                            )
                         } else {
                             e.currentTarget.src =
                                 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='

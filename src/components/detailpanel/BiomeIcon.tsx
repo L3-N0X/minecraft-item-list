@@ -1,3 +1,4 @@
+import { getAssetPath } from '@/lib/utils'
 import type React from 'react'
 
 export function BiomeIcon({ biome }: { biome: string }) {
@@ -8,7 +9,7 @@ export function BiomeIcon({ biome }: { biome: string }) {
         >
             <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
                 <img
-                    src={`/biomes/${biome}.png`}
+                    src={getAssetPath(`/biomes/${biome}.png`)}
                     alt={biome}
                     className="w-full h-full object-cover image-pixelated"
                     draggable={false}

@@ -1,3 +1,4 @@
+import { getAssetPath } from '@/lib/utils'
 import type React from 'react'
 
 export function StructureIcon({ structure }: { structure: string }) {
@@ -8,7 +9,7 @@ export function StructureIcon({ structure }: { structure: string }) {
         >
             <div className="w-13 h-13 flex items-center justify-center rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-md bg-black/20">
                 <img
-                    src={`/structures/${structure}.png`}
+                    src={getAssetPath(`/structures/${structure}.png`)}
                     alt={structure}
                     className="w-full h-full object-cover image-pixelated"
                     draggable={false}

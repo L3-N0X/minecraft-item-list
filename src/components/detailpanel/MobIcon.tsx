@@ -1,3 +1,4 @@
+import { getAssetPath } from '@/lib/utils'
 import type React from 'react'
 
 export function MobIcon({ mob }: { mob: string }) {
@@ -7,7 +8,7 @@ export function MobIcon({ mob }: { mob: string }) {
             title={mob}
         >
             <img
-                src={`/entities/${mob}.png`}
+                src={getAssetPath(`/entities/${mob}.png`)}
                 alt={mob}
                 className="w-full h-full object-contain image-pixelated drop-shadow-sm p-1.5"
                 draggable={false}

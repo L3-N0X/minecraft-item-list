@@ -1,3 +1,4 @@
+import { getAssetPath } from '@/lib/utils'
 import type React from 'react'
 
 export function ItemIcon({ item }: { item: string }) {
@@ -7,7 +8,7 @@ export function ItemIcon({ item }: { item: string }) {
             title={item}
         >
             <img
-                src={`/renders/items/${item}.png`}
+                src={getAssetPath(`/renders/items/${item}.png`)}
                 alt={item}
                 className="w-full h-full object-contain image-pixelated"
                 onError={(e) => {

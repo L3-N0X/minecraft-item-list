@@ -99,9 +99,9 @@ function Layout({ children }: { children: React.ReactNode }) {
                                     className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
                                 >
                                     {isStaticMode ? (
-                                        <GridFourIcon className="h-5 w-5" />
-                                    ) : (
                                         <ListMagnifyingGlassIcon className="h-5 w-5" />
+                                    ) : (
+                                        <GridFourIcon className="h-5 w-5" />
                                     )}
                                     {isStaticMode
                                         ? 'Custom List'

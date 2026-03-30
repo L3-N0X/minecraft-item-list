@@ -1,3 +1,4 @@
+import { getAssetPath } from '@/lib/utils'
 import type React from 'react'
 
 export function ToolIcon({ tool }: { tool: string }) {
@@ -12,7 +13,7 @@ export function ToolIcon({ tool }: { tool: string }) {
                 </span>
             ) : (
                 <img
-                    src={`/besttool/${tool}.png`}
+                    src={getAssetPath(`/besttool/${tool}.png`)}
                     alt={tool}
                     className="w-full h-full object-contain image-pixelated drop-shadow-sm"
                     onError={(e) => {
