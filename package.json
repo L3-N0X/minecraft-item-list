@@ -32,7 +32,6 @@
         "clsx": "^2.1.1",
         "cmdk": "^1.1.1",
         "lucide-react": "^0.545.0",
-        "minecraft-render": "^1.1.1",
         "next-themes": "^0.4.6",
         "radix-ui": "^1.4.3",
         "react": "^19",
