@@ -40,10 +40,16 @@ To enable GitHub Pages deployment, you need to configure the repository settings
      - "Read and write permissions" is selected, OR
      - "Read repository contents and packages permissions" with "Allow GitHub Actions to create and approve pull requests" checked
 
-4. **Environment Configuration** (Optional but recommended)
+4. **⚠️ CRITICAL: Configure Environment Protection Rules for Tags**
    - Go to **Settings** → **Environments**
-   - You should see a `github-pages` environment created automatically after the first deployment
-   - You can add protection rules here (e.g., require approval before deployment)
+   - Click on the **`github-pages`** environment (created after first workflow run)
+   - Under **Deployment branches and tags**:
+     - If it says "Selected branches", click the dropdown
+     - Select **"No restriction"** (to allow deployments from tags)
+     - OR add a rule: Click "Add deployment branch or tag rule" → Select "Tags" → Pattern: `v*`
+   - Click **Save protection rules**
+   
+   **Why this is needed**: By default, GitHub Pages environments only allow deployments from branches. Since this workflow deploys on tag pushes, you must configure the environment to allow tag-based deployments.
 
 ### First Deployment
 
@@ -65,6 +71,19 @@ After configuring the settings above:
    - The URL will also be shown in the deployment job output
 
 ## Troubleshooting
+
+### "Tag is not allowed to deploy" error
+**Error**: `Tag "v1.0.4" is not allowed to deploy to github-pages due to environment protection rules.`
+
+**Cause**: The `github-pages` environment has protection rules that only allow deployments from specific branches, not tags.
+
+**Solution**:
+1. Go to `https://github.com/L3-N0X/minecraft-item-list/settings/environments`
+2. Click on **`github-pages`**
+3. Under **Deployment branches and tags**:
+   - Change to **"No restriction"**, OR
+   - Add tag rule: Click "Add deployment branch or tag rule" → Tags → Pattern: `v*`
+4. Save and retry your deployment
 
 ### Deployment fails with permissions error
 - Check that GitHub Pages is set to "GitHub Actions" as the source
