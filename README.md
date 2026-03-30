@@ -5,6 +5,7 @@
 [![GitHub Release](https://img.shields.io/github/v/tag/L3-N0X/minecraft-item-list?color=4b512b&labelColor=1c1c1c&link=https%3A%2F%2Fgithub.com%2FL3-N0X%2Fminecraft-item-list%2Ftags)](https://github.com/L3-N0X/minecraft-item-list/tags)
 [![GitHub License](https://img.shields.io/github/license/L3-N0X/minecraft-item-list?color=4b512b&labelColor=1c1c1c)](https://github.com/L3-N0X/minecraft-item-list/blob/master/LICENSE)
 
+Visit the live site: [https://l3-n0x.github.io/minecraft-item-list/](https://l3-n0x.github.io/minecraft-item-list/)
 <div align="center">
     <a href="https://l3-n0x.github.io/minecraft-item-list/">
         <img src="public/preview.png" alt="Preview" width="100%">
