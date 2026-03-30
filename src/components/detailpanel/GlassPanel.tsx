@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import type React from 'react'
-import { Button } from './ui/button'
+import { Button } from './../ui/button'
 import { useState } from 'react'
 import { ArrowsClockwiseIcon, ExclamationMarkIcon } from '@phosphor-icons/react'
 

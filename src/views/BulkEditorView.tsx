@@ -1,9 +1,8 @@
-import React, { useMemo, useState, useRef } from 'react'
+import { useMemo, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
     type ColumnDef,
     type ColumnFiltersState,
-    type Row,
     type SortingState,
     type VisibilityState,
     flexRender,
@@ -11,7 +10,6 @@ import {
     getFilteredRowModel,
     getSortedRowModel,
     useReactTable,
-    type Column,
 } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useData } from '../context/DataContext'
@@ -19,35 +17,8 @@ import {
     type ItemData,
     type Renewable,
     type RarityTier,
-    type StackSize,
 } from '../types/minecraft'
 
-type FilterOption = {
-    label: string
-    value: string
-    icon?: React.ComponentType<{ className?: string }>
-}
-
-type TableRowData = {
-    id: string
-    displayName: string
-    displayNameGerman: string
-    categories: string[]
-    difficulty: number
-    hasNaturalGen: boolean
-    hasLoot: boolean
-    requiresSilkTouch: boolean
-    craftable: boolean
-    hasMobLoot: boolean
-    hasBlockLoot: boolean
-    hasTrading: boolean
-    hasSmelting: boolean
-    renewable: Renewable
-    isBlock: boolean
-    stackSize: StackSize
-    rarityTier: RarityTier
-    rawItem: ItemData
-}
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -65,16 +36,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
-import {
-    Settings2,
-    ArrowUpDown,
-    ArrowUp,
-    ArrowDown,
-    Filter,
-    Check,
-    X,
-    Pencil,
-} from 'lucide-react'
+import { Settings2, X, Pencil } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
     Dialog,
@@ -92,238 +54,15 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
-} from '@/components/ui/command'
 import { PencilIcon } from '@phosphor-icons/react'
-
-interface DataTableFacetedFilterProps<TData, TValue> {
-    column?: Column<TData, TValue>
-    title?: string
-    options: {
-        label: string
-        value: string
-        icon?: React.ComponentType<{ className?: string }>
-    }[]
-}
-
-const DataTableFacetedFilter = function DataTableFacetedFilter<TData, TValue>({
-    column,
-    title,
-    options,
-}: DataTableFacetedFilterProps<TData, TValue>) {
-    const selectedValues = new Set(column?.getFilterValue() as string[])
-
-    return (
-        <Popover>
-            <PopoverTrigger asChild>
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-7 px-2 border-dashed flex items-center -ml-2"
-                >
-                    <Filter className="h-3.5 w-3.5" />
-                    {selectedValues?.size > 0 && (
-                        <>
-                            <Separator
-                                orientation="vertical"
-                                className="mx-2 h-4"
-                            />
-                            <Badge
-                                variant="outline"
-                                className="rounded-sm px-1 font-normal lg:hidden"
-                            >
-                                {selectedValues.size}
-                            </Badge>
-                            <div className="hidden space-x-1 lg:flex">
-                                {selectedValues.size > 2 ? (
-                                    <Badge
-                                        variant="outline"
-                                        className="rounded-sm px-1 font-normal"
-                                    >
-                                        {selectedValues.size} selected
-                                    </Badge>
-                                ) : (
-                                    options
-                                        .filter((option) =>
-                                            selectedValues.has(option.value)
-                                        )
-                                        .map((option) => (
-                                            <Badge
-                                                variant="outline"
-                                                key={option.value}
-                                                className="rounded-sm px-1 font-normal"
-                                            >
-                                                {option.label}
-                                            </Badge>
-                                        ))
-                                )}
-                            </div>
-                        </>
-                    )}
-                </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-50 p-0" align="start">
-                <Command>
-                    <CommandInput placeholder={title} />
-                    <CommandList>
-                        <CommandEmpty>No results found.</CommandEmpty>
-                        <CommandGroup>
-                            {options.map((option) => {
-                                const isSelected = selectedValues.has(
-                                    option.value
-                                )
-                                return (
-                                    <CommandItem
-                                        key={option.value}
-                                        onSelect={() => {
-                                            const currentValues = new Set(
-                                                column?.getFilterValue() as string[]
-                                            )
-                                            if (isSelected) {
-                                                currentValues.delete(
-                                                    option.value
-                                                )
-                                            } else {
-                                                currentValues.add(option.value)
-                                            }
-                                            const filterValues =
-                                                Array.from(currentValues)
-                                            column?.setFilterValue(
-                                                filterValues.length
-                                                    ? filterValues
-                                                    : undefined
-                                            )
-                                        }}
-                                    >
-                                        <div
-                                            className={cn(
-                                                'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
-                                                isSelected
-                                                    ? 'bg-primary text-primary-foreground'
-                                                    : 'opacity-50 [&_svg]:invisible'
-                                            )}
-                                        >
-                                            <Check className={cn('h-4 w-4')} />
-                                        </div>
-                                        {option.icon && (
-                                            <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-                                        )}
-                                        <span>{option.label}</span>
-                                    </CommandItem>
-                                )
-                            })}
-                        </CommandGroup>
-                        {selectedValues.size > 0 && (
-                            <>
-                                <CommandSeparator />
-                                <CommandGroup>
-                                    <CommandItem
-                                        onSelect={() =>
-                                            column?.setFilterValue(undefined)
-                                        }
-                                        className="justify-center text-center"
-                                    >
-                                        Clear filters
-                                    </CommandItem>
-                                </CommandGroup>
-                            </>
-                        )}
-                    </CommandList>
-                </Command>
-            </PopoverContent>
-        </Popover>
-    )
-}
-
-const SortableHeader = <TData,>({
-    column,
-    title,
-    isFilterable,
-    options,
-}: {
-    column: Column<TData, unknown>
-    title: string
-    isFilterable?: boolean
-    options?: FilterOption[]
-}) => {
-    const isSorted = column.getIsSorted()
-    return (
-        <div className="flex flex-col gap-0.5 items-start">
-            <Button
-                variant="ghost"
-                onClick={() => {
-                    const current = column.getIsSorted()
-                    if (current === 'asc') {
-                        column.toggleSorting(true) // Set to desc
-                    } else if (current === 'desc') {
-                        column.clearSorting() // Clear sorting
-                    } else {
-                        column.toggleSorting(false) // Set to asc
-                    }
-                }}
-                className="-ml-2 h-8 px-2 font-bold hover:bg-transparent"
-            >
-                {title}
-                {isSorted === 'asc' ? (
-                    <ArrowUp className="ml-2 h-4 w-4" />
-                ) : isSorted === 'desc' ? (
-                    <ArrowDown className="ml-2 h-4 w-4" />
-                ) : (
-                    <ArrowUpDown className="ml-2 h-4 w-4 text-muted-foreground/50" />
-                )}
-            </Button>
-            {isFilterable && options && (
-                <DataTableFacetedFilter
-                    column={column}
-                    title={title}
-                    options={options}
-                />
-            )}
-        </div>
-    )
-}
-
-const YesNoCell = React.memo(
-    ({
-        value,
-        trueColor = 'dark:text-green-400 text-green-800',
-    }: {
-        value: boolean
-        trueColor?: string
-    }) => (
-        <div className="text-center">
-            {value ? (
-                <span className={cn('font-medium', trueColor)}>Yes</span>
-            ) : (
-                <span className="text-muted-foreground">No</span>
-            )}
-        </div>
-    )
-)
-
-const binaryFilterFn = (
-    row: Row<TableRowData>,
-    id: string,
-    filterValues: string[]
-) => {
-    const val = !!row.getValue(id)
-    const valStr = val.toString()
-    return filterValues.includes(valStr)
-}
+import { SortableHeader } from '@/components/bulkeditor/SortableHeader'
+import {
+    binaryFilterFn,
+    type TableRowData,
+} from '@/components/bulkeditor/utils'
+import { YesNoCell } from '@/components/bulkeditor/YesNoCell'
 
 export function BulkEditorView() {
     const {

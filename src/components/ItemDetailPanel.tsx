@@ -1,4 +1,3 @@
-import {} from './HoverTagDE'
 import React, { useRef, useMemo } from 'react'
 import type { ItemData } from '@/context/DataContext'
 import { useData } from '@/context/DataContext'
@@ -229,7 +228,6 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 size="icon"
                                 className="h-6 w-6 p-0"
                             >
-                                {/* <InfoIcon className="h-4 w-4 text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-help" /> */}
                                 <span className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-black text-muted-foreground/40 uppercase">
                                     DE
                                 </span>
@@ -725,9 +723,9 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         ))}
                     </div>
                 ) : (
-                    <div className="flex-1 flex flex-col items-center justify-center">
+                    <div className="flex-1 flex flex-col items-center justify-center pb-5">
                         <img
-                            className="w-12 h-12 mb-2 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                            className="w-12 h-12 flex-1 mt-2 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
                             src="/entities/creeper.png"
                             alt="no mob loot"
                         />
