@@ -21,7 +21,7 @@ export function GlassPanel({
     return (
         <div
             className={cn(
-                'relative bg-white/4 dark:bg-white/2 backdrop-blur z-5 rounded-2xl flex flex-col border dark:border-white/10 border-white/40 overflow-hidden',
+                'relative bg-white/10 dark:bg-white/2 backdrop-blur z-5 rounded-2xl flex flex-col border dark:border-white/10 border-white/80 overflow-hidden',
                 className
             )}
             style={style}

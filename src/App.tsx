@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { DataProvider, useData } from './context/DataContext'
 import { ListView } from './views/ListView'
 import { EditorView } from './views/EditorView'
@@ -14,15 +14,19 @@ import {
     DownloadIcon,
     GridFourIcon,
     ListIcon,
+    ListMagnifyingGlassIcon,
     MagnifyingGlassIcon,
 } from '@phosphor-icons/react'
 
 function Layout({ children }: { children: React.ReactNode }) {
     const { isStaticMode } = useData()
+    const location = useLocation()
 
     const downloadJson = () => {
         window.location.href = '/api/items/download'
     }
+
+    const isActive = (path: string) => location.pathname === path
 
     return (
         <div className="min-h-screen text-foreground pb-20">
@@ -41,7 +45,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                         </Link>
                         <div className="hidden md:flex items-center gap-4">
                             <Button
-                                variant="ghost"
+                                variant={isActive('/') ? 'secondary' : 'ghost'}
                                 size="sm"
                                 asChild
                                 className="px-3 h-9"
@@ -56,7 +60,11 @@ function Layout({ children }: { children: React.ReactNode }) {
                             </Button>
                             {!isStaticMode && (
                                 <Button
-                                    variant="ghost"
+                                    variant={
+                                        isActive('/list')
+                                            ? 'secondary'
+                                            : 'ghost'
+                                    }
                                     size="sm"
                                     asChild
                                     className="px-3 h-9"
@@ -71,7 +79,9 @@ function Layout({ children }: { children: React.ReactNode }) {
                                 </Button>
                             )}
                             <Button
-                                variant="ghost"
+                                variant={
+                                    isActive('/bulk') ? 'secondary' : 'ghost'
+                                }
                                 size="sm"
                                 asChild
                                 className="px-3 h-9"
@@ -80,7 +90,11 @@ function Layout({ children }: { children: React.ReactNode }) {
                                     to="/bulk"
                                     className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
                                 >
-                                    <GridFourIcon className="h-5 w-5" />
+                                    {isStaticMode ? (
+                                        <GridFourIcon className="h-5 w-5" />
+                                    ) : (
+                                        <ListMagnifyingGlassIcon className="h-5 w-5" />
+                                    )}
                                     {isStaticMode
                                         ? 'Custom List'
                                         : 'Bulk Editor'}

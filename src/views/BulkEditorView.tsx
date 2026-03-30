@@ -41,7 +41,7 @@ import {
     HoverCardTrigger,
     HoverCardContent,
 } from '@/components/ui/hover-card'
-import { Settings2, X, Pencil, Download, Copy } from 'lucide-react'
+import { Settings2, X, Pencil, Download, Copy, Check } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
     Dialog,
@@ -195,6 +195,7 @@ export function BulkEditorView() {
     const [bulkActionTab, setBulkActionTab] = useState<'categorize' | 'field'>(
         'categorize'
     )
+    const [isCopied, setIsCopied] = useState(false)
 
     // Categorization State
     const [targetCategory, setTargetCategory] = useState<string>('')
@@ -1334,7 +1335,7 @@ export function BulkEditorView() {
         <div className="w-full flex flex-col h-[calc(100vh-80px)] gap-1 py-2">
             <div className="flex items-center justify-between shrink-0 mb-2">
                 <div className="flex items-center gap-2 flex-1">
-                    <div className="flex items-center gap-2 max-w-sm flex-1">
+                    <div className="flex items-center dark:bg-transparent gap-2 max-w-sm flex-1">
                         <Input
                             placeholder="Filter by name..."
                             value={
@@ -1347,7 +1348,7 @@ export function BulkEditorView() {
                                     .getColumn('displayName')
                                     ?.setFilterValue(event.target.value)
                             }
-                            className="flex-1"
+                            className="flex-1 border-border bg-white/40 focus:ring-2 focus:ring-primary/50 data-[state=open]:bg-secondary"
                         />
                         {table.getState().columnFilters.length > 0 && (
                             <Button
@@ -1431,7 +1432,7 @@ export function BulkEditorView() {
                 {/* <Table className="table-fixed min-w-full">
                  */}
                 <table className="w-full caption-bottom text-sm table-fixed min-w-full">
-                    <TableHeader className="sticky top-0 z-10 shadow-sm bg-background">
+                    <TableHeader className="sticky top-0 z-10 shadow-sm dark:bg-background bg-accent">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
@@ -1688,7 +1689,7 @@ export function BulkEditorView() {
                                 Download .txt
                             </Button>
                             <Button
-                                onClick={() => {
+                                onClick={async () => {
                                     const itemsToExport = selectedRows.map(
                                         (row) => {
                                             let text =
@@ -1712,11 +1713,27 @@ export function BulkEditorView() {
                                     const content = itemsToExport.join(
                                         sepMap[exportSeparator]
                                     )
-                                    navigator.clipboard.writeText(content)
+                                    
+                                    try {
+                                        await navigator.clipboard.writeText(content)
+                                        setIsCopied(true)
+                                        setTimeout(() => setIsCopied(false), 2000)
+                                    } catch (err) {
+                                        console.error('Failed to copy:', err)
+                                    }
                                 }}
                             >
-                                <Copy className="mr-2 h-4 w-4" />
-                                Copy
+                                {isCopied ? (
+                                    <>
+                                        <Check className="mr-2 h-4 w-4" />
+                                        Copied!
+                                    </>
+                                ) : (
+                                    <>
+                                        <Copy className="mr-2 h-4 w-4" />
+                                        Copy
+                                    </>
+                                )}
                             </Button>
                         </div>
                     </DialogFooter>

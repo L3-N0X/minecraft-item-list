@@ -60,23 +60,23 @@
 
 :root {
     --radius: 0.625rem;
-    --background: oklch(72.417% 0.07838 143.096);
+    --background: oklch(100% 0.00011 271.152);
     --foreground: oklch(15.661% 0.01164 151.076);
-    --card: oklch(62.757% 0.06613 149.566);
+    --card: oklch(94.715% 0.01253 149.664);
     --card-foreground: oklch(0.18 0.02 149.19);
     --popover: oklch(80.412% 0.05166 150.482);
     --popover-foreground: oklch(0.18 0.02 149.19);
-    --primary: oklch(32.245% 0.02984 152.238);
+    --primary: oklch(40.485% 0.04407 151.561);
     --primary-foreground: oklch(99.021% 0.00571 154.781);
     --secondary: oklch(0.85 0.05 149.19);
     --secondary-foreground: oklch(0.18 0.02 149.19);
-    --muted: oklch(0.92 0.02 149.19);
+    --muted: oklch(81.829% 0.01826 148.304);
     --muted-foreground: oklch(0.45 0.03 149.19);
     --accent: oklch(0.9 0.03 149.19);
     --accent-foreground: oklch(0.18 0.02 149.19);
     --destructive: oklch(0.61 0.24 20.96);
     --border: oklch(47.991% 0.06634 147.872);
-    --input: oklch(0.85 0.02 149.19);
+    --input: oklch(63.603% 0.03948 148.883);
     --ring: oklch(0.55 0.12 149.19);
     --chart-1: oklch(0.55 0.12 149.19);
     --chart-2: oklch(0.45 0.1 170.08);
@@ -96,35 +96,35 @@
     --page-background:
         radial-gradient(
             circle at 100% 0%,
-            rgba(135, 189, 153, 0.5) 0%,
+            rgba(193, 218, 201, 0.5) 0%,
             transparent 30%
         ),
         radial-gradient(
             circle at 0% 0%,
-            rgba(123, 134, 179, 0.5) 0%,
+            rgba(178, 184, 207, 0.5) 0%,
             transparent 40%
         ),
         radial-gradient(
             circle at 50% 0%,
-            rgba(145, 180, 130, 0.753) 0%,
+            rgba(214, 231, 207, 0.753) 0%,
             transparent 60%
         ),
         radial-gradient(
             circle at 80% 50%,
-            rgba(153, 128, 180, 0.5) 0%,
+            rgba(203, 193, 214, 0.5) 0%,
             transparent 20%
         ),
         radial-gradient(
             circle at 20% 60%,
-            rgba(99, 158, 130, 0.4) 0%,
+            rgba(184, 209, 197, 0.4) 0%,
             transparent 20%
         ),
         radial-gradient(
             circle at 50% 100%,
-            rgba(126, 156, 199, 0.4) 0%,
+            rgba(171, 186, 207, 0.4) 0%,
             transparent 20%
         ),
-        #bac0ba;
+        #d9e0d9;
 }
 
 .dark {

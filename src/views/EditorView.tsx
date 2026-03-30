@@ -101,7 +101,7 @@ export function EditorView() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-6 py-4">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Button variant="ghost" onClick={() => navigate(-1)}>
@@ -120,7 +120,7 @@ export function EditorView() {
                         <ChevronLeft className="h-4 w-4" />
                         Previous
                     </Button>
-                    <div className="min-w-90 text-center">
+                    <div className="min-w-90 h-10 text-center">
                         <ItemSelector
                             items={itemIds}
                             selectedItem={id}

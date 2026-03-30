@@ -125,7 +125,7 @@ export function ItemSelector({
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-full justify-between font-mono"
+                    className="w-full justify-between h-10 font-mono"
                     onKeyDown={(e) => {
                         if (
                             e.key === 'Enter' &&

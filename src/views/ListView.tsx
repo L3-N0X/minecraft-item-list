@@ -200,7 +200,7 @@ export function ListView() {
                 </p>
             </div>
 
-            <Card className="bg-background/40 border gap-0">
+            <Card className="bg-white/20 dark:bg-white/4 border gap-0">
                 <CardHeader className="pb-3">
                     {/* ── Search input with clear button ── */}
                     <div className="relative bg-background/10">
