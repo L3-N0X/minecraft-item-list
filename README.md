@@ -1,9 +1,9 @@
 ![title-banner](public/title-banner.png)
 
-[![Maintenance](https://img.shields.io/badge/Maintained-yes-37503d.svg)](https://GitHub.com/L3-N0X/minecraft-item-list/graphs/commit-activity)
-[![GitHub issues](https://img.shields.io/github/issues/L3-N0X/minecraft-item-list.svg?color=37503d)](https://github.com/L3-N0X/minecraft-item-list/issues)
-[![GitHub Release](https://img.shields.io/github/v/release/L3-N0X/minecraft-item-list?color=37503d&link=https%3A%2F%2Fgithub.com%2FL3-N0X%2Fminecraft-item-list%2Freleases)](https://github.com/L3-N0X/minecraft-item-list/releases)
-[![GitHub License](https://img.shields.io/github/license/L3-N0X/minecraft-item-list?color=37503d)](https://github.com/L3-N0X/minecraft-item-list/blob/master/LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained-yes-4b512b.svg)](https://GitHub.com/L3-N0X/minecraft-item-list/graphs/commit-activity)
+[![GitHub issues](https://img.shields.io/github/issues/L3-N0X/minecraft-item-list.svg?color=4b512b)](https://github.com/L3-N0X/minecraft-item-list/issues)
+[![GitHub Release](https://img.shields.io/github/v/tag/L3-N0X/minecraft-item-list?color=4b512b&link=https%3A%2F%2Fgithub.com%2FL3-N0X%2Fminecraft-item-list%2Ftags)](https://github.com/L3-N0X/minecraft-item-list/tags)
+[![GitHub License](https://img.shields.io/github/license/L3-N0X/minecraft-item-list?color=4b512b)](https://github.com/L3-N0X/minecraft-item-list/blob/master/LICENSE)
 
 
 **Minecraft Item List** is a powerful, data-rich web application hosted on GitHub Pages designed for quickly finding, filtering, and exploring every detail of Minecraft items. 
