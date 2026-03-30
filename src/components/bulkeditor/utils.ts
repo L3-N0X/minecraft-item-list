@@ -20,6 +20,9 @@ export type TableRowData = {
     isBlock: boolean
     stackSize: StackSize
     rarityTier: RarityTier
+    biomes: string[]
+    structures: string[]
+    generatedLoot: string[]
     rawItem: ItemData
 }
 

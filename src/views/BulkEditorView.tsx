@@ -36,6 +36,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
+import {
+    HoverCard,
+    HoverCardTrigger,
+    HoverCardContent,
+} from '@/components/ui/hover-card'
 import { Settings2, X, Pencil } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
@@ -63,6 +68,49 @@ import {
     type TableRowData,
 } from '@/components/bulkeditor/utils'
 import { YesNoCell } from '@/components/bulkeditor/YesNoCell'
+
+function getChestTypeColor(chestName: string): string {
+    // Order matters - check ominous variants first before regular variants
+    if (chestName.endsWith('_ominous_trial_spawner')) {
+        return 'border-sky-600 text-sky-700 dark:border-sky-400 dark:text-sky-400'
+    }
+    if (chestName.endsWith('_ominous_vault')) {
+        return 'border-blue-400 text-blue-600 dark:border-blue-300 dark:text-blue-300'
+    }
+    if (chestName.endsWith('_trial_spawner')) {
+        return 'border-orange-600 text-orange-700 dark:border-orange-500 dark:text-orange-500'
+    }
+    if (chestName.endsWith('_vault')) {
+        return 'border-orange-500 text-orange-600 dark:border-orange-400 dark:text-orange-400'
+    }
+    if (chestName.endsWith('_suspicious_gravel')) {
+        return 'border-gray-400 text-gray-600 dark:border-gray-400 dark:text-gray-300'
+    }
+    if (chestName.endsWith('_suspicious_sand')) {
+        return 'border-yellow-600 text-yellow-700 dark:border-yellow-500 dark:text-yellow-400'
+    }
+    if (chestName.endsWith('_barrel')) {
+        return 'border-amber-800 text-amber-900 dark:border-amber-700 dark:text-amber-600'
+    }
+    if (chestName.endsWith('_decorated_pot')) {
+        return 'border-red-600 text-red-700 dark:border-red-500 dark:text-red-400'
+    }
+    if (chestName.endsWith('_dispenser')) {
+        return 'border-slate-500 text-slate-600 dark:border-slate-400 dark:text-slate-300'
+    }
+    if (chestName === 'item_frame') {
+        return 'border-amber-600 text-amber-700 dark:border-amber-500 dark:text-amber-400'
+    }
+    if (chestName.endsWith('_furnace')) {
+        return 'border-gray-700 text-gray-800 dark:border-gray-600 dark:text-gray-500'
+    }
+    // Default for chests (both "chest" and things ending with "_chest")
+    if (chestName === 'chest' || chestName.endsWith('_chest')) {
+        return 'border-amber-700 text-amber-800 dark:border-amber-600 dark:text-amber-500'
+    }
+    // Fallback
+    return 'border-gray-500 text-gray-700 dark:border-gray-400 dark:text-gray-400'
+}
 
 export function BulkEditorView() {
     const {
@@ -231,6 +279,9 @@ export function BulkEditorView() {
                     isBlock: false,
                     stackSize: 64,
                     rarityTier: 'common',
+                    biomes: [],
+                    structures: [],
+                    generatedLoot: [],
                     rawItem: {} as ItemData,
                 }
             }
@@ -252,6 +303,14 @@ export function BulkEditorView() {
                 isBlock: item.isBlock,
                 stackSize: item.stackSize,
                 rarityTier: item.rarityTier,
+                biomes: item.obtaining?.naturalGeneration?.biomes ?? [],
+                structures:
+                    item.obtaining?.naturalGeneration?.partOfStructures
+                        ?.structures ?? [],
+                generatedLoot:
+                    item.obtaining?.generatedLoot?.structures.flatMap(
+                        (s) => s.chests.map((c) => c.chestName)
+                    ) ?? [],
                 rawItem: item,
             }
         })
@@ -294,6 +353,54 @@ export function BulkEditorView() {
             { label: 'Epic', value: 'epic' },
         ]
 
+        const biomesSet = new Set<string>()
+        data.forEach((d) => d.biomes.forEach((b) => biomesSet.add(b)))
+        const biomeOptions = [
+            { label: '❌ None', value: '__NO_BIOME__' },
+            ...Array.from(biomesSet)
+                .sort()
+                .map((biome) => ({
+                    label: biome
+                        .replace(/_/g, ' ')
+                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                    value: biome,
+                })),
+        ]
+
+        const structuresSet = new Set<string>()
+        data.forEach((d) => d.structures.forEach((s) => structuresSet.add(s)))
+        const structureOptions = [
+            { label: '🏘️ Any Village', value: '__ANY_VILLAGE__' },
+            { label: '❌ None', value: '__NO_STRUCTURE__' },
+            ...Array.from(structuresSet)
+                .sort()
+                .map((structure) => ({
+                    label: structure
+                        .replace(/_/g, ' ')
+                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                    value: structure,
+                })),
+        ]
+
+        const generatedLootSet = new Set<string>()
+        data.forEach((d) =>
+            d.generatedLoot.forEach((l) => generatedLootSet.add(l))
+        )
+        const generatedLootOptions = [
+            { label: '📦 Any Chest', value: '__ANY_CHEST__' },
+            { label: '🪨 Any Suspicious Block', value: '__ANY_SUSPICIOUS__' },
+            { label: '🚫 No Chest', value: '__NO_CHEST__' },
+            { label: '❌ No Loot', value: '__NO_LOOT__' },
+            ...Array.from(generatedLootSet)
+                .sort()
+                .map((loot) => ({
+                    label: loot
+                        .replace(/_/g, ' ')
+                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                    value: loot,
+                })),
+        ]
+
         return {
             categories: categoryOptions,
             difficulty: difficultyOptions,
@@ -301,6 +408,9 @@ export function BulkEditorView() {
             renewable: renewableOptions,
             stackSize: stackSizeOptions,
             rarity: rarityOptions,
+            biomes: biomeOptions,
+            structures: structureOptions,
+            generatedLoot: generatedLootOptions,
         }
     }, [categories, data])
 
@@ -672,6 +782,336 @@ export function BulkEditorView() {
                 filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
                     return value.includes(row.getValue(id) as string)
+                },
+            },
+            {
+                accessorKey: 'biomes',
+                size: 200,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Biomes"
+                        isFilterable
+                        options={filterOptions.biomes}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const biomes = row.getValue('biomes') as string[]
+                    const count = biomes.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 3) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {biomes.map((biome) => (
+                                    <Badge
+                                        key={biome}
+                                        variant="outline"
+                                        className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                    >
+                                        {biome
+                                            .replace(/_/g, ' ')
+                                            .replace(/\b\w/g, (l) =>
+                                                l.toUpperCase()
+                                            )}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} biomes
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-80 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {biomes.map((biome) => (
+                                        <Badge
+                                            key={biome}
+                                            variant="outline"
+                                            className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                        >
+                                            {biome
+                                                .replace(/_/g, ' ')
+                                                .replace(/\b\w/g, (l) =>
+                                                    l.toUpperCase()
+                                                )}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowBiomes = row.getValue(id) as string[]
+                    return value.some((v) => rowBiomes.includes(v))
+                },
+            },
+            {
+                accessorKey: 'structures',
+                size: 200,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Structures"
+                        isFilterable
+                        options={filterOptions.structures}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const structures = row.getValue('structures') as string[]
+                    const count = structures.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 3) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {structures.map((structure) => (
+                                    <Badge
+                                        key={structure}
+                                        variant="outline"
+                                        className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                    >
+                                        {structure
+                                            .replace(/_/g, ' ')
+                                            .replace(/\b\w/g, (l) =>
+                                                l.toUpperCase()
+                                            )}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} structures
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-80 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {structures.map((structure) => (
+                                        <Badge
+                                            key={structure}
+                                            variant="outline"
+                                            className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                        >
+                                            {structure
+                                                .replace(/_/g, ' ')
+                                                .replace(/\b\w/g, (l) =>
+                                                    l.toUpperCase()
+                                                )}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowStructures = row.getValue(id) as string[]
+                    
+                    // Handle special filters
+                    const specialFilters = value.filter((v) =>
+                        v.startsWith('__')
+                    )
+                    const normalFilters = value.filter(
+                        (v) => !v.startsWith('__')
+                    )
+                    
+                    const results: boolean[] = []
+                    
+                    // Check special filters
+                    if (specialFilters.includes('__ANY_VILLAGE__')) {
+                        const hasVillage = rowStructures.some((s) =>
+                            s.startsWith('village_')
+                        )
+                        results.push(hasVillage)
+                    }
+                    
+                    if (specialFilters.includes('__NO_STRUCTURE__')) {
+                        results.push(rowStructures.length === 0)
+                    }
+                    
+                    // Check normal filters
+                    if (normalFilters.length > 0) {
+                        results.push(
+                            normalFilters.some((v) => rowStructures.includes(v))
+                        )
+                    }
+                    
+                    // Combine with OR logic
+                    return results.length > 0 ? results.some((r) => r) : true
+                },
+            },
+            {
+                accessorKey: 'generatedLoot',
+                size: 220,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Generated Loot"
+                        isFilterable
+                        options={filterOptions.generatedLoot}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const lootChests = row.getValue('generatedLoot') as string[]
+                    const count = lootChests.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 2) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {lootChests.map((chest) => (
+                                    <Badge
+                                        key={chest}
+                                        variant="outline"
+                                        className={cn(
+                                            'text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm',
+                                            getChestTypeColor(chest)
+                                        )}
+                                    >
+                                        {chest
+                                            .replace(/_/g, ' ')
+                                            .replace(/\b\w/g, (l) =>
+                                                l.toUpperCase()
+                                            )}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} loot sources
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-96 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {lootChests.map((chest) => (
+                                        <Badge
+                                            key={chest}
+                                            variant="outline"
+                                            className={cn(
+                                                'text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm',
+                                                getChestTypeColor(chest)
+                                            )}
+                                        >
+                                            {chest
+                                                .replace(/_/g, ' ')
+                                                .replace(/\b\w/g, (l) =>
+                                                    l.toUpperCase()
+                                                )}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowLoot = row.getValue(id) as string[]
+                    
+                    // Handle special filters
+                    const specialFilters = value.filter((v) =>
+                        v.startsWith('__')
+                    )
+                    const normalFilters = value.filter(
+                        (v) => !v.startsWith('__')
+                    )
+                    
+                    const results: boolean[] = []
+                    
+                    // Check special filters
+                    if (specialFilters.includes('__ANY_CHEST__')) {
+                        const hasChest = rowLoot.some(
+                            (loot) => loot === 'chest' || loot.endsWith('_chest')
+                        )
+                        results.push(hasChest)
+                    }
+                    
+                    if (specialFilters.includes('__ANY_SUSPICIOUS__')) {
+                        const hasSuspicious = rowLoot.some(
+                            (loot) =>
+                                loot.endsWith('_suspicious_sand') ||
+                                loot.endsWith('_suspicious_gravel')
+                        )
+                        results.push(hasSuspicious)
+                    }
+                    
+                    if (specialFilters.includes('__NO_CHEST__')) {
+                        const hasNoChest = !rowLoot.some(
+                            (loot) => loot === 'chest' || loot.endsWith('_chest')
+                        )
+                        results.push(hasNoChest)
+                    }
+                    
+                    if (specialFilters.includes('__NO_LOOT__')) {
+                        results.push(rowLoot.length === 0)
+                    }
+                    
+                    // Check normal filters
+                    if (normalFilters.length > 0) {
+                        results.push(
+                            normalFilters.some((v) => rowLoot.includes(v))
+                        )
+                    }
+                    
+                    // Combine with OR logic (any filter match returns true)
+                    return results.length > 0 ? results.some((r) => r) : true
                 },
             },
             {
