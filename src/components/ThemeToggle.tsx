@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Moon, Sun, Monitor } from '@phosphor-icons/react'
+import { MonitorIcon, MoonIcon, SunIcon } from '@phosphor-icons/react'
 import { useTheme } from 'next-themes'
 
 import {
@@ -27,11 +27,11 @@ export function ThemeToggle() {
         <Select value={theme} onValueChange={setTheme}>
             <SelectTrigger className="w-10 px-0 justify-center border-none shadow-none focus:ring-0 [&>svg:last-child]:hidden">
                 <div className="relative h-4 w-4 flex items-center justify-center">
-                    <Sun
+                    <SunIcon
                         className="h-full w-full rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
                         weight="bold"
                     />
-                    <Moon
+                    <MoonIcon
                         className="absolute top-0 h-full w-full rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
                         weight="bold"
                     />
@@ -41,19 +41,19 @@ export function ThemeToggle() {
             <SelectContent align="end">
                 <SelectItem value="light">
                     <div className="flex items-center gap-2">
-                        <Sun size={16} />
+                        <SunIcon size={16} />
                         <span>Light</span>
                     </div>
                 </SelectItem>
                 <SelectItem value="dark">
                     <div className="flex items-center gap-2">
-                        <Moon size={16} />
+                        <MoonIcon size={16} />
                         <span>Dark</span>
                     </div>
                 </SelectItem>
                 <SelectItem value="system">
                     <div className="flex items-center gap-2">
-                        <Monitor size={16} />
+                        <MonitorIcon size={16} />
                         <span>System</span>
                     </div>
                 </SelectItem>
