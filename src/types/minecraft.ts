@@ -166,4 +166,5 @@ export interface ItemData {
         id: string
         levels: QuantitySpec
     }[]
+    mostDominantColor?: string
 }
