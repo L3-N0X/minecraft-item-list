@@ -2286,6 +2286,11 @@
                         "enum": ["common", "uncommon", "rare", "epic"],
                         "default": "common"
                     },
+                    "mostDominantColor": {
+                        "type": ["string", "null"],
+                        "pattern": "^#[0-9A-Fa-f]{6}$",
+                        "description": "Dominant visible texture color in hex, computed via CIELAB + K-Means."
+                    },
                     "block": {
                         "type": "object",
                         "$comment": "Block-specific properties. Required when isBlock is true.",

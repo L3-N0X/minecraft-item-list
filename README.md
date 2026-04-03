@@ -79,5 +79,13 @@ To build for production:
 bun build
 ```
 
+### Generate dominant texture colors
+
+To populate `mostDominantColor` for every item in `public/data/items.json` using CIELAB conversion and K-Means clustering:
+
+```bash
+python scripts/generate_item_dominant_colors.py
+```
+
 ---
 *Created with ❤️ for the Minecraft Community.*
