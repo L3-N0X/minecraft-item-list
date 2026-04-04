@@ -13,60 +13,25 @@ import {
 } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useData } from '../context/DataContext'
-import {
-    type ItemData,
-    type Renewable,
-    type RarityTier,
-} from '../types/minecraft'
+import { type ItemData, type Renewable, type RarityTier } from '../types/minecraft'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import {
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table'
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdot cwn-menu'
+import { TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
-import {
-    HoverCard,
-    HoverCardTrigger,
-    HoverCardContent,
-} from '@/components/ui/hover-card'
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card'
 import { Settings2, X, Pencil, Download, Copy, Check } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogFooter,
-    DialogDescription,
-} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { PencilIcon } from '@phosphor-icons/react'
 import { SortableHeader } from '@/components/bulkeditor/SortableHeader'
-import {
-    binaryFilterFn,
-    type TableRowData,
-} from '@/components/bulkeditor/utils'
+import { binaryFilterFn, type TableRowData } from '@/components/bulkeditor/utils'
 import { YesNoCell } from '@/components/bulkeditor/YesNoCell'
 
 function getChestTypeColor(chestName: string): string {
@@ -113,72 +78,39 @@ function getChestTypeColor(chestName: string): string {
 }
 
 export function BulkEditorView() {
-    const {
-        items,
-        itemIds,
-        categories,
-        getItemCategories,
-        updateItem,
-        bulkEditorState,
-        setBulkEditorState,
-        isStaticMode,
-    } = useData()
+    const { items, itemIds, categories, getItemCategories, updateItem, bulkEditorState, setBulkEditorState, isStaticMode } =
+        useData()
     const navigate = useNavigate()
 
-    const { sorting, columnFilters, columnVisibility, rowSelection } =
-        bulkEditorState
+    const { sorting, columnFilters, columnVisibility, rowSelection } = bulkEditorState
 
-    const setSorting = (
-        updaterOrValue: SortingState | ((old: SortingState) => SortingState)
-    ) => {
+    const setSorting = (updaterOrValue: SortingState | ((old: SortingState) => SortingState)) => {
         setBulkEditorState((prev) => ({
             ...prev,
-            sorting:
-                typeof updaterOrValue === 'function'
-                    ? updaterOrValue(prev.sorting)
-                    : updaterOrValue,
+            sorting: typeof updaterOrValue === 'function' ? updaterOrValue(prev.sorting) : updaterOrValue,
         }))
     }
 
-    const setColumnFilters = (
-        updaterOrValue:
-            | ColumnFiltersState
-            | ((old: ColumnFiltersState) => ColumnFiltersState)
-    ) => {
+    const setColumnFilters = (updaterOrValue: ColumnFiltersState | ((old: ColumnFiltersState) => ColumnFiltersState)) => {
         setBulkEditorState((prev) => ({
             ...prev,
-            columnFilters:
-                typeof updaterOrValue === 'function'
-                    ? updaterOrValue(prev.columnFilters)
-                    : updaterOrValue,
+            columnFilters: typeof updaterOrValue === 'function' ? updaterOrValue(prev.columnFilters) : updaterOrValue,
         }))
     }
 
-    const setColumnVisibility = (
-        updaterOrValue:
-            | VisibilityState
-            | ((old: VisibilityState) => VisibilityState)
-    ) => {
+    const setColumnVisibility = (updaterOrValue: VisibilityState | ((old: VisibilityState) => VisibilityState)) => {
         setBulkEditorState((prev) => ({
             ...prev,
-            columnVisibility:
-                typeof updaterOrValue === 'function'
-                    ? updaterOrValue(prev.columnVisibility)
-                    : updaterOrValue,
+            columnVisibility: typeof updaterOrValue === 'function' ? updaterOrValue(prev.columnVisibility) : updaterOrValue,
         }))
     }
 
     const setRowSelection = (
-        updaterOrValue:
-            | Record<string, boolean>
-            | ((old: Record<string, boolean>) => Record<string, boolean>)
+        updaterOrValue: Record<string, boolean> | ((old: Record<string, boolean>) => Record<string, boolean>)
     ) => {
         setBulkEditorState((prev) => ({
             ...prev,
-            rowSelection:
-                typeof updaterOrValue === 'function'
-                    ? updaterOrValue(prev.rowSelection)
-                    : updaterOrValue,
+            rowSelection: typeof updaterOrValue === 'function' ? updaterOrValue(prev.rowSelection) : updaterOrValue,
         }))
     }
 
@@ -186,29 +118,19 @@ export function BulkEditorView() {
     const [isBulkDialogOpen, setIsBulkDialogOpen] = useState(false)
     const [isExportDialogOpen, setIsExportDialogOpen] = useState(false)
     const [exportType, setExportType] = useState<'id' | 'name'>('id')
-    const [exportCase, setExportCase] = useState<'original' | 'caps'>(
-        'original'
-    )
-    const [exportSeparator, setExportSeparator] = useState<
-        'comma' | 'comma-space' | 'newline' | 'newline-comma'
-    >('comma-space')
-    const [bulkActionTab, setBulkActionTab] = useState<'categorize' | 'field'>(
-        'categorize'
-    )
+    const [exportCase, setExportCase] = useState<'original' | 'caps'>('original')
+    const [exportSeparator, setExportSeparator] = useState<'comma' | 'comma-space' | 'newline' | 'newline-comma'>('comma-space')
+    const [bulkActionTab, setBulkActionTab] = useState<'categorize' | 'field'>('categorize')
     const [isCopied, setIsCopied] = useState(false)
 
     // Categorization State
     const [targetCategory, setTargetCategory] = useState<string>('')
     const [newCategoryName, setNewCategoryName] = useState('')
-    const [bulkActionType, setBulkActionType] = useState<'existing' | 'new'>(
-        'existing'
-    )
+    const [bulkActionType, setBulkActionType] = useState<'existing' | 'new'>('existing')
 
     // Field Update State
     const [selectedFieldKey, setSelectedFieldKey] = useState<string>('')
-    const [fieldOperation, setFieldOperation] = useState<
-        'set' | 'add' | 'multiply' | 'toggle'
-    >('set')
+    const [fieldOperation, setFieldOperation] = useState<'set' | 'add' | 'multiply' | 'toggle'>('set')
     const [bulkFieldValue, setBulkFieldValue] = useState<string>('')
 
     const EDITABLE_FIELDS = [
@@ -314,13 +236,8 @@ export function BulkEditorView() {
                 stackSize: item.stackSize,
                 rarityTier: item.rarityTier,
                 biomes: item.obtaining?.naturalGeneration?.biomes ?? [],
-                structures:
-                    item.obtaining?.naturalGeneration?.partOfStructures
-                        ?.structures ?? [],
-                generatedLoot:
-                    item.obtaining?.generatedLoot?.structures.flatMap((s) =>
-                        s.chests.map((c) => c.chestName)
-                    ) ?? [],
+                structures: item.obtaining?.naturalGeneration?.partOfStructures?.structures ?? [],
+                generatedLoot: item.obtaining?.generatedLoot?.structures.flatMap((s) => s.chests.map((c) => c.chestName)) ?? [],
                 rawItem: item,
             }
         })
@@ -331,9 +248,7 @@ export function BulkEditorView() {
             .sort()
             .map((cat) => ({ label: cat, value: cat }))
 
-        const difficulties = Array.from(
-            new Set(data.map((d) => d.difficulty))
-        ).sort((a, b) => a - b)
+        const difficulties = Array.from(new Set(data.map((d) => d.difficulty))).sort((a, b) => a - b)
         const difficultyOptions = difficulties.map((v) => ({
             label: v === -1 ? 'N/A' : v.toString(),
             value: v.toString(),
@@ -370,9 +285,7 @@ export function BulkEditorView() {
             ...Array.from(biomesSet)
                 .sort()
                 .map((biome) => ({
-                    label: biome
-                        .replace(/_/g, ' ')
-                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                    label: biome.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()),
                     value: biome,
                 })),
         ]
@@ -385,17 +298,13 @@ export function BulkEditorView() {
             ...Array.from(structuresSet)
                 .sort()
                 .map((structure) => ({
-                    label: structure
-                        .replace(/_/g, ' ')
-                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                    label: structure.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()),
                     value: structure,
                 })),
         ]
 
         const generatedLootSet = new Set<string>()
-        data.forEach((d) =>
-            d.generatedLoot.forEach((l) => generatedLootSet.add(l))
-        )
+        data.forEach((d) => d.generatedLoot.forEach((l) => generatedLootSet.add(l)))
         const generatedLootOptions = [
             { label: '⬢ Any Chest', value: '__ANY_CHEST__' },
             { label: '⬢ Any Suspicious Block', value: '__ANY_SUSPICIOUS__' },
@@ -404,9 +313,7 @@ export function BulkEditorView() {
             ...Array.from(generatedLootSet)
                 .sort()
                 .map((loot) => ({
-                    label: loot
-                        .replace(/_/g, ' ')
-                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                    label: loot.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()),
                     value: loot,
                 })),
         ]
@@ -432,13 +339,8 @@ export function BulkEditorView() {
             size: 40,
             header: ({ table }) => (
                 <Checkbox
-                    checked={
-                        table.getIsAllRowsSelected() ||
-                        (table.getIsSomeRowsSelected() && 'indeterminate')
-                    }
-                    onCheckedChange={(value) =>
-                        table.toggleAllRowsSelected(!!value)
-                    }
+                    checked={table.getIsAllRowsSelected() || (table.getIsSomeRowsSelected() && 'indeterminate')}
+                    onCheckedChange={(value) => table.toggleAllRowsSelected(!!value)}
                     aria-label="Select all"
                 />
             ),
@@ -478,21 +380,15 @@ export function BulkEditorView() {
             {
                 accessorKey: 'id',
                 size: 150,
-                header: ({ column }) => (
-                    <SortableHeader column={column} title="ID" />
-                ),
+                header: ({ column }) => <SortableHeader column={column} title="ID" />,
                 cell: ({ row }) => (
-                    <div className="font-mono text-xs overflow-hidden text-ellipsis">
-                        {row.getValue('id') as string}
-                    </div>
+                    <div className="font-mono text-xs overflow-hidden text-ellipsis">{row.getValue('id') as string}</div>
                 ),
             },
             {
                 accessorKey: 'displayName',
                 size: 200,
-                header: ({ column }) => (
-                    <SortableHeader column={column} title="Name" />
-                ),
+                header: ({ column }) => <SortableHeader column={column} title="Name" />,
                 cell: ({ row }) => (
                     <div className="font-medium whitespace-nowrap overflow-hidden text-ellipsis">
                         {row.getValue('displayName') as string}
@@ -502,9 +398,7 @@ export function BulkEditorView() {
             {
                 accessorKey: 'displayNameGerman',
                 size: 200,
-                header: ({ column }) => (
-                    <SortableHeader column={column} title="Name (DE)" />
-                ),
+                header: ({ column }) => <SortableHeader column={column} title="Name (DE)" />,
                 cell: ({ row }) => (
                     <div className="text-sm text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
                         {row.getValue('displayNameGerman') as string}
@@ -515,12 +409,7 @@ export function BulkEditorView() {
                 accessorKey: 'categories',
                 size: 350,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Categories"
-                        isFilterable
-                        options={filterOptions.categories}
-                    />
+                    <SortableHeader column={column} title="Categories" isFilterable options={filterOptions.categories} />
                 ),
                 cell: ({ row }) => {
                     const cats = row.getValue('categories') as string[]
@@ -548,21 +437,11 @@ export function BulkEditorView() {
                 accessorKey: 'difficulty',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Diff"
-                        isFilterable
-                        options={filterOptions.difficulty}
-                    />
+                    <SortableHeader column={column} title="Diff" isFilterable options={filterOptions.difficulty} />
                 ),
                 cell: ({ row }) => {
                     const diff = row.getValue('difficulty') as number
-                    if (diff === -1)
-                        return (
-                            <span className="text-muted-foreground text-xs">
-                                N/A
-                            </span>
-                        )
+                    if (diff === -1) return <span className="text-muted-foreground text-xs">N/A</span>
                     return <span>{diff}</span>
                 },
                 filterFn: (row, id, value: string[]) => {
@@ -575,36 +454,19 @@ export function BulkEditorView() {
                 accessorKey: 'hasNaturalGen',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Nat.Gen"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
+                    <SortableHeader column={column} title="Nat.Gen" isFilterable options={filterOptions.yesNo} />
                 ),
-                cell: ({ row }) => (
-                    <YesNoCell
-                        value={row.getValue('hasNaturalGen') as boolean}
-                    />
-                ),
+                cell: ({ row }) => <YesNoCell value={row.getValue('hasNaturalGen') as boolean} />,
                 filterFn: binaryFilterFn,
             },
             {
                 accessorKey: 'hasLoot',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Loot"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
+                    <SortableHeader column={column} title="Loot" isFilterable options={filterOptions.yesNo} />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell
-                        value={row.getValue('hasLoot') as boolean}
-                        trueColor="dark:text-green-400 text-green-600"
-                    />
+                    <YesNoCell value={row.getValue('hasLoot') as boolean} trueColor="dark:text-green-400 text-green-600" />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -612,12 +474,7 @@ export function BulkEditorView() {
                 accessorKey: 'requiresSilkTouch',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Silk"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
+                    <SortableHeader column={column} title="Silk" isFilterable options={filterOptions.yesNo} />
                 ),
                 cell: ({ row }) => (
                     <YesNoCell
@@ -631,94 +488,50 @@ export function BulkEditorView() {
                 accessorKey: 'craftable',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Craft"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
+                    <SortableHeader column={column} title="Craft" isFilterable options={filterOptions.yesNo} />
                 ),
-                cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('craftable') as boolean} />
-                ),
+                cell: ({ row }) => <YesNoCell value={row.getValue('craftable') as boolean} />,
                 filterFn: binaryFilterFn,
             },
             {
                 accessorKey: 'hasMobLoot',
                 size: 100,
-                header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Mob"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
-                ),
-                cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasMobLoot') as boolean} />
-                ),
+                header: ({ column }) => <SortableHeader column={column} title="Mob" isFilterable options={filterOptions.yesNo} />,
+                cell: ({ row }) => <YesNoCell value={row.getValue('hasMobLoot') as boolean} />,
                 filterFn: binaryFilterFn,
             },
             {
                 accessorKey: 'hasBlockLoot',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="BlockL"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
+                    <SortableHeader column={column} title="BlockL" isFilterable options={filterOptions.yesNo} />
                 ),
-                cell: ({ row }) => (
-                    <YesNoCell
-                        value={row.getValue('hasBlockLoot') as boolean}
-                    />
-                ),
+                cell: ({ row }) => <YesNoCell value={row.getValue('hasBlockLoot') as boolean} />,
                 filterFn: binaryFilterFn,
             },
             {
                 accessorKey: 'hasTrading',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Trade"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
+                    <SortableHeader column={column} title="Trade" isFilterable options={filterOptions.yesNo} />
                 ),
-                cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasTrading') as boolean} />
-                ),
+                cell: ({ row }) => <YesNoCell value={row.getValue('hasTrading') as boolean} />,
                 filterFn: binaryFilterFn,
             },
             {
                 accessorKey: 'hasSmelting',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Smelt"
-                        isFilterable
-                        options={filterOptions.yesNo}
-                    />
+                    <SortableHeader column={column} title="Smelt" isFilterable options={filterOptions.yesNo} />
                 ),
-                cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasSmelting') as boolean} />
-                ),
+                cell: ({ row }) => <YesNoCell value={row.getValue('hasSmelting') as boolean} />,
                 filterFn: binaryFilterFn,
             },
             {
                 accessorKey: 'renewable',
                 size: 130,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Renew"
-                        isFilterable
-                        options={filterOptions.renewable}
-                    />
+                    <SortableHeader column={column} title="Renew" isFilterable options={filterOptions.renewable} />
                 ),
                 cell: ({ row }) => {
                     const renewable = row.getValue('renewable') as Renewable
@@ -747,16 +560,9 @@ export function BulkEditorView() {
                 accessorKey: 'stackSize',
                 size: 100,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Stack"
-                        isFilterable
-                        options={filterOptions.stackSize}
-                    />
+                    <SortableHeader column={column} title="Stack" isFilterable options={filterOptions.stackSize} />
                 ),
-                cell: ({ row }) => (
-                    <div>{row.getValue('stackSize') as number}</div>
-                ),
+                cell: ({ row }) => <div>{row.getValue('stackSize') as number}</div>,
                 filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
                     const val = row.getValue(id) as number
@@ -767,12 +573,7 @@ export function BulkEditorView() {
                 accessorKey: 'rarityTier',
                 size: 120,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Rarity"
-                        isFilterable
-                        options={filterOptions.rarity}
-                    />
+                    <SortableHeader column={column} title="Rarity" isFilterable options={filterOptions.rarity} />
                 ),
                 cell: ({ row }) => {
                     const rarity = row.getValue('rarityTier') as RarityTier
@@ -784,13 +585,7 @@ export function BulkEditorView() {
                         epic: 'dark:bg-purple-500/10 dark:text-purple-400 bg-purple-100/10 text-purple-800 border-purple-700 dark:border-purple-500',
                     }
                     return (
-                        <Badge
-                            variant="outline"
-                            className={cn(
-                                'capitalize text-[10px] rounded-sm',
-                                colors[rarity] || ''
-                            )}
-                        >
+                        <Badge variant="outline" className={cn('capitalize text-[10px] rounded-sm', colors[rarity] || '')}>
                             {rarity}
                         </Badge>
                     )
@@ -804,23 +599,14 @@ export function BulkEditorView() {
                 accessorKey: 'biomes',
                 size: 200,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Biomes"
-                        isFilterable
-                        options={filterOptions.biomes}
-                    />
+                    <SortableHeader column={column} title="Biomes" isFilterable options={filterOptions.biomes} />
                 ),
                 cell: ({ row }) => {
                     const biomes = row.getValue('biomes') as string[]
                     const count = biomes.length
 
                     if (count === 0) {
-                        return (
-                            <span className="text-muted-foreground text-xs">
-                                N/A
-                            </span>
-                        )
+                        return <span className="text-muted-foreground text-xs">N/A</span>
                     }
 
                     if (count <= 3) {
@@ -832,11 +618,7 @@ export function BulkEditorView() {
                                         variant="outline"
                                         className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
                                     >
-                                        {biome
-                                            .replace(/_/g, ' ')
-                                            .replace(/\b\w/g, (l) =>
-                                                l.toUpperCase()
-                                            )}
+                                        {biome.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                                     </Badge>
                                 ))}
                             </div>
@@ -846,17 +628,11 @@ export function BulkEditorView() {
                     return (
                         <HoverCard openDelay={200} closeDelay={100}>
                             <HoverCardTrigger asChild>
-                                <Badge
-                                    variant="outline"
-                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
-                                >
+                                <Badge variant="outline" className="text-[10px] px-1.5 py-0 rounded-sm cursor-help">
                                     {count} biomes
                                 </Badge>
                             </HoverCardTrigger>
-                            <HoverCardContent
-                                side="top"
-                                className="w-80 p-3 max-h-64 overflow-y-auto"
-                            >
+                            <HoverCardContent side="top" className="w-80 p-3 max-h-64 overflow-y-auto">
                                 <div className="flex flex-wrap gap-1">
                                     {biomes.map((biome) => (
                                         <Badge
@@ -864,11 +640,7 @@ export function BulkEditorView() {
                                             variant="outline"
                                             className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
                                         >
-                                            {biome
-                                                .replace(/_/g, ' ')
-                                                .replace(/\b\w/g, (l) =>
-                                                    l.toUpperCase()
-                                                )}
+                                            {biome.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                                         </Badge>
                                     ))}
                                 </div>
@@ -881,12 +653,8 @@ export function BulkEditorView() {
                     const rowBiomes = row.getValue(id) as string[]
 
                     // Handle special filters
-                    const specialFilters = value.filter((v) =>
-                        v.startsWith('__')
-                    )
-                    const normalFilters = value.filter(
-                        (v) => !v.startsWith('__')
-                    )
+                    const specialFilters = value.filter((v) => v.startsWith('__'))
+                    const normalFilters = value.filter((v) => !v.startsWith('__'))
 
                     const results: boolean[] = []
 
@@ -897,9 +665,7 @@ export function BulkEditorView() {
 
                     // Check normal filters
                     if (normalFilters.length > 0) {
-                        results.push(
-                            normalFilters.some((v) => rowBiomes.includes(v))
-                        )
+                        results.push(normalFilters.some((v) => rowBiomes.includes(v)))
                     }
 
                     // Combine with OR logic
@@ -910,23 +676,14 @@ export function BulkEditorView() {
                 accessorKey: 'structures',
                 size: 200,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Structures"
-                        isFilterable
-                        options={filterOptions.structures}
-                    />
+                    <SortableHeader column={column} title="Structures" isFilterable options={filterOptions.structures} />
                 ),
                 cell: ({ row }) => {
                     const structures = row.getValue('structures') as string[]
                     const count = structures.length
 
                     if (count === 0) {
-                        return (
-                            <span className="text-muted-foreground text-xs">
-                                N/A
-                            </span>
-                        )
+                        return <span className="text-muted-foreground text-xs">N/A</span>
                     }
 
                     if (count <= 3) {
@@ -938,11 +695,7 @@ export function BulkEditorView() {
                                         variant="outline"
                                         className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
                                     >
-                                        {structure
-                                            .replace(/_/g, ' ')
-                                            .replace(/\b\w/g, (l) =>
-                                                l.toUpperCase()
-                                            )}
+                                        {structure.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                                     </Badge>
                                 ))}
                             </div>
@@ -952,17 +705,11 @@ export function BulkEditorView() {
                     return (
                         <HoverCard openDelay={200} closeDelay={100}>
                             <HoverCardTrigger asChild>
-                                <Badge
-                                    variant="outline"
-                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
-                                >
+                                <Badge variant="outline" className="text-[10px] px-1.5 py-0 rounded-sm cursor-help">
                                     {count} structures
                                 </Badge>
                             </HoverCardTrigger>
-                            <HoverCardContent
-                                side="top"
-                                className="w-80 p-3 max-h-64 overflow-y-auto"
-                            >
+                            <HoverCardContent side="top" className="w-80 p-3 max-h-64 overflow-y-auto">
                                 <div className="flex flex-wrap gap-1">
                                     {structures.map((structure) => (
                                         <Badge
@@ -970,11 +717,7 @@ export function BulkEditorView() {
                                             variant="outline"
                                             className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
                                         >
-                                            {structure
-                                                .replace(/_/g, ' ')
-                                                .replace(/\b\w/g, (l) =>
-                                                    l.toUpperCase()
-                                                )}
+                                            {structure.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                                         </Badge>
                                     ))}
                                 </div>
@@ -987,20 +730,14 @@ export function BulkEditorView() {
                     const rowStructures = row.getValue(id) as string[]
 
                     // Handle special filters
-                    const specialFilters = value.filter((v) =>
-                        v.startsWith('__')
-                    )
-                    const normalFilters = value.filter(
-                        (v) => !v.startsWith('__')
-                    )
+                    const specialFilters = value.filter((v) => v.startsWith('__'))
+                    const normalFilters = value.filter((v) => !v.startsWith('__'))
 
                     const results: boolean[] = []
 
                     // Check special filters
                     if (specialFilters.includes('__ANY_VILLAGE__')) {
-                        const hasVillage = rowStructures.some((s) =>
-                            s.startsWith('village_')
-                        )
+                        const hasVillage = rowStructures.some((s) => s.startsWith('village_'))
                         results.push(hasVillage)
                     }
 
@@ -1010,9 +747,7 @@ export function BulkEditorView() {
 
                     // Check normal filters
                     if (normalFilters.length > 0) {
-                        results.push(
-                            normalFilters.some((v) => rowStructures.includes(v))
-                        )
+                        results.push(normalFilters.some((v) => rowStructures.includes(v)))
                     }
 
                     // Combine with OR logic
@@ -1023,23 +758,14 @@ export function BulkEditorView() {
                 accessorKey: 'generatedLoot',
                 size: 220,
                 header: ({ column }) => (
-                    <SortableHeader
-                        column={column}
-                        title="Generated Loot"
-                        isFilterable
-                        options={filterOptions.generatedLoot}
-                    />
+                    <SortableHeader column={column} title="Generated Loot" isFilterable options={filterOptions.generatedLoot} />
                 ),
                 cell: ({ row }) => {
                     const lootChests = row.getValue('generatedLoot') as string[]
                     const count = lootChests.length
 
                     if (count === 0) {
-                        return (
-                            <span className="text-muted-foreground text-xs">
-                                N/A
-                            </span>
-                        )
+                        return <span className="text-muted-foreground text-xs">N/A</span>
                     }
 
                     if (count <= 2) {
@@ -1054,11 +780,7 @@ export function BulkEditorView() {
                                             getChestTypeColor(chest)
                                         )}
                                     >
-                                        {chest
-                                            .replace(/_/g, ' ')
-                                            .replace(/\b\w/g, (l) =>
-                                                l.toUpperCase()
-                                            )}
+                                        {chest.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                                     </Badge>
                                 ))}
                             </div>
@@ -1068,17 +790,11 @@ export function BulkEditorView() {
                     return (
                         <HoverCard openDelay={200} closeDelay={100}>
                             <HoverCardTrigger asChild>
-                                <Badge
-                                    variant="outline"
-                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
-                                >
+                                <Badge variant="outline" className="text-[10px] px-1.5 py-0 rounded-sm cursor-help">
                                     {count} loot sources
                                 </Badge>
                             </HoverCardTrigger>
-                            <HoverCardContent
-                                side="top"
-                                className="w-96 p-3 max-h-64 overflow-y-auto"
-                            >
+                            <HoverCardContent side="top" className="w-96 p-3 max-h-64 overflow-y-auto">
                                 <div className="flex flex-wrap gap-1">
                                     {lootChests.map((chest) => (
                                         <Badge
@@ -1089,11 +805,7 @@ export function BulkEditorView() {
                                                 getChestTypeColor(chest)
                                             )}
                                         >
-                                            {chest
-                                                .replace(/_/g, ' ')
-                                                .replace(/\b\w/g, (l) =>
-                                                    l.toUpperCase()
-                                                )}
+                                            {chest.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                                         </Badge>
                                     ))}
                                 </div>
@@ -1106,38 +818,26 @@ export function BulkEditorView() {
                     const rowLoot = row.getValue(id) as string[]
 
                     // Handle special filters
-                    const specialFilters = value.filter((v) =>
-                        v.startsWith('__')
-                    )
-                    const normalFilters = value.filter(
-                        (v) => !v.startsWith('__')
-                    )
+                    const specialFilters = value.filter((v) => v.startsWith('__'))
+                    const normalFilters = value.filter((v) => !v.startsWith('__'))
 
                     const results: boolean[] = []
 
                     // Check special filters
                     if (specialFilters.includes('__ANY_CHEST__')) {
-                        const hasChest = rowLoot.some(
-                            (loot) =>
-                                loot === 'chest' || loot.endsWith('_chest')
-                        )
+                        const hasChest = rowLoot.some((loot) => loot === 'chest' || loot.endsWith('_chest'))
                         results.push(hasChest)
                     }
 
                     if (specialFilters.includes('__ANY_SUSPICIOUS__')) {
                         const hasSuspicious = rowLoot.some(
-                            (loot) =>
-                                loot.endsWith('_suspicious_sand') ||
-                                loot.endsWith('_suspicious_gravel')
+                            (loot) => loot.endsWith('_suspicious_sand') || loot.endsWith('_suspicious_gravel')
                         )
                         results.push(hasSuspicious)
                     }
 
                     if (specialFilters.includes('__NO_CHEST__')) {
-                        const hasNoChest = !rowLoot.some(
-                            (loot) =>
-                                loot === 'chest' || loot.endsWith('_chest')
-                        )
+                        const hasNoChest = !rowLoot.some((loot) => loot === 'chest' || loot.endsWith('_chest'))
                         results.push(hasNoChest)
                     }
 
@@ -1147,9 +847,7 @@ export function BulkEditorView() {
 
                     // Check normal filters
                     if (normalFilters.length > 0) {
-                        results.push(
-                            normalFilters.some((v) => rowLoot.includes(v))
-                        )
+                        results.push(normalFilters.some((v) => rowLoot.includes(v)))
                     }
 
                     // Combine with OR logic (any filter match returns true)
@@ -1162,10 +860,7 @@ export function BulkEditorView() {
                 header: 'JSON',
                 cell: ({ row }) => {
                     const rawItem = row.original.rawItem
-                    const json = useMemo(
-                        () => JSON.stringify(rawItem, null, 2),
-                        [rawItem]
-                    )
+                    const json = useMemo(() => JSON.stringify(rawItem, null, 2), [rawItem])
                     return (
                         <pre className="text-[10px] max-h-32 overflow-auto bg-muted p-2 rounded max-w-full whitespace-pre-wrap">
                             {json}
@@ -1212,24 +907,14 @@ export function BulkEditorView() {
     const totalSize = rowVirtualizer.getTotalSize()
 
     const paddingTop = virtualRows.length > 0 ? virtualRows[0]?.start || 0 : 0
-    const paddingBottom =
-        virtualRows.length > 0
-            ? totalSize - (virtualRows[virtualRows.length - 1]?.end || 0)
-            : 0
+    const paddingBottom = virtualRows.length > 0 ? totalSize - (virtualRows[virtualRows.length - 1]?.end || 0) : 0
 
     const selectedRows = table.getFilteredSelectedRowModel().rows
     const selectedCount = selectedRows.length
 
-    const selectedField = EDITABLE_FIELDS.find(
-        (f) => f.label === selectedFieldKey
-    )
+    const selectedField = EDITABLE_FIELDS.find((f) => f.label === selectedFieldKey)
 
-    const applyPatch = (
-        itemData: ItemData,
-        path: string[],
-        op: string,
-        val: string | number | boolean
-    ) => {
+    const applyPatch = (itemData: ItemData, path: string[], op: string, val: string | number | boolean) => {
         const newData = JSON.parse(JSON.stringify(itemData))
         let current = newData
         for (let i = 0; i < path.length - 1; i++) {
@@ -1251,11 +936,7 @@ export function BulkEditorView() {
                 current[lastKey] = Number(val)
             } else if (selectedField?.type === 'boolean') {
                 current[lastKey] = val === 'true'
-            } else if (
-                selectedField?.type === 'enum' &&
-                selectedField.path[selectedField.path.length - 1] ===
-                    'stackSize'
-            ) {
+            } else if (selectedField?.type === 'enum' && selectedField.path[selectedField.path.length - 1] === 'stackSize') {
                 current[lastKey] = Number(val)
             } else {
                 current[lastKey] = val
@@ -1275,8 +956,7 @@ export function BulkEditorView() {
         const selectedItemIds = selectedRows.map((row) => row.original.id)
 
         if (bulkActionTab === 'categorize') {
-            const categoryToAssign =
-                bulkActionType === 'new' ? newCategoryName : targetCategory
+            const categoryToAssign = bulkActionType === 'new' ? newCategoryName : targetCategory
             if (!categoryToAssign) return
 
             for (const id of selectedItemIds) {
@@ -1284,10 +964,7 @@ export function BulkEditorView() {
                 if (!item) continue
                 const currentItemCats = getItemCategories(id)
                 if (!currentItemCats.includes(categoryToAssign)) {
-                    await updateItem(id, item, [
-                        ...currentItemCats,
-                        categoryToAssign,
-                    ])
+                    await updateItem(id, item, [...currentItemCats, categoryToAssign])
                 }
             }
         } else if (bulkActionTab === 'field') {
@@ -1297,12 +974,7 @@ export function BulkEditorView() {
                 const item = items[id]
                 if (!item) continue
 
-                const newData = applyPatch(
-                    item,
-                    selectedField.path,
-                    fieldOperation,
-                    bulkFieldValue
-                )
+                const newData = applyPatch(item, selectedField.path, fieldOperation, bulkFieldValue)
                 await updateItem(id, newData, getItemCategories(id))
             }
         }
@@ -1316,9 +988,7 @@ export function BulkEditorView() {
 
     const toggleAllFiltered = () => {
         const filteredRows = table.getFilteredRowModel().rows
-        const allFilteredSelected =
-            table.getFilteredSelectedRowModel().rows.length ===
-            filteredRows.length
+        const allFilteredSelected = table.getFilteredSelectedRowModel().rows.length === filteredRows.length
 
         if (allFilteredSelected) {
             setRowSelection({})
@@ -1338,36 +1008,19 @@ export function BulkEditorView() {
                     <div className="flex items-center dark:bg-transparent gap-2 max-w-sm flex-1">
                         <Input
                             placeholder="Filter by name..."
-                            value={
-                                (table
-                                    .getColumn('displayName')
-                                    ?.getFilterValue() as string) ?? ''
-                            }
-                            onChange={(event) =>
-                                table
-                                    .getColumn('displayName')
-                                    ?.setFilterValue(event.target.value)
-                            }
+                            value={(table.getColumn('displayName')?.getFilterValue() as string) ?? ''}
+                            onChange={(event) => table.getColumn('displayName')?.setFilterValue(event.target.value)}
                             className="flex-1 border-border bg-white/40 focus:ring-2 focus:ring-primary/50 data-[state=open]:bg-secondary"
                         />
                         {table.getState().columnFilters.length > 0 && (
-                            <Button
-                                variant="ghost"
-                                onClick={() => table.resetColumnFilters()}
-                                className="h-8 px-2 lg:px-3"
-                            >
+                            <Button variant="ghost" onClick={() => table.resetColumnFilters()} className="h-8 px-2 lg:px-3">
                                 Reset
                                 <X className="ml-2 h-4 w-4" />
                             </Button>
                         )}
                     </div>
-                    <Button
-                        variant="outline"
-                        onClick={toggleAllFiltered}
-                        className="hidden sm:flex"
-                    >
-                        {table.getFilteredSelectedRowModel().rows.length ===
-                            table.getFilteredRowModel().rows.length &&
+                    <Button variant="outline" onClick={toggleAllFiltered} className="hidden sm:flex">
+                        {table.getFilteredSelectedRowModel().rows.length === table.getFilteredRowModel().rows.length &&
                         table.getFilteredRowModel().rows.length > 0
                             ? 'Deselect All Filtered'
                             : 'Select All Filtered'}
@@ -1389,9 +1042,7 @@ export function BulkEditorView() {
                                             key={column.id}
                                             className="capitalize"
                                             checked={column.getIsVisible()}
-                                            onCheckedChange={(value) =>
-                                                column.toggleVisibility(!!value)
-                                            }
+                                            onCheckedChange={(value) => column.toggleVisibility(!!value)}
                                         >
                                             {column.id}
                                         </DropdownMenuCheckboxItem>
@@ -1413,11 +1064,7 @@ export function BulkEditorView() {
                     </Button>
 
                     {selectedCount > 0 && !isStaticMode && (
-                        <Button
-                            variant="default"
-                            size="sm"
-                            onClick={() => setIsBulkDialogOpen(true)}
-                        >
+                        <Button variant="default" size="sm" onClick={() => setIsBulkDialogOpen(true)}>
                             <PencilIcon className="mr-2 h-4 w-4" />
                             Bulk Edit ({selectedCount})
                         </Button>
@@ -1425,10 +1072,7 @@ export function BulkEditorView() {
                 </div>
             </div>
 
-            <div
-                className="rounded-md border bg-background/40 overflow-auto relative flex-1"
-                ref={tableContainerRef}
-            >
+            <div className="rounded-md border bg-background/40 overflow-auto relative flex-1" ref={tableContainerRef}>
                 {/* <Table className="table-fixed min-w-full">
                  */}
                 <table className="w-full caption-bottom text-sm table-fixed min-w-full">
@@ -1437,18 +1081,10 @@ export function BulkEditorView() {
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead
-                                            key={header.id}
-                                            style={{ width: header.getSize() }}
-                                            className="h-auto py-2"
-                                        >
+                                        <TableHead key={header.id} style={{ width: header.getSize() }} className="h-auto py-2">
                                             {header.isPlaceholder
                                                 ? null
-                                                : flexRender(
-                                                      header.column.columnDef
-                                                          .header,
-                                                      header.getContext()
-                                                  )}
+                                                : flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHead>
                                     )
                                 })}
@@ -1458,10 +1094,7 @@ export function BulkEditorView() {
                     <TableBody>
                         {paddingTop > 0 && (
                             <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    style={{ height: `${paddingTop}px` }}
-                                />
+                                <TableCell colSpan={columns.length} style={{ height: `${paddingTop}px` }} />
                             </TableRow>
                         )}
                         {rows.length > 0 ? (
@@ -1469,12 +1102,7 @@ export function BulkEditorView() {
                                 const row = rows[virtualRow.index]
                                 if (!row) return null
                                 return (
-                                    <TableRow
-                                        key={row.id}
-                                        data-state={
-                                            row.getIsSelected() && 'selected'
-                                        }
-                                    >
+                                    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                                         {row.getVisibleCells().map((cell) => (
                                             <TableCell
                                                 key={cell.id}
@@ -1482,10 +1110,7 @@ export function BulkEditorView() {
                                                     width: cell.column.getSize(),
                                                 }}
                                             >
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext()
-                                                )}
+                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                             </TableCell>
                                         ))}
                                     </TableRow>
@@ -1493,20 +1118,14 @@ export function BulkEditorView() {
                             })
                         ) : (
                             <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    className="h-24 text-center"
-                                >
+                                <TableCell colSpan={columns.length} className="h-24 text-center">
                                     No results.
                                 </TableCell>
                             </TableRow>
                         )}
                         {paddingBottom > 0 && (
                             <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    style={{ height: `${paddingBottom}px` }}
-                                />
+                                <TableCell colSpan={columns.length} style={{ height: `${paddingBottom}px` }} />
                             </TableRow>
                         )}
                     </TableBody>
@@ -1515,63 +1134,39 @@ export function BulkEditorView() {
 
             <div className="flex items-center justify-between shrink-0 py-2">
                 <div className="text-sm text-muted-foreground">
-                    {table.getFilteredSelectedRowModel().rows.length} of{' '}
-                    {table.getFilteredRowModel().rows.length} rows selected
+                    {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} rows selected
                 </div>
             </div>
 
-            <Dialog
-                open={isExportDialogOpen}
-                onOpenChange={setIsExportDialogOpen}
-            >
+            <Dialog open={isExportDialogOpen} onOpenChange={setIsExportDialogOpen}>
                 <DialogContent className="max-w-md">
                     <DialogHeader>
                         <DialogTitle>Export Selected Items</DialogTitle>
-                        <DialogDescription>
-                            Configure and export {selectedCount} items.
-                        </DialogDescription>
+                        <DialogDescription>Configure and export {selectedCount} items.</DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="flex flex-col gap-2">
                                 <Label>Export Property</Label>
-                                <Select
-                                    value={exportType}
-                                    onValueChange={(v: 'id' | 'name') =>
-                                        setExportType(v)
-                                    }
-                                >
+                                <Select value={exportType} onValueChange={(v: 'id' | 'name') => setExportType(v)}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="id">
-                                            Item IDs
-                                        </SelectItem>
-                                        <SelectItem value="name">
-                                            Item Names
-                                        </SelectItem>
+                                        <SelectItem value="id">Item IDs</SelectItem>
+                                        <SelectItem value="name">Item Names</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <Label>Case</Label>
-                                <Select
-                                    value={exportCase}
-                                    onValueChange={(v: 'original' | 'caps') =>
-                                        setExportCase(v)
-                                    }
-                                >
+                                <Select value={exportCase} onValueChange={(v: 'original' | 'caps') => setExportCase(v)}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="original">
-                                            Original
-                                        </SelectItem>
-                                        <SelectItem value="caps">
-                                            ALL CAPS
-                                        </SelectItem>
+                                        <SelectItem value="original">Original</SelectItem>
+                                        <SelectItem value="caps">ALL CAPS</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -1581,28 +1176,18 @@ export function BulkEditorView() {
                             <Label>Separator</Label>
                             <Select
                                 value={exportSeparator}
-                                onValueChange={(
-                                    v:
-                                        | 'comma'
-                                        | 'comma-space'
-                                        | 'newline'
-                                        | 'newline-comma'
-                                ) => setExportSeparator(v)}
+                                onValueChange={(v: 'comma' | 'comma-space' | 'newline' | 'newline-comma') =>
+                                    setExportSeparator(v)
+                                }
                             >
                                 <SelectTrigger className="w-full">
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="comma">Comma</SelectItem>
-                                    <SelectItem value="comma-space">
-                                        Comma + Space
-                                    </SelectItem>
-                                    <SelectItem value="newline">
-                                        Newline
-                                    </SelectItem>
-                                    <SelectItem value="newline-comma">
-                                        Newline + Comma
-                                    </SelectItem>
+                                    <SelectItem value="comma-space">Comma + Space</SelectItem>
+                                    <SelectItem value="newline">Newline</SelectItem>
+                                    <SelectItem value="newline-comma">Newline + Comma</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -1611,18 +1196,13 @@ export function BulkEditorView() {
                             <Label>Preview</Label>
                             <div className="bg-muted p-2 rounded-md text-xs font-mono break-all max-h-48 overflow-y-auto whitespace-pre-wrap">
                                 {(() => {
-                                    const itemsToExport = selectedRows.map(
-                                        (row) => {
-                                            let text =
-                                                exportType === 'id'
-                                                    ? row.original.id
-                                                    : row.original.displayName
-                                            if (exportCase === 'caps') {
-                                                text = text.toUpperCase()
-                                            }
-                                            return text
+                                    const itemsToExport = selectedRows.map((row) => {
+                                        let text = exportType === 'id' ? row.original.id : row.original.displayName
+                                        if (exportCase === 'caps') {
+                                            text = text.toUpperCase()
                                         }
-                                    )
+                                        return text
+                                    })
 
                                     const sepMap = {
                                         comma: ',',
@@ -1631,36 +1211,26 @@ export function BulkEditorView() {
                                         'newline-comma': ',\n',
                                     }
 
-                                    return itemsToExport.join(
-                                        sepMap[exportSeparator]
-                                    )
+                                    return itemsToExport.join(sepMap[exportSeparator])
                                 })()}
                             </div>
                         </div>
                     </div>
                     <DialogFooter className="flex flex-wrap gap-2 sm:justify-between">
-                        <Button
-                            variant="outline"
-                            onClick={() => setIsExportDialogOpen(false)}
-                        >
+                        <Button variant="outline" onClick={() => setIsExportDialogOpen(false)}>
                             Close
                         </Button>
                         <div className="flex gap-2">
                             <Button
                                 variant="secondary"
                                 onClick={() => {
-                                    const itemsToExport = selectedRows.map(
-                                        (row) => {
-                                            let text =
-                                                exportType === 'id'
-                                                    ? row.original.id
-                                                    : row.original.displayName
-                                            if (exportCase === 'caps') {
-                                                text = text.toUpperCase()
-                                            }
-                                            return text
+                                    const itemsToExport = selectedRows.map((row) => {
+                                        let text = exportType === 'id' ? row.original.id : row.original.displayName
+                                        if (exportCase === 'caps') {
+                                            text = text.toUpperCase()
                                         }
-                                    )
+                                        return text
+                                    })
 
                                     const sepMap = {
                                         comma: ',',
@@ -1669,9 +1239,7 @@ export function BulkEditorView() {
                                         'newline-comma': ',\n',
                                     }
 
-                                    const content = itemsToExport.join(
-                                        sepMap[exportSeparator]
-                                    )
+                                    const content = itemsToExport.join(sepMap[exportSeparator])
                                     const blob = new Blob([content], {
                                         type: 'text/plain',
                                     })
@@ -1690,18 +1258,13 @@ export function BulkEditorView() {
                             </Button>
                             <Button
                                 onClick={async () => {
-                                    const itemsToExport = selectedRows.map(
-                                        (row) => {
-                                            let text =
-                                                exportType === 'id'
-                                                    ? row.original.id
-                                                    : row.original.displayName
-                                            if (exportCase === 'caps') {
-                                                text = text.toUpperCase()
-                                            }
-                                            return text
+                                    const itemsToExport = selectedRows.map((row) => {
+                                        let text = exportType === 'id' ? row.original.id : row.original.displayName
+                                        if (exportCase === 'caps') {
+                                            text = text.toUpperCase()
                                         }
-                                    )
+                                        return text
+                                    })
 
                                     const sepMap = {
                                         comma: ',',
@@ -1710,9 +1273,7 @@ export function BulkEditorView() {
                                         'newline-comma': ',\n',
                                     }
 
-                                    const content = itemsToExport.join(
-                                        sepMap[exportSeparator]
-                                    )
+                                    const content = itemsToExport.join(sepMap[exportSeparator])
 
                                     try {
                                         await navigator.clipboard.writeText(content)
@@ -1744,29 +1305,18 @@ export function BulkEditorView() {
                 <DialogContent className="max-w-md">
                     <DialogHeader>
                         <DialogTitle>Bulk Edit Items</DialogTitle>
-                        <DialogDescription>
-                            Apply changes to {selectedCount} selected items.
-                        </DialogDescription>
+                        <DialogDescription>Apply changes to {selectedCount} selected items.</DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                         <div className="flex flex-col gap-2">
                             <Label>Action Mode</Label>
-                            <Select
-                                value={bulkActionTab}
-                                onValueChange={(v: 'categorize' | 'field') =>
-                                    setBulkActionTab(v)
-                                }
-                            >
+                            <Select value={bulkActionTab} onValueChange={(v: 'categorize' | 'field') => setBulkActionTab(v)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select action mode" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="categorize">
-                                        Categorize
-                                    </SelectItem>
-                                    <SelectItem value="field">
-                                        Update Field
-                                    </SelectItem>
+                                    <SelectItem value="categorize">Categorize</SelectItem>
+                                    <SelectItem value="field">Update Field</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -1779,20 +1329,14 @@ export function BulkEditorView() {
                                     <Label>Action Type</Label>
                                     <Select
                                         value={bulkActionType}
-                                        onValueChange={(
-                                            v: 'existing' | 'new'
-                                        ) => setBulkActionType(v)}
+                                        onValueChange={(v: 'existing' | 'new') => setBulkActionType(v)}
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select action type" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="existing">
-                                                Add to Existing Category
-                                            </SelectItem>
-                                            <SelectItem value="new">
-                                                Create New Category
-                                            </SelectItem>
+                                            <SelectItem value="existing">Add to Existing Category</SelectItem>
+                                            <SelectItem value="new">Create New Category</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -1800,10 +1344,7 @@ export function BulkEditorView() {
                                 {bulkActionType === 'existing' ? (
                                     <div className="flex flex-col gap-2">
                                         <Label>Select Category</Label>
-                                        <Select
-                                            value={targetCategory}
-                                            onValueChange={setTargetCategory}
-                                        >
+                                        <Select value={targetCategory} onValueChange={setTargetCategory}>
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select category" />
                                             </SelectTrigger>
@@ -1812,10 +1353,7 @@ export function BulkEditorView() {
                                                     {Object.keys(categories)
                                                         .sort()
                                                         .map((cat) => (
-                                                            <SelectItem
-                                                                key={cat}
-                                                                value={cat}
-                                                            >
+                                                            <SelectItem key={cat} value={cat}>
                                                                 {cat}
                                                             </SelectItem>
                                                         ))}
@@ -1829,11 +1367,7 @@ export function BulkEditorView() {
                                         <Input
                                             placeholder="Enter category name..."
                                             value={newCategoryName}
-                                            onChange={(e) =>
-                                                setNewCategoryName(
-                                                    e.target.value
-                                                )
-                                            }
+                                            onChange={(e) => setNewCategoryName(e.target.value)}
                                         />
                                     </div>
                                 )}
@@ -1842,20 +1376,14 @@ export function BulkEditorView() {
                             <>
                                 <div className="flex flex-col gap-2">
                                     <Label>Select Field</Label>
-                                    <Select
-                                        value={selectedFieldKey}
-                                        onValueChange={setSelectedFieldKey}
-                                    >
+                                    <Select value={selectedFieldKey} onValueChange={setSelectedFieldKey}>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select field to edit" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <ScrollArea className="h-64">
                                                 {EDITABLE_FIELDS.map((f) => (
-                                                    <SelectItem
-                                                        key={f.label}
-                                                        value={f.label}
-                                                    >
+                                                    <SelectItem key={f.label} value={f.label}>
                                                         {f.label}
                                                     </SelectItem>
                                                 ))}
@@ -1869,130 +1397,77 @@ export function BulkEditorView() {
                                         <Label>Operation</Label>
                                         <Select
                                             value={fieldOperation}
-                                            onValueChange={(
-                                                v:
-                                                    | 'set'
-                                                    | 'add'
-                                                    | 'multiply'
-                                                    | 'toggle'
-                                            ) => setFieldOperation(v)}
+                                            onValueChange={(v: 'set' | 'add' | 'multiply' | 'toggle') => setFieldOperation(v)}
                                         >
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select operation" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="set">
-                                                    Set Value
-                                                </SelectItem>
-                                                {selectedField.type ===
-                                                    'number' && (
+                                                <SelectItem value="set">Set Value</SelectItem>
+                                                {selectedField.type === 'number' && (
                                                     <>
-                                                        <SelectItem value="add">
-                                                            Add / Subtract
-                                                        </SelectItem>
-                                                        <SelectItem value="multiply">
-                                                            Multiply
-                                                        </SelectItem>
+                                                        <SelectItem value="add">Add / Subtract</SelectItem>
+                                                        <SelectItem value="multiply">Multiply</SelectItem>
                                                     </>
                                                 )}
-                                                {selectedField.type ===
-                                                    'boolean' && (
-                                                    <SelectItem value="toggle">
-                                                        Toggle
-                                                    </SelectItem>
+                                                {selectedField.type === 'boolean' && (
+                                                    <SelectItem value="toggle">Toggle</SelectItem>
                                                 )}
                                             </SelectContent>
                                         </Select>
                                     </div>
                                 )}
 
-                                {selectedField &&
-                                    fieldOperation !== 'toggle' && (
-                                        <div className="flex flex-col gap-2">
-                                            <Label>Value</Label>
-                                            {selectedField.type === 'enum' ? (
-                                                <Select
-                                                    value={bulkFieldValue}
-                                                    onValueChange={
-                                                        setBulkFieldValue
-                                                    }
-                                                >
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Select value" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {selectedField.options?.map(
-                                                            (opt) => (
-                                                                <SelectItem
-                                                                    key={opt}
-                                                                    value={opt}
-                                                                >
-                                                                    {opt}
-                                                                </SelectItem>
-                                                            )
-                                                        )}
-                                                    </SelectContent>
-                                                </Select>
-                                            ) : selectedField.type ===
-                                              'boolean' ? (
-                                                <Select
-                                                    value={bulkFieldValue}
-                                                    onValueChange={
-                                                        setBulkFieldValue
-                                                    }
-                                                >
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Select boolean" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectItem value="true">
-                                                            True
+                                {selectedField && fieldOperation !== 'toggle' && (
+                                    <div className="flex flex-col gap-2">
+                                        <Label>Value</Label>
+                                        {selectedField.type === 'enum' ? (
+                                            <Select value={bulkFieldValue} onValueChange={setBulkFieldValue}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select value" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {selectedField.options?.map((opt) => (
+                                                        <SelectItem key={opt} value={opt}>
+                                                            {opt}
                                                         </SelectItem>
-                                                        <SelectItem value="false">
-                                                            False
-                                                        </SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                            ) : (
-                                                <Input
-                                                    type={
-                                                        selectedField.type ===
-                                                        'number'
-                                                            ? 'number'
-                                                            : 'text'
-                                                    }
-                                                    placeholder="Enter value..."
-                                                    value={bulkFieldValue}
-                                                    onChange={(e) =>
-                                                        setBulkFieldValue(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                />
-                                            )}
-                                        </div>
-                                    )}
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                        ) : selectedField.type === 'boolean' ? (
+                                            <Select value={bulkFieldValue} onValueChange={setBulkFieldValue}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select boolean" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="true">True</SelectItem>
+                                                    <SelectItem value="false">False</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        ) : (
+                                            <Input
+                                                type={selectedField.type === 'number' ? 'number' : 'text'}
+                                                placeholder="Enter value..."
+                                                value={bulkFieldValue}
+                                                onChange={(e) => setBulkFieldValue(e.target.value)}
+                                            />
+                                        )}
+                                    </div>
+                                )}
                             </>
                         )}
                     </div>
                     <DialogFooter>
-                        <Button
-                            variant="outline"
-                            onClick={() => setIsBulkDialogOpen(false)}
-                        >
+                        <Button variant="outline" onClick={() => setIsBulkDialogOpen(false)}>
                             Cancel
                         </Button>
                         <Button
                             onClick={handleBulkAction}
                             disabled={
                                 bulkActionTab === 'categorize'
-                                    ? (bulkActionType === 'existing' &&
-                                          !targetCategory) ||
-                                      (bulkActionType === 'new' &&
-                                          !newCategoryName)
-                                    : !selectedField ||
-                                      (fieldOperation !== 'toggle' &&
-                                          !bulkFieldValue)
+                                    ? (bulkActionType === 'existing' && !targetCategory) ||
+                                      (bulkActionType === 'new' && !newCategoryName)
+                                    : !selectedField || (fieldOperation !== 'toggle' && !bulkFieldValue)
                             }
                         >
                             Apply to {selectedCount} items
