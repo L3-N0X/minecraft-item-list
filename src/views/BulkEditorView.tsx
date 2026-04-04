@@ -33,7 +33,7 @@ import {
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@/components/ui/dropdot cwn-menu'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -1713,7 +1713,7 @@ export function BulkEditorView() {
                                     const content = itemsToExport.join(
                                         sepMap[exportSeparator]
                                     )
-                                    
+
                                     try {
                                         await navigator.clipboard.writeText(content)
                                         setIsCopied(true)

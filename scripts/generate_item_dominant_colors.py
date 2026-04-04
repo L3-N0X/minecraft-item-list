@@ -86,12 +86,10 @@ def lab_to_rgb(l: float, a: float, b_star: float) -> tuple[int, int, int]:
     return (r, g, b)
 
 
-def euclidean_sq(p1: tuple[float, float, float], p2: tuple[float, float, float]) -> float:
-    return (
-        (p1[0] - p2[0]) ** 2
-        + (p1[1] - p2[1]) ** 2
-        + (p1[2] - p2[2]) ** 2
-    )
+def euclidean_sq(
+    p1: tuple[float, float, float], p2: tuple[float, float, float]
+) -> float:
+    return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2
 
 
 def initialize_kmeans_pp(
@@ -169,9 +167,9 @@ def kmeans_lab(
     return centers, labels
 
 
-def dominant_color_hex_for_texture(
+def visible_rgb_for_texture(
     texture_path: Path, alpha_threshold: int = 1
-) -> str | None:
+) -> list[tuple[int, int, int]] | None:
     if not texture_path.exists():
         return None
 
@@ -179,7 +177,36 @@ def dominant_color_hex_for_texture(
         rgba = image.convert("RGBA")
         pixels = list(rgba.get_flattened_data())
 
-    visible_rgb = [(r, g, b) for (r, g, b, a) in pixels if a >= alpha_threshold]
+    return [(r, g, b) for (r, g, b, a) in pixels if a >= alpha_threshold]
+
+
+def median_color_hex_for_visible_rgb(
+    visible_rgb: list[tuple[int, int, int]],
+) -> str | None:
+    if not visible_rgb:
+        return None
+
+    def median_channel(values: list[int]) -> int:
+        sorted_values = sorted(values)
+        count = len(sorted_values)
+        mid = count // 2
+        if count % 2 == 1:
+            return sorted_values[mid]
+        return int(round((sorted_values[mid - 1] + sorted_values[mid]) / 2))
+
+    r = median_channel([pixel[0] for pixel in visible_rgb])
+    g = median_channel([pixel[1] for pixel in visible_rgb])
+    b = median_channel([pixel[2] for pixel in visible_rgb])
+    return f"#{r:02X}{g:02X}{b:02X}"
+
+
+def dominant_color_hex_for_visible_rgb(
+    visible_rgb: list[tuple[int, int, int]],
+    cluster_min_ratio: float = 0.1,
+    lightness_weight: float = 0.0,
+    chroma_weight: float = 0.0,
+    size_weight: float = 0.8,
+) -> str | None:
     if not visible_rgb:
         return None
 
@@ -199,7 +226,32 @@ def dominant_color_hex_for_texture(
     counts = [0] * len(centers)
     for label in labels:
         counts[label] += 1
-    dominant_cluster = max(range(len(centers)), key=lambda idx: counts[idx])
+
+    total_pixels = sum(counts)
+    min_cluster_size = max(1, int(math.ceil(total_pixels * cluster_min_ratio)))
+    candidates = [idx for idx, count in enumerate(counts) if count >= min_cluster_size]
+
+    if not candidates:
+        candidates = [max(range(len(centers)), key=lambda idx: counts[idx])]
+
+    def score_cluster(idx: int) -> float:
+        l, a, b_star = centers[idx]
+        chroma = math.sqrt((a * a) + (b_star * b_star))
+        size_percentage = (counts[idx] / total_pixels) * 100.0
+        return (
+            (l * lightness_weight)
+            + (chroma * chroma_weight)
+            + (size_percentage * size_weight)
+        )
+
+    dominant_cluster = max(
+        candidates,
+        key=lambda idx: (
+            score_cluster(idx),
+            counts[idx],
+            centers[idx][0],
+        ),
+    )
     dominant_lab = centers[dominant_cluster]
 
     r, g, b = lab_to_rgb(*dominant_lab)
@@ -228,11 +280,43 @@ def parse_args() -> argparse.Namespace:
         default=1,
         help="Minimum alpha to include a pixel (default: 1).",
     )
+    parser.add_argument(
+        "--cluster-min-ratio",
+        type=float,
+        default=0.08,
+        help=(
+            "Minimum cluster size ratio to consider for scoring "
+            "(default: 0.08 for 8%%)."
+        ),
+    )
+    parser.add_argument(
+        "--lightness-weight",
+        type=float,
+        default=0.0,
+        help="Weight for LAB lightness (L*) in cluster scoring (default: 2.0).",
+    )
+    parser.add_argument(
+        "--chroma-weight",
+        type=float,
+        default=0.0,
+        help="Weight for LAB chroma in cluster scoring (default: 1.0).",
+    )
+    parser.add_argument(
+        "--size-weight",
+        type=float,
+        default=0.8,
+        help="Weight for cluster size percentage in scoring (default: 0.5).",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
+    if not (0.0 <= args.cluster_min_ratio <= 1.0):
+        raise ValueError("--cluster-min-ratio must be between 0.0 and 1.0.")
+    if args.lightness_weight < 0 or args.chroma_weight < 0 or args.size_weight < 0:
+        raise ValueError("Scoring weights must be non-negative.")
+
     items_path = Path(args.input)
     textures_dir = Path(args.textures_dir)
 
@@ -256,17 +340,30 @@ def main() -> None:
         if not isinstance(item_data, dict):
             continue
         texture_path = textures_dir / f"{item_id}.png"
-        dominant = dominant_color_hex_for_texture(
+        visible_rgb = visible_rgb_for_texture(
             texture_path, alpha_threshold=args.alpha_threshold
         )
-        if dominant is None:
-            if not texture_path.exists():
-                missing_textures += 1
-            else:
-                transparent_only += 1
+        if visible_rgb is None:
+            missing_textures += 1
+            dominant = None
+            average = None
+        elif not visible_rgb:
+            transparent_only += 1
+            dominant = None
+            average = None
         else:
+            dominant = dominant_color_hex_for_visible_rgb(
+                visible_rgb,
+                cluster_min_ratio=args.cluster_min_ratio,
+                lightness_weight=args.lightness_weight,
+                chroma_weight=args.chroma_weight,
+                size_weight=args.size_weight,
+            )
+            average = median_color_hex_for_visible_rgb(visible_rgb)
             computed += 1
+
         item_data["mostDominantColor"] = dominant
+        item_data["medianColor"] = average
 
     with items_path.open("w", encoding="utf-8") as handle:
         json.dump(root, handle, ensure_ascii=False, indent=4)
@@ -274,7 +371,7 @@ def main() -> None:
 
     total = len(items)
     print(
-        "Updated items.json with mostDominantColor "
+        "Updated items.json with mostDominantColor and medianColor "
         f"for {total} items ({computed} computed, "
         f"{missing_textures} missing textures, {transparent_only} transparent-only)."
     )
