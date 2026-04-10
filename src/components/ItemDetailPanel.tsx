@@ -338,25 +338,64 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 className="md:col-span-2 flex flex-col items-center justify-center"
                 title="Craftable"
             >
-                <div className="flex flex-col items-center justify-center gap-2 mt-2">
-                    <img
-                        src={getAssetPath('/items/crafting_table.png')}
-                        alt="craftable"
-                        className={`h-16 w-16 drop-shadow-sm mt-2 ${item.obtaining.craftable ? '' : 'grayscale opacity-50'}`}
-                        onError={(e) => {
-                            e.currentTarget.src =
-                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                        }}
-                    />
+                <div className="flex flex-1 flex-col items-center justify-center gap-1">
+                    <div className="flex flex-1 items-center justify-center gap-2 min-h-16 mt-2">
+                        <img
+                            src={getAssetPath('/items/crafting_table.png')}
+                            alt="craftable"
+                            className={cn(
+                                item.obtaining.recipeShape?.includes(
+                                    'stonecutting'
+                                )
+                                    ? 'h-12 w-12'
+                                    : 'h-16 w-16',
+                                'drop-shadow-sm object-contain',
+                                !item.obtaining.craftable &&
+                                    'grayscale opacity-50'
+                            )}
+                            onError={(e) => {
+                                e.currentTarget.src =
+                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                            }}
+                        />
+                        {item.obtaining.recipeShape?.includes(
+                            'stonecutting'
+                        ) && (
+                            <img
+                                src={getAssetPath('/items/stonecutter.png')}
+                                alt="stonecutter"
+                                className="h-12 w-12 drop-shadow-sm object-contain image-pixelated"
+                                onError={(e) => {
+                                    e.currentTarget.src =
+                                        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                                }}
+                            />
+                        )}
+                    </div>
                     <div
                         className={cn(
-                            'text-xs font-mono tracking-tight mt-1',
-                            item.obtaining.craftable
+                            'text-xs font-mono tracking-tight mb-5',
+                            item.obtaining.craftable ||
+                                item.obtaining.recipeShape?.includes(
+                                    'stonecutting'
+                                )
                                 ? 'text-emerald-400/90'
                                 : 'dark:text-red-400/80 text-red-700/80'
                         )}
                     >
-                        {item.obtaining.craftable ? 'Yes' : 'No'}
+                        {(() => {
+                            const shapes = item.obtaining.recipeShape ?? []
+                            if (shapes.includes('2x2_crafting'))
+                                return 'Yes (2x2)'
+                            if (shapes.includes('3x3_crafting'))
+                                return 'Yes (3x3)'
+                            if (
+                                item.obtaining.craftable ||
+                                shapes.includes('stonecutting')
+                            )
+                                return 'Yes'
+                            return 'No'
+                        })()}
                     </div>
                 </div>
             </GlassPanel>
