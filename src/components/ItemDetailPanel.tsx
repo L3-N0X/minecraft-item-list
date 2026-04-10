@@ -364,7 +364,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             <img
                                 src={getAssetPath('/items/stonecutter.png')}
                                 alt="stonecutter"
-                                className="h-12 w-12 drop-shadow-sm object-contain image-pixelated"
+                                className="h-12 w-12 drop-shadow-sm object-contain"
                                 onError={(e) => {
                                     e.currentTarget.src =
                                         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
@@ -405,35 +405,44 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 className="md:col-span-2 flex flex-col items-center justify-center"
                 title="Smeltable"
             >
-                <div className="flex flex-1 flex-col items-center justify-center gap-1">
-                    <div className="flex flex-1 flex-wrap gap-y-0.5 gap-x-2 items-center justify-center min-h-12 mt-2">
+                <div className="flex flex-1 flex-col items-center justify-center gap-1 w-full">
+                    <div className="flex flex-1 w-full flex-wrap gap-y-0.5 gap-x-2 items-center justify-center min-h-12 mt-2">
                         {item.obtaining.smelting &&
                         item.obtaining.smelting.smeltable.length > 0 ? (
-                            item.obtaining.smelting.smeltable.map(
-                                (furnace, index) => (
+                            item.obtaining.smelting.smeltable.map((furnace) => {
+                                const smeltableCount =
+                                    item.obtaining.smelting?.smeltable.length
+
+                                return (
                                     <React.Fragment key={furnace}>
                                         <img
-                                            key={furnace}
                                             src={`/items/${furnace}.png`}
                                             alt={furnace}
-                                            className="h-10 w-10 drop-shadow-sm object-contain image-pixelated"
+                                            className={cn(
+                                                smeltableCount === 1
+                                                    ? 'h-16 w-16'
+                                                    : smeltableCount === 2
+                                                      ? 'h-14 w-14'
+                                                      : 'h-10 w-10',
+                                                'drop-shadow-sm object-contain'
+                                            )}
                                             title={furnace.replace(/_/g, ' ')}
                                             onError={(e) => {
+                                                console.warn(
+                                                    `Failed to load smelting source image for ${furnace}: ${e}`
+                                                )
                                                 e.currentTarget.src =
                                                     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                                             }}
                                         />
-                                        {index === 1 && (
-                                            <div className="basis-full h-0 m-0" />
-                                        )}
                                     </React.Fragment>
                                 )
-                            )
+                            })
                         ) : (
                             <img
                                 src={getAssetPath('/items/furnace.png')}
                                 alt="furnace"
-                                className="h-14 w-14 drop-shadow-sm grayscale opacity-40 object-contain image-pixelated"
+                                className="h-16 w-16 drop-shadow-sm grayscale opacity-40 object-contain"
                                 onError={(e) => {
                                     e.currentTarget.src =
                                         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
@@ -903,7 +912,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 <div className="flex-1 flex flex-col items-center justify-center">
                                     <div className="flex-1 flex items-center justify-center">
                                         <img
-                                            className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                            className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain drop-shadow-sm"
                                             src={getAssetPath(
                                                 '/items/enchanted_book.png'
                                             )}
@@ -930,7 +939,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         <img
                             src={getAssetPath('/items/fishing_rod.png')}
                             alt="Fishing"
-                            className="h-10 w-10 drop-shadow-sm object-contain image-pixelated"
+                            className="h-10 w-10 drop-shadow-sm object-contain"
                         />
                         <span className="text-[12px] font-bold font-mono text-center tracking-tight text-foreground/80 uppercase px-2 leading-tight">
                             {item.obtaining.fishing.category}
@@ -1006,7 +1015,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             )}
                                             alt={v.profession}
                                             draggable={false}
-                                            className="w-full h-full object-contain image-pixelated drop-shadow-sm p-1"
+                                            className="w-full h-full object-contain drop-shadow-sm p-1"
                                             onError={(e) => {
                                                 e.currentTarget.src =
                                                     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
@@ -1052,7 +1061,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             '/entities/wandering_trader.png'
                                         )}
                                         alt="Wandering Trader"
-                                        className="w-full h-full object-contain image-pixelated drop-shadow-sm p-1"
+                                        className="w-full h-full object-contain drop-shadow-sm p-1"
                                         draggable={false}
                                         onError={(e) => {
                                             e.currentTarget.src = getAssetPath(
@@ -1302,7 +1311,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     <div className="flex-1 flex flex-col items-center justify-center">
                         <div className="flex flex-1 items-center justify-center">
                             <img
-                                className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                className="w-12 h-12 text-muted-foreground/50 grayscale opacity-50 object-contain drop-shadow-sm"
                                 src={getAssetPath('/items/chest.png')}
                                 alt="No Generated Loot"
                             />
@@ -1353,27 +1362,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                                 <div className="flex flex-col items-center justify-center gap-1.5">
                                                     <img
                                                         src={getAssetPath(
-                                                            `/blocks/${block}.png`
+                                                            `/items/${block}.png`
                                                         )}
                                                         alt={block}
                                                         draggable={false}
-                                                        className="h-12 w-12 drop-shadow-sm object-contain image-pixelated"
+                                                        className="h-12 w-12 drop-shadow-sm object-contain"
                                                         onError={(e) => {
-                                                            const target =
-                                                                e.currentTarget
-                                                            if (
-                                                                target.src.includes(
-                                                                    '/blocks/'
-                                                                )
-                                                            ) {
-                                                                target.src =
-                                                                    getAssetPath(
-                                                                        `/items/${block}.png`
-                                                                    )
-                                                            } else {
-                                                                target.src =
-                                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                                            }
+                                                            e.currentTarget.src =
+                                                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                                                         }}
                                                     />
                                                     <span className="text-[11px] font-bold font-mono text-center tracking-tight text-foreground/80 uppercase px-2 leading-tight">
@@ -1412,7 +1408,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     ) : (
                         <div className="flex-1 flex flex-col items-center justify-center">
                             <img
-                                className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain drop-shadow-sm"
                                 src={getAssetPath('/items/grass_block.png')}
                                 alt="No Block Loot"
                             />
@@ -1439,7 +1435,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         (item.obtaining.naturalGeneration === undefined && (
                             <div className="flex-1 flex flex-col items-center justify-center h-full">
                                 <img
-                                    className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain image-pixelated drop-shadow-sm"
+                                    className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain drop-shadow-sm"
                                     src={getAssetPath(
                                         '/items/end_portal_frame.png'
                                     )}

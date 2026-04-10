@@ -19,6 +19,14 @@ import {
     MagnifyingGlassIcon,
 } from '@phosphor-icons/react'
 import { cn, getAssetPath } from './lib/utils'
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet'
 
 function Layout({ children }: { children: React.ReactNode }) {
     const { isStaticMode } = useData()
@@ -30,86 +38,124 @@ function Layout({ children }: { children: React.ReactNode }) {
 
     const isActive = (path: string) => location.pathname === path
 
+    const navLinks = [
+        {
+            to: '/',
+            label: 'Search',
+            icon: MagnifyingGlassIcon,
+            show: true,
+        },
+        {
+            to: '/list',
+            label: 'List',
+            icon: ListIcon,
+            show: !isStaticMode,
+        },
+        {
+            to: '/bulk',
+            label: isStaticMode ? 'Custom List' : 'Bulk Editor',
+            icon: isStaticMode ? ListMagnifyingGlassIcon : GridFourIcon,
+            show: true,
+        },
+    ]
+
     return (
         <div className="min-h-screen text-foreground pb-20">
             <nav className="border-b bg-background/50 backdrop-blur-md sticky top-0 z-50">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-2 md:gap-6">
+                        <div className="md:hidden">
+                            <Sheet>
+                                <SheetTrigger asChild>
+                                    <Button variant="ghost" size="icon-sm">
+                                        <ListIcon className="h-6 w-6" />
+                                    </Button>
+                                </SheetTrigger>
+                                <SheetContent side="left" className="w-72">
+                                    <SheetHeader className="mb-6">
+                                        <SheetTitle className="flex items-center gap-2">
+                                            <img
+                                                src={getAssetPath(
+                                                    '/items/green_terracotta.png'
+                                                )}
+                                                alt="Logo"
+                                                className="h-6 w-6"
+                                            />
+                                            Minecraft Item List
+                                        </SheetTitle>
+                                    </SheetHeader>
+                                    <div className="flex flex-col gap-2 p-4">
+                                        {navLinks
+                                            .filter((link) => link.show)
+                                            .map((link) => (
+                                                <SheetClose
+                                                    asChild
+                                                    key={link.to}
+                                                >
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        asChild
+                                                        className={cn(
+                                                            'justify-start h-11 px-4',
+                                                            isActive(link.to) &&
+                                                                'bg-primary/10 text-primary hover:bg-primary/20'
+                                                        )}
+                                                    >
+                                                        <Link
+                                                            to={link.to}
+                                                            className="flex items-center gap-3"
+                                                        >
+                                                            <link.icon className="h-5 w-5" />
+                                                            {link.label}
+                                                        </Link>
+                                                    </Button>
+                                                </SheetClose>
+                                            ))}
+                                    </div>
+                                </SheetContent>
+                            </Sheet>
+                        </div>
+
                         <Link to="/" className="flex items-center gap-2.5">
                             <img
                                 src={getAssetPath(
                                     '/items/green_terracotta.png'
                                 )}
                                 alt="Logo"
-                                className="h-7 w-7 mt-1"
+                                className="h-7 w-7 mt-0.5"
                             />
-                            <p className="font-black text-2xl tracking-tight">
-                                Minecraft Item List
+                            <p className="font-black text-xl md:text-2xl tracking-tight">
+                                <span className="hidden sm:inline">
+                                    Minecraft Item List
+                                </span>
+                                <span className="sm:hidden">MC List</span>
                             </p>
                         </Link>
                         <div className="hidden md:flex items-center gap-4">
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                asChild
-                                className={cn(
-                                    'px-3 h-9',
-                                    isActive('/') &&
-                                        'bg-primary/6 text-primary hover:bg-primary/20'
-                                )}
-                            >
-                                <Link
-                                    to="/"
-                                    className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
-                                >
-                                    <MagnifyingGlassIcon className="h-5 w-5" />
-                                    Search
-                                </Link>
-                            </Button>
-                            {!isStaticMode && (
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    asChild
-                                    className={cn(
-                                        'px-3 h-9',
-                                        isActive('/list') &&
-                                            'bg-primary/6 text-primary hover:bg-primary/20'
-                                    )}
-                                >
-                                    <Link
-                                        to="/list"
-                                        className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                            {navLinks
+                                .filter((link) => link.show)
+                                .map((link) => (
+                                    <Button
+                                        key={link.to}
+                                        variant="ghost"
+                                        size="sm"
+                                        asChild
+                                        className={cn(
+                                            'px-3 h-9',
+                                            isActive(link.to) &&
+                                                'bg-primary/6 text-primary hover:bg-primary/20'
+                                        )}
                                     >
-                                        <ListIcon className="h-5 w-5" />
-                                        List
-                                    </Link>
-                                </Button>
-                            )}
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                asChild
-                                className={cn(
-                                    'px-3 h-9',
-                                    isActive('/bulk') &&
-                                        'bg-primary/6 text-primary hover:bg-primary/20'
-                                )}
-                            >
-                                <Link
-                                    to="/bulk"
-                                    className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
-                                >
-                                    {isStaticMode ? (
-                                        <ListMagnifyingGlassIcon className="h-5 w-5" />
-                                    ) : (
-                                        <GridFourIcon className="h-5 w-5" />
-                                    )}
-                                    {isStaticMode
-                                        ? 'Custom List'
-                                        : 'Bulk Editor'}
-                                </Link>
-                            </Button>
+                                        <Link
+                                            to={link.to}
+                                            className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                                        >
+                                            <link.icon className="h-5 w-5" />
+                                            {link.label}
+                                        </Link>
+                                    </Button>
+                                ))}
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -118,9 +164,12 @@ function Layout({ children }: { children: React.ReactNode }) {
                             variant="default"
                             size="sm"
                             onClick={downloadJson}
+                            className="h-8 md:h-9 px-2 md:px-4"
                         >
-                            <DownloadIcon className="mr-2 h-4 w-4" />
-                            Download List
+                            <DownloadIcon className="h-4 w-4 md:mr-2" />
+                            <span className="hidden md:inline">
+                                Download List
+                            </span>
                         </Button>
                     </div>
                 </div>

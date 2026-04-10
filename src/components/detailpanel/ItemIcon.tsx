@@ -10,7 +10,7 @@ export function ItemIcon({ item }: { item: string }) {
             <img
                 src={getAssetPath(`/items/${item}.png`)}
                 alt={item}
-                className="w-full h-full object-contain image-pixelated"
+                className="w-full h-full object-contain"
                 onError={(e) => {
                     e.currentTarget.src =
                         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='

@@ -217,11 +217,17 @@ export function HomeView() {
                     }`}
                 >
                     <div className="space-y-1">
-                        <h1 className="text-4xl font-black tracking-tight">
+                        <h1 className="text-3xl md:text-4xl font-black tracking-tight">
                             Minecraft Item Search
                         </h1>
-                        <p className="text-muted-foreground text-base mb-3">
-                            Type to find, arrows to navigate, Enter to select.
+                        <p className="text-muted-foreground text-sm md:text-base mb-3">
+                            <span className="hidden md:inline">
+                                Type to find, arrows to navigate, Enter to
+                                select.
+                            </span>
+                            <span className="md:hidden">
+                                Type to find any item.
+                            </span>
                         </p>
                     </div>
                 </div>
@@ -232,7 +238,7 @@ export function HomeView() {
                         ref={inputRef}
                         type="text"
                         placeholder="Search items..."
-                        className="h-14 text-2xl pl-12 pr-12 rounded-2xl shadow-xl border-primary/20 focus-visible:ring-primary bg-background/60 backdrop-blur-xl transition-all duration-500 group-focus-within:shadow-primary/10 relative z-10"
+                        className="h-12 md:h-14 text-xl md:text-2xl pl-12 pr-12 rounded-2xl shadow-xl border-primary/20 focus-visible:ring-primary bg-background/60 backdrop-blur-xl transition-all duration-500 group-focus-within:shadow-primary/10 relative z-10"
                         value={search}
                         onChange={(e) => {
                             setSearch(e.target.value)
@@ -254,7 +260,7 @@ export function HomeView() {
                             <XIcon className="h-5 w-5" />
                         </button>
                     ) : (
-                        <KbdGroup className="absolute right-4 top-1/2 -translate-y-1/2 z-20">
+                        <KbdGroup className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20">
                             <Kbd className="text-sm p-2">Ctrl</Kbd>
                             <Kbd className="text-sm p-2">K</Kbd>
                         </KbdGroup>
@@ -291,23 +297,10 @@ export function HomeView() {
                                                             `/items/${id}.png`
                                                         )}
                                                         alt=""
-                                                        className="h-8 w-8 object-contain image-pixelated"
+                                                        className="h-8 w-8 object-contain"
                                                         onError={(e) => {
-                                                            const target =
-                                                                e.currentTarget
-                                                            if (
-                                                                target.src.includes(
-                                                                    '/blocks/'
-                                                                )
-                                                            ) {
-                                                                target.src =
-                                                                    getAssetPath(
-                                                                        `/items/${id}.png`
-                                                                    )
-                                                            } else {
-                                                                target.src =
-                                                                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                                                            }
+                                                            e.currentTarget.src =
+                                                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                                                         }}
                                                     />
                                                 </div>

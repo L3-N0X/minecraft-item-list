@@ -1332,97 +1332,103 @@ export function BulkEditorView() {
     }
 
     return (
-        <div className="w-full flex flex-col h-[calc(100vh-80px)] gap-1 py-2">
-            <div className="flex items-center justify-between shrink-0 mb-2">
-                <div className="flex items-center gap-2 flex-1">
-                    <div className="flex items-center dark:bg-transparent gap-2 max-w-sm flex-1">
-                        <Input
-                            placeholder="Filter by name..."
-                            value={
-                                (table
-                                    .getColumn('displayName')
-                                    ?.getFilterValue() as string) ?? ''
-                            }
-                            onChange={(event) =>
-                                table
-                                    .getColumn('displayName')
-                                    ?.setFilterValue(event.target.value)
-                            }
-                            className="flex-1 border-border bg-white/40 focus:ring-2 focus:ring-primary/50 data-[state=open]:bg-secondary"
-                        />
-                        {table.getState().columnFilters.length > 0 && (
-                            <Button
-                                variant="ghost"
-                                onClick={() => table.resetColumnFilters()}
-                                className="h-8 px-2 lg:px-3"
-                            >
-                                Reset
-                                <X className="ml-2 h-4 w-4" />
-                            </Button>
-                        )}
-                    </div>
-                    <Button
-                        variant="outline"
-                        onClick={toggleAllFiltered}
-                        className="hidden sm:flex"
-                    >
-                        {table.getFilteredSelectedRowModel().rows.length ===
-                            table.getFilteredRowModel().rows.length &&
-                        table.getFilteredRowModel().rows.length > 0
-                            ? 'Deselect All Filtered'
-                            : 'Select All Filtered'}
-                    </Button>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline" className="ml-auto">
-                                <Settings2 className="mr-2 h-4 w-4" />
-                                Columns
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            {table
-                                .getAllColumns()
-                                .filter((column) => column.getCanHide())
-                                .map((column) => {
-                                    return (
-                                        <DropdownMenuCheckboxItem
-                                            key={column.id}
-                                            className="capitalize"
-                                            checked={column.getIsVisible()}
-                                            onCheckedChange={(value) =>
-                                                column.toggleVisibility(!!value)
-                                            }
-                                        >
-                                            {column.id}
-                                        </DropdownMenuCheckboxItem>
-                                    )
-                                })}
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-
-                <div className="flex items-center gap-2 ml-2">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setIsExportDialogOpen(true)}
-                        disabled={selectedCount === 0}
-                    >
-                        <Download className="mr-2 h-4 w-4" />
-                        Export {selectedCount > 0 ? `(${selectedCount})` : ''}
-                    </Button>
-
-                    {selectedCount > 0 && !isStaticMode && (
+        <div className="w-full p-2 flex flex-col h-[calc(100vh-80px)] gap-1">
+            <div className="flex flex-wrap items-center shrink-0 mb-2 gap-2">
+                <div className="flex items-center gap-2 min-w-60 flex-1 max-w-sm">
+                    <Input
+                        placeholder="Filter by name..."
+                        value={
+                            (table
+                                .getColumn('displayName')
+                                ?.getFilterValue() as string) ?? ''
+                        }
+                        onChange={(event) =>
+                            table
+                                .getColumn('displayName')
+                                ?.setFilterValue(event.target.value)
+                        }
+                        className="h-8 flex-1 border-border bg-white/40 focus:ring-2 focus:ring-primary/50"
+                    />
+                    {table.getState().columnFilters.length > 0 && (
                         <Button
-                            variant="default"
+                            variant="ghost"
                             size="sm"
-                            onClick={() => setIsBulkDialogOpen(true)}
+                            onClick={() => table.resetColumnFilters()}
+                            className="px-2 lg:px-3 shrink-0"
                         >
-                            <PencilIcon className="mr-2 h-4 w-4" />
-                            Bulk Edit ({selectedCount})
+                            Reset
+                            <X className="ml-2 h-4 w-4" />
                         </Button>
                     )}
                 </div>
+
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={toggleAllFiltered}
+                    className="hidden sm:flex shrink-0"
+                >
+                    {table.getFilteredSelectedRowModel().rows.length ===
+                        table.getFilteredRowModel().rows.length &&
+                    table.getFilteredRowModel().rows.length > 0
+                        ? 'Deselect All Filtered'
+                        : 'Select All Filtered'}
+                </Button>
+
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            className="shrink-0"
+                        >
+                            <Settings2 className="mr-2 h-4 w-4" />
+                            Columns
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        {table
+                            .getAllColumns()
+                            .filter((column) => column.getCanHide())
+                            .map((column) => {
+                                return (
+                                    <DropdownMenuCheckboxItem
+                                        key={column.id}
+                                        className="capitalize"
+                                        checked={column.getIsVisible()}
+                                        onCheckedChange={(value) =>
+                                            column.toggleVisibility(!!value)
+                                        }
+                                    >
+                                        {column.id}
+                                    </DropdownMenuCheckboxItem>
+                                )
+                            })}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsExportDialogOpen(true)}
+                    disabled={selectedCount === 0}
+                    className="shrink-0"
+                >
+                    <Download className="mr-2 h-4 w-4" />
+                    Export {selectedCount > 0 ? `(${selectedCount})` : ''}
+                </Button>
+
+                {selectedCount > 0 && !isStaticMode && (
+                    <Button
+                        variant="default"
+                        size="sm"
+                        onClick={() => setIsBulkDialogOpen(true)}
+                        className="shrink-0"
+                    >
+                        <PencilIcon className="mr-2 h-4 w-4" />
+                        Bulk Edit ({selectedCount})
+                    </Button>
+                )}
             </div>
 
             <div

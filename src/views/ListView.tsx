@@ -17,7 +17,6 @@ import {
     TableRow,
 } from '@/components/ui/table'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { validateItemData } from '@/components/schemaValidation'
 import { X, CheckCircle2 } from 'lucide-react'
@@ -45,20 +44,14 @@ function ItemRow({ id }: { id: string }) {
             className={`${isStaticMode ? '' : 'cursor-pointer'} hover:bg-muted/50`}
             onClick={() => !isStaticMode && navigate(`/edit/${id}`)}
         >
-            <TableCell className="w-12 py-2">
+            <TableCell className="w-16 py-2 shrink-0">
                 <img
                     src={getAssetPath(`/items/${id}.png`)}
                     alt=""
-                    className="w-8 h-8 object-contain image-pixelated"
+                    className="w-10 h-10 min-w-10 min-h-10 object-contain shrink-0"
                     onError={(e) => {
-                        if (e.currentTarget.src.includes('/blocks/')) {
-                            e.currentTarget.src = getAssetPath(
-                                `/items/${id}.png`
-                            )
-                        } else {
-                            e.currentTarget.src =
-                                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-                        }
+                        e.currentTarget.src =
+                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                     }}
                 />
             </TableCell>
@@ -175,17 +168,19 @@ export function ListView() {
         )
 
     return (
-        <div className="space-y-6 py-4">
+        <div className="space-y-6 py-4 max-w-4xl mx-auto">
             {/* ── Header ── */}
-            <div className="flex justify-between items-end">
+            <div className="flex justify-between items-end gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight">Items</h1>
-                    <p className="text-muted-foreground">
+                    <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+                        Items
+                    </h1>
+                    <p className="text-muted-foreground text-sm md:text-base">
                         Browse and manage Minecraft items.
                     </p>
                 </div>
                 <p
-                    className={`text-sm tabular-nums transition-opacity ${isStale ? 'opacity-40' : 'opacity-100'} text-muted-foreground`}
+                    className={`text-xs md:text-sm tabular-nums transition-opacity ${isStale ? 'opacity-40' : 'opacity-100'} text-muted-foreground hidden sm:block`}
                 >
                     {isStale ? (
                         'Filtering…'
@@ -203,105 +198,100 @@ export function ListView() {
                 </p>
             </div>
 
-            <Card className="bg-white/20 dark:bg-white/4 border gap-0">
-                <CardHeader className="pb-3">
-                    {/* ── Search input with clear button ── */}
-                    <div className="relative bg-background/10">
-                        <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                            ref={inputRef}
-                            placeholder="Search items..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className="pl-9 pr-9"
-                        />
-                        {search && (
-                            <button
-                                onClick={() => {
-                                    setSearch('')
-                                    inputRef.current?.focus()
-                                }}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                                aria-label="Clear search"
-                            >
-                                <X className="h-4 w-4" />
-                            </button>
-                        )}
-                    </div>
-                </CardHeader>
+            {/* <Card className="bg-white/20 dark:bg-white/4 border gap-0"> */}
+            {/* <CardHeader className="px-4 md:px-6 pb-3"> */}
+            {/* ── Search input with clear button ── */}
+            <div className="relative bg-background/10">
+                <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                    ref={inputRef}
+                    placeholder="Search items..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="pl-9 pr-9"
+                />
+                {search && (
+                    <button
+                        onClick={() => {
+                            setSearch('')
+                            inputRef.current?.focus()
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                        aria-label="Clear search"
+                    >
+                        <X className="h-4 w-4" />
+                    </button>
+                )}
+            </div>
+            {/* </CardHeader> */}
 
-                <CardContent>
-                    <div className="rounded-md border overflow-x-auto">
-                        <Table className="min-w-140">
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead className="w-12"></TableHead>
-                                    <TableHead className="min-w-30">
-                                        Name
-                                    </TableHead>
-                                    <TableHead className="min-w-35">
-                                        ID
-                                    </TableHead>
-                                    <TableHead className="min-w-35">
-                                        Categories
-                                    </TableHead>
-                                    {!isStaticMode && (
-                                        <TableHead className="w-20">
-                                            Issues
-                                        </TableHead>
-                                    )}
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {visibleIds.length === 0 ? (
-                                    <TableRow>
-                                        <TableCell
-                                            colSpan={5}
-                                            className="h-24 text-center text-muted-foreground"
-                                        >
-                                            No items match your search.
-                                        </TableCell>
-                                    </TableRow>
-                                ) : (
-                                    visibleIds.map((id) => (
-                                        <ItemRow key={id} id={id} />
-                                    ))
-                                )}
-                            </TableBody>
-                        </Table>
-                    </div>
-
-                    {/* ── Sentinel + footer ── */}
-                    <div ref={sentinelRef} className="h-1" />
-
-                    {(hasMore || visibleIds.length > 0) && (
-                        <p className="text-center text-sm text-muted-foreground mt-3">
-                            {hasMore ? (
-                                <>
-                                    Showing{' '}
-                                    <span className="font-medium text-foreground">
-                                        {visibleCount}
-                                    </span>{' '}
-                                    of{' '}
-                                    <span className="font-medium text-foreground">
-                                        {filteredIds.length}
-                                    </span>{' '}
-                                    items — scroll for more
-                                </>
-                            ) : (
-                                <>
-                                    All{' '}
-                                    <span className="font-medium text-foreground">
-                                        {filteredIds.length}
-                                    </span>{' '}
-                                    item
-                                    {filteredIds.length !== 1 ? 's' : ''} shown
-                                </>
+            {/* <CardContent className="px-4 md:px-6"> */}
+            {/* <div className="px-4 md:px-6"> */}
+            <div className="rounded-md border overflow-x-auto">
+                <Table className="min-w-140">
+                    <TableHeader className="bg-white/8">
+                        <TableRow>
+                            <TableHead className="w-12"></TableHead>
+                            <TableHead className="min-w-30">Name</TableHead>
+                            <TableHead className="min-w-35">ID</TableHead>
+                            <TableHead className="min-w-35">
+                                Categories
+                            </TableHead>
+                            {!isStaticMode && (
+                                <TableHead className="w-20">Issues</TableHead>
                             )}
-                        </p>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody className="bg-white/2">
+                        {visibleIds.length === 0 ? (
+                            <TableRow>
+                                <TableCell
+                                    colSpan={5}
+                                    className="h-24 text-center text-muted-foreground"
+                                >
+                                    No items match your search.
+                                </TableCell>
+                            </TableRow>
+                        ) : (
+                            visibleIds.map((id) => <ItemRow key={id} id={id} />)
+                        )}
+                    </TableBody>
+                </Table>
+            </div>
+
+            {/* ── Sentinel + footer ── */}
+            <div ref={sentinelRef} className="h-1" />
+
+            {(hasMore || visibleIds.length > 0) && (
+                <p className="text-center text-sm text-muted-foreground mt-3">
+                    {hasMore ? (
+                        <>
+                            Showing{' '}
+                            <span className="font-medium text-foreground">
+                                {visibleCount}
+                            </span>{' '}
+                            of{' '}
+                            <span className="font-medium text-foreground">
+                                {filteredIds.length}
+                            </span>{' '}
+                            items — scroll for more
+                        </>
+                    ) : (
+                        <>
+                            All{' '}
+                            <span className="font-medium text-foreground">
+                                {filteredIds.length}
+                            </span>{' '}
+                            item
+                            {filteredIds.length !== 1 ? 's' : ''} shown
+                        </>
                     )}
-                </CardContent>
-            </Card>
+                </p>
+            )}
+            {/* </div> */}
+
+            {/* </CardContent> */}
+            {/* </Card> */}
         </div>
     )
 }
