@@ -362,6 +362,10 @@ def main() -> None:
             average = median_color_hex_for_visible_rgb(visible_rgb)
             computed += 1
 
+        # Cleanup old averageColor if present
+        if "averageColor" in item_data:
+            del item_data["averageColor"]
+
         item_data["mostDominantColor"] = dominant
         item_data["medianColor"] = average
 
