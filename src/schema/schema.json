@@ -8,7 +8,17 @@
         },
         "toolEnum": {
             "type": "string",
-            "enum": ["sword", "axe", "pickaxe", "shovel", "hoe", "shears", "brush", "none", "any"]
+            "enum": [
+                "sword",
+                "axe",
+                "pickaxe",
+                "shovel",
+                "hoe",
+                "shears",
+                "brush",
+                "none",
+                "any"
+            ]
         },
         "quantitySpec": {
             "oneOf": [
@@ -2360,7 +2370,11 @@
                             },
                             "armor": {
                                 "type": "object",
-                                "required": ["armorPoints", "toughness", "knockbackResistance"],
+                                "required": [
+                                    "armorPoints",
+                                    "toughness",
+                                    "knockbackResistance"
+                                ],
                                 "properties": {
                                     "armorPoints": {
                                         "type": "number",
@@ -2395,7 +2409,11 @@
                     },
                     "edible": {
                         "type": "object",
-                        "required": ["hunger", "saturation", "alwaysConsumable"],
+                        "required": [
+                            "hunger",
+                            "saturation",
+                            "alwaysConsumable"
+                        ],
                         "properties": {
                             "hunger": {
                                 "type": "number",
@@ -2437,12 +2455,24 @@
                         "properties": {
                             "obtainability": {
                                 "type": "string",
-                                "enum": ["survival", "creative_only", "unobtainable"],
+                                "enum": [
+                                    "survival",
+                                    "creative_only",
+                                    "unobtainable"
+                                ],
                                 "$comment": "survival: Standard gameplay. creative_only: Requires commands or creative menu (e.g., Command Block, Barrier). unobtainable: Technical blocks with no item form (e.g., Nether Portal block, Piston Head)."
                             },
                             "craftable": {
                                 "type": "boolean",
                                 "$comment": "Can be obtained by a crafting recipe"
+                            },
+                            "recipeShape": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["2x2_crafting", "3x3_crafting"]
+                                },
+                                "uniqueItems": true
                             },
                             "naturalGeneration": {
                                 "type": "object",
@@ -2514,7 +2544,11 @@
                                                                 "$ref": "#/definitions/quantitySpec"
                                                             }
                                                         },
-                                                        "required": ["chestName", "chance", "quantity"],
+                                                        "required": [
+                                                            "chestName",
+                                                            "chance",
+                                                            "quantity"
+                                                        ],
                                                         "additionalProperties": false
                                                     }
                                                 },
@@ -2557,7 +2591,11 @@
                                 "minItems": 1,
                                 "items": {
                                     "type": "object",
-                                    "required": ["blocks", "chance", "quantity"],
+                                    "required": [
+                                        "blocks",
+                                        "chance",
+                                        "quantity"
+                                    ],
                                     "properties": {
                                         "blocks": {
                                             "type": "array",
@@ -2611,7 +2649,11 @@
                                                     "type": "string"
                                                 }
                                             },
-                                            "required": ["profession", "level", "probability"]
+                                            "required": [
+                                                "profession",
+                                                "level",
+                                                "probability"
+                                            ]
                                         }
                                     },
                                     "wanderingTrader": {
@@ -2632,7 +2674,10 @@
                                         "required": ["chance"]
                                     }
                                 },
-                                "anyOf": [{ "required": ["villagers"] }, { "required": ["wanderingTrader"] }]
+                                "anyOf": [
+                                    { "required": ["villagers"] },
+                                    { "required": ["wanderingTrader"] }
+                                ]
                             },
                             "fishing": {
                                 "type": "object",
@@ -2680,7 +2725,12 @@
                                         "minItems": 1,
                                         "items": {
                                             "type": "string",
-                                            "enum": ["furnace", "blast_furnace", "smoker", "campfire"]
+                                            "enum": [
+                                                "furnace",
+                                                "blast_furnace",
+                                                "smoker",
+                                                "campfire"
+                                            ]
                                         }
                                     },
                                     "xpFromSmelting": {
@@ -2696,7 +2746,11 @@
                                 "maximum": 10
                             }
                         },
-                        "required": ["obtainability", "difficultyToObtain", "craftable"]
+                        "required": [
+                            "obtainability",
+                            "difficultyToObtain",
+                            "craftable"
+                        ]
                     },
                     "compostable": {
                         "type": "object",

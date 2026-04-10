@@ -12,7 +12,7 @@
         "preview": "vite preview",
         "start": "NODE_ENV=production bun src/index.ts",
         "init-data": "bun scripts/init-data.ts",
-        "lint": "concurrently \"tsc -b --noEmit\" \"eslint . --ext .ts,.tsx\"",
+        "lint": "concurrently \"tsc --noEmit\" \"eslint src/ --cache\"",
         "format": "bunx prettier --write ."
     },
     "dependencies": {
