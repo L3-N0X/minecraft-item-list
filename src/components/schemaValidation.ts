@@ -25,10 +25,12 @@ interface SchemaRoot {
     definitions: Record<string, JsonSchemaProperty>
     properties: {
         items: {
-            additionalProperties: Record<string, JsonSchemaProperty>
+            additionalProperties: JsonSchemaProperty
         }
     }
 }
+
+const typedSchema = schema as unknown as SchemaRoot
 
 /**
  * The item sub-schema with root-level `definitions` merged in so that $ref
@@ -40,10 +42,10 @@ export const itemSchema: {
     properties: Record<string, JsonSchemaProperty>
     required?: string[]
 } = {
-    definitions: (schema as any).definitions,
-    properties: (schema as any).properties.items.additionalProperties
-        .properties,
-    required: (schema as any).properties.items.additionalProperties.required,
+    definitions: typedSchema.definitions,
+    properties:
+        typedSchema.properties.items.additionalProperties.properties ?? {},
+    required: typedSchema.properties.items.additionalProperties.required,
 }
 
 const validateAjv = ajv.compile(itemSchema)

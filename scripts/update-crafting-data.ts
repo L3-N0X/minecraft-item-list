@@ -13,7 +13,8 @@ interface ItemData {
         obtainability?: string
         craftable?: boolean
         difficultyToObtain?: number
-        options?: string[]
+        recipeShape?: string[]
+        options?: string[] // For migration cleanup
         [key: string]: unknown
     }
     [key: string]: unknown
@@ -33,55 +34,105 @@ async function updateCraftingData() {
         fs.readFileSync(RECIPES_JSON_PATH, 'utf-8')
     ) as RecipeMap
 
-    // Map to track the set of grid sizes (2 or 3) possible for each item
-    const itemGridSizes = new Map<string, Set<number>>()
+    // Map to track the set of recipe shapes/types possible for each item
+    const itemRecipeShapes = new Map<string, Set<string>>()
 
     console.log(`Processing ${Object.keys(recipeMap).length} recipes...`)
 
-    for (const recipe of Object.values(recipeMap)) {
-        // Only focus on recipe types that start with "minecraft:crafting"
-        if (!recipe.type.startsWith('minecraft:crafting')) continue
+    for (const [recipeId, recipe] of Object.entries(recipeMap)) {
         if (!recipe.result) continue
 
         const resultId = recipe.result.id.replace(/^minecraft:/, '')
-        let minGrid = 3
+        let shape: string | null = null
 
-        if (recipe.type === 'minecraft:crafting_shaped') {
-            const pattern = recipe.pattern
-            const rows = pattern.length
-            const cols = pattern.reduce(
-                (max, row) => Math.max(max, row.length),
-                0
-            )
-            if (rows <= 2 && cols <= 2) {
-                minGrid = 2
+        // Handle standard crafting and specialized crafting
+        if (recipe.type.startsWith('minecraft:crafting')) {
+            if (recipe.type === 'minecraft:crafting_shaped') {
+                const pattern = recipe.pattern
+                const rows = pattern.length
+                const cols = pattern.reduce(
+                    (max, row) => Math.max(max, row.length),
+                    0
+                )
+                shape = (rows <= 2 && cols <= 2) ? '2x2_crafting' : '3x3_crafting'
+            } else if (recipe.type === 'minecraft:crafting_shapeless') {
+                shape = (recipe.ingredients.length <= 4) ? '2x2_crafting' : '3x3_crafting'
+            } else {
+                // Handle special crafting types
+                switch (recipe.type) {
+                    case 'minecraft:crafting_special_bannerduplicate':
+                    case 'minecraft:crafting_special_bookcloning':
+                    case 'minecraft:crafting_special_firework_rocket':
+                    case 'minecraft:crafting_special_firework_star_fade':
+                    case 'minecraft:crafting_special_mapextending':
+                    case 'minecraft:crafting_special_shielddecoration':
+                        shape = 'crafting_special'
+                        break
+                    case 'minecraft:crafting_special_repairitem':
+                        shape = 'crafting_repair'
+                        break
+                    case 'minecraft:crafting_special_firework_star':
+                        shape = 'crafting_firework_star'
+                        break
+                    case 'minecraft:crafting_special_tippedarrow':
+                        shape = 'crafting_tippedarrow'
+                        break
+                    case 'minecraft:crafting_imbue':
+                        if (recipeId === 'tipped_arrow' || resultId === 'tipped_arrow') {
+                            shape = 'crafting_tippedarrow'
+                        } else {
+                            shape = 'crafting_special'
+                        }
+                        break
+                    case 'minecraft:crafting_transmute':
+                        shape = 'crafting_special'
+                        break
+                    case 'minecraft:crafting_decorated_pot':
+                    case 'minecraft:crafting_dye':
+                        shape = 'crafting_special'
+                        break
+                    default:
+                        shape = 'crafting_special'
+                        break
+                }
             }
-        } else if (recipe.type === 'minecraft:crafting_shapeless') {
-            // Shapeless recipes can be 2x2 if they have 4 or fewer ingredients
-            if (recipe.ingredients.length <= 4) {
-                minGrid = 2
-            }
-        } else {
-            // Handle special crafting types
+        } 
+        // Handle non-crafting processing methods
+        else {
             switch (recipe.type) {
-                case 'minecraft:crafting_decorated_pot':
-                case 'minecraft:crafting_special_mapextending':
-                    minGrid = 3
+                case 'minecraft:smelting':
+                    shape = 'smelting'
+                    break
+                case 'minecraft:stonecutting':
+                    shape = 'stonecutting'
+                    break
+                case 'minecraft:smoking':
+                    shape = 'smoking'
+                    break
+                case 'minecraft:blasting':
+                    shape = 'blasting'
+                    break
+                case 'minecraft:campfire_cooking':
+                    shape = 'campfire_cooking'
                     break
                 default:
-                    // Most other special types (dyes, repair, firework stars/rockets, etc.)
-                    // can be crafted in a 2x2 grid if the ingredients are kept minimal.
-                    minGrid = 2
+                    // Skip other types (smithing, etc.)
                     break
             }
         }
 
-        let sizes = itemGridSizes.get(resultId)
-        if (!sizes) {
-            sizes = new Set<number>()
-            itemGridSizes.set(resultId, sizes)
+        if (shape) {
+            let shapes = itemRecipeShapes.get(resultId)
+            if (!shapes) {
+                shapes = new Set<string>()
+                itemRecipeShapes.set(resultId, shapes)
+            }
+            shapes.add(shape)
+            // If it's a 2x2, it's also a 3x3 (only applies to standard crafting)
+            if (shape === '2x2_crafting') {
+                shapes.add('3x3_crafting')
+            }
         }
-        sizes.add(minGrid)
     }
 
     console.log('Reading items.json...')
@@ -95,8 +146,8 @@ async function updateCraftingData() {
 
     let updatedCount = 0
     for (const [itemId, item] of Object.entries(data.items)) {
-        const gridSizes = itemGridSizes.get(itemId)
-        if (!gridSizes) continue
+        const recipeShapes = itemRecipeShapes.get(itemId)
+        if (!recipeShapes) continue
 
         if (!item.obtaining) {
             item.obtaining = {
@@ -106,18 +157,27 @@ async function updateCraftingData() {
             }
         }
 
-        const optionsSet = new Set<string>(item.obtaining.options ?? [])
+        // Migrate and clean up 'options' if it exists
+        if (item.obtaining.options) {
+            delete item.obtaining.options
+        }
 
-        // If an item can be crafted in a 2x2 grid, it can also be crafted in a 3x3 grid
-        if (gridSizes.has(2)) {
-            optionsSet.add('2x2_crafting')
-            optionsSet.add('3x3_crafting')
-        } else if (gridSizes.has(3)) {
-            optionsSet.add('3x3_crafting')
+        const recipeShapeSet = new Set<string>(recipeShapes)
+        
+        // Preserve any existing manually added shapes that are valid
+        const validShapes = [
+            '2x2_crafting', '3x3_crafting', 'crafting_special', 
+            'crafting_repair', 'crafting_tippedarrow', 'crafting_firework_star',
+            'smelting', 'stonecutting', 'smoking', 'blasting', 'campfire_cooking'
+        ]
+        if (item.obtaining.recipeShape) {
+            for (const s of item.obtaining.recipeShape) {
+                if (validShapes.includes(s)) recipeShapeSet.add(s)
+            }
         }
 
         // Convert back to array and sort for consistency
-        item.obtaining.options = Array.from(optionsSet).sort()
+        item.obtaining.recipeShape = Array.from(recipeShapeSet).sort()
         updatedCount++
     }
 
@@ -125,7 +185,7 @@ async function updateCraftingData() {
     fs.writeFileSync(ITEMS_JSON_PATH, JSON.stringify(data, null, 4))
 
     console.log(
-        `Done. Updated crafting grid options for ${updatedCount} items.`
+        `Done. Updated recipeShape categories for ${updatedCount} items.`
     )
 }
 

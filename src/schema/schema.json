@@ -2470,7 +2470,19 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["2x2_crafting", "3x3_crafting"]
+                                    "enum": [
+                                        "2x2_crafting",
+                                        "3x3_crafting",
+                                        "crafting_special",
+                                        "crafting_repair",
+                                        "crafting_tippedarrow",
+                                        "crafting_firework_star",
+                                        "smelting",
+                                        "stonecutting",
+                                        "smoking",
+                                        "blasting",
+                                        "campfire_cooking"
+                                    ]
                                 },
                                 "uniqueItems": true
                             },

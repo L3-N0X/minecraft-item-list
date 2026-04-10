@@ -92,6 +92,19 @@ export interface ItemData {
         obtainability: Obtainability
         craftable: boolean
         difficultyToObtain: number
+        recipeShape?: (
+            | '2x2_crafting'
+            | '3x3_crafting'
+            | 'crafting_special'
+            | 'crafting_repair'
+            | 'crafting_tippedarrow'
+            | 'crafting_firework_star'
+            | 'smelting'
+            | 'stonecutting'
+            | 'smoking'
+            | 'blasting'
+            | 'campfire_cooking'
+        )[]
         naturalGeneration?: {
             biomes?: string[]
             dimensions: string[]

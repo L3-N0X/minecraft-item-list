@@ -271,8 +271,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--textures-dir",
-        default=os.path.join("public", "items"),
-        help="Path to item textures directory (default: public/items).",
+        default=os.path.join("public", "items_no_shadow"),
+        help="Path to item textures directory (default: public/items_no_shadow).",
     )
     parser.add_argument(
         "--alpha-threshold",

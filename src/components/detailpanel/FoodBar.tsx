@@ -17,7 +17,7 @@ export function FoodBar({
         <div className={cn('flex gap-0.5', className)}>
             {halfIcon && (
                 <img
-                    src={getAssetPath("/food_half.png")}
+                    src={getAssetPath('/food_half.png')}
                     alt="half food"
                     className="w-4 image-pixelated"
                 />
@@ -25,7 +25,7 @@ export function FoodBar({
             {Array.from({ length: fullIcons }).map((_, i) => (
                 <img
                     key={i}
-                    src={getAssetPath("/food.png")}
+                    src={getAssetPath('/food.png')}
                     alt="food"
                     className="w-4 image-pixelated"
                 />
