@@ -731,7 +731,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 {hasMobLoot ? (
                     <div
                         ref={mobLootScrollRef}
-                        className="flex flex-row h-full overflow-x-auto scrollbar-hidden items-center cursor-grab select-none active:cursor-grabbing"
+                        className="flex flex-row h-full overflow-x-auto scrollbar-hidden items-center cursor-grab select-none active:cursor-grabbing [&>*:first-child]:ml-auto [&>*:last-child]:mr-auto"
                         {...mobLootDragProps}
                     >
                         {mobLoot.map((loot, idx) => (
@@ -752,7 +752,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             </span>
                                         </div>
                                         {(loot.comment && (
-                                            <p className="text-[10px] text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
+                                            <p className="text-sm text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
                                                 {loot.comment}
                                             </p>
                                         )) || <div className="mt-1" />}
@@ -1002,12 +1002,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 >
                     <div
                         ref={tradingScrollRef}
-                        className="flex flex-row h-full overflow-x-auto scrollbar-hidden items-center cursor-grab select-none active:cursor-grabbing"
+                        className="flex flex-row h-full overflow-x-auto scrollbar-hidden items-center cursor-grab select-none active:cursor-grabbing [&>*:first-child]:ml-auto [&>*:last-child]:mr-auto"
                         {...tradingDragProps}
                     >
                         {tradingVillagers.map((v, idx) => (
                             <React.Fragment key={idx}>
-                                <div className="flex flex-1 gap-2 px-5 min-w-52 h-4/5">
+                                <div className="flex flex-none gap-2 px-5 min-w-60 h-4/5">
                                     <div className="w-20 h-20 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
                                         <img
                                             src={getAssetPath(
@@ -1041,7 +1041,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                             </span>
                                         </div>
                                         {v.comment && (
-                                            <p className="text-xs text-muted-foreground/70 italic leading-tight line-clamp-2 mt-0.5">
+                                            <p className="text-sm text-muted-foreground/70 italic leading-tight line-clamp-2 mt-0.5">
                                                 {v.comment}
                                             </p>
                                         )}
@@ -1340,7 +1340,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         <div
                             ref={blockLootScrollRef}
                             className={cn(
-                                'flex h-full pb-2 scrollbar-hidden cursor-grab select-none active:cursor-grabbing',
+                                'flex h-full pb-2 scrollbar-hidden cursor-grab select-none active:cursor-grabbing [&>*:first-child]:ml-auto [&>*:last-child]:mr-auto',
                                 totalBlocks > 1
                                     ? 'flex-row items-center overflow-x-auto'
                                     : 'flex-col items-center justify-center'
@@ -1358,7 +1358,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 return flattenedBlocks.map(
                                     ({ block, loot }, idx) => (
                                         <React.Fragment key={`${block}-${idx}`}>
-                                            <div className="flex flex-none flex-col items-center justify-center gap-1 px-4">
+                                            <div className="flex flex-none w-60 flex-col items-center justify-center gap-1 px-4">
                                                 <div className="flex flex-col items-center justify-center gap-1.5">
                                                     <img
                                                         src={getAssetPath(
