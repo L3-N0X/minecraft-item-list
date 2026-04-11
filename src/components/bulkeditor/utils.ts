@@ -23,6 +23,7 @@ export type TableRowData = {
     biomes: string[]
     structures: string[]
     generatedLoot: string[]
+    recipeShape: string[]
     rawItem: ItemData
 }
 

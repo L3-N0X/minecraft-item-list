@@ -292,6 +292,7 @@ export function BulkEditorView() {
                     biomes: [],
                     structures: [],
                     generatedLoot: [],
+                    recipeShape: [],
                     rawItem: {} as ItemData,
                 }
             }
@@ -321,6 +322,7 @@ export function BulkEditorView() {
                     item.obtaining?.generatedLoot?.structures.flatMap((s) =>
                         s.chests.map((c) => c.chestName)
                     ) ?? [],
+                recipeShape: item.obtaining?.recipeShape ?? [],
                 rawItem: item,
             }
         })
@@ -411,6 +413,21 @@ export function BulkEditorView() {
                 })),
         ]
 
+        const recipeShapeSet = new Set<string>()
+        data.forEach((d) => d.recipeShape.forEach((r) => recipeShapeSet.add(r)))
+        const recipeShapeOptions = [
+            { label: '⬢ Any Recipe', value: '__ANY_RECIPE__' },
+            { label: '⬢ No Recipe', value: '__NO_RECIPE__' },
+            ...Array.from(recipeShapeSet)
+                .sort()
+                .map((shape) => ({
+                    label: shape
+                        .replace(/_/g, ' ')
+                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                    value: shape,
+                })),
+        ]
+
         return {
             categories: categoryOptions,
             difficulty: difficultyOptions,
@@ -421,6 +438,7 @@ export function BulkEditorView() {
             biomes: biomeOptions,
             structures: structureOptions,
             generatedLoot: generatedLootOptions,
+            recipeShape: recipeShapeOptions,
         }
     }, [categories, data])
 
@@ -1153,6 +1171,112 @@ export function BulkEditorView() {
                     }
 
                     // Combine with OR logic (any filter match returns true)
+                    return results.length > 0 ? results.some((r) => r) : true
+                },
+            },
+            {
+                accessorKey: 'recipeShape',
+                size: 200,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Recipe Shape"
+                        isFilterable
+                        options={filterOptions.recipeShape}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const shapes = row.getValue('recipeShape') as string[]
+                    const count = shapes.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 3) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {shapes.map((shape) => (
+                                    <Badge
+                                        key={shape}
+                                        variant="outline"
+                                        className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                    >
+                                        {shape
+                                            .replace(/_/g, ' ')
+                                            .replace(/\b\w/g, (l) =>
+                                                l.toUpperCase()
+                                            )}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} shapes
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-80 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {shapes.map((shape) => (
+                                        <Badge
+                                            key={shape}
+                                            variant="outline"
+                                            className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                        >
+                                            {shape
+                                                .replace(/_/g, ' ')
+                                                .replace(/\b\w/g, (l) =>
+                                                    l.toUpperCase()
+                                                )}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowShapes = row.getValue(id) as string[]
+
+                    const specialFilters = value.filter((v) =>
+                        v.startsWith('__')
+                    )
+                    const normalFilters = value.filter(
+                        (v) => !v.startsWith('__')
+                    )
+
+                    const results: boolean[] = []
+
+                    if (specialFilters.includes('__ANY_RECIPE__')) {
+                        results.push(rowShapes.length > 0)
+                    }
+
+                    if (specialFilters.includes('__NO_RECIPE__')) {
+                        results.push(rowShapes.length === 0)
+                    }
+
+                    if (normalFilters.length > 0) {
+                        results.push(
+                            normalFilters.some((v) => rowShapes.includes(v))
+                        )
+                    }
+
                     return results.length > 0 ? results.some((r) => r) : true
                 },
             },
