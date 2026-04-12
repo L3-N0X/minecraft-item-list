@@ -13530,7 +13530,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chambers_onimous_trial_spawner",
+                                    "chestName": "trial_chambers_ominous_trial_spawner",
                                     "chance": 0.21,
                                     "quantity": {
                                         "min": 1,
@@ -47726,7 +47726,7 @@
                             "structure": "trial_chambers",
                             "chests": [
                                 {
-                                    "chestName": "trial_chambers_onimous_trial_spawner",
+                                    "chestName": "trial_chambers_ominous_trial_spawner",
                                     "chance": 0.3,
                                     "quantity": 1
                                 }
