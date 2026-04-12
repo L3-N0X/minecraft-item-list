@@ -24,6 +24,26 @@ export type TableRowData = {
     structures: string[]
     generatedLoot: string[]
     recipeShape: string[]
+    craftingIngredient: boolean | null
+    blastResistance: number | null
+    hardness: number | null
+    luminousLevel: number | null
+    transparency: string | null
+    waterloggable: boolean | null
+    bestTools: string[]
+    flammable: boolean | null
+    catchesFire: boolean | null
+    durability: number | null
+    enchantability: number | null
+    isArmor: boolean
+    isFood: boolean
+    hunger: number | null
+    saturation: number | null
+    instantBreaking: boolean | null
+    hasBartering: boolean
+    hasFishing: boolean
+    dimensions: string[]
+    obtainability: string | null
     rawItem: ItemData
 }
 

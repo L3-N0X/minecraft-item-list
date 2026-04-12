@@ -293,6 +293,26 @@ export function BulkEditorView() {
                     structures: [],
                     generatedLoot: [],
                     recipeShape: [],
+                    craftingIngredient: null,
+                    blastResistance: null,
+                    hardness: null,
+                    luminousLevel: null,
+                    transparency: null,
+                    waterloggable: null,
+                    bestTools: [],
+                    flammable: null,
+                    catchesFire: null,
+                    durability: null,
+                    enchantability: null,
+                    isArmor: false,
+                    isFood: false,
+                    hunger: null,
+                    saturation: null,
+                    instantBreaking: null,
+                    hasBartering: false,
+                    hasFishing: false,
+                    dimensions: [],
+                    obtainability: null,
                     rawItem: {} as ItemData,
                 }
             }
@@ -323,6 +343,26 @@ export function BulkEditorView() {
                         s.chests.map((c) => c.chestName)
                     ) ?? [],
                 recipeShape: item.obtaining?.recipeShape ?? [],
+                craftingIngredient: item.craftingIngredient ?? null,
+                blastResistance: item.block?.blastResistance ?? null,
+                hardness: item.block?.hardness ?? null,
+                luminousLevel: item.block?.luminousLevel ?? null,
+                transparency: item.block?.transparency ?? null,
+                waterloggable: item.block?.waterloggable ?? null,
+                bestTools: item.block?.bestTools ?? [],
+                flammable: item.block?.flammable ?? null,
+                catchesFire: item.block?.catchesFire ?? null,
+                durability: item.item?.durability ?? null,
+                enchantability: item.item?.enchantability ?? null,
+                isArmor: !!item.item?.armor,
+                isFood: !!item.edible,
+                hunger: item.edible?.hunger ?? null,
+                saturation: item.edible?.saturation ?? null,
+                instantBreaking: item.breaking?.instantBreaking ?? null,
+                hasBartering: !!item.obtaining?.bartering,
+                hasFishing: !!item.obtaining?.fishing,
+                dimensions: item.obtaining?.naturalGeneration?.dimensions ?? [],
+                obtainability: item.obtaining?.obtainability ?? null,
                 rawItem: item,
             }
         })
@@ -428,6 +468,54 @@ export function BulkEditorView() {
                 })),
         ]
 
+        const bestToolsSet = new Set<string>()
+        data.forEach((d) => d.bestTools.forEach((r) => bestToolsSet.add(r)))
+        const bestToolsOptions = Array.from(bestToolsSet)
+            .sort()
+            .map((shape) => ({
+                label: shape
+                    .replace(/_/g, ' ')
+                    .replace(/\b\w/g, (l) => l.toUpperCase()),
+                value: shape,
+            }))
+
+        const transparencySet = new Set<string>()
+        data.forEach((d) => {
+            if (d.transparency) transparencySet.add(d.transparency)
+        })
+        const transparencyOptions = Array.from(transparencySet)
+            .sort()
+            .map((shape) => ({
+                label: shape
+                    .replace(/_/g, ' ')
+                    .replace(/\b\w/g, (l) => l.toUpperCase()),
+                value: shape,
+            }))
+
+        const obtainabilitySet = new Set<string>()
+        data.forEach((d) => {
+            if (d.obtainability) obtainabilitySet.add(d.obtainability)
+        })
+        const obtainabilityOptions = Array.from(obtainabilitySet)
+            .sort()
+            .map((shape) => ({
+                label: shape
+                    .replace(/_/g, ' ')
+                    .replace(/\b\w/g, (l) => l.toUpperCase()),
+                value: shape,
+            }))
+
+        const dimensionsSet = new Set<string>()
+        data.forEach((d) => d.dimensions.forEach((r) => dimensionsSet.add(r)))
+        const dimensionsOptions = Array.from(dimensionsSet)
+            .sort()
+            .map((shape) => ({
+                label: shape
+                    .replace(/_/g, ' ')
+                    .replace(/\b\w/g, (l) => l.toUpperCase()),
+                value: shape,
+            }))
+
         return {
             categories: categoryOptions,
             difficulty: difficultyOptions,
@@ -439,6 +527,10 @@ export function BulkEditorView() {
             structures: structureOptions,
             generatedLoot: generatedLootOptions,
             recipeShape: recipeShapeOptions,
+            bestTools: bestToolsOptions,
+            transparency: transparencyOptions,
+            obtainability: obtainabilityOptions,
+            dimensions: dimensionsOptions,
         }
     }, [categories, data])
 
@@ -1281,6 +1373,342 @@ export function BulkEditorView() {
                 },
             },
             {
+                accessorKey: 'craftingIngredient',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Crafting Ingredient" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('craftingIngredient') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'luminousLevel',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Luminous Level" />
+                ),
+            },
+            {
+                accessorKey: 'blastResistance',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Blast Resistance" />
+                ),
+            },
+            {
+                accessorKey: 'hardness',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Hardness" />
+                ),
+            },
+            {
+                accessorKey: 'transparency',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Transparency" isFilterable options={filterOptions.transparency} />
+                ),
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const val = row.getValue(id) as string
+                    return value.includes(val)
+                },
+            },
+            {
+                accessorKey: 'waterloggable',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Waterloggable" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('waterloggable') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'bestTools',
+                size: 200,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Best Tools"
+                        isFilterable
+                        options={filterOptions.bestTools}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const shapes = row.getValue('bestTools') as string[]
+                    const count = shapes.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 3) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {shapes.map((shape) => (
+                                    <Badge
+                                        key={shape}
+                                        variant="outline"
+                                        className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                    >
+                                        {shape
+                                            .replace(/_/g, ' ')
+                                            .replace(/\b\w/g, (l) =>
+                                                l.toUpperCase()
+                                            )}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} tools
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-80 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {shapes.map((shape) => (
+                                        <Badge
+                                            key={shape}
+                                            variant="outline"
+                                            className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                        >
+                                            {shape
+                                                .replace(/_/g, ' ')
+                                                .replace(/\b\w/g, (l) =>
+                                                    l.toUpperCase()
+                                                )}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowShapes = row.getValue(id) as string[]
+                    return value.some((v) => rowShapes.includes(v))
+                },
+            },
+            {
+                accessorKey: 'flammable',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Flammable" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('flammable') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'catchesFire',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Catches Fire" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('catchesFire') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'durability',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Durability" />
+                ),
+            },
+            {
+                accessorKey: 'enchantability',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Enchantability" />
+                ),
+            },
+            {
+                accessorKey: 'isArmor',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Is Armor" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('isArmor') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'isFood',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Is Food" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('isFood') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'hunger',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Hunger" />
+                ),
+            },
+            {
+                accessorKey: 'saturation',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Saturation" />
+                ),
+            },
+            {
+                accessorKey: 'instantBreaking',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Instant Breaking" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('instantBreaking') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'hasBartering',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Has Bartering" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('hasBartering') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'hasFishing',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Has Fishing" isFilterable options={filterOptions.yesNo} />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('hasFishing') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'dimensions',
+                size: 200,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Dimensions"
+                        isFilterable
+                        options={filterOptions.dimensions}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const shapes = row.getValue('dimensions') as string[]
+                    const count = shapes.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 3) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {shapes.map((shape) => (
+                                    <Badge
+                                        key={shape}
+                                        variant="outline"
+                                        className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                    >
+                                        {shape
+                                            .replace(/_/g, ' ')
+                                            .replace(/\b\w/g, (l) =>
+                                                l.toUpperCase()
+                                            )}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} dimensions
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-80 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {shapes.map((shape) => (
+                                        <Badge
+                                            key={shape}
+                                            variant="outline"
+                                            className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                        >
+                                            {shape
+                                                .replace(/_/g, ' ')
+                                                .replace(/\b\w/g, (l) =>
+                                                    l.toUpperCase()
+                                                )}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowShapes = row.getValue(id) as string[]
+                    return value.some((v) => rowShapes.includes(v))
+                },
+            },
+            {
+                accessorKey: 'obtainability',
+                size: 150,
+                header: ({ column }) => (
+                    <SortableHeader column={column} title="Obtainability" isFilterable options={filterOptions.obtainability} />
+                ),
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const val = row.getValue(id) as string
+                    return value.includes(val)
+                },
+            },
+            {
                 accessorKey: 'json',
                 size: 300,
                 header: 'JSON',
@@ -1510,7 +1938,7 @@ export function BulkEditorView() {
                             Columns
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
+                    <DropdownMenuContent align="end" className="w-56 max-h-[70vh] overflow-y-auto">
                         {table
                             .getAllColumns()
                             .filter((column) => column.getCanHide())
@@ -1523,6 +1951,7 @@ export function BulkEditorView() {
                                         onCheckedChange={(value) =>
                                             column.toggleVisibility(!!value)
                                         }
+                                        onSelect={(e) => e.preventDefault()}
                                     >
                                         {column.id}
                                     </DropdownMenuCheckboxItem>
