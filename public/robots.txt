@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://l3-n0x.github.io/minecraft-item-list/sitemap.xml
