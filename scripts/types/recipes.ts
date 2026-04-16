@@ -77,92 +77,92 @@ export interface StonecuttingRecipe extends BaseRecipe {
 
 export interface SmithingTransformRecipe extends BaseRecipe {
     type: 'minecraft:smithing_transform'
-    template: RecipeRef
-    base: RecipeRef
-    addition: RecipeRef
+    template: RecipeRefOrList
+    base: RecipeRefOrList
+    addition: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface SmithingTrimRecipe extends BaseRecipe {
     type: 'minecraft:smithing_trim'
-    template: RecipeRef
-    base: RecipeRef
-    addition: RecipeRef
-    pattern: RecipeRef
+    template: RecipeRefOrList
+    base: RecipeRefOrList
+    addition: RecipeRefOrList
+    pattern: RecipeRefOrList
 }
 
 export interface CraftingDecoratedPotRecipe extends BaseRecipe {
     type: 'minecraft:crafting_decorated_pot'
-    back: RecipeRef
-    front: RecipeRef
-    left: RecipeRef
-    right: RecipeRef
+    back: RecipeRefOrList
+    front: RecipeRefOrList
+    left: RecipeRefOrList
+    right: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface CraftingDyeRecipe extends BaseRecipe {
     type: 'minecraft:crafting_dye'
-    dye: RecipeRef
-    target: RecipeRef
+    dye: RecipeRefOrList
+    target: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface CraftingImbueRecipe extends BaseRecipe {
     type: 'minecraft:crafting_imbue'
-    material: RecipeRef
-    source: RecipeRef
+    material: RecipeRefOrList
+    source: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface CraftingTransmuteRecipe extends BaseRecipe {
     type: 'minecraft:crafting_transmute'
-    input: RecipeRef
-    material: RecipeRef
+    input: RecipeRefOrList
+    material: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface SpecialBannerDuplicateRecipe extends BaseRecipe {
     type: 'minecraft:crafting_special_bannerduplicate'
-    banner: RecipeRef
+    banner: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface SpecialBookCloningRecipe extends BaseRecipe {
     type: 'minecraft:crafting_special_bookcloning'
-    material: RecipeRef
-    source: RecipeRef
+    material: RecipeRefOrList
+    source: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface SpecialFireworkRocketRecipe extends BaseRecipe {
     type: 'minecraft:crafting_special_firework_rocket'
-    fuel: RecipeRef
-    shell: RecipeRef
-    star: RecipeRef
+    fuel: RecipeRefOrList
+    shell: RecipeRefOrList
+    star: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface SpecialFireworkStarRecipe extends BaseRecipe {
     type: 'minecraft:crafting_special_firework_star'
-    dye: RecipeRef
-    fuel: RecipeRef
-    shapes?: Record<string, RecipeRef>
-    trail?: RecipeRef
-    twinkle?: RecipeRef
+    dye: RecipeRefOrList
+    fuel: RecipeRefOrList
+    shapes?: Record<string, RecipeRefOrList>
+    trail?: RecipeRefOrList
+    twinkle?: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface SpecialFireworkStarFadeRecipe extends BaseRecipe {
     type: 'minecraft:crafting_special_firework_star_fade'
-    dye: RecipeRef
-    target: RecipeRef
+    dye: RecipeRefOrList
+    target: RecipeRefOrList
     result: RecipeResult
 }
 
 export interface SpecialMapExtendingRecipe extends BaseRecipe {
     type: 'minecraft:crafting_special_mapextending'
-    map: RecipeRef
-    material: RecipeRef
+    map: RecipeRefOrList
+    material: RecipeRefOrList
     result: RecipeResult
 }
 
@@ -172,8 +172,8 @@ export interface SpecialRepairItemRecipe extends BaseRecipe {
 
 export interface SpecialShieldDecorationRecipe extends BaseRecipe {
     type: 'minecraft:crafting_special_shielddecoration'
-    banner: RecipeRef
-    target: RecipeRef
+    banner: RecipeRefOrList
+    target: RecipeRefOrList
     result: RecipeResult
 }
 

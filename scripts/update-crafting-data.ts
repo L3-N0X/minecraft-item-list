@@ -4,6 +4,7 @@ import type { RecipeMap } from './types/recipes'
 
 const SCRIPTS_DATA_DIR = path.join(process.cwd(), 'scripts', 'data')
 const RECIPES_JSON_PATH = path.join(SCRIPTS_DATA_DIR, 'recipes.json')
+const TAGS_JSON_PATH = path.join(SCRIPTS_DATA_DIR, 'tags.json')
 
 const PUBLIC_DATA_DIR = path.join(process.cwd(), 'public', 'data')
 const ITEMS_JSON_PATH = path.join(PUBLIC_DATA_DIR, 'items.json')
@@ -17,12 +18,18 @@ interface ItemData {
         options?: string[] // For migration cleanup
         [key: string]: unknown
     }
+    craftingIngredient?: boolean
     [key: string]: unknown
 }
 
 interface ItemsPayload {
     items: Record<string, ItemData>
     [key: string]: unknown
+}
+
+interface TagData {
+    values: string[]
+    replace?: boolean
 }
 
 async function updateCraftingData() {
@@ -34,8 +41,47 @@ async function updateCraftingData() {
         fs.readFileSync(RECIPES_JSON_PATH, 'utf-8')
     ) as RecipeMap
 
+    console.log('Reading tags.json...')
+    if (!fs.existsSync(TAGS_JSON_PATH)) {
+        throw new Error(`tags.json not found at ${TAGS_JSON_PATH}`)
+    }
+    const tagMap = JSON.parse(
+        fs.readFileSync(TAGS_JSON_PATH, 'utf-8')
+    ) as Record<string, TagData>
+
+    // Resolve tags
+    const resolvedTags = new Map<string, Set<string>>()
+    function resolveTag(tagId: string, inProgress: Set<string> = new Set()): Set<string> {
+        if (resolvedTags.has(tagId)) return resolvedTags.get(tagId)!
+        if (inProgress.has(tagId)) return new Set()
+
+        inProgress.add(tagId)
+        const items = new Set<string>()
+        const tag = tagMap[tagId]
+        if (tag && tag.values) {
+            for (const value of tag.values) {
+                if (value.startsWith('#')) {
+                    const ref = value.slice(1).replace(/^minecraft:/, '')
+                    const refItems = resolveTag(ref, inProgress)
+                    for (const item of refItems) items.add(item)
+                } else {
+                    items.add(value.replace(/^minecraft:/, ''))
+                }
+            }
+        }
+        inProgress.delete(tagId)
+        resolvedTags.set(tagId, items)
+        return items
+    }
+
+    for (const tagId of Object.keys(tagMap)) {
+        resolveTag(tagId)
+    }
+
     // Map to track the set of recipe shapes/types possible for each item
     const itemRecipeShapes = new Map<string, Set<string>>()
+    // Set to track items that are used as ingredients in any recipe
+    const craftingIngredients = new Set<string>()
 
     console.log(`Processing ${Object.keys(recipeMap).length} recipes...`)
 
@@ -54,9 +100,12 @@ async function updateCraftingData() {
                     (max, row) => Math.max(max, row.length),
                     0
                 )
-                shape = (rows <= 2 && cols <= 2) ? '2x2_crafting' : '3x3_crafting'
+                shape = rows <= 2 && cols <= 2 ? '2x2_crafting' : '3x3_crafting'
             } else if (recipe.type === 'minecraft:crafting_shapeless') {
-                shape = (recipe.ingredients.length <= 4) ? '2x2_crafting' : '3x3_crafting'
+                shape =
+                    recipe.ingredients.length <= 4
+                        ? '2x2_crafting'
+                        : '3x3_crafting'
             } else {
                 // Handle special crafting types
                 switch (recipe.type) {
@@ -74,11 +123,11 @@ async function updateCraftingData() {
                     case 'minecraft:crafting_special_firework_star':
                         shape = 'crafting_firework_star'
                         break
-                    case 'minecraft:crafting_special_tippedarrow':
-                        shape = 'crafting_tippedarrow'
-                        break
                     case 'minecraft:crafting_imbue':
-                        if (recipeId === 'tipped_arrow' || resultId === 'tipped_arrow') {
+                        if (
+                            recipeId === 'tipped_arrow' ||
+                            resultId === 'tipped_arrow'
+                        ) {
                             shape = 'crafting_tippedarrow'
                         } else {
                             shape = 'crafting_special'
@@ -96,7 +145,7 @@ async function updateCraftingData() {
                         break
                 }
             }
-        } 
+        }
         // Handle non-crafting processing methods
         else {
             switch (recipe.type) {
@@ -133,6 +182,71 @@ async function updateCraftingData() {
                 shapes.add('3x3_crafting')
             }
         }
+
+        // Collect ingredients from the recipe
+        const collectIngredient = (ingredient: unknown) => {
+            if (Array.isArray(ingredient)) {
+                for (const item of ingredient) {
+                    collectIngredient(item)
+                }
+            } else if (typeof ingredient === 'string') {
+                if (ingredient.startsWith('#')) {
+                    const tagId = ingredient.slice(1).replace(/^minecraft:/, '')
+                    const resolved = resolvedTags.get(tagId)
+                    if (resolved) {
+                        for (const item of resolved) {
+                            craftingIngredients.add(item)
+                        }
+                    }
+                } else {
+                    const itemId = ingredient.replace(/^minecraft:/, '')
+                    craftingIngredients.add(itemId)
+                }
+            }
+        }
+
+        if (recipe.type === 'minecraft:crafting_shaped' && recipe.key) {
+            for (const value of Object.values(recipe.key)) {
+                collectIngredient(value)
+            }
+        } else if (
+            recipe.type === 'minecraft:crafting_shapeless' &&
+            recipe.ingredients
+        ) {
+            for (const ing of recipe.ingredients) {
+                collectIngredient(ing)
+            }
+        } else if (recipe.type === 'minecraft:crafting_transmute') {
+            if ('input' in recipe) collectIngredient(recipe.input)
+            if ('material' in recipe) collectIngredient(recipe.material)
+        } else if (recipe.type === 'minecraft:crafting_dye') {
+            if ('dye' in recipe) collectIngredient(recipe.dye)
+            if ('target' in recipe) collectIngredient(recipe.target)
+        } else if (
+            recipe.type === 'minecraft:smithing_transform' ||
+            recipe.type === 'minecraft:smithing_trim'
+        ) {
+            if ('template' in recipe) collectIngredient(recipe.template)
+            if ('base' in recipe) collectIngredient(recipe.base)
+            if ('addition' in recipe) collectIngredient(recipe.addition)
+        } else if (recipe.type === 'minecraft:crafting_decorated_pot') {
+            if ('back' in recipe) collectIngredient(recipe.back)
+            if ('front' in recipe) collectIngredient(recipe.front)
+            if ('left' in recipe) collectIngredient(recipe.left)
+            if ('right' in recipe) collectIngredient(recipe.right)
+        } else if (
+            'ingredient' in recipe &&
+            recipe.ingredient &&
+            ![
+                'minecraft:smelting',
+                'minecraft:smoking',
+                'minecraft:blasting',
+                'minecraft:campfire_cooking',
+                'minecraft:stonecutting',
+            ].includes(recipe.type)
+        ) {
+            collectIngredient(recipe.ingredient)
+        }
     }
 
     console.log('Reading items.json...')
@@ -145,6 +259,7 @@ async function updateCraftingData() {
     ) as ItemsPayload
 
     let updatedCount = 0
+    let craftingIngredientCorrected = 0
     for (const [itemId, item] of Object.entries(data.items)) {
         const recipeShapes = itemRecipeShapes.get(itemId)
         if (!recipeShapes) continue
@@ -163,12 +278,20 @@ async function updateCraftingData() {
         }
 
         const recipeShapeSet = new Set<string>(recipeShapes)
-        
+
         // Preserve any existing manually added shapes that are valid
         const validShapes = [
-            '2x2_crafting', '3x3_crafting', 'crafting_special', 
-            'crafting_repair', 'crafting_tippedarrow', 'crafting_firework_star',
-            'smelting', 'stonecutting', 'smoking', 'blasting', 'campfire_cooking'
+            '2x2_crafting',
+            '3x3_crafting',
+            'crafting_special',
+            'crafting_repair',
+            'crafting_tippedarrow',
+            'crafting_firework_star',
+            'smelting',
+            'stonecutting',
+            'smoking',
+            'blasting',
+            'campfire_cooking',
         ]
         if (item.obtaining.recipeShape) {
             for (const s of item.obtaining.recipeShape) {
@@ -178,14 +301,26 @@ async function updateCraftingData() {
 
         // Convert back to array and sort for consistency
         item.obtaining.recipeShape = Array.from(recipeShapeSet).sort()
-        updatedCount++
+
+        // Update craftingIngredient if the item appears as an ingredient in any recipe
+        const isIngredient = craftingIngredients.has(itemId)
+        if (item.craftingIngredient !== isIngredient) {
+            if (item.craftingIngredient !== undefined) {
+                craftingIngredientCorrected++
+            }
+            item.craftingIngredient = isIngredient
+            updatedCount++
+        }
     }
 
     console.log(`Writing updates to items.json...`)
     fs.writeFileSync(ITEMS_JSON_PATH, JSON.stringify(data, null, 4))
 
     console.log(
-        `Done. Updated recipeShape categories for ${updatedCount} items.`
+        `Done. Updated recipeShape categories and craftingIngredient for ${updatedCount} items.`
+    )
+    console.log(
+        `  - Corrected craftingIngredient field for ${craftingIngredientCorrected} items that had incorrect values.`
     )
 }
 

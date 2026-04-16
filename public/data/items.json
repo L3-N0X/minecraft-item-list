@@ -2091,7 +2091,7 @@
             "compostable": {
                 "chance": 0.85
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "craftable": false,
@@ -2868,7 +2868,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "fuel": {
                 "burnTimeSeconds": 15,
@@ -9375,7 +9375,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -11475,7 +11475,7 @@
                 "difficultyToObtain": 6,
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#EFEBE7",
             "medianColor": "#EEE6DE"
@@ -11517,7 +11517,7 @@
                 "difficultyToObtain": 7,
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#B25F1D",
             "medianColor": "#B2601F"
@@ -11612,7 +11612,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#DED6A9",
             "medianColor": "#DAD2A3"
@@ -11676,7 +11676,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#606060",
             "medianColor": "#787678"
@@ -15754,7 +15754,7 @@
                 "difficultyToObtain": 2,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#524129",
             "medianColor": "#6D663E"
@@ -21152,7 +21152,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -21299,7 +21299,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -21484,7 +21484,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -21669,7 +21669,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -21876,7 +21876,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -22082,7 +22082,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -22428,7 +22428,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -22531,7 +22531,7 @@
                 "difficultyToObtain": 5,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -22623,7 +22623,7 @@
                 "difficultyToObtain": 5,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -22757,7 +22757,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -23446,7 +23446,7 @@
                 "difficultyToObtain": 3,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#222D16",
             "medianColor": "#232F17"
@@ -24826,7 +24826,7 @@
                 "difficultyToObtain": 7,
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#3E6E62",
             "medianColor": "#4E835A"
@@ -25997,7 +25997,7 @@
                     "crafting_special"
                 ]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#EAEAD2",
             "medianColor": "#A7A86C"
@@ -26268,7 +26268,7 @@
                     "crafting_special"
                 ]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#797979",
             "medianColor": "#646464"
@@ -26419,7 +26419,7 @@
                 "burnTimeSeconds": 15,
                 "numberOfItemsSmelted": 1.5
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#AA9A6F",
             "medianColor": "#BFA87A"
@@ -28651,7 +28651,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -28949,7 +28949,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -29156,7 +29156,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -29360,7 +29360,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -29566,7 +29566,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -29835,7 +29835,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -29911,7 +29911,7 @@
                 "difficultyToObtain": 4,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -30134,7 +30134,7 @@
                 ],
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -33473,7 +33473,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -33783,7 +33783,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -34058,7 +34058,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -34293,7 +34293,7 @@
                 "difficultyToObtain": 4,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -34847,7 +34847,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -35403,7 +35403,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -35524,7 +35524,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -36002,7 +36002,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#BDBDBD",
             "medianColor": "#D1CFCF"
@@ -38332,7 +38332,7 @@
                     "crafting_special"
                 ]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#764B30",
             "medianColor": "#703D27"
@@ -42609,7 +42609,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#FCFCF2",
             "medianColor": "#EAEAC7"
@@ -49150,7 +49150,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -51843,7 +51843,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -52201,7 +52201,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -52399,7 +52399,7 @@
                 "difficultyToObtain": 1,
                 "recipeShape": ["3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#5C5C5C",
             "medianColor": "#4B4C4F"
@@ -52828,7 +52828,7 @@
                 "difficultyToObtain": 2,
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#626A67",
             "medianColor": "#636C6B"
@@ -55175,7 +55175,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#EAE2DA",
             "medianColor": "#EAE2DA"
@@ -56415,7 +56415,7 @@
                 "difficultyToObtain": 6,
                 "recipeShape": ["3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#4A080B",
             "medianColor": "#440507"
@@ -57301,7 +57301,7 @@
                 "difficultyToObtain": 6,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#311A11",
             "medianColor": "#5F3315"
@@ -59340,7 +59340,7 @@
                 "difficultyToObtain": 2,
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -59473,7 +59473,7 @@
                     "crafting_special"
                 ]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -60249,7 +60249,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -61293,7 +61293,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#444B5D",
             "medianColor": "#495065"
@@ -62867,7 +62867,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#696969",
             "medianColor": "#6B7455"
@@ -63013,7 +63013,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -63370,7 +63370,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -63463,7 +63463,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -63576,7 +63576,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -63848,7 +63848,7 @@
                 ],
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -66056,7 +66056,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#6C5636",
             "medianColor": "#816636"
@@ -67114,7 +67114,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -67774,7 +67774,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -68459,7 +68459,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#CA7354",
             "medianColor": "#C26B4C"
@@ -68824,7 +68824,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#AC5E43",
             "medianColor": "#B26247"
@@ -68870,7 +68870,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#AC5E43",
             "medianColor": "#B26247"
@@ -68996,7 +68996,7 @@
                 "difficultyToObtain": 10,
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#95745E",
             "medianColor": "#A87762"
@@ -69379,7 +69379,7 @@
                 "difficultyToObtain": 10,
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#92705D",
             "medianColor": "#947762"
@@ -69419,7 +69419,7 @@
                 "difficultyToObtain": 10,
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#846F59",
             "medianColor": "#947762"
@@ -69631,7 +69631,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#59B394",
             "medianColor": "#53AB90"
@@ -70038,7 +70038,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#54A686",
             "medianColor": "#51A184"
@@ -70084,7 +70084,7 @@
                 },
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#5AAC8B",
             "medianColor": "#51A184"
@@ -70250,7 +70250,7 @@
                 "difficultyToObtain": 10,
                 "recipeShape": ["2x2_crafting", "3x3_crafting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#67A06F",
             "medianColor": "#6AA077"
@@ -70633,7 +70633,7 @@
                 "difficultyToObtain": 10,
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#6BA981",
             "medianColor": "#6A8D70"
@@ -70673,7 +70673,7 @@
                 "difficultyToObtain": 10,
                 "recipeShape": ["2x2_crafting", "3x3_crafting", "stonecutting"]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#6AA980",
             "medianColor": "#6A8D70"
@@ -72832,7 +72832,7 @@
                     "crafting_special"
                 ]
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#965A56",
             "medianColor": "#965954"
@@ -72893,7 +72893,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -73009,7 +73009,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -73075,7 +73075,7 @@
                 "difficultyToObtain": 1,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -73155,7 +73155,7 @@
                 },
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -73221,7 +73221,7 @@
                 "difficultyToObtain": 1,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -73318,7 +73318,7 @@
                 "difficultyToObtain": 1,
                 "recipeShape": ["3x3_crafting"]
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -73403,7 +73403,7 @@
             "renewable": "yes",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -73424,7 +73424,7 @@
             "renewable": "yes",
             "stackSize": 16,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",

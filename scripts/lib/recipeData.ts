@@ -178,25 +178,114 @@ function resolveStonecuttingRecipe(
     }
 }
 
+function resolveTransmuteRecipe(
+    recipe: CraftingTransmuteRecipe,
+    resolvedTags: ResolvedItemTagsIndex
+): CraftingTransmuteRecipe {
+    return {
+        ...recipe,
+        input: resolveRecipeRefOrList(recipe.input, resolvedTags),
+        material: resolveRecipeRefOrList(recipe.material, resolvedTags),
+    }
+}
+
+function resolveDyeRecipe(
+    recipe: CraftingDyeRecipe,
+    resolvedTags: ResolvedItemTagsIndex
+): CraftingDyeRecipe {
+    return {
+        ...recipe,
+        dye: resolveRecipeRefOrList(recipe.dye, resolvedTags),
+        target: resolveRecipeRefOrList(recipe.target, resolvedTags),
+    }
+}
+
+function resolveSmithingTransformRecipe(
+    recipe: SmithingTransformRecipe,
+    resolvedTags: ResolvedItemTagsIndex
+): SmithingTransformRecipe {
+    return {
+        ...recipe,
+        template: resolveRecipeRefOrList(recipe.template, resolvedTags),
+        base: resolveRecipeRefOrList(recipe.base, resolvedTags),
+        addition: resolveRecipeRefOrList(recipe.addition, resolvedTags),
+    }
+}
+
+function resolveSmithingTrimRecipe(
+    recipe: SmithingTrimRecipe,
+    resolvedTags: ResolvedItemTagsIndex
+): SmithingTrimRecipe {
+    return {
+        ...recipe,
+        template: resolveRecipeRefOrList(recipe.template, resolvedTags),
+        base: resolveRecipeRefOrList(recipe.base, resolvedTags),
+        addition: resolveRecipeRefOrList(recipe.addition, resolvedTags),
+        pattern: resolveRecipeRefOrList(recipe.pattern, resolvedTags),
+    }
+}
+
+function resolveImbueRecipe(
+    recipe: CraftingImbueRecipe,
+    resolvedTags: ResolvedItemTagsIndex
+): CraftingImbueRecipe {
+    return {
+        ...recipe,
+        material: resolveRecipeRefOrList(recipe.material, resolvedTags),
+        source: resolveRecipeRefOrList(recipe.source, resolvedTags),
+    }
+}
+
+function resolveDecoratedPotRecipe(
+    recipe: CraftingDecoratedPotRecipe,
+    resolvedTags: ResolvedItemTagsIndex
+): CraftingDecoratedPotRecipe {
+    return {
+        ...recipe,
+        back: resolveRecipeRefOrList(recipe.back, resolvedTags),
+        front: resolveRecipeRefOrList(recipe.front, resolvedTags),
+        left: resolveRecipeRefOrList(recipe.left, resolvedTags),
+        right: resolveRecipeRefOrList(recipe.right, resolvedTags),
+    }
+}
+
 function resolveRecipeTagReferences(
     recipeMap: RecipeMap,
     resolvedTags: ResolvedItemTagsIndex
 ): RecipeMap {
     const resolvedEntries = Object.entries(recipeMap).map(
         ([recipeId, recipe]) => {
-            const resolvedRecipe: RecipeData =
-                recipe.type === 'minecraft:crafting_shaped'
-                    ? resolveShapedRecipe(recipe, resolvedTags)
-                    : recipe.type === 'minecraft:crafting_shapeless'
-                      ? resolveShapelessRecipe(recipe, resolvedTags)
-                      : recipe.type === 'minecraft:stonecutting'
-                        ? resolveStonecuttingRecipe(recipe, resolvedTags)
-                        : recipe.type === 'minecraft:smelting' ||
-                            recipe.type === 'minecraft:blasting' ||
-                            recipe.type === 'minecraft:smoking' ||
-                            recipe.type === 'minecraft:campfire_cooking'
-                          ? resolveCookingRecipe(recipe, resolvedTags)
-                          : recipe
+            let resolvedRecipe: RecipeData = recipe
+
+            if (recipe.type === 'minecraft:crafting_shaped') {
+                resolvedRecipe = resolveShapedRecipe(recipe, resolvedTags)
+            } else if (recipe.type === 'minecraft:crafting_shapeless') {
+                resolvedRecipe = resolveShapelessRecipe(recipe, resolvedTags)
+            } else if (recipe.type === 'minecraft:stonecutting') {
+                resolvedRecipe = resolveStonecuttingRecipe(recipe, resolvedTags)
+            } else if (
+                recipe.type === 'minecraft:smelting' ||
+                recipe.type === 'minecraft:blasting' ||
+                recipe.type === 'minecraft:smoking' ||
+                recipe.type === 'minecraft:campfire_cooking'
+            ) {
+                resolvedRecipe = resolveCookingRecipe(recipe, resolvedTags)
+            } else if (recipe.type === 'minecraft:crafting_transmute') {
+                resolvedRecipe = resolveTransmuteRecipe(recipe, resolvedTags)
+            } else if (recipe.type === 'minecraft:crafting_dye') {
+                resolvedRecipe = resolveDyeRecipe(recipe, resolvedTags)
+            } else if (recipe.type === 'minecraft:smithing_transform') {
+                resolvedRecipe = resolveSmithingTransformRecipe(
+                    recipe,
+                    resolvedTags
+                )
+            } else if (recipe.type === 'minecraft:smithing_trim') {
+                resolvedRecipe = resolveSmithingTrimRecipe(recipe, resolvedTags)
+            } else if (recipe.type === 'minecraft:crafting_imbue') {
+                resolvedRecipe = resolveImbueRecipe(recipe, resolvedTags)
+            } else if (recipe.type === 'minecraft:crafting_decorated_pot') {
+                resolvedRecipe = resolveDecoratedPotRecipe(recipe, resolvedTags)
+            }
 
             return [recipeId, resolvedRecipe] as const
         }
