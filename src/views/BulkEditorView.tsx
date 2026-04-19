@@ -405,6 +405,11 @@ export function BulkEditorView() {
             { label: 'Epic', value: 'epic' },
         ]
 
+        const isBlockOptions = [
+            { label: 'Block', value: 'true' },
+            { label: 'Item', value: 'false' },
+        ]
+
         const biomesSet = new Set<string>()
         data.forEach((d) => d.biomes.forEach((b) => biomesSet.add(b)))
         const biomeOptions = [
@@ -531,6 +536,7 @@ export function BulkEditorView() {
             transparency: transparencyOptions,
             obtainability: obtainabilityOptions,
             dimensions: dimensionsOptions,
+            isBlock: isBlockOptions,
         }
     }, [categories, data])
 
@@ -620,6 +626,22 @@ export function BulkEditorView() {
                         {row.getValue('displayNameGerman') as string}
                     </div>
                 ),
+            },
+            {
+                accessorKey: 'isBlock',
+                size: 100,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Is Block"
+                        isFilterable
+                        options={filterOptions.isBlock}
+                    />
+                ),
+                cell: ({ row }) => (
+                    <YesNoCell value={row.getValue('isBlock') as boolean} />
+                ),
+                filterFn: binaryFilterFn,
             },
             {
                 accessorKey: 'categories',
