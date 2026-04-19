@@ -402,7 +402,21 @@ export function HomeView() {
                 )}
             </div>
             <div className="absolute bottom-4 dark:text-primary/15 text-primary/20 flex items-center gap-2">
-                <span>by l3_n0x</span>
+                <Link
+                    to="https://github.com/L3-N0X"
+                    target="_blank"
+                    className="hover:text-primary/30 dark:hover:text-primary/25 transition-colors"
+                >
+                    by L3-N0X
+                </Link>
+                <span className="opacity-50">·</span>
+                <Link
+                    to="https://github.com/L3-N0X/minecraft-item-list"
+                    target="_blank"
+                    className="hover:text-primary/30 dark:hover:text-primary/25 transition-colors"
+                >
+                    GitHub
+                </Link>
                 <span className="opacity-50">·</span>
                 <Link
                     to="/impressum"
