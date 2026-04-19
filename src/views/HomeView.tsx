@@ -390,7 +390,7 @@ export function HomeView() {
                 {activeItemId && selectedItem && (
                     <div
                         key={activeItemId}
-                        className="w-full animate-in fade-in zoom-in slide-in-from-bottom-8 duration-500 flex-1"
+                        className="w-full duration-500 flex-1"
                     >
                         <div className="h-full rounded-3xl p-2 flex flex-col items-center overflow-auto">
                             <ItemDetailPanel
