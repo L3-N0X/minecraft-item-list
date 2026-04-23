@@ -1,4 +1,5 @@
 {
+    "$schema": "./../../src/schema/schema.json",
     "minecraft_version": "26.1-snapshot-10",
     "items": {
         "acacia_boat": {
@@ -1046,7 +1047,7 @@
                             "structure": "ancient_city",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "ancient_city_normal_chest",
                                     "chance": 0.232,
                                     "quantity": {
                                         "min": 1,
@@ -3445,7 +3446,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.135,
                                     "quantity": {
                                         "min": 2,
@@ -6277,7 +6278,7 @@
                             "structure": "ancient_city",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "ancient_city_normal_chest",
                                     "chance": 0.359,
                                     "quantity": {
                                         "min": 1,
@@ -6323,7 +6324,7 @@
                         {
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.578,
                                     "quantity": {
                                         "min": 1,
@@ -7236,7 +7237,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.255,
                                     "quantity": 1
                                 }
@@ -8712,7 +8713,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.172,
                                     "quantity": 1
                                 }
@@ -8899,7 +8900,7 @@
                                     "quantity": 1
                                 }
                             ],
-                            "structure": "woodland_mansion"
+                            "structure": "village_taiga"
                         }
                     ]
                 },
@@ -9993,7 +9994,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.149,
                                     "quantity": 1
                                 }
@@ -12323,7 +12324,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.197,
                                     "quantity": {
                                         "min": 1,
@@ -20892,7 +20893,7 @@
                             "structure": "jungle_temple",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "jungle_pyramid_chest",
                                     "chance": 0.127,
                                     "quantity": {
                                         "min": 1,
@@ -21538,7 +21539,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.077,
                                     "quantity": 1
                                 }
@@ -21845,7 +21846,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.218,
                                     "quantity": 1
                                 }
@@ -22152,7 +22153,7 @@
                             "structure": "ancient_city",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "ancient_city_normal_chest",
                                     "chance": 0.161,
                                     "quantity": 1
                                 }
@@ -23828,7 +23829,7 @@
                             "structure": "buried_treasure",
                             "chests": [
                                 {
-                                    "chestName": "bastion_bridge_chest",
+                                    "chestName": "chest",
                                     "chance": 0.599,
                                     "quantity": {
                                         "min": 4,
@@ -23892,7 +23893,7 @@
                             "structure": "jungle_temple",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "jungle_pyramid_chest",
                                     "chance": 0.086,
                                     "quantity": {
                                         "min": 1,
@@ -27414,7 +27415,7 @@
                             "structure": "ancient_city",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "ancient_city_normal_chest",
                                     "chance": 0.232,
                                     "quantity": {
                                         "min": 1,
@@ -28102,7 +28103,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.069,
                                     "quantity": {
                                         "min": 1,
@@ -31950,7 +31951,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.578,
                                     "quantity": {
                                         "min": 1,
@@ -34768,7 +34769,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.135,
                                     "quantity": {
                                         "min": 1,
@@ -34957,7 +34958,7 @@
                             "structure": "ancient_city",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "ancient_city_normal_chest",
                                     "chance": 0.232,
                                     "quantity": 1
                                 }
@@ -37361,7 +37362,7 @@
                             "structure": "ancient_city",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "ancient_city_normal_chest",
                                     "chance": 0.161,
                                     "quantity": 1
                                 }
@@ -37381,7 +37382,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.283,
                                     "quantity": 1
                                 }
@@ -37524,7 +37525,7 @@
                             "structure": "jungle_temple",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "jungle_pyramid_chest",
                                     "chance": 0.127,
                                     "quantity": {
                                         "min": 1,
@@ -42755,7 +42756,7 @@
                             "chests": [
                                 {
                                     "chance": 0.135,
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "quantity": {
                                         "min": 2,
                                         "max": 4
@@ -43954,7 +43955,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.218,
                                     "quantity": 1
                                 }
@@ -44065,7 +44066,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.218,
                                     "quantity": 1
                                 }
@@ -44720,7 +44721,7 @@
                         {
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.23,
                                     "quantity": 1
                                 }
@@ -54106,7 +54107,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.135,
                                     "quantity": {
                                         "min": 2,
@@ -57132,7 +57133,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.197,
                                     "quantity": {
                                         "min": 1,
@@ -57754,7 +57755,7 @@
                             "structure": "woodland_mansion",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "woodland_mansion_chest",
                                     "chance": 0.538,
                                     "quantity": {
                                         "min": 2,
@@ -58081,7 +58082,7 @@
                             "structure": "jungle_temple",
                             "chests": [
                                 {
-                                    "chestName": "chest",
+                                    "chestName": "jungle_pyramid_chest",
                                     "chance": 0.529,
                                     "quantity": {
                                         "min": 3,

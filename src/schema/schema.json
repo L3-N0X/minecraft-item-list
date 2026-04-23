@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": "./../../src/schema/schema.json",
     "title": "Minecraft Item Data",
     "definitions": {
         "stackSizeEnum": {
@@ -2569,7 +2569,523 @@
                                                 }
                                             },
                                             "required": ["structure", "chests"],
-                                            "additionalProperties": false
+                                            "additionalProperties": false,
+                                            "allOf": [
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "ancient_city"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "ancient_city_normal_chest",
+                                                                                "ancient_city_ice_box_chest",
+                                                                                "ancient_city_city_center_furnace"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "bastion_remnant"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "bastion_bridge_chest",
+                                                                                "bastion_hoglin_stables_chest",
+                                                                                "bastion_treasure_chest",
+                                                                                "bastion_generic_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "desert_pyramid"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "desert_pyramid_suspicious_sand",
+                                                                                "chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "desert_well"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "desert_well_suspicious_sand"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "jungle_temple"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "jungle_pyramid_chest",
+                                                                                "jungle_pyramid_dispenser"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "ocean_ruin"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "ocean_ruin_big_chest",
+                                                                                "ocean_ruin_small_chest",
+                                                                                "ocean_ruin_suspicious_gravel",
+                                                                                "ocean_ruin_suspicious_sand"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "shipwreck"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "shipwreck_supply_chest",
+                                                                                "shipwreck_treasure_chest",
+                                                                                "shipwreck_map_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "stronghold"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "stronghold_altar_chest",
+                                                                                "stronghold_library_chest",
+                                                                                "stronghold_storerooms_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "trail_ruins"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "trail_ruin_common_suspicious_gravel",
+                                                                                "trail_ruin_rare_suspicious_gravel"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "trial_chambers"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "trial_chambers_vault",
+                                                                                "trial_chambers_ominous_vault",
+                                                                                "trial_chambers_trial_spawner",
+                                                                                "trial_chambers_ominous_trial_spawner",
+                                                                                "trial_chambers_entrance_chest",
+                                                                                "trial_chambers_supply_chest",
+                                                                                "trial_chambers_intersection_chest",
+                                                                                "trial_chambers_corridor_barrel",
+                                                                                "trial_chambers_intersection_barrel",
+                                                                                "trial_chambers_chamber_dispenser",
+                                                                                "trial_chambers_corridor_dispenser",
+                                                                                "trial_chambers_water_dispenser",
+                                                                                "trial_chambers_decorated_pot"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "village_desert"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "village_desert_temple_chest",
+                                                                                "village_desert_house_chest",
+                                                                                "village_desert_taiga_toolsmith_chest",
+                                                                                "village_cartographer_chest",
+                                                                                "village_weaponsmith_chest",
+                                                                                "village_tannery_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "village_plains"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "village_plains_fisher_cottage_chest",
+                                                                                "village_plains_house_chest",
+                                                                                "village_cartographer_chest",
+                                                                                "village_weaponsmith_chest",
+                                                                                "village_tannery_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "village_savanna"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "village_savanna_mason_chest",
+                                                                                "village_savanna_house_chest",
+                                                                                "village_savanna_butcher_chest",
+                                                                                "village_cartographer_chest",
+                                                                                "village_weaponsmith_chest",
+                                                                                "village_tannery_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "village_snowy"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "village_snowy_shepherd_chest",
+                                                                                "village_snowy_house_chest",
+                                                                                "village_snowy_armorer_chest",
+                                                                                "village_cartographer_chest",
+                                                                                "village_weaponsmith_chest",
+                                                                                "village_tannery_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "village_taiga"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "village_taiga_fletcher_chest",
+                                                                                "village_taiga_house_chest",
+                                                                                "village_desert_taiga_toolsmith_chest",
+                                                                                "village_cartographer_chest",
+                                                                                "village_weaponsmith_chest",
+                                                                                "village_tannery_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "woodland_mansion"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "woodland_mansion_chest",
+                                                                                "woodland_mansion_allium_room_chest",
+                                                                                "woodland_mansion_sapling_farm_chest",
+                                                                                "woodland_mansion_fake_end_portal_room_chest",
+                                                                                "woodland_mansion_tree_chopping_room_chest"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "const": "end_city"
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "enum": [
+                                                                                "chest",
+                                                                                "item_frame"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "enum": [
+                                                                    "buried_treasure",
+                                                                    "fortress",
+                                                                    "igloo",
+                                                                    "mineshaft",
+                                                                    "monster_room",
+                                                                    "ocean_monument",
+                                                                    "pillager_outpost",
+                                                                    "ruined_portal"
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "chestName": {
+                                                                            "const": "chest"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "if": {
+                                                        "properties": {
+                                                            "structure": {
+                                                                "enum": [
+                                                                    "swamp_hut",
+                                                                    "nether_fossil"
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "chests": {
+                                                                "maxItems": 0
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
                                         }
                                     }
                                 }
