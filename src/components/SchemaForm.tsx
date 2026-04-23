@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import {
     Dialog,
@@ -49,6 +49,19 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
     const itemProperties = itemSchema.properties || {}
 
     const [pendingIsBlock, setPendingIsBlock] = useState<boolean | null>(null)
+    const [structureToChest, setStructureToChest] = useState<
+        Record<string, string[]>
+    >({})
+
+    // Load structure to chest mapping
+    useEffect(() => {
+        fetch('/data/structure_to_chest.json')
+            .then((res) => res.json())
+            .then((json) => setStructureToChest(json.structureToChestMapping))
+            .catch((err) =>
+                console.error('Failed to load structure to chest mapping', err)
+            )
+    }, [])
 
     // -----------------------------------------------------------------------
     // Data mutation
@@ -59,19 +72,24 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
         value?: SchemaPropertyValue
     ) => {
         const newData = JSON.parse(JSON.stringify(data)) as ItemData
-        let current: ItemData | SchemaPropertyValue[] = newData
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let current: any = newData
         for (let i = 0; i < path.length - 1; i++) {
             const segment = path[i] as string | number
             const nextSegment = path[i + 1]
             if (current[segment] === undefined || current[segment] === null) {
                 current[segment] = typeof nextSegment === 'number' ? [] : {}
             }
-            current = current[segment] as ItemData | SchemaPropertyValue[]
+            current = current[segment]
         }
 
         const lastKey = path[path.length - 1] as string
         if (value === undefined || value === null || value === '') {
-            delete current[lastKey]
+            if (Array.isArray(current)) {
+                current.splice(Number(lastKey), 1)
+            } else {
+                delete current[lastKey]
+            }
         } else {
             current[lastKey] = value
         }
@@ -94,9 +112,13 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
      */
     const handleIsBlockChange = (checked: boolean) => {
         const sectionToDelete = checked ? 'item' : 'block'
+        const sectionData = data?.[sectionToDelete]
         const hasExistingData =
-            data?.[sectionToDelete] &&
-            Object.keys(data[sectionToDelete]).length > 0
+            sectionData &&
+            typeof sectionData === 'object' &&
+            !Array.isArray(sectionData) &&
+            Object.keys(sectionData).length > 0
+
         if (hasExistingData) {
             setPendingIsBlock(checked)
         } else {
@@ -161,7 +183,8 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
         if (!properties) return null
         return Object.entries(properties).map(([key, rawFieldSchema]) => {
             const path: (string | number)[] = [...currentPath, key]
-            const value = currentData ? currentData[key] : undefined
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const value = currentData ? (currentData as any)[key] : undefined
             const fieldSchema = resolveSchema(rawFieldSchema)
             const label = getLabel(key, fieldSchema)
             // A field is optional when the parent schema explicitly lists required
@@ -171,18 +194,52 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
 
             // Enum (single-select)
             if (fieldSchema.enum) {
+                let options = fieldSchema.enum as string[]
+
+                // Custom filtering for chests based on selected structure
+                // path: ['obtaining', 'generatedLoot', 'structures', structIdx, 'chests', chestIdx, 'chestName']
+                if (
+                    path[0] === 'obtaining' &&
+                    path[1] === 'generatedLoot' &&
+                    path[2] === 'structures' &&
+                    path[4] === 'chests' &&
+                    path[6] === 'chestName'
+                ) {
+                    const structIdx = path[3] as number
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const obtaining = data.obtaining as any
+                    const selectedStructure = obtaining?.generatedLoot
+                        ?.structures?.[structIdx]?.structure as
+                        | string
+                        | undefined
+                    if (
+                        selectedStructure &&
+                        structureToChest[selectedStructure]
+                    ) {
+                        const allowedChests =
+                            structureToChest[selectedStructure]
+                        options = options.filter((opt) =>
+                            allowedChests.includes(opt)
+                        )
+                    }
+                }
+
                 return (
                     <div key={path.join('.')}>
                         <EnumSelect
                             label={label}
-                            options={fieldSchema.enum}
-                            value={value}
+                            options={options}
+                            value={(value as string) || ''}
                             onChange={(val) => handleFieldChange(path, val)}
                             triggerClassName={validationRingClass(getErr(path))}
                         />
                         {getErr(path) && (
                             <p
-                                className={`text-[11px] leading-tight mt-1 ${getErr(path)!.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
+                                className={`text-[11px] leading-tight mt-1 ${
+                                    getErr(path)!.severity === 'error'
+                                        ? 'text-red-400'
+                                        : 'text-yellow-500/90'
+                                }`}
                             >
                                 {getErr(path)!.message}
                             </p>
@@ -198,13 +255,18 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     <div key={path.join('.')}>
                         <QuantitySpecField
                             label={label}
-                            value={value}
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            value={value as any}
                             onChange={(val) => handleFieldChange(path, val)}
                             validationEntry={err}
                         />
                         {err && (
                             <p
-                                className={`text-[11px] leading-tight mt-1 ${err.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
+                                className={`text-[11px] leading-tight mt-1 ${
+                                    err.severity === 'error'
+                                        ? 'text-red-400'
+                                        : 'text-yellow-500/90'
+                                }`}
                             >
                                 {err.message}
                             </p>
@@ -215,20 +277,26 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
 
             // Array of enums (multi-select)
             if (fieldSchema.type === 'array' && fieldSchema.items?.enum) {
-                const options = [...(fieldSchema.items.enum || [])].sort()
+                const options = [
+                    ...(fieldSchema.items.enum as string[]),
+                ].sort()
                 const err = getErr(path)
                 return (
                     <div key={path.join('.')} className="md:col-span-2">
                         <MultiEnumSelect
                             label={label}
                             options={options}
-                            value={value}
+                            value={(value as string[]) || []}
                             onChange={(val) => handleFieldChange(path, val)}
                             triggerClassName={validationRingClass(err)}
                         />
                         {err && (
                             <p
-                                className={`text-[11px] leading-tight mt-1 ${err.severity === 'error' ? 'text-red-400' : 'text-yellow-500/90'}`}
+                                className={`text-[11px] leading-tight mt-1 ${
+                                    err.severity === 'error'
+                                        ? 'text-red-400'
+                                        : 'text-yellow-500/90'
+                                }`}
                             >
                                 {err.message}
                             </p>
@@ -243,7 +311,8 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     <StringField
                         key={path.join('.')}
                         path={path}
-                        value={value}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        value={value as any}
                         label={label}
                         fieldSchema={fieldSchema}
                         onFieldChange={handleFieldChange}
@@ -261,7 +330,8 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     <NumberField
                         key={path.join('.')}
                         path={path}
-                        value={value}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        value={value as any}
                         label={label}
                         fieldSchema={fieldSchema}
                         onFieldChange={handleFieldChange}
@@ -278,7 +348,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     <BooleanField
                         key={path.join('.')}
                         path={path}
-                        value={value}
+                        value={value as boolean}
                         label={label}
                         onCheckedChange={
                             isIsBlockField
@@ -300,7 +370,8 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     <ArrayField
                         key={path.join('.')}
                         path={path}
-                        value={value}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        value={value as any[]}
                         label={label}
                         fieldSchema={fieldSchema}
                         onFieldChange={handleFieldChange}
@@ -317,7 +388,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     <ObjectField
                         key={path.join('.')}
                         path={path}
-                        value={value}
+                        value={value as ItemData}
                         label={label}
                         fieldSchema={fieldSchema}
                         isOptional={isOptional}

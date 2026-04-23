@@ -57,7 +57,7 @@ export function StringField({
                 <Label htmlFor={id}>{label}</Label>
                 <Textarea
                     id={id}
-                    value={value ?? ''}
+                    value={(value as string) ?? ''}
                     onChange={(e) =>
                         onFieldChange(
                             path,
@@ -77,7 +77,7 @@ export function StringField({
             <Label htmlFor={id}>{label}</Label>
             <Input
                 id={id}
-                value={value ?? ''}
+                value={(value as string) ?? ''}
                 onChange={(e) =>
                     onFieldChange(
                         path,

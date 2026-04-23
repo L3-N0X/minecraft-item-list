@@ -130,12 +130,13 @@ export function ArrayField({
                                 </Button>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {renderChildren(
-                                    itemFieldSchema.properties,
-                                    itemPath,
-                                    (item as ItemData) ?? {},
-                                    itemParentRequired
-                                )}
+                                {itemFieldSchema?.properties &&
+                                    renderChildren(
+                                        itemFieldSchema.properties,
+                                        itemPath,
+                                        (item as ItemData) ?? {},
+                                        itemParentRequired
+                                    )}
                             </div>
                         </div>
                     )

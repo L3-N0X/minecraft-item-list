@@ -63,7 +63,7 @@ export function NumberField({
                 type="number"
                 min={min}
                 max={max}
-                value={value ?? ''}
+                value={(value as string | number) ?? ''}
                 className={ring}
                 onChange={(e) => {
                     const raw = e.target.value
