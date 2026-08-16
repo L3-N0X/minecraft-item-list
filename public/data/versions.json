@@ -1,20 +1,25 @@
 {
-    "defaultVersion": "26.1.2",
+    "defaultVersion": "26.2",
     "versions": [
+        {
+            "id": "26.2",
+            "label": "26.2",
+            "order": 1
+        },
         {
             "id": "26.1.2",
             "label": "26.1.2",
-            "order": 1
+            "order": 2
         },
         {
             "id": "26.1-snapshot-10",
             "label": "26.1-snapshot-10",
-            "order": 2
+            "order": 3
         },
         {
             "id": "26.1-snapshot-9",
             "label": "26.1-snapshot-9",
-            "order": 3
+            "order": 4
         }
     ]
 }
