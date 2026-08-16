@@ -1,0 +1,15 @@
+{
+    "defaultVersion": "26.1-snapshot-10",
+    "versions": [
+        {
+            "id": "26.1-snapshot-10",
+            "label": "26.1-snapshot-10",
+            "order": 1
+        },
+        {
+            "id": "26.1-snapshot-9",
+            "label": "26.1-snapshot-9",
+            "order": 2
+        }
+    ]
+}
