@@ -55,7 +55,9 @@ import { Label } from '@/components/ui/label'
 import {
     Select,
     SelectContent,
+    SelectGroup,
     SelectItem,
+    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
@@ -68,6 +70,333 @@ import {
     type TableRowData,
 } from '@/components/bulkeditor/utils'
 import { YesNoCell } from '@/components/bulkeditor/YesNoCell'
+import defaultSchema from '../schema/schema.json'
+import { MultiEnumSelect } from '@/components/schema-fields/MultiEnumSelect'
+
+export type FieldGroup =
+    | 'General'
+    | 'Obtaining & Recipes'
+    | 'Natural Generation'
+    | 'Block Properties'
+    | 'Item & Combat'
+    | 'Breaking'
+    | 'Edible'
+    | 'Fuel & Compostable'
+
+export const FIELD_GROUPS: FieldGroup[] = [
+    'General',
+    'Obtaining & Recipes',
+    'Natural Generation',
+    'Block Properties',
+    'Item & Combat',
+    'Breaking',
+    'Edible',
+    'Fuel & Compostable',
+]
+
+export interface EditableFieldConfig {
+    label: string
+    group: FieldGroup
+    path: string[]
+    type: 'boolean' | 'number' | 'string' | 'enum' | 'multi-enum'
+    options?: string[]
+    dynamicKey?:
+        | 'biome'
+        | 'dimension'
+        | 'structure'
+        | 'tool'
+        | 'specialTool'
+        | 'recipeShape'
+}
+
+export type FieldOperation =
+    | 'set'
+    | 'add'
+    | 'multiply'
+    | 'toggle'
+    | 'remove'
+    | 'clear'
+
+export const BASE_EDITABLE_FIELDS: EditableFieldConfig[] = [
+    // General
+    { label: 'Is Block', group: 'General', path: ['isBlock'], type: 'boolean' },
+    {
+        label: 'Renewable',
+        group: 'General',
+        path: ['renewable'],
+        type: 'enum',
+        options: ['yes', 'no', 'vault_only'],
+    },
+    {
+        label: 'Stack Size',
+        group: 'General',
+        path: ['stackSize'],
+        type: 'enum',
+        options: ['1', '16', '64'],
+    },
+    {
+        label: 'Rarity Tier',
+        group: 'General',
+        path: ['rarityTier'],
+        type: 'enum',
+        options: ['common', 'uncommon', 'rare', 'epic'],
+    },
+    {
+        label: 'Crafting Ingredient',
+        group: 'General',
+        path: ['craftingIngredient'],
+        type: 'boolean',
+    },
+    {
+        label: 'Is Armor Trim Material',
+        group: 'General',
+        path: ['isArmorTrimMaterial'],
+        type: 'boolean',
+    },
+
+    // Obtaining & Recipes
+    {
+        label: 'Obtainability',
+        group: 'Obtaining & Recipes',
+        path: ['obtaining', 'obtainability'],
+        type: 'enum',
+        options: ['survival', 'creative_only', 'unobtainable'],
+    },
+    {
+        label: 'Craftable',
+        group: 'Obtaining & Recipes',
+        path: ['obtaining', 'craftable'],
+        type: 'boolean',
+    },
+    {
+        label: 'Difficulty to Obtain',
+        group: 'Obtaining & Recipes',
+        path: ['obtaining', 'difficultyToObtain'],
+        type: 'number',
+    },
+    {
+        label: 'Recipe Shape',
+        group: 'Obtaining & Recipes',
+        path: ['obtaining', 'recipeShape'],
+        type: 'multi-enum',
+        dynamicKey: 'recipeShape',
+    },
+
+    // Natural Generation
+    {
+        label: 'Nat. Gen Biomes',
+        group: 'Natural Generation',
+        path: ['obtaining', 'naturalGeneration', 'biomes'],
+        type: 'multi-enum',
+        dynamicKey: 'biome',
+    },
+    {
+        label: 'Nat. Gen Dimensions',
+        group: 'Natural Generation',
+        path: ['obtaining', 'naturalGeneration', 'dimensions'],
+        type: 'multi-enum',
+        dynamicKey: 'dimension',
+    },
+    {
+        label: 'Nat. Gen Structures',
+        group: 'Natural Generation',
+        path: [
+            'obtaining',
+            'naturalGeneration',
+            'partOfStructures',
+            'structures',
+        ],
+        type: 'multi-enum',
+        dynamicKey: 'structure',
+    },
+    {
+        label: 'Nat. Gen Comment',
+        group: 'Natural Generation',
+        path: ['obtaining', 'naturalGeneration', 'comment'],
+        type: 'string',
+    },
+    {
+        label: 'Nat. Gen Structure Comment',
+        group: 'Natural Generation',
+        path: [
+            'obtaining',
+            'naturalGeneration',
+            'partOfStructures',
+            'comment',
+        ],
+        type: 'string',
+    },
+
+    // Block Properties
+    {
+        label: 'Blast Resistance',
+        group: 'Block Properties',
+        path: ['block', 'blastResistance'],
+        type: 'number',
+    },
+    {
+        label: 'Hardness',
+        group: 'Block Properties',
+        path: ['block', 'hardness'],
+        type: 'number',
+    },
+    {
+        label: 'Luminous Level',
+        group: 'Block Properties',
+        path: ['block', 'luminousLevel'],
+        type: 'number',
+    },
+    {
+        label: 'Transparency',
+        group: 'Block Properties',
+        path: ['block', 'transparency'],
+        type: 'enum',
+        options: ['transparent', 'partial', 'opaque'],
+    },
+    {
+        label: 'Waterloggable',
+        group: 'Block Properties',
+        path: ['block', 'waterloggable'],
+        type: 'boolean',
+    },
+    {
+        label: 'Is Block Entity',
+        group: 'Block Properties',
+        path: ['block', 'isBlockEntity'],
+        type: 'boolean',
+    },
+    {
+        label: 'Best Tools',
+        group: 'Block Properties',
+        path: ['block', 'bestTools'],
+        type: 'multi-enum',
+        dynamicKey: 'tool',
+    },
+    {
+        label: 'Flammable',
+        group: 'Block Properties',
+        path: ['block', 'flammable'],
+        type: 'boolean',
+    },
+    {
+        label: 'Catches Fire',
+        group: 'Block Properties',
+        path: ['block', 'catchesFire'],
+        type: 'boolean',
+    },
+
+    // Item & Combat
+    {
+        label: 'Durability',
+        group: 'Item & Combat',
+        path: ['item', 'durability'],
+        type: 'number',
+    },
+    {
+        label: 'Enchantability',
+        group: 'Item & Combat',
+        path: ['item', 'enchantability'],
+        type: 'number',
+    },
+    {
+        label: 'Fire Resistant',
+        group: 'Item & Combat',
+        path: ['item', 'fireResistant'],
+        type: 'boolean',
+    },
+    {
+        label: 'Attack Damage',
+        group: 'Item & Combat',
+        path: ['item', 'damage', 'attackDamage'],
+        type: 'number',
+    },
+    {
+        label: 'Attack Speed',
+        group: 'Item & Combat',
+        path: ['item', 'damage', 'attackSpeed'],
+        type: 'number',
+    },
+    {
+        label: 'Armor Points',
+        group: 'Item & Combat',
+        path: ['item', 'armor', 'armorPoints'],
+        type: 'number',
+    },
+    {
+        label: 'Armor Toughness',
+        group: 'Item & Combat',
+        path: ['item', 'armor', 'toughness'],
+        type: 'number',
+    },
+    {
+        label: 'Knockback Resistance',
+        group: 'Item & Combat',
+        path: ['item', 'armor', 'knockbackResistance'],
+        type: 'number',
+    },
+
+    // Breaking
+    {
+        label: 'Requires Silk Touch',
+        group: 'Breaking',
+        path: ['breaking', 'requiresSilkTouch'],
+        type: 'enum',
+        options: ['yes', 'no', 'silk_touch_only'],
+    },
+    {
+        label: 'Instant Breaking',
+        group: 'Breaking',
+        path: ['breaking', 'instantBreaking'],
+        type: 'boolean',
+    },
+    {
+        label: 'Requires Special Tools to Drop',
+        group: 'Breaking',
+        path: ['breaking', 'requiresSpecialToolsToDrop'],
+        type: 'multi-enum',
+        dynamicKey: 'specialTool',
+    },
+
+    // Edible
+    {
+        label: 'Hunger',
+        group: 'Edible',
+        path: ['edible', 'hunger'],
+        type: 'number',
+    },
+    {
+        label: 'Saturation',
+        group: 'Edible',
+        path: ['edible', 'saturation'],
+        type: 'number',
+    },
+    {
+        label: 'Always Consumable',
+        group: 'Edible',
+        path: ['edible', 'alwaysConsumable'],
+        type: 'boolean',
+    },
+
+    // Fuel & Compostable
+    {
+        label: 'Compost Chance',
+        group: 'Fuel & Compostable',
+        path: ['compostable', 'chance'],
+        type: 'number',
+    },
+    {
+        label: 'Fuel Burn Time (seconds)',
+        group: 'Fuel & Compostable',
+        path: ['fuel', 'burnTimeSeconds'],
+        type: 'number',
+    },
+    {
+        label: 'Fuel Smelted Items',
+        group: 'Fuel & Compostable',
+        path: ['fuel', 'numberOfItemsSmelted'],
+        type: 'number',
+    },
+]
 
 function getChestTypeColor(chestName: string): string {
     // Order matters - check ominous variants first before regular variants
@@ -112,6 +441,226 @@ function getChestTypeColor(chestName: string): string {
     return 'border-gray-500 text-gray-700 dark:border-gray-400 dark:text-gray-400'
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function cleanEmptyObjects(obj: Record<string, any>) {
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return
+    for (const key of Object.keys(obj)) {
+        const val = obj[key]
+        if (val && typeof val === 'object' && !Array.isArray(val)) {
+            cleanEmptyObjects(val)
+            if (Object.keys(val).length === 0 && key !== 'obtaining') {
+                delete obj[key]
+            }
+        }
+    }
+}
+
+export function applyPatch(
+    itemData: ItemData,
+    field: EditableFieldConfig,
+    op: FieldOperation,
+    val: string,
+    multiVal: string[] = []
+): ItemData {
+    const newData = JSON.parse(JSON.stringify(itemData)) as ItemData
+    const path = field.path
+
+    // Special handling for root isBlock switch
+    if (path.length === 1 && path[0] === 'isBlock') {
+        let newIsBlock = newData.isBlock
+        if (op === 'set') {
+            newIsBlock = val === 'true'
+        } else if (op === 'toggle') {
+            newIsBlock = !newData.isBlock
+        }
+        newData.isBlock = newIsBlock
+        if (newIsBlock) {
+            delete newData.item
+        } else {
+            delete newData.block
+        }
+        return newData
+    }
+
+    if (op === 'clear') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let current: any = newData
+        for (let i = 0; i < path.length - 1; i++) {
+            const key = path[i]
+            if (
+                key === undefined ||
+                current[key] === undefined ||
+                current[key] === null
+            ) {
+                return newData
+            }
+            current = current[key]
+        }
+        const lastKey = path[path.length - 1]
+        if (
+            lastKey !== undefined &&
+            typeof current === 'object' &&
+            current !== null
+        ) {
+            delete current[lastKey]
+        }
+
+        // Natural generation cleanup
+        if (newData.obtaining?.naturalGeneration) {
+            const natGen = newData.obtaining.naturalGeneration
+            if (
+                natGen.partOfStructures &&
+                (!natGen.partOfStructures.structures ||
+                    natGen.partOfStructures.structures.length === 0) &&
+                !natGen.partOfStructures.comment
+            ) {
+                delete natGen.partOfStructures
+            }
+            const hasBiomes = !!(natGen.biomes && natGen.biomes.length > 0)
+            const hasStructures = !!(
+                natGen.partOfStructures?.structures &&
+                natGen.partOfStructures.structures.length > 0
+            )
+            const hasComment = !!natGen.comment
+            const hasStructComment = !!natGen.partOfStructures?.comment
+            const isEditingDimensions =
+                field.path.join('.') === 'obtaining.naturalGeneration.dimensions'
+            if (!hasBiomes && !hasStructures && !hasComment && !hasStructComment) {
+                if (
+                    !isEditingDimensions ||
+                    !natGen.dimensions ||
+                    natGen.dimensions.length === 0
+                ) {
+                    delete newData.obtaining.naturalGeneration
+                }
+            }
+        }
+
+        cleanEmptyObjects(newData)
+        return newData
+    }
+
+    // For other operations, traverse and construct intermediate objects
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let current: any = newData
+    for (let i = 0; i < path.length - 1; i++) {
+        const key = path[i]
+        if (key === undefined) continue
+        if (
+            !current[key] ||
+            typeof current[key] !== 'object' ||
+            Array.isArray(current[key])
+        ) {
+            current[key] = {}
+        }
+        current = current[key]
+    }
+
+    const lastKey = path[path.length - 1]
+    if (lastKey === undefined) return newData
+    const currentValue = current[lastKey]
+
+    if (field.type === 'multi-enum') {
+        const existingArray: string[] = Array.isArray(currentValue)
+            ? [...currentValue]
+            : []
+        if (op === 'set') {
+            if (multiVal.length > 0) {
+                current[lastKey] = [...multiVal]
+            } else {
+                delete current[lastKey]
+            }
+        } else if (op === 'add') {
+            const combined = Array.from(
+                new Set([...existingArray, ...multiVal])
+            )
+            if (combined.length > 0) {
+                current[lastKey] = combined
+            }
+        } else if (op === 'remove') {
+            const filtered = existingArray.filter(
+                (item) => !multiVal.includes(item)
+            )
+            if (filtered.length > 0) {
+                current[lastKey] = filtered
+            } else {
+                delete current[lastKey]
+            }
+        }
+    } else if (field.type === 'number') {
+        const numVal = Number(val)
+        if (op === 'set') {
+            current[lastKey] = numVal
+        } else if (op === 'add') {
+            current[lastKey] = (Number(currentValue) || 0) + numVal
+        } else if (op === 'multiply') {
+            current[lastKey] = (Number(currentValue) || 0) * numVal
+        }
+    } else if (field.type === 'boolean') {
+        if (op === 'set') {
+            current[lastKey] = val === 'true'
+        } else if (op === 'toggle') {
+            current[lastKey] = !currentValue
+        }
+    } else if (field.type === 'enum') {
+        if (op === 'set') {
+            if (lastKey === 'stackSize') {
+                current[lastKey] = Number(val)
+            } else {
+                current[lastKey] = val
+            }
+        }
+    } else if (field.type === 'string') {
+        if (op === 'set') {
+            if (val.trim() === '') {
+                delete current[lastKey]
+            } else {
+                current[lastKey] = val
+            }
+        }
+    }
+
+    // Natural generation schema integrity
+    if (newData.obtaining?.naturalGeneration) {
+        const natGen = newData.obtaining.naturalGeneration
+        const hasBiomes = natGen.biomes && natGen.biomes.length > 0
+        const hasStructures =
+            natGen.partOfStructures?.structures &&
+            natGen.partOfStructures.structures.length > 0
+        const hasComment = !!natGen.comment
+        const hasStructComment = !!natGen.partOfStructures?.comment
+
+        if (natGen.partOfStructures) {
+            if (
+                !natGen.partOfStructures.structures ||
+                natGen.partOfStructures.structures.length === 0
+            ) {
+                if (!natGen.partOfStructures.comment) {
+                    delete natGen.partOfStructures
+                }
+            }
+        }
+
+        const isEditingDimensions =
+            field.path.join('.') === 'obtaining.naturalGeneration.dimensions'
+
+        if (hasBiomes || hasStructures || hasComment || hasStructComment) {
+            if (!natGen.dimensions || natGen.dimensions.length === 0) {
+                natGen.dimensions = ['overworld']
+            }
+        } else if (
+            !isEditingDimensions ||
+            !natGen.dimensions ||
+            natGen.dimensions.length === 0
+        ) {
+            delete newData.obtaining.naturalGeneration
+        }
+    }
+
+    cleanEmptyObjects(newData)
+    return newData
+}
+
 export function BulkEditorView() {
     const {
         items,
@@ -122,6 +671,7 @@ export function BulkEditorView() {
         bulkEditorState,
         setBulkEditorState,
         isStaticMode,
+        schema,
     } = useData()
     const navigate = useNavigate()
 
@@ -206,66 +756,64 @@ export function BulkEditorView() {
 
     // Field Update State
     const [selectedFieldKey, setSelectedFieldKey] = useState<string>('')
-    const [fieldOperation, setFieldOperation] = useState<
-        'set' | 'add' | 'multiply' | 'toggle'
-    >('set')
+    const [fieldOperation, setFieldOperation] = useState<FieldOperation>('set')
     const [bulkFieldValue, setBulkFieldValue] = useState<string>('')
+    const [bulkMultiValues, setBulkMultiValues] = useState<string[]>([])
 
-    const EDITABLE_FIELDS = [
-        { label: 'Is Block', path: ['isBlock'], type: 'boolean' },
-        {
-            label: 'Renewable',
-            path: ['renewable'],
-            type: 'enum',
-            options: ['yes', 'no', 'vault_only'],
-        },
-        {
-            label: 'Stack Size',
-            path: ['stackSize'],
-            type: 'enum',
-            options: ['1', '16', '64'],
-        },
-        {
-            label: 'Rarity Tier',
-            path: ['rarityTier'],
-            type: 'enum',
-            options: ['common', 'uncommon', 'rare', 'epic'],
-        },
-        {
-            label: 'Obtainability',
-            path: ['obtaining', 'obtainability'],
-            type: 'enum',
-            options: ['survival', 'creative_only', 'unobtainable'],
-        },
-        {
-            label: 'Craftable',
-            path: ['obtaining', 'craftable'],
-            type: 'boolean',
-        },
-        {
-            label: 'Difficulty to Obtain',
-            path: ['obtaining', 'difficultyToObtain'],
-            type: 'number',
-        },
-        {
-            label: 'Requires Silk Touch',
-            path: ['breaking', 'requiresSilkTouch'],
-            type: 'enum',
-            options: ['yes', 'no', 'silk_touch_only'],
-        },
-        {
-            label: 'Instant Breaking',
-            path: ['breaking', 'instantBreaking'],
-            type: 'boolean',
-        },
-        {
-            label: 'Fire Resistant',
-            path: ['item', 'fireResistant'],
-            type: 'boolean',
-        },
-        { label: 'Hunger', path: ['edible', 'hunger'], type: 'number' },
-        { label: 'Saturation', path: ['edible', 'saturation'], type: 'number' },
-    ]
+    const editableFields = useMemo(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const activeSchema: any = schema || defaultSchema
+        const biomes: string[] =
+            activeSchema?.definitions?.biomeEnum?.enum ??
+            defaultSchema.definitions.biomeEnum.enum
+        const dimensions: string[] =
+            activeSchema?.definitions?.dimensionEnum?.enum ??
+            defaultSchema.definitions.dimensionEnum.enum
+        const structures: string[] =
+            activeSchema?.definitions?.structureEnum?.enum ??
+            defaultSchema.definitions.structureEnum.enum
+        const tools: string[] =
+            activeSchema?.definitions?.toolEnum?.enum ??
+            defaultSchema.definitions.toolEnum.enum
+        const specialTools: string[] =
+            activeSchema?.definitions?.specialToolEnum?.enum ??
+            defaultSchema.definitions.specialToolEnum.enum
+        const recipeShapes: string[] = [
+            '2x2_crafting',
+            '3x3_crafting',
+            'crafting_special',
+            'crafting_repair',
+            'crafting_tippedarrow',
+            'crafting_firework_star',
+            'smelting',
+            'stonecutting',
+            'smoking',
+            'blasting',
+            'campfire_cooking',
+        ]
+
+        return BASE_EDITABLE_FIELDS.map((field) => {
+            if (field.dynamicKey === 'biome') {
+                return { ...field, options: biomes }
+            }
+            if (field.dynamicKey === 'dimension') {
+                return { ...field, options: dimensions }
+            }
+            if (field.dynamicKey === 'structure') {
+                return { ...field, options: structures }
+            }
+            if (field.dynamicKey === 'tool') {
+                return { ...field, options: tools }
+            }
+            if (field.dynamicKey === 'specialTool') {
+                return { ...field, options: specialTools }
+            }
+            if (field.dynamicKey === 'recipeShape') {
+                return { ...field, options: recipeShapes }
+            }
+            return field
+        })
+    }, [schema])
 
     const data = useMemo<TableRowData[]>(() => {
         return itemIds.map((id) => {
@@ -1794,56 +2342,9 @@ export function BulkEditorView() {
     const selectedRows = table.getFilteredSelectedRowModel().rows
     const selectedCount = selectedRows.length
 
-    const selectedField = EDITABLE_FIELDS.find(
+    const selectedField = editableFields.find(
         (f) => f.label === selectedFieldKey
     )
-
-    const applyPatch = (
-        itemData: ItemData,
-        path: string[],
-        op: string,
-        val: string | number | boolean
-    ) => {
-        const newData = JSON.parse(JSON.stringify(itemData))
-        let current = newData
-        for (let i = 0; i < path.length - 1; i++) {
-            const key = path[i]
-            if (key === undefined) continue
-            if (!current[key]) current[key] = {}
-            current = current[key]
-        }
-
-        const lastKey = path[path.length - 1]
-        if (lastKey === undefined) {
-            console.error('Invalid path for patching:', path)
-            return newData
-        }
-        const currentValue = current[lastKey]
-
-        if (op === 'set') {
-            if (selectedField?.type === 'number') {
-                current[lastKey] = Number(val)
-            } else if (selectedField?.type === 'boolean') {
-                current[lastKey] = val === 'true'
-            } else if (
-                selectedField?.type === 'enum' &&
-                selectedField.path[selectedField.path.length - 1] ===
-                    'stackSize'
-            ) {
-                current[lastKey] = Number(val)
-            } else {
-                current[lastKey] = val
-            }
-        } else if (op === 'add') {
-            current[lastKey] = (Number(currentValue) || 0) + Number(val)
-        } else if (op === 'multiply') {
-            current[lastKey] = (Number(currentValue) || 0) * Number(val)
-        } else if (op === 'toggle') {
-            current[lastKey] = !currentValue
-        }
-
-        return newData
-    }
 
     const handleBulkAction = async () => {
         const selectedItemIds = selectedRows.map((row) => row.original.id)
@@ -1873,9 +2374,10 @@ export function BulkEditorView() {
 
                 const newData = applyPatch(
                     item,
-                    selectedField.path,
+                    selectedField,
                     fieldOperation,
-                    bulkFieldValue
+                    bulkFieldValue,
+                    bulkMultiValues
                 )
                 await updateItem(id, newData, getItemCategories(id))
             }
@@ -1886,6 +2388,7 @@ export function BulkEditorView() {
         setNewCategoryName('')
         setSelectedFieldKey('')
         setBulkFieldValue('')
+        setBulkMultiValues([])
     }
 
     const toggleAllFiltered = () => {
@@ -2327,7 +2830,7 @@ export function BulkEditorView() {
             </Dialog>
 
             <Dialog open={isBulkDialogOpen} onOpenChange={setIsBulkDialogOpen}>
-                <DialogContent className="max-w-md">
+                <DialogContent className="sm:max-w-lg">
                     <DialogHeader>
                         <DialogTitle>Bulk Edit Items</DialogTitle>
                         <DialogDescription>
@@ -2430,21 +2933,55 @@ export function BulkEditorView() {
                                     <Label>Select Field</Label>
                                     <Select
                                         value={selectedFieldKey}
-                                        onValueChange={setSelectedFieldKey}
+                                        onValueChange={(val) => {
+                                            setSelectedFieldKey(val)
+                                            setFieldOperation('set')
+                                            setBulkFieldValue('')
+                                            setBulkMultiValues([])
+                                        }}
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select field to edit" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <ScrollArea className="h-64">
-                                                {EDITABLE_FIELDS.map((f) => (
-                                                    <SelectItem
-                                                        key={f.label}
-                                                        value={f.label}
-                                                    >
-                                                        {f.label}
-                                                    </SelectItem>
-                                                ))}
+                                            <ScrollArea className="h-72">
+                                                {FIELD_GROUPS.map((group) => {
+                                                    const groupFields =
+                                                        editableFields.filter(
+                                                            (f) =>
+                                                                f.group ===
+                                                                group
+                                                        )
+                                                    if (
+                                                        groupFields.length === 0
+                                                    )
+                                                        return null
+                                                    return (
+                                                        <SelectGroup
+                                                            key={group}
+                                                        >
+                                                            <SelectLabel className="font-semibold text-foreground/80">
+                                                                {group}
+                                                            </SelectLabel>
+                                                            {groupFields.map(
+                                                                (f) => (
+                                                                    <SelectItem
+                                                                        key={
+                                                                            f.label
+                                                                        }
+                                                                        value={
+                                                                            f.label
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            f.label
+                                                                        }
+                                                                    </SelectItem>
+                                                                )
+                                                            )}
+                                                        </SelectGroup>
+                                                    )
+                                                })}
                                             </ScrollArea>
                                         </SelectContent>
                                     </Select>
@@ -2456,11 +2993,7 @@ export function BulkEditorView() {
                                         <Select
                                             value={fieldOperation}
                                             onValueChange={(
-                                                v:
-                                                    | 'set'
-                                                    | 'add'
-                                                    | 'multiply'
-                                                    | 'toggle'
+                                                v: FieldOperation
                                             ) => setFieldOperation(v)}
                                         >
                                             <SelectTrigger>
@@ -2468,8 +3001,22 @@ export function BulkEditorView() {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="set">
-                                                    Set Value
+                                                    {selectedField.type ===
+                                                    'multi-enum'
+                                                        ? 'Set Values (Replace)'
+                                                        : 'Set Value'}
                                                 </SelectItem>
+                                                {selectedField.type ===
+                                                    'multi-enum' && (
+                                                    <>
+                                                        <SelectItem value="add">
+                                                            Add Values
+                                                        </SelectItem>
+                                                        <SelectItem value="remove">
+                                                            Remove Values
+                                                        </SelectItem>
+                                                    </>
+                                                )}
                                                 {selectedField.type ===
                                                     'number' && (
                                                     <>
@@ -2487,16 +3034,39 @@ export function BulkEditorView() {
                                                         Toggle
                                                     </SelectItem>
                                                 )}
+                                                <SelectItem value="clear">
+                                                    {selectedField.type ===
+                                                    'multi-enum'
+                                                        ? 'Clear All'
+                                                        : 'Clear / Delete Value'}
+                                                </SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </div>
                                 )}
 
                                 {selectedField &&
-                                    fieldOperation !== 'toggle' && (
+                                    fieldOperation !== 'toggle' &&
+                                    fieldOperation !== 'clear' && (
                                         <div className="flex flex-col gap-2">
                                             <Label>Value</Label>
-                                            {selectedField.type === 'enum' ? (
+                                            {selectedField.type ===
+                                            'multi-enum' ? (
+                                                <MultiEnumSelect
+                                                    label={selectedField.label}
+                                                    options={
+                                                        selectedField.options ||
+                                                        []
+                                                    }
+                                                    value={bulkMultiValues}
+                                                    onChange={(val) =>
+                                                        setBulkMultiValues(
+                                                            val || []
+                                                        )
+                                                    }
+                                                />
+                                            ) : selectedField.type ===
+                                              'enum' ? (
                                                 <Select
                                                     value={bulkFieldValue}
                                                     onValueChange={
@@ -2507,16 +3077,22 @@ export function BulkEditorView() {
                                                         <SelectValue placeholder="Select value" />
                                                     </SelectTrigger>
                                                     <SelectContent>
-                                                        {selectedField.options?.map(
-                                                            (opt) => (
-                                                                <SelectItem
-                                                                    key={opt}
-                                                                    value={opt}
-                                                                >
-                                                                    {opt}
-                                                                </SelectItem>
-                                                            )
-                                                        )}
+                                                        <ScrollArea className="h-60">
+                                                            {selectedField.options?.map(
+                                                                (opt) => (
+                                                                    <SelectItem
+                                                                        key={
+                                                                            opt
+                                                                        }
+                                                                        value={
+                                                                            opt
+                                                                        }
+                                                                    >
+                                                                        {opt}
+                                                                    </SelectItem>
+                                                                )
+                                                            )}
+                                                        </ScrollArea>
                                                     </SelectContent>
                                                 </Select>
                                             ) : selectedField.type ===
@@ -2547,6 +3123,12 @@ export function BulkEditorView() {
                                                             ? 'number'
                                                             : 'text'
                                                     }
+                                                    step={
+                                                        selectedField.type ===
+                                                        'number'
+                                                            ? 'any'
+                                                            : undefined
+                                                    }
                                                     placeholder="Enter value..."
                                                     value={bulkFieldValue}
                                                     onChange={(e) =>
@@ -2556,6 +3138,30 @@ export function BulkEditorView() {
                                                     }
                                                 />
                                             )}
+                                        </div>
+                                    )}
+
+                                {selectedField &&
+                                    fieldOperation === 'clear' && (
+                                        <div className="rounded-md bg-muted/50 p-3 text-xs text-muted-foreground">
+                                            This will remove or clear the{' '}
+                                            <strong>
+                                                {selectedField.label}
+                                            </strong>{' '}
+                                            property from all {selectedCount}{' '}
+                                            selected items.
+                                        </div>
+                                    )}
+
+                                {selectedField &&
+                                    fieldOperation === 'toggle' && (
+                                        <div className="rounded-md bg-muted/50 p-3 text-xs text-muted-foreground">
+                                            This will toggle the{' '}
+                                            <strong>
+                                                {selectedField.label}
+                                            </strong>{' '}
+                                            boolean state for each of the{' '}
+                                            {selectedCount} selected items.
                                         </div>
                                     )}
                             </>
@@ -2575,10 +3181,13 @@ export function BulkEditorView() {
                                     ? (bulkActionType === 'existing' &&
                                           !targetCategory) ||
                                       (bulkActionType === 'new' &&
-                                          !newCategoryName)
+                                          !newCategoryName.trim())
                                     : !selectedField ||
                                       (fieldOperation !== 'toggle' &&
-                                          !bulkFieldValue)
+                                          fieldOperation !== 'clear' &&
+                                          (selectedField.type === 'multi-enum'
+                                              ? bulkMultiValues.length === 0
+                                              : !bulkFieldValue))
                             }
                         >
                             Apply to {selectedCount} items

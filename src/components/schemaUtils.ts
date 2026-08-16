@@ -1,14 +1,17 @@
-import schema from '../schema/schema.json'
+import defaultSchema from '../schema/schema.json'
 import type { JsonSchemaProperty } from './schema-types'
 
 /**
  * Resolves a JSON Schema $ref string (only supports local "#/..." references)
- * against the root schema object.
+ * against the provided root schema object (or default schema).
  */
-export function resolveRef(ref: string): JsonSchemaProperty | undefined {
+export function resolveRef(
+    ref: string,
+    rootSchema?: unknown
+): JsonSchemaProperty | undefined {
     if (ref.startsWith('#/')) {
         const parts = ref.slice(2).split('/')
-        let current: unknown = schema
+        let current: unknown = rootSchema ?? defaultSchema
         for (const part of parts) {
             if (typeof current !== 'object' || current === null)
                 return undefined
@@ -45,15 +48,18 @@ export function isQuantitySpec(fieldSchema: JsonSchemaProperty): boolean {
  * references against the root schema.
  */
 export function resolveSchema(
-    fieldSchema: JsonSchemaProperty
+    fieldSchema: JsonSchemaProperty,
+    rootSchema?: unknown
 ): JsonSchemaProperty {
     if (fieldSchema?.$ref) {
-        return resolveRef(fieldSchema.$ref) ?? fieldSchema
+        return resolveRef(fieldSchema.$ref, rootSchema) ?? fieldSchema
     }
     if (fieldSchema?.items?.$ref) {
         return {
             ...fieldSchema,
-            items: resolveRef(fieldSchema.items.$ref) ?? fieldSchema.items,
+            items:
+                resolveRef(fieldSchema.items.$ref, rootSchema) ??
+                fieldSchema.items,
         }
     }
     return fieldSchema

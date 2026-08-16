@@ -51,10 +51,16 @@ def parse_args() -> argparse.Namespace:
         help="Rename the original file to <filename>.bak before overwriting.",
     )
     parser.add_argument(
+        "--version",
+        default=None,
+        metavar="VERSION",
+        help="Minecraft version folder (e.g. 1.21.4). Overrides default input path.",
+    )
+    parser.add_argument(
         "--input",
-        default=os.path.join("public", "data", "items.json"),
+        default=None,
         metavar="PATH",
-        help="Path to the source items.json (default: public/data/items.json).",
+        help="Path to the source items.json.",
     )
     parser.add_argument(
         "--output",
@@ -96,8 +102,14 @@ def migrate(data: dict) -> tuple[dict, list[str]]:
 def main() -> None:
     args = parse_args()
 
-    input_path: str = args.input
-    output_path: str = args.output if args.output is not None else args.input
+    if args.input:
+        input_path: str = args.input
+    elif args.version:
+        input_path: str = os.path.join("public", "data", "versions", args.version, "items.json")
+    else:
+        input_path: str = os.path.join("public", "data", "versions", "26.1-snapshot-10", "items.json")
+
+    output_path: str = args.output if args.output is not None else input_path
 
     # ── Load ──────────────────────────────────────────────────────────────────
     if not os.path.isfile(input_path):

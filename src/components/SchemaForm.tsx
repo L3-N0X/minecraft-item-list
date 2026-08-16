@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
     Dialog,
@@ -12,8 +12,9 @@ import { resolveSchema, isQuantitySpec, getLabel } from './schemaUtils'
 import {
     validateItemData,
     validationRingClass,
-    itemSchema,
+    getItemSchema,
 } from './schemaValidation'
+import { useData } from '../context/DataContext'
 import type { ValidationEntry, ValidationMap } from './schemaValidation'
 import {
     EnumSelect,
@@ -46,22 +47,15 @@ interface SchemaFormProps {
 // ---------------------------------------------------------------------------
 
 export function SchemaForm({ data, onChange }: SchemaFormProps) {
-    const itemProperties = itemSchema.properties || {}
+    const { schema: activeSchema, structureToChest } = useData()
+
+    const currentItemSchema = useMemo(
+        () => getItemSchema(activeSchema),
+        [activeSchema]
+    )
+    const itemProperties = currentItemSchema.properties || {}
 
     const [pendingIsBlock, setPendingIsBlock] = useState<boolean | null>(null)
-    const [structureToChest, setStructureToChest] = useState<
-        Record<string, string[]>
-    >({})
-
-    // Load structure to chest mapping
-    useEffect(() => {
-        fetch('/data/structure_to_chest.json')
-            .then((res) => res.json())
-            .then((json) => setStructureToChest(json.structureToChestMapping))
-            .catch((err) =>
-                console.error('Failed to load structure to chest mapping', err)
-            )
-    }, [])
 
     // -----------------------------------------------------------------------
     // Data mutation
@@ -142,8 +136,8 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
     // -----------------------------------------------------------------------
 
     const validationErrors: ValidationMap = useMemo(
-        () => validateItemData(data),
-        [data]
+        () => validateItemData(data, undefined, activeSchema),
+        [data, activeSchema]
     )
 
     /** Direct error at exactly this path. */
@@ -433,7 +427,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     visibleItemProperties,
                     [],
                     data,
-                    itemSchema.required as string[]
+                    currentItemSchema.required as string[]
                 )}
             </div>
 

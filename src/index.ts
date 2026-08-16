@@ -7,8 +7,14 @@ const isDev = process.env.NODE_ENV !== 'production'
 const itemsLock = new AsyncLock()
 const categoriesLock = new AsyncLock()
 
-const ITEMS_PATH = 'public/data/items.json'
-const CATEGORIES_PATH = 'public/data/categories.json'
+function getVersionPaths(version?: string | null) {
+    const activeVersion = version || '26.1-snapshot-10'
+    const versionDir = path.join(process.cwd(), 'public', 'data', 'versions', activeVersion)
+    return {
+        itemsPath: path.join(versionDir, 'items.json'),
+        categoriesPath: path.join(versionDir, 'categories.json'),
+    }
+}
 
 interface ItemsJsonData {
     items?: Record<string, Record<string, unknown>>
@@ -23,6 +29,7 @@ type ItemUpdatePayload = {
     id: string
     data: Record<string, unknown>
     categories?: string[]
+    version?: string
 }
 
 const server = serve({
@@ -72,11 +79,14 @@ const server = serve({
         },
 
         '/api/items/download': {
-            async GET() {
-                const file = Bun.file(ITEMS_PATH)
+            async GET(req) {
+                const url = new URL(req.url)
+                const version = url.searchParams.get('version')
+                const { itemsPath } = getVersionPaths(version)
+                const file = Bun.file(itemsPath)
                 return new Response(file, {
                     headers: {
-                        'Content-Disposition': `attachment; filename="${path.basename(ITEMS_PATH)}"`,
+                        'Content-Disposition': `attachment; filename="${path.basename(itemsPath)}"`,
                         'Content-Type': 'application/json',
                     },
                 })
@@ -84,33 +94,39 @@ const server = serve({
         },
 
         '/api/items': {
-            async GET() {
+            async GET(req) {
+                const url = new URL(req.url)
+                const version = url.searchParams.get('version')
+                const { itemsPath } = getVersionPaths(version)
                 return await itemsLock.runLocked(async () => {
-                    const data = await readJSON<ItemsJsonData>(ITEMS_PATH)
+                    const data = await readJSON<ItemsJsonData>(itemsPath)
                     return Response.json(data.items ?? data)
                 })
             },
             async POST(req) {
                 try {
+                    const url = new URL(req.url)
                     const body = (await req.json()) as ItemUpdatePayload
-                    const { id, data, categories: itemCategories } = body
+                    const { id, data, categories: itemCategories, version: bodyVersion } = body
+                    const version = bodyVersion || url.searchParams.get('version')
+                    const { itemsPath, categoriesPath } = getVersionPaths(version)
 
                     await itemsLock.runLocked(async () => {
                         const jsonData =
-                            await readJSON<ItemsJsonData>(ITEMS_PATH)
+                            await readJSON<ItemsJsonData>(itemsPath)
                         if (jsonData.items !== undefined) {
                             jsonData.items[id] = data
                         } else {
                             ;(jsonData as Record<string, unknown>)[id] = data
                         }
-                        await safeWriteJSON(ITEMS_PATH, jsonData)
+                        await safeWriteJSON(itemsPath, jsonData)
                     })
 
                     if (itemCategories) {
                         await categoriesLock.runLocked(async () => {
                             const categories =
                                 await readJSON<CategoriesJsonData>(
-                                    CATEGORIES_PATH
+                                    categoriesPath
                                 )
                             for (const catName in categories) {
                                 if (categories[catName]) {
@@ -135,7 +151,7 @@ const server = serve({
                                     delete categories[catName]
                                 }
                             }
-                            await safeWriteJSON(CATEGORIES_PATH, categories)
+                            await safeWriteJSON(categoriesPath, categories)
                         })
                     }
 
@@ -157,18 +173,24 @@ const server = serve({
         },
 
         '/api/categories': {
-            async GET() {
+            async GET(req) {
+                const url = new URL(req.url)
+                const version = url.searchParams.get('version')
+                const { categoriesPath } = getVersionPaths(version)
                 return await categoriesLock.runLocked(async () => {
                     const data =
-                        await readJSON<CategoriesJsonData>(CATEGORIES_PATH)
+                        await readJSON<CategoriesJsonData>(categoriesPath)
                     return Response.json(data)
                 })
             },
             async POST(req) {
                 try {
+                    const url = new URL(req.url)
+                    const version = url.searchParams.get('version')
+                    const { categoriesPath } = getVersionPaths(version)
                     const categories = await req.json()
                     await categoriesLock.runLocked(async () => {
-                        await safeWriteJSON(CATEGORIES_PATH, categories)
+                        await safeWriteJSON(categoriesPath, categories)
                     })
                     return Response.json({ success: true })
                 } catch (error) {

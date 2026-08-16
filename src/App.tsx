@@ -28,12 +28,20 @@ import {
     SheetTrigger,
 } from '@/components/ui/sheet'
 
+import { VersionSelect } from './components/VersionSelect'
+
 function Layout({ children }: { children: React.ReactNode }) {
-    const { isStaticMode } = useData()
+    const { isStaticMode, activeVersion } = useData()
     const location = useLocation()
 
     const downloadJson = () => {
-        window.location.href = getAssetPath('/data/items.json')
+        if (isStaticMode) {
+            window.location.href = getAssetPath(
+                `/data/versions/${activeVersion}/items.json`
+            )
+        } else {
+            window.location.href = `/api/items/download?version=${activeVersion}`
+        }
     }
 
     const isActive = (path: string) => location.pathname === path
@@ -84,34 +92,37 @@ function Layout({ children }: { children: React.ReactNode }) {
                                             Minecraft Item List
                                         </SheetTitle>
                                     </SheetHeader>
-                                    <div className="flex flex-col gap-2 p-4">
-                                        {navLinks
-                                            .filter((link) => link.show)
-                                            .map((link) => (
-                                                <SheetClose
-                                                    asChild
-                                                    key={link.to}
-                                                >
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="sm"
+                                    <div className="flex flex-col gap-4 p-4">
+                                        <VersionSelect className="w-full" />
+                                        <div className="flex flex-col gap-2">
+                                            {navLinks
+                                                .filter((link) => link.show)
+                                                .map((link) => (
+                                                    <SheetClose
                                                         asChild
-                                                        className={cn(
-                                                            'justify-start h-11 px-4',
-                                                            isActive(link.to) &&
-                                                                'bg-primary/10 text-primary hover:bg-primary/20'
-                                                        )}
+                                                        key={link.to}
                                                     >
-                                                        <Link
-                                                            to={link.to}
-                                                            className="flex items-center gap-3"
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="sm"
+                                                            asChild
+                                                            className={cn(
+                                                                'justify-start h-11 px-4',
+                                                                isActive(link.to) &&
+                                                                    'bg-primary/10 text-primary hover:bg-primary/20'
+                                                            )}
                                                         >
-                                                            <link.icon className="h-5 w-5" />
-                                                            {link.label}
-                                                        </Link>
-                                                    </Button>
-                                                </SheetClose>
-                                            ))}
+                                                            <Link
+                                                                to={link.to}
+                                                                className="flex items-center gap-3"
+                                                            >
+                                                                <link.icon className="h-5 w-5" />
+                                                                {link.label}
+                                                            </Link>
+                                                        </Button>
+                                                    </SheetClose>
+                                                ))}
+                                        </div>
                                     </div>
                                 </SheetContent>
                             </Sheet>
@@ -158,7 +169,8 @@ function Layout({ children }: { children: React.ReactNode }) {
                                 ))}
                         </div>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 md:gap-3">
+                        <VersionSelect className="hidden sm:flex w-[160px]" />
                         <ThemeToggle />
                         <Button
                             variant="default"

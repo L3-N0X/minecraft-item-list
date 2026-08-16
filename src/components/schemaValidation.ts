@@ -1,5 +1,5 @@
 import Ajv from 'ajv'
-import schema from '../schema/schema.json'
+import defaultSchema from '../schema/schema.json'
 import type { JsonSchemaProperty, ItemData } from './schema-types'
 
 // ---------------------------------------------------------------------------
@@ -22,33 +22,47 @@ export type ValidationMap = Map<string, ValidationEntry>
 const ajv = new Ajv({ allErrors: true, strict: false })
 
 interface SchemaRoot {
-    definitions: Record<string, JsonSchemaProperty>
-    properties: {
-        items: {
-            additionalProperties: JsonSchemaProperty
+    definitions?: Record<string, JsonSchemaProperty>
+    properties?: {
+        items?: {
+            additionalProperties?: {
+                properties?: Record<string, JsonSchemaProperty>
+                required?: string[]
+            }
         }
     }
 }
 
-const typedSchema = schema as unknown as SchemaRoot
-
-/**
- * The item sub-schema with root-level `definitions` merged in so that $ref
- * entries like "#/definitions/stackSizeEnum" resolve correctly (# refers to
- * the compiled schema root).
- */
-export const itemSchema: {
+export function getItemSchema(rawSchema?: unknown): {
     definitions: Record<string, JsonSchemaProperty>
     properties: Record<string, JsonSchemaProperty>
     required?: string[]
-} = {
-    definitions: typedSchema.definitions,
-    properties:
-        typedSchema.properties.items.additionalProperties.properties ?? {},
-    required: typedSchema.properties.items.additionalProperties.required,
+} {
+    const typedSchema = (rawSchema ?? defaultSchema) as unknown as SchemaRoot
+    return {
+        definitions: typedSchema.definitions ?? {},
+        properties:
+            typedSchema.properties?.items?.additionalProperties?.properties ?? {},
+        required: typedSchema.properties?.items?.additionalProperties?.required,
+    }
 }
 
-const validateAjv = ajv.compile(itemSchema)
+export const itemSchema = getItemSchema(defaultSchema)
+
+// Cache AJV compiled functions per schema object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const validatorCache = new WeakMap<object, any>()
+
+function getValidator(rawSchema?: unknown) {
+    const s = (typeof rawSchema === 'object' && rawSchema !== null ? rawSchema : defaultSchema) as object
+    let validator = validatorCache.get(s)
+    if (!validator) {
+        const schemaToCompile = getItemSchema(s)
+        validator = ajv.compile(schemaToCompile)
+        validatorCache.set(s, validator)
+    }
+    return validator
+}
 
 // ---------------------------------------------------------------------------
 // Validation helpers
@@ -66,9 +80,11 @@ interface RequiredParams {
 /** Runs AJV against `data` and returns a map of dot-path → ValidationEntry. */
 export function validateItemData(
     data: ItemData,
-    debugLabel?: string
+    debugLabel?: string,
+    rawSchema?: unknown
 ): ValidationMap {
     const errors: ValidationMap = new Map()
+    const validateAjv = getValidator(rawSchema)
     validateAjv(data ?? {})
     for (const err of validateAjv.errors ?? []) {
         let path: string
@@ -107,8 +123,12 @@ export function validateItemData(
  * Convenience helper: returns just the number of validation errors for an item.
  * Accepts an optional label that will be forwarded to the debug log.
  */
-export function countItemErrors(data: ItemData, debugLabel?: string): number {
-    return validateItemData(data, debugLabel).size
+export function countItemErrors(
+    data: ItemData,
+    debugLabel?: string,
+    rawSchema?: unknown
+): number {
+    return validateItemData(data, debugLabel, rawSchema).size
 }
 
 // ---------------------------------------------------------------------------

@@ -265,9 +265,14 @@ def parse_args() -> argparse.Namespace:
         )
     )
     parser.add_argument(
+        "--version",
+        default=None,
+        help="Minecraft version folder (e.g. 1.21.4). Overrides default input path.",
+    )
+    parser.add_argument(
         "--input",
-        default=os.path.join("public", "data", "items.json"),
-        help="Path to items.json (default: public/data/items.json).",
+        default=None,
+        help="Path to items.json.",
     )
     parser.add_argument(
         "--textures-dir",
@@ -317,7 +322,12 @@ def main() -> None:
     if args.lightness_weight < 0 or args.chroma_weight < 0 or args.size_weight < 0:
         raise ValueError("Scoring weights must be non-negative.")
 
-    items_path = Path(args.input)
+    if args.input:
+        items_path = Path(args.input)
+    elif args.version:
+        items_path = Path("public") / "data" / "versions" / args.version / "items.json"
+    else:
+        items_path = Path("public") / "data" / "versions" / "26.1-snapshot-10" / "items.json"
     textures_dir = Path(args.textures_dir)
 
     if not items_path.exists():

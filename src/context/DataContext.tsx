@@ -20,6 +20,13 @@ import {
 
 import { getDataUrl } from '../lib/utils'
 
+import {
+    fetchVersionConfig,
+    validateVersion,
+    type VersionOption,
+    type VersionConfig,
+} from '../lib/versions'
+
 export type { MinecraftItemData as ItemData }
 export type CategoriesData = Record<string, string[]>
 
@@ -45,15 +52,65 @@ interface DataContextType {
     isStaticMode: boolean
     bulkEditorState: BulkEditorState
     setBulkEditorState: React.Dispatch<React.SetStateAction<BulkEditorState>>
+    activeVersion: string
+    availableVersions: VersionOption[]
+    setActiveVersion: (version: string) => void
+    schema: Record<string, unknown> | null
+    structureToChest: Record<string, string[]>
+    tags: Record<string, unknown> | null
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined)
 
+function getUrlVersion(): string | null {
+    if (typeof window === 'undefined') return null
+    const params = new URLSearchParams(window.location.search)
+    return params.get('v')
+}
+
 export function DataProvider({ children }: { children: React.ReactNode }) {
     const isStaticMode = import.meta.env.VITE_STATIC_MODE === 'true'
+    const [versionConfig, setVersionConfig] = useState<VersionConfig | null>(null)
+    const [availableVersions, setAvailableVersions] = useState<VersionOption[]>([])
+    const [activeVersion, setActiveVersionState] = useState<string>('26.1-snapshot-10')
+    
     const [items, setItems] = useState<Record<string, ItemData>>({})
     const [categories, setCategories] = useState<CategoriesData>({})
+    const [schema, setSchema] = useState<Record<string, unknown> | null>(null)
+    const [structureToChest, setStructureToChest] = useState<Record<string, string[]>>({})
+    const [tags, setTags] = useState<Record<string, unknown> | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+
+    // Load initial version config
+    useEffect(() => {
+        fetchVersionConfig()
+            .then((config) => {
+                setVersionConfig(config)
+                setAvailableVersions(config.versions)
+                const initialUrlVer = getUrlVersion()
+                const initialStorageVer = localStorage.getItem('mc_version')
+                const validVersion = validateVersion(
+                    initialUrlVer || initialStorageVer,
+                    config
+                )
+                setActiveVersionState(validVersion)
+            })
+            .catch((err) => {
+                console.error('Failed to load version config:', err)
+            })
+    }, [])
+
+    const setActiveVersion = (version: string) => {
+        if (!versionConfig) return
+        const valid = validateVersion(version, versionConfig)
+        setActiveVersionState(valid)
+        localStorage.setItem('mc_version', valid)
+
+        // Update URL search parameter ?v=...
+        const url = new URL(window.location.href)
+        url.searchParams.set('v', valid)
+        window.history.pushState({}, '', url.toString())
+    }
 
     // Bulk Editor State persistence
     const [bulkEditorState, setBulkEditorState] = useState<BulkEditorState>({
@@ -102,24 +159,41 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     >({})
 
     useEffect(() => {
+        if (!activeVersion) return
+        setIsLoading(true)
+
+        const versionPath = `/data/versions/${activeVersion}`
         const itemsUrl = isStaticMode
-            ? getDataUrl('/data/items.json')
-            : '/api/items'
+            ? getDataUrl(`${versionPath}/items.json`)
+            : `/api/items?version=${activeVersion}`
         const categoriesUrl = isStaticMode
-            ? getDataUrl('/data/categories.json')
-            : '/api/categories'
+            ? getDataUrl(`${versionPath}/categories.json`)
+            : `/api/categories?version=${activeVersion}`
+        const schemaUrl = getDataUrl(`${versionPath}/schema.json`)
+        const structureToChestUrl = getDataUrl(`${versionPath}/structure_to_chest.json`)
+        const tagsUrl = getDataUrl(`${versionPath}/tags.json`)
 
         Promise.all([
             fetch(itemsUrl).then((res) => res.json()),
             fetch(categoriesUrl).then((res) => res.json()),
-        ]).then(([itemsData, categoriesData]) => {
-            // Normalize items data if it's wrapped in { items: ... }
-            const normalizedItems = itemsData.items ?? itemsData
-            setItems(normalizedItems)
-            setCategories(categoriesData)
-            setIsLoading(false)
-        })
-    }, [isStaticMode])
+            fetch(schemaUrl).then((res) => res.json()).catch(() => null),
+            fetch(structureToChestUrl).then((res) => res.json()).catch(() => null),
+            fetch(tagsUrl).then((res) => res.json()).catch(() => null),
+        ])
+            .then(([itemsData, categoriesData, schemaData, structData, tagsData]) => {
+                const normalizedItems = itemsData.items ?? itemsData
+                setItems(normalizedItems)
+                setCategories(categoriesData)
+                if (schemaData) setSchema(schemaData)
+                if (structData) setStructureToChest(structData.structureToChestMapping ?? structData)
+                if (tagsData) setTags(tagsData)
+                setIsLoading(false)
+            })
+            .catch((err) => {
+                console.error(`Failed to load data for version ${activeVersion}:`, err)
+                setIsLoading(false)
+            })
+    }, [activeVersion, isStaticMode])
 
     const itemIds = useMemo(() => Object.keys(items).sort(), [items])
 
@@ -180,6 +254,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
                         id,
                         data,
                         categories: itemCategories,
+                        version: activeVersion,
                     }),
                 })
                 if (!response.ok) throw new Error('Failed to save')
@@ -209,6 +284,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
                 isStaticMode,
                 bulkEditorState,
                 setBulkEditorState,
+                activeVersion,
+                availableVersions,
+                setActiveVersion,
+                schema,
+                structureToChest,
+                tags,
             }}
         >
             {children}

@@ -197,9 +197,11 @@ export function getItemTagMemberships(
 }
 
 export async function loadItemTagMap(
-    signal?: AbortSignal
+    signal?: AbortSignal,
+    version: string = '26.1-snapshot-10'
 ): Promise<ItemTagMap> {
-    const response = await fetch(TAGS_DATA_URL, {
+    const url = getDataUrl(`/data/versions/${version}/tags.json`)
+    const response = await fetch(url, {
         signal,
         headers: {
             Accept: 'application/json',
@@ -207,7 +209,7 @@ export async function loadItemTagMap(
     })
 
     if (!response.ok) {
-        throw new Error(`Failed to load tags (${response.status})`)
+        throw new Error(`Failed to load tags for version ${version} (${response.status})`)
     }
 
     return parseItemTagMap(await response.json())

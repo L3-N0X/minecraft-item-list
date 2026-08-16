@@ -2,12 +2,19 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { RecipeMap } from './types/recipes'
 
+const targetVersion =
+    process.argv.find((arg) => arg.startsWith('--version='))?.split('=')[1] ??
+    process.argv[2] ??
+    '26.1-snapshot-10'
+
 const SCRIPTS_DATA_DIR = path.join(process.cwd(), 'scripts', 'data')
 const RECIPES_JSON_PATH = path.join(SCRIPTS_DATA_DIR, 'recipes.json')
-const TAGS_JSON_PATH = path.join(SCRIPTS_DATA_DIR, 'tags.json')
 
-const PUBLIC_DATA_DIR = path.join(process.cwd(), 'public', 'data')
+const PUBLIC_DATA_DIR = path.join(process.cwd(), 'public', 'data', 'versions', targetVersion)
 const ITEMS_JSON_PATH = path.join(PUBLIC_DATA_DIR, 'items.json')
+const TAGS_JSON_PATH = fs.existsSync(path.join(PUBLIC_DATA_DIR, 'tags.json'))
+    ? path.join(PUBLIC_DATA_DIR, 'tags.json')
+    : path.join(SCRIPTS_DATA_DIR, 'tags.json')
 
 interface ItemData {
     obtaining?: {
