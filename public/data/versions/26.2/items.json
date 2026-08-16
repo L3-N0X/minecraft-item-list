@@ -1,5 +1,4 @@
 {
-    "$schema": "./../../src/schema/schema.json",
     "minecraft_version": "26.2",
     "items": {
         "acacia_boat": {
@@ -1584,7 +1583,7 @@
             "compostable": {
                 "chance": 0.65
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "edible": {
                 "hunger": 4,
@@ -1853,7 +1852,7 @@
             "renewable": "no",
             "stackSize": 64,
             "rarityTier": "uncommon",
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -3307,7 +3306,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#E30000",
-            "medianColor": "#E30000"
+            "medianColor": "#E30000",
+            "breaking": {}
         },
         "basalt": {
             "displayName": "Basalt",
@@ -3452,7 +3452,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#303030",
-            "medianColor": "#575757"
+            "medianColor": "#575757",
+            "breaking": {}
         },
         "bee_nest": {
             "displayName": "Bee Nest",
@@ -6795,8 +6796,8 @@
             "medianColor": "#6C5B45"
         },
         "bolt_armor_trim_smithing_template": {
-            "displayName": "Bolt Armor Trim",
-            "displayNameGerman": "Bolzen-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -9615,7 +9616,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#5C3E96",
-            "medianColor": "#7A5BB5"
+            "medianColor": "#7A5BB5",
+            "breaking": {}
         },
         "bundle": {
             "displayName": "Bundle",
@@ -10080,7 +10082,7 @@
             "renewable": "no",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "breaking": {
                 "requiresSilkTouch": "no",
@@ -10527,7 +10529,7 @@
             "compostable": {
                 "chance": 0.65
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -10700,7 +10702,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#72A98E",
-            "medianColor": "#83B097"
+            "medianColor": "#83B097",
+            "breaking": {}
         },
         "chainmail_boots": {
             "displayName": "Chainmail Boots",
@@ -12302,6 +12305,33 @@
             "mostDominantColor": "#9A7C47",
             "medianColor": "#9F844D"
         },
+        "chiseled_cinnabar": {
+            "displayName": "Chiseled Cinnabar",
+            "displayNameGerman": "Gemeißelter Zinnober",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "2x2_crafting",
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
         "chiseled_copper": {
             "displayName": "Chiseled Copper",
             "displayNameGerman": "Gemeißelter Kupferblock",
@@ -12790,6 +12820,33 @@
             "mostDominantColor": "#606060",
             "medianColor": "#787678"
         },
+        "chiseled_sulfur": {
+            "displayName": "Chiseled Sulfur",
+            "displayNameGerman": "Gemeißelter Schwefel",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "2x2_crafting",
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
         "chiseled_tuff": {
             "displayName": "Chiseled Tuff",
             "displayNameGerman": "Gemeißelter Tuffstein",
@@ -13013,7 +13070,208 @@
             "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#593159",
-            "medianColor": "#562E56"
+            "medianColor": "#562E56",
+            "breaking": {}
+        },
+        "cinnabar": {
+            "displayName": "Cinnabar",
+            "displayNameGerman": "Zinnober",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "cinnabar_brick_slab": {
+            "displayName": "Cinnabar Brick Slab",
+            "displayNameGerman": "Zinnoberziegelstufe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "cinnabar_brick_stairs": {
+            "displayName": "Cinnabar Brick Stairs",
+            "displayNameGerman": "Zinnoberziegeltreppe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "cinnabar_brick_wall": {
+            "displayName": "Cinnabar Brick Wall",
+            "displayNameGerman": "Zinnoberziegelmauer",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "cinnabar_bricks": {
+            "displayName": "Cinnabar Bricks",
+            "displayNameGerman": "Zinnoberziegel",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "2x2_crafting",
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "cinnabar_slab": {
+            "displayName": "Cinnabar Slab",
+            "displayNameGerman": "Zinnoberstufe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "cinnabar_stairs": {
+            "displayName": "Cinnabar Stairs",
+            "displayNameGerman": "Zinnobertreppe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "cinnabar_wall": {
+            "displayName": "Cinnabar Wall",
+            "displayNameGerman": "Zinnobermauer",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
         },
         "clay": {
             "displayName": "Clay",
@@ -13676,8 +13934,8 @@
             "medianColor": "#79553A"
         },
         "coast_armor_trim_smithing_template": {
-            "displayName": "Coast Armor Trim",
-            "displayNameGerman": "Küsten-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -14267,7 +14525,7 @@
         "cocoa_beans": {
             "displayName": "Cocoa Beans",
             "displayNameGerman": "Kakaobohnen",
-            "isBlock": true,
+            "isBlock": false,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -14311,7 +14569,8 @@
                 "chance": 0.65
             },
             "mostDominantColor": "#301A0A",
-            "medianColor": "#4C2B13"
+            "medianColor": "#4C2B13",
+            "item": {}
         },
         "cod": {
             "displayName": "Raw Cod",
@@ -14477,7 +14736,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#BE784C",
-            "medianColor": "#C58F66"
+            "medianColor": "#C58F66",
+            "breaking": {}
         },
         "command_block_minecart": {
             "displayName": "Minecart with Command Block",
@@ -17756,8 +18016,8 @@
             "medianColor": "#5A554E"
         },
         "creeper_banner_pattern": {
-            "displayName": "Creeper Banner Pattern",
-            "displayNameGerman": "Creeper-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -24079,7 +24339,7 @@
                 },
                 "difficultyToObtain": 8
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#1DB4AC",
             "medianColor": "#4ABEA7"
@@ -24328,7 +24588,7 @@
                 },
                 "difficultyToObtain": 10
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#18948C",
             "medianColor": "#199B91"
@@ -25688,8 +25948,8 @@
             "medianColor": "#4C6E3C"
         },
         "dune_armor_trim_smithing_template": {
-            "displayName": "Dune Armor Trim",
-            "displayNameGerman": "Dünen-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -26639,7 +26899,8 @@
             "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#39665B",
-            "medianColor": "#B5A876"
+            "medianColor": "#B5A876",
+            "breaking": {}
         },
         "end_rod": {
             "displayName": "End Rod",
@@ -27389,7 +27650,7 @@
                 "craftable": false,
                 "difficultyToObtain": 9
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#806C58",
             "medianColor": "#786A56"
@@ -27888,8 +28149,8 @@
             "medianColor": "#A88269"
         },
         "eye_armor_trim_smithing_template": {
-            "displayName": "Eye Armor Trim",
-            "displayNameGerman": "Augen-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -27972,7 +28233,8 @@
             "isArmorTrimMaterial": false,
             "craftingIngredient": false,
             "mostDominantColor": "#79563B",
-            "medianColor": "#795544"
+            "medianColor": "#795544",
+            "breaking": {}
         },
         "feather": {
             "displayName": "Feather",
@@ -28857,8 +29119,8 @@
             "medianColor": "#323232"
         },
         "flow_armor_trim_smithing_template": {
-            "displayName": "Flow Armor Trim",
-            "displayNameGerman": "Strom-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -28894,8 +29156,8 @@
             "medianColor": "#6682C4"
         },
         "flow_banner_pattern": {
-            "displayName": "Flow Banner Pattern",
-            "displayNameGerman": "Fluss-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -28959,8 +29221,8 @@
             "medianColor": "#5E372F"
         },
         "flower_banner_pattern": {
-            "displayName": "Flower Banner Pattern",
-            "displayNameGerman": "Blumen-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -29269,7 +29531,8 @@
             "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#84756D",
-            "medianColor": "#73635B"
+            "medianColor": "#73635B",
+            "breaking": {}
         },
         "furnace": {
             "displayName": "Furnace",
@@ -29414,7 +29677,7 @@
                 ],
                 "difficultyToObtain": 6
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#CAE9E9",
             "medianColor": "#9FC3C3"
@@ -29452,7 +29715,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -29714,8 +29977,8 @@
             "medianColor": "#BF711C"
         },
         "globe_banner_pattern": {
-            "displayName": "Globe Banner Pattern",
-            "displayNameGerman": "Globus-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -29746,7 +30009,7 @@
         "glow_berries": {
             "displayName": "Glow Berries",
             "displayNameGerman": "Leuchtbeeren",
-            "isBlock": true,
+            "isBlock": false,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -29830,7 +30093,8 @@
                 ],
                 "flammable": true,
                 "catchesFire": false
-            }
+            },
+            "item": {}
         },
         "glow_ink_sac": {
             "displayName": "Glow Ink Sac",
@@ -31541,7 +31805,7 @@
         },
         "golden_dandelion": {
             "displayName": "Golden Dandelion",
-            "displayNameGerman": "Goldlöwenzahn",
+            "displayNameGerman": "Goldener Löwenzahn",
             "isBlock": true,
             "block": {
                 "hardness": 0,
@@ -34617,8 +34881,8 @@
             "medianColor": "#505050"
         },
         "guster_banner_pattern": {
-            "displayName": "Guster Banner Pattern",
-            "displayNameGerman": "Windstoßer-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "breaking": {
                 "requiresSilkTouch": "no",
@@ -35416,8 +35680,8 @@
             "medianColor": "#623B0E"
         },
         "host_armor_trim_smithing_template": {
-            "displayName": "Host Armor Trim",
-            "displayNameGerman": "Gastwirt-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -38954,7 +39218,8 @@
             "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#1C171E",
-            "medianColor": "#261D2A"
+            "medianColor": "#261D2A",
+            "breaking": {}
         },
         "jukebox": {
             "displayName": "Jukebox",
@@ -40326,7 +40591,8 @@
                 "chance": 0.65
             },
             "mostDominantColor": "#385731",
-            "medianColor": "#385731"
+            "medianColor": "#385731",
+            "breaking": {}
         },
         "lava_bucket": {
             "displayName": "Lava Bucket",
@@ -41641,7 +41907,8 @@
             "isArmorTrimMaterial": false,
             "craftingIngredient": false,
             "mostDominantColor": "#FFFB1E",
-            "medianColor": "#FFFB1E"
+            "medianColor": "#FFFB1E",
+            "breaking": {}
         },
         "light_blue_banner": {
             "displayName": "Light Blue Banner",
@@ -46440,8 +46707,8 @@
             "medianColor": "#693B31"
         },
         "mojang_banner_pattern": {
-            "displayName": "Mojang Banner Pattern",
-            "displayNameGerman": "Mojang-Logo-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "renewable": "vault_only",
             "stackSize": 1,
@@ -47670,8 +47937,8 @@
             "medianColor": "#2F3D43"
         },
         "music_disc_blocks": {
-            "displayName": "Music Disc Blocks",
-            "displayNameGerman": "Schallplatte Blocks",
+            "displayName": "Music Disc blocks",
+            "displayNameGerman": "Schallplatte blocks",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -47697,9 +47964,24 @@
             "mostDominantColor": "#444444",
             "medianColor": "#404040"
         },
+        "music_disc_bounce": {
+            "displayName": "Music Disc Bounce",
+            "displayNameGerman": "Schallplatte Bounce",
+            "isBlock": false,
+            "stackSize": 1,
+            "rarityTier": "uncommon",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "item": {
+                "fireResistant": false
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
         "music_disc_cat": {
-            "displayName": "Music Disc Cat",
-            "displayNameGerman": "Schallplatte Cat",
+            "displayName": "Music Disc cat",
+            "displayNameGerman": "Schallplatte cat",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -47760,8 +48042,8 @@
             "medianColor": "#404040"
         },
         "music_disc_chirp": {
-            "displayName": "Music Disc Chirp",
-            "displayNameGerman": "Schallplatte Chirp",
+            "displayName": "Music Disc chirp",
+            "displayNameGerman": "Schallplatte chirp",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -47856,8 +48138,8 @@
             "medianColor": "#C26B4C"
         },
         "music_disc_far": {
-            "displayName": "Music Disc Far",
-            "displayNameGerman": "Schallplatte Far",
+            "displayName": "Music Disc far",
+            "displayNameGerman": "Schallplatte far",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -47913,7 +48195,7 @@
         },
         "music_disc_mall": {
             "displayName": "Music Disc mall",
-            "displayNameGerman": "Schallplatte Mall",
+            "displayNameGerman": "Schallplatte mall",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -47940,8 +48222,8 @@
             "medianColor": "#404040"
         },
         "music_disc_mellohi": {
-            "displayName": "Music Disc Mellohi",
-            "displayNameGerman": "Schallplatte Mellohi",
+            "displayName": "Music Disc mellohi",
+            "displayNameGerman": "Schallplatte mellohi",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -47968,8 +48250,8 @@
             "medianColor": "#404040"
         },
         "music_disc_otherside": {
-            "displayName": "Music Disc Otherside",
-            "displayNameGerman": "Schallplatte Otherside",
+            "displayName": "Music Disc otherside",
+            "displayNameGerman": "Schallplatte otherside",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -48056,8 +48338,8 @@
             "medianColor": "#723232"
         },
         "music_disc_precipice": {
-            "displayName": "Music Disc Precipie",
-            "displayNameGerman": "Schallplatte Precipie",
+            "displayName": "Music Disc Precipice",
+            "displayNameGerman": "Schallplatte Precipice",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -49218,7 +49500,7 @@
             "renewable": "no",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -49329,7 +49611,7 @@
             "renewable": "no",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -49412,7 +49694,7 @@
             "renewable": "no",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -49510,7 +49792,7 @@
                 "craftable": false,
                 "difficultyToObtain": 8
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -49630,7 +49912,7 @@
             "renewable": "no",
             "stackSize": 1,
             "rarityTier": "common",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "obtaining": {
                 "obtainability": "survival",
@@ -49749,7 +50031,7 @@
                 "craftable": false,
                 "difficultyToObtain": 8
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -49865,7 +50147,7 @@
                 "craftable": false,
                 "difficultyToObtain": 8
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -49926,7 +50208,7 @@
                 "craftable": false,
                 "difficultyToObtain": 8
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -50018,7 +50300,7 @@
                 "craftable": false,
                 "difficultyToObtain": 8
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -50090,8 +50372,8 @@
             "medianColor": "#4A2940"
         },
         "netherite_upgrade_smithing_template": {
-            "displayName": "Netherite Upgrade",
-            "displayNameGerman": "Netheritaufwertung",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -54641,8 +54923,8 @@
             "medianColor": "#E6716F"
         },
         "piglin_banner_pattern": {
-            "displayName": "Snout Banner Pattern",
-            "displayNameGerman": "Schnauzen-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -56699,6 +56981,111 @@
             "mostDominantColor": "#2E282C",
             "medianColor": "#312C36"
         },
+        "polished_cinnabar": {
+            "displayName": "Polished Cinnabar",
+            "displayNameGerman": "Polierter Zinnober",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "2x2_crafting",
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "polished_cinnabar_slab": {
+            "displayName": "Polished Cinnabar Slab",
+            "displayNameGerman": "Polierte Zinnoberstufe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "polished_cinnabar_stairs": {
+            "displayName": "Polished Cinnabar Stairs",
+            "displayNameGerman": "Polierte Zinnobertreppe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "polished_cinnabar_wall": {
+            "displayName": "Polished Cinnabar Wall",
+            "displayNameGerman": "Polierte Zinnobermauer",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
         "polished_deepslate": {
             "displayName": "Polished Deepslate",
             "displayNameGerman": "Polierter Tiefenschiefer",
@@ -57253,6 +57640,111 @@
             "mostDominantColor": "#9A6856",
             "medianColor": "#9F6B58"
         },
+        "polished_sulfur": {
+            "displayName": "Polished Sulfur",
+            "displayNameGerman": "Polierter Schwefel",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "2x2_crafting",
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "polished_sulfur_slab": {
+            "displayName": "Polished Sulfur Slab",
+            "displayNameGerman": "Polierte Schwefelstufe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "polished_sulfur_stairs": {
+            "displayName": "Polished Sulfur Stairs",
+            "displayNameGerman": "Polierte Schwefeltreppe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "polished_sulfur_wall": {
+            "displayName": "Polished Sulfur Wall",
+            "displayNameGerman": "Polierte Schwefelmauer",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
         "polished_tuff": {
             "displayName": "Polished Tuff",
             "displayNameGerman": "Polierter Tuffstein",
@@ -57806,6 +58298,31 @@
             },
             "mostDominantColor": "#DAAA52",
             "medianColor": "#AF843A"
+        },
+        "potent_sulfur": {
+            "displayName": "Potent Sulfur",
+            "displayNameGerman": "Reaktiver Schwefel",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
         },
         "potion": {
             "displayName": "Potion",
@@ -60225,8 +60742,8 @@
             "medianColor": "#78684D"
         },
         "raiser_armor_trim_smithing_template": {
-            "displayName": "Raiser Armor Trim",
-            "displayNameGerman": "Aufzieher-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -61974,7 +62491,7 @@
         "redstone": {
             "displayName": "Redstone Dust",
             "displayNameGerman": "Redstone-Staub",
-            "isBlock": true,
+            "isBlock": false,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -62141,7 +62658,8 @@
                 "instantBreaking": true
             },
             "mostDominantColor": "#370401",
-            "medianColor": "#5C0500"
+            "medianColor": "#5C0500",
+            "item": {}
         },
         "redstone_block": {
             "displayName": "Block of Redstone",
@@ -62453,7 +62971,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#664BB9",
-            "medianColor": "#7D66B9"
+            "medianColor": "#7D66B9",
+            "breaking": {}
         },
         "resin_block": {
             "displayName": "Block of Resin",
@@ -62818,8 +63337,8 @@
             "medianColor": "#211431"
         },
         "rib_armor_trim_smithing_template": {
-            "displayName": "Rib Armor Trim",
-            "displayNameGerman": "Rippen-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -64317,12 +64836,12 @@
             "medianColor": "#2F8200"
         },
         "sentry_armor_trim_smithing_template": {
-            "displayNameGerman": "Wachen-Rüstungsbesatz",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
             },
-            "displayName": "Sentry Armor Trim",
+            "displayName": "Smithing Template",
             "renewable": "vault_only",
             "stackSize": 64,
             "rarityTier": "uncommon",
@@ -64354,8 +64873,8 @@
             "medianColor": "#565C55"
         },
         "shaper_armor_trim_smithing_template": {
-            "displayName": "Shaper Armor Trim",
-            "displayNameGerman": "Gestalter-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -64873,8 +65392,8 @@
             "medianColor": "#775477"
         },
         "silence_armor_trim_smithing_template": {
-            "displayName": "Silence Armor Trim",
-            "displayNameGerman": "Stille-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -64996,7 +65515,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "uncommon",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -65032,8 +65551,8 @@
             "medianColor": "#939393"
         },
         "skull_banner_pattern": {
-            "displayName": "Skull Charge Banner Pattern",
-            "displayNameGerman": "Schädel-Bannervorlage",
+            "displayName": "Banner Pattern",
+            "displayNameGerman": "Bannervorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -66218,8 +66737,8 @@
             "medianColor": "#5E372F"
         },
         "snout_armor_trim_smithing_template": {
-            "displayName": "Snout Armor Trim",
-            "displayNameGerman": "Schnauzen-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -67000,8 +67519,8 @@
             "medianColor": "#322B26"
         },
         "spire_armor_trim_smithing_template": {
-            "displayName": "Spire Armor Trim",
-            "displayNameGerman": "Turmspitzen-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -69605,7 +70124,7 @@
         "string": {
             "displayName": "String",
             "displayNameGerman": "Faden",
-            "isBlock": true,
+            "isBlock": false,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -69801,7 +70320,8 @@
             "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#2F4547",
-            "medianColor": "#DBDBDB"
+            "medianColor": "#DBDBDB",
+            "item": {}
         },
         "stripped_acacia_log": {
             "displayName": "Stripped Acacia Log",
@@ -70783,7 +71303,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#1C181E",
-            "medianColor": "#261D2A"
+            "medianColor": "#261D2A",
+            "breaking": {}
         },
         "structure_void": {
             "displayName": "Structure Void",
@@ -70813,7 +71334,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#0F484E",
-            "medianColor": "#0F515C"
+            "medianColor": "#0F515C",
+            "breaking": {}
         },
         "sugar": {
             "displayName": "Sugar",
@@ -70897,6 +71419,262 @@
             },
             "mostDominantColor": "#559223",
             "medianColor": "#60A028"
+        },
+        "sulfur": {
+            "displayName": "Sulfur",
+            "displayNameGerman": "Schwefel",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "2x2_crafting",
+                    "3x3_crafting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_brick_slab": {
+            "displayName": "Sulfur Brick Slab",
+            "displayNameGerman": "Schwefelziegelstufe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_brick_stairs": {
+            "displayName": "Sulfur Brick Stairs",
+            "displayNameGerman": "Schwefelziegeltreppe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_brick_wall": {
+            "displayName": "Sulfur Brick Wall",
+            "displayNameGerman": "Schwefelziegelmauer",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_bricks": {
+            "displayName": "Sulfur Bricks",
+            "displayNameGerman": "Schwefelziegel",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "2x2_crafting",
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_cube_bucket": {
+            "displayName": "Bucket of Sulfur Cube",
+            "displayNameGerman": "Schwefelwürfeleimer",
+            "isBlock": false,
+            "stackSize": 1,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "item": {
+                "fireResistant": false
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_cube_spawn_egg": {
+            "displayName": "Sulfur Cube Spawn Egg",
+            "displayNameGerman": "Schwefelwürfel-Spawn-Ei",
+            "isBlock": false,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "item": {
+                "fireResistant": false
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_slab": {
+            "displayName": "Sulfur Slab",
+            "displayNameGerman": "Schwefelstufe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_spike": {
+            "displayName": "Sulfur Spike",
+            "displayNameGerman": "Schwefelspitze",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": true,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_stairs": {
+            "displayName": "Sulfur Stairs",
+            "displayNameGerman": "Schwefeltreppe",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
+        },
+        "sulfur_wall": {
+            "displayName": "Sulfur Wall",
+            "displayNameGerman": "Schwefelmauer",
+            "isBlock": true,
+            "stackSize": 64,
+            "rarityTier": "common",
+            "renewable": "unknown",
+            "craftingIngredient": false,
+            "isArmorTrimMaterial": false,
+            "block": {},
+            "breaking": {
+                "requiresSilkTouch": "no",
+                "instantBreaking": false
+            },
+            "obtaining": {
+                "obtainability": "survival",
+                "craftable": true,
+                "difficultyToObtain": -1,
+                "recipeShape": [
+                    "3x3_crafting",
+                    "stonecutting"
+                ]
+            },
+            "mostDominantColor": null,
+            "medianColor": null
         },
         "sunflower": {
             "displayName": "Sunflower",
@@ -71119,7 +71897,7 @@
         "sweet_berries": {
             "displayName": "Sweet Berries",
             "displayNameGerman": "Süßbeeren",
-            "isBlock": true,
+            "isBlock": false,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -71196,7 +71974,8 @@
                 "chance": 0.3
             },
             "mostDominantColor": "#401213",
-            "medianColor": "#451415"
+            "medianColor": "#451415",
+            "item": {}
         },
         "tadpole_bucket": {
             "displayName": "Bucket of Tadpole",
@@ -71506,7 +72285,8 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#9C6B3B",
-            "medianColor": "#BE8F4C"
+            "medianColor": "#BE8F4C",
+            "breaking": {}
         },
         "test_instance_block": {
             "displayName": "Test Instance Block",
@@ -71536,11 +72316,12 @@
                 "difficultyToObtain": -1
             },
             "mostDominantColor": "#605857",
-            "medianColor": "#625A59"
+            "medianColor": "#625A59",
+            "breaking": {}
         },
         "tide_armor_trim_smithing_template": {
-            "displayName": "Tide Armor Trim",
-            "displayNameGerman": "Gezeiten-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -71905,7 +72686,7 @@
         "torchflower_seeds": {
             "displayName": "Torchflower Seeds",
             "displayNameGerman": "Fackelliliensamen",
-            "isBlock": true,
+            "isBlock": false,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -71945,7 +72726,8 @@
                 "instantBreaking": false
             },
             "mostDominantColor": "#206644",
-            "medianColor": "#286E4A"
+            "medianColor": "#286E4A",
+            "item": {}
         },
         "totem_of_undying": {
             "displayName": "Totem of Undying",
@@ -72178,7 +72960,7 @@
                 ],
                 "difficultyToObtain": 10
             },
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {
@@ -73264,8 +74046,8 @@
             "medianColor": "#EBF9EC"
         },
         "vex_armor_trim_smithing_template": {
-            "displayName": "Vex Armor Trim",
-            "displayNameGerman": "Plagegeist-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -73451,8 +74233,8 @@
             "medianColor": "#64342B"
         },
         "ward_armor_trim_smithing_template": {
-            "displayName": "Ward Armor Trim",
-            "displayNameGerman": "Warthof-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -77150,8 +77932,8 @@
             "medianColor": "#669770"
         },
         "wayfinder_armor_trim_smithing_template": {
-            "displayName": "Wayfinder Armor Trim",
-            "displayNameGerman": "Wegfinder-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -77311,7 +78093,7 @@
                 "craftable": false,
                 "difficultyToObtain": 10
             },
-            "craftingIngredient": false,
+            "craftingIngredient": true,
             "isArmorTrimMaterial": false,
             "mostDominantColor": "#44695D",
             "medianColor": "#49715C"
@@ -77910,7 +78692,7 @@
         "wheat": {
             "displayName": "Wheat",
             "displayNameGerman": "Weizen",
-            "isBlock": false,
+            "isBlock": true,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -78098,12 +78880,14 @@
                 "fireResistant": false
             },
             "mostDominantColor": "#877139",
-            "medianColor": "#8D773D"
+            "medianColor": "#8D773D",
+            "block": {},
+            "breaking": {}
         },
         "wheat_seeds": {
             "displayName": "Wheat Seeds",
             "displayNameGerman": "Weizenkörner",
-            "isBlock": true,
+            "isBlock": false,
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "common",
@@ -78218,7 +79002,8 @@
                 "instantBreaking": false
             },
             "mostDominantColor": "#364E12",
-            "medianColor": "#2E7210"
+            "medianColor": "#2E7210",
+            "item": {}
         },
         "white_banner": {
             "displayName": "White Banner",
@@ -79076,8 +79861,8 @@
             "medianColor": "#E9ECEC"
         },
         "wild_armor_trim_smithing_template": {
-            "displayName": "Wild Armor Trim",
-            "displayNameGerman": "Wildnis-Rüstungsbesatz",
+            "displayName": "Smithing Template",
+            "displayNameGerman": "Schmiedevorlage",
             "isBlock": false,
             "item": {
                 "fireResistant": false
@@ -80839,7 +81624,7 @@
             "renewable": "yes",
             "stackSize": 64,
             "rarityTier": "uncommon",
-            "craftingIngredient": true,
+            "craftingIngredient": false,
             "isArmorTrimMaterial": false,
             "possibleEnchantments": [
                 {

@@ -12,6 +12,8 @@
         "preview": "vite preview",
         "start": "NODE_ENV=production bun src/index.ts",
         "init-data": "bun scripts/init-data.ts",
+        "update-crafting": "bun scripts/update-crafting-data.ts",
+        "update-schema": "bun scripts/update-schema.ts",
         "lint": "concurrently \"tsc --noEmit\" \"eslint src/ --cache\"",
         "format": "bunx prettier --write ."
     },

@@ -5,16 +5,56 @@ import type { RecipeMap } from './types/recipes'
 const targetVersion =
     process.argv.find((arg) => arg.startsWith('--version='))?.split('=')[1] ??
     process.argv[2] ??
-    '26.1-snapshot-10'
+    '26.2'
+
+const shouldFetch =
+    process.argv.includes('--fetch') ||
+    process.argv.includes('-f') ||
+    Boolean(process.argv.find((arg) => arg.startsWith('--version=')))
 
 const SCRIPTS_DATA_DIR = path.join(process.cwd(), 'scripts', 'data')
 const RECIPES_JSON_PATH = path.join(SCRIPTS_DATA_DIR, 'recipes.json')
 
-const PUBLIC_DATA_DIR = path.join(process.cwd(), 'public', 'data', 'versions', targetVersion)
+const PUBLIC_DATA_DIR = path.join(
+    process.cwd(),
+    'public',
+    'data',
+    'versions',
+    targetVersion
+)
 const ITEMS_JSON_PATH = path.join(PUBLIC_DATA_DIR, 'items.json')
-const TAGS_JSON_PATH = fs.existsSync(path.join(PUBLIC_DATA_DIR, 'tags.json'))
-    ? path.join(PUBLIC_DATA_DIR, 'tags.json')
-    : path.join(SCRIPTS_DATA_DIR, 'tags.json')
+const VERSION_TAGS_PATH = path.join(PUBLIC_DATA_DIR, 'tags.json')
+const SCRIPTS_TAGS_PATH = path.join(SCRIPTS_DATA_DIR, 'tags.json')
+const TAGS_JSON_PATH = fs.existsSync(VERSION_TAGS_PATH)
+    ? VERSION_TAGS_PATH
+    : SCRIPTS_TAGS_PATH
+
+const SUMMARY_URLS = [
+    `https://raw.githubusercontent.com/misode/mcmeta/${targetVersion}-summary`,
+    'https://raw.githubusercontent.com/misode/mcmeta/refs/heads/summary',
+]
+
+async function fetchJSON<T>(url: string): Promise<T | null> {
+    try {
+        const response = await fetch(url)
+        if (!response.ok) return null
+        return (await response.json()) as T
+    } catch {
+        return null
+    }
+}
+
+async function fetchWithFallback<T>(
+    baseUrls: string[],
+    subpath: string
+): Promise<T | null> {
+    for (const base of baseUrls) {
+        const url = `${base}/${subpath}`
+        const res = await fetchJSON<T>(url)
+        if (res !== null) return res
+    }
+    return null
+}
 
 interface ItemData {
     obtaining?: {
@@ -40,6 +80,51 @@ interface TagData {
 }
 
 async function updateCraftingData() {
+    if (!fs.existsSync(SCRIPTS_DATA_DIR)) {
+        fs.mkdirSync(SCRIPTS_DATA_DIR, { recursive: true })
+    }
+    if (!fs.existsSync(PUBLIC_DATA_DIR)) {
+        fs.mkdirSync(PUBLIC_DATA_DIR, { recursive: true })
+    }
+
+    if (shouldFetch || !fs.existsSync(RECIPES_JSON_PATH)) {
+        console.log(`Fetching latest recipes.json for ${targetVersion}...`)
+        const remoteRecipes = await fetchWithFallback<RecipeMap>(
+            SUMMARY_URLS,
+            'data/recipe/data.json'
+        )
+        if (remoteRecipes) {
+            fs.writeFileSync(
+                RECIPES_JSON_PATH,
+                JSON.stringify(remoteRecipes, null, 2)
+            )
+            console.log(
+                `Saved ${Object.keys(remoteRecipes).length} recipes to ${RECIPES_JSON_PATH}`
+            )
+        }
+    }
+
+    if (shouldFetch || !fs.existsSync(VERSION_TAGS_PATH)) {
+        console.log(`Fetching latest tags.json for ${targetVersion}...`)
+        const remoteTags = await fetchWithFallback<Record<string, TagData>>(
+            SUMMARY_URLS,
+            'data/tag/item/data.json'
+        )
+        if (remoteTags) {
+            fs.writeFileSync(
+                VERSION_TAGS_PATH,
+                JSON.stringify(remoteTags, null, 4)
+            )
+            fs.writeFileSync(
+                SCRIPTS_TAGS_PATH,
+                JSON.stringify(remoteTags, null, 2)
+            )
+            console.log(
+                `Saved ${Object.keys(remoteTags).length} item tags to ${VERSION_TAGS_PATH}`
+            )
+        }
+    }
+
     console.log('Reading recipes.json...')
     if (!fs.existsSync(RECIPES_JSON_PATH)) {
         throw new Error(`recipes.json not found at ${RECIPES_JSON_PATH}`)
@@ -49,11 +134,14 @@ async function updateCraftingData() {
     ) as RecipeMap
 
     console.log('Reading tags.json...')
-    if (!fs.existsSync(TAGS_JSON_PATH)) {
-        throw new Error(`tags.json not found at ${TAGS_JSON_PATH}`)
+    const currentTagsPath = fs.existsSync(VERSION_TAGS_PATH)
+        ? VERSION_TAGS_PATH
+        : TAGS_JSON_PATH
+    if (!fs.existsSync(currentTagsPath)) {
+        throw new Error(`tags.json not found at ${currentTagsPath}`)
     }
     const tagMap = JSON.parse(
-        fs.readFileSync(TAGS_JSON_PATH, 'utf-8')
+        fs.readFileSync(currentTagsPath, 'utf-8')
     ) as Record<string, TagData>
 
     // Resolve tags
@@ -269,45 +357,45 @@ async function updateCraftingData() {
     let craftingIngredientCorrected = 0
     for (const [itemId, item] of Object.entries(data.items)) {
         const recipeShapes = itemRecipeShapes.get(itemId)
-        if (!recipeShapes) continue
-
-        if (!item.obtaining) {
-            item.obtaining = {
-                obtainability: 'survival',
-                craftable: true,
-                difficultyToObtain: -1,
+        if (recipeShapes) {
+            if (!item.obtaining) {
+                item.obtaining = {
+                    obtainability: 'survival',
+                    craftable: true,
+                    difficultyToObtain: -1,
+                }
             }
-        }
 
-        // Migrate and clean up 'options' if it exists
-        if (item.obtaining.options) {
-            delete item.obtaining.options
-        }
-
-        const recipeShapeSet = new Set<string>(recipeShapes)
-
-        // Preserve any existing manually added shapes that are valid
-        const validShapes = [
-            '2x2_crafting',
-            '3x3_crafting',
-            'crafting_special',
-            'crafting_repair',
-            'crafting_tippedarrow',
-            'crafting_firework_star',
-            'smelting',
-            'stonecutting',
-            'smoking',
-            'blasting',
-            'campfire_cooking',
-        ]
-        if (item.obtaining.recipeShape) {
-            for (const s of item.obtaining.recipeShape) {
-                if (validShapes.includes(s)) recipeShapeSet.add(s)
+            // Migrate and clean up 'options' if it exists
+            if (item.obtaining.options) {
+                delete item.obtaining.options
             }
-        }
 
-        // Convert back to array and sort for consistency
-        item.obtaining.recipeShape = Array.from(recipeShapeSet).sort()
+            const recipeShapeSet = new Set<string>(recipeShapes)
+
+            // Preserve any existing manually added shapes that are valid
+            const validShapes = [
+                '2x2_crafting',
+                '3x3_crafting',
+                'crafting_special',
+                'crafting_repair',
+                'crafting_tippedarrow',
+                'crafting_firework_star',
+                'smelting',
+                'stonecutting',
+                'smoking',
+                'blasting',
+                'campfire_cooking',
+            ]
+            if (item.obtaining.recipeShape) {
+                for (const s of item.obtaining.recipeShape) {
+                    if (validShapes.includes(s)) recipeShapeSet.add(s)
+                }
+            }
+
+            // Convert back to array and sort for consistency
+            item.obtaining.recipeShape = Array.from(recipeShapeSet).sort()
+        }
 
         // Update craftingIngredient if the item appears as an ingredient in any recipe
         const isIngredient = craftingIngredients.has(itemId)

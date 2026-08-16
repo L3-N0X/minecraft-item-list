@@ -1,25 +1,53 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const ASSETS_URL_BASE =
-    'https://raw.githubusercontent.com/misode/mcmeta/refs/heads/assets'
-const REGISTRIES_URL_BASE =
-    'https://raw.githubusercontent.com/misode/mcmeta/refs/heads/registries'
-const VERSION_URL = `${REGISTRIES_URL_BASE}/version.json`
-
 const targetVersion =
     process.argv.find((arg) => arg.startsWith('--version='))?.split('=')[1] ??
     process.argv[2] ??
-    '26.1-snapshot-10'
+    '26.2'
 
-const DATA_DIR = path.join(process.cwd(), 'public', 'data', 'versions', targetVersion)
+const ASSETS_URLS = [
+    `https://raw.githubusercontent.com/misode/mcmeta/${targetVersion}-assets`,
+    'https://raw.githubusercontent.com/misode/mcmeta/refs/heads/assets',
+]
+const REGISTRIES_URLS = [
+    `https://raw.githubusercontent.com/misode/mcmeta/${targetVersion}-registries`,
+    'https://raw.githubusercontent.com/misode/mcmeta/refs/heads/registries',
+]
+const SUMMARY_URLS = [
+    `https://raw.githubusercontent.com/misode/mcmeta/${targetVersion}-summary`,
+    'https://raw.githubusercontent.com/misode/mcmeta/refs/heads/summary',
+]
+
+const DATA_DIR = path.join(
+    process.cwd(),
+    'public',
+    'data',
+    'versions',
+    targetVersion
+)
 const ITEMS_JSON_PATH = path.join(DATA_DIR, 'items.json')
 const CATEGORIES_JSON_PATH = path.join(DATA_DIR, 'categories.json')
+
+interface ItemComponent {
+    'minecraft:max_stack_size'?: number
+    'minecraft:rarity'?: string
+    'minecraft:provides_trim_material'?: string
+    'minecraft:damage_resistant'?: { types?: string }
+    'minecraft:food'?: { nutrition?: number; saturation?: number }
+    [key: string]: unknown
+}
 
 interface ItemData {
     displayName?: string
     displayNameGerman?: string
     isBlock?: boolean
+    stackSize?: number
+    rarityTier?: string
+    isArmorTrimMaterial?: boolean
+    craftingIngredient?: boolean
+    renewable?: string
+    edible?: Record<string, unknown>
     item?: Record<string, unknown>
     block?: Record<string, unknown>
     breaking?: Record<string, unknown>
@@ -34,26 +62,51 @@ interface ExistingData {
 type ItemList = string[]
 
 async function fetchJSON<T>(url: string): Promise<T | null> {
-    const response = await fetch(url)
-    if (!response.ok) return null
-    return response.json() as Promise<T>
+    try {
+        const response = await fetch(url)
+        if (!response.ok) return null
+        return (await response.json()) as T
+    } catch {
+        return null
+    }
+}
+
+async function fetchWithFallback<T>(
+    baseUrls: string[],
+    subpath: string
+): Promise<T | null> {
+    for (const base of baseUrls) {
+        const url = `${base}/${subpath}`
+        const res = await fetchJSON<T>(url)
+        if (res !== null) return res
+    }
+    return null
 }
 
 async function initData() {
     if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
 
-    console.log('Fetching language files, registries and version...')
-    const [enUs, deDe, itemNames, blockNames, versionData] = await Promise.all([
-        fetchJSON<Record<string, string>>(
-            `${ASSETS_URL_BASE}/assets/minecraft/lang/en_us.json`
-        ),
-        fetchJSON<Record<string, string>>(
-            `${ASSETS_URL_BASE}/assets/minecraft/lang/de_de.json`
-        ),
-        fetchJSON<ItemList>(`${REGISTRIES_URL_BASE}/item/data.json`),
-        fetchJSON<ItemList>(`${REGISTRIES_URL_BASE}/block/data.json`),
-        fetchJSON<{ id: string }>(VERSION_URL),
-    ])
+    console.log(
+        `Fetching language files, registries, components and version for ${targetVersion}...`
+    )
+    const [enUs, deDe, itemNames, blockNames, versionData, itemComponents] =
+        await Promise.all([
+            fetchWithFallback<Record<string, string>>(
+                ASSETS_URLS,
+                'assets/minecraft/lang/en_us.json'
+            ),
+            fetchWithFallback<Record<string, string>>(
+                ASSETS_URLS,
+                'assets/minecraft/lang/de_de.json'
+            ),
+            fetchWithFallback<ItemList>(REGISTRIES_URLS, 'item/data.json'),
+            fetchWithFallback<ItemList>(REGISTRIES_URLS, 'block/data.json'),
+            fetchWithFallback<{ id: string }>(REGISTRIES_URLS, 'version.json'),
+            fetchWithFallback<Record<string, ItemComponent>>(
+                SUMMARY_URLS,
+                'item_components/data.json'
+            ),
+        ])
 
     if (!itemNames) throw new Error('Failed to fetch item list')
     if (!blockNames) throw new Error('Failed to fetch block list')
@@ -75,7 +128,7 @@ async function initData() {
     }
 
     const minecraftVersion: string =
-        existingVersion ?? versionData?.id ?? 'unknown'
+        targetVersion ?? existingVersion ?? versionData?.id ?? 'unknown'
 
     let categories: Record<string, string[]> = {}
     if (fs.existsSync(CATEGORIES_JSON_PATH)) {
@@ -90,24 +143,73 @@ async function initData() {
         const itemKey = `item.minecraft.${name}`
         const blockKey = `block.minecraft.${name}`
 
-        const displayNameEn = enUs?.[itemKey] ?? enUs?.[blockKey] ?? name
-        const displayNameGerman = deDe?.[itemKey] ?? deDe?.[blockKey] ?? name
+        let displayNameEn = enUs?.[itemKey] ?? enUs?.[blockKey] ?? name
+        let displayNameGerman = deDe?.[itemKey] ?? deDe?.[blockKey] ?? name
 
-        const existing = existingData[name] ?? {}
+        const musicDesc = enUs?.[`${itemKey}.desc`]
+        if (name.startsWith('music_disc_') && musicDesc) {
+            const songName = musicDesc.includes(' - ')
+                ? musicDesc.split(' - ')[1]?.trim() ?? musicDesc.trim()
+                : musicDesc.trim()
+            displayNameEn = `Music Disc ${songName}`
+            displayNameGerman = `Schallplatte ${songName}`
+        }
+
+        const existing = existingData[name]
         const isBlock = blockSet.has(name)
+        const itemComp = itemComponents?.[name]
 
-        // Preserve all existing data, only manage the fields this script is responsible for
-        newItems[name] = {
-            ...existing,
-            displayName: existing.displayName ?? displayNameEn,
-            displayNameGerman: existing.displayNameGerman ?? displayNameGerman,
-            isBlock,
-            ...(isBlock
-                ? {
-                      block: existing.block ?? {},
-                      breaking: existing.breaking ?? {},
-                  }
-                : { item: existing.item ?? {} }),
+        if (existing) {
+            // Preserve all existing data, only manage the fields this script is responsible for
+            newItems[name] = {
+                ...existing,
+                displayName: displayNameEn,
+                displayNameGerman: displayNameGerman,
+                isBlock,
+                ...(isBlock
+                    ? {
+                          block: existing.block ?? {},
+                          breaking: existing.breaking ?? {},
+                      }
+                    : { item: existing.item ?? {} }),
+            }
+        } else {
+            // New item initialization
+            const itemObj: ItemData = {
+                displayName: displayNameEn,
+                displayNameGerman: displayNameGerman,
+                isBlock,
+                stackSize: itemComp?.['minecraft:max_stack_size'] ?? 64,
+                rarityTier: itemComp?.['minecraft:rarity'] ?? 'common',
+                renewable: 'unknown',
+                craftingIngredient: false,
+                isArmorTrimMaterial:
+                    itemComp?.['minecraft:provides_trim_material'] !==
+                    undefined,
+            }
+
+            if (isBlock) {
+                itemObj.block = {}
+                itemObj.breaking = {
+                    requiresSilkTouch: 'no',
+                    instantBreaking: false,
+                }
+            } else {
+                itemObj.item = {
+                    fireResistant:
+                        itemComp?.['minecraft:damage_resistant'] !== undefined,
+                }
+            }
+
+            if (itemComp?.['minecraft:food']) {
+                itemObj.edible = {
+                    foodPoints: itemComp['minecraft:food'].nutrition ?? 0,
+                    saturationModifier:
+                        itemComp['minecraft:food'].saturation ?? 0,
+                }
+            }
+
+            newItems[name] = itemObj
         }
     }
 

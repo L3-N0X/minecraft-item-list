@@ -4,7 +4,12 @@
     "definitions": {
         "stackSizeEnum": {
             "type": "integer",
-            "enum": [-1, 1, 16, 64]
+            "enum": [
+                -1,
+                1,
+                16,
+                64
+            ]
         },
         "toolEnum": {
             "type": "string",
@@ -28,10 +33,17 @@
                 {
                     "type": "object",
                     "properties": {
-                        "min": { "type": "integer" },
-                        "max": { "type": "integer" }
+                        "min": {
+                            "type": "integer"
+                        },
+                        "max": {
+                            "type": "integer"
+                        }
                     },
-                    "required": ["min", "max"],
+                    "required": [
+                        "min",
+                        "max"
+                    ],
                     "additionalProperties": false
                 }
             ]
@@ -161,6 +173,7 @@
                 "sparse_jungle",
                 "stony_peaks",
                 "stony_shore",
+                "sulfur_caves",
                 "sunflower_plains",
                 "swamp",
                 "taiga",
@@ -177,7 +190,11 @@
         },
         "dimensionEnum": {
             "type": "string",
-            "enum": ["overworld", "nether", "the_end"]
+            "enum": [
+                "overworld",
+                "nether",
+                "the_end"
+            ]
         },
         "structureEnum": {
             "type": "string",
@@ -411,6 +428,7 @@
                 "squid",
                 "stray",
                 "strider",
+                "sulfur_cube",
                 "tadpole",
                 "text_display",
                 "tnt",
@@ -524,6 +542,7 @@
                 "bone_meal",
                 "book",
                 "bordure_indented_banner_pattern",
+                "bow",
                 "bowl",
                 "brain_coral",
                 "brain_coral_fan",
@@ -540,6 +559,7 @@
                 "brown_harness",
                 "brown_mushroom",
                 "brown_stained_glass_pane",
+                "brush",
                 "bubble_coral",
                 "bubble_coral_fan",
                 "bucket",
@@ -573,6 +593,7 @@
                 "chicken_spawn_egg",
                 "chorus_fruit",
                 "clay_ball",
+                "clock",
                 "closed_eyeblossom",
                 "coal",
                 "coast_armor_trim_smithing_template",
@@ -583,6 +604,7 @@
                 "cod_spawn_egg",
                 "command_block_minecart",
                 "comparator",
+                "compass",
                 "cooked_beef",
                 "cooked_chicken",
                 "cooked_cod",
@@ -621,6 +643,7 @@
                 "crimson_hanging_sign",
                 "crimson_roots",
                 "crimson_sign",
+                "crossbow",
                 "cyan_bundle",
                 "cyan_candle",
                 "cyan_dye",
@@ -670,6 +693,7 @@
                 "echo_shard",
                 "egg",
                 "elder_guardian_spawn_egg",
+                "elytra",
                 "emerald",
                 "enchanted_book",
                 "enchanted_golden_apple",
@@ -698,6 +722,7 @@
                 "firefly_bush",
                 "firework_rocket",
                 "firework_star",
+                "fishing_rod",
                 "flint",
                 "flint_and_steel",
                 "flow_armor_trim_smithing_template",
@@ -722,6 +747,7 @@
                 "glow_lichen",
                 "glow_squid_spawn_egg",
                 "glowstone_dust",
+                "goat_horn",
                 "goat_spawn_egg",
                 "gold_ingot",
                 "gold_nugget",
@@ -864,6 +890,7 @@
                 "music_disc_13",
                 "music_disc_5",
                 "music_disc_blocks",
+                "music_disc_bounce",
                 "music_disc_cat",
                 "music_disc_chirp",
                 "music_disc_creator",
@@ -990,6 +1017,7 @@
                 "raw_copper",
                 "raw_gold",
                 "raw_iron",
+                "recovery_compass",
                 "red_bundle",
                 "red_candle",
                 "red_dye",
@@ -1019,6 +1047,7 @@
                 "shears",
                 "sheep_spawn_egg",
                 "shelter_pottery_sherd",
+                "shield",
                 "short_dry_grass",
                 "short_grass",
                 "shulker_shell",
@@ -1052,6 +1081,7 @@
                 "spruce_hanging_sign",
                 "spruce_sapling",
                 "spruce_sign",
+                "spyglass",
                 "squid_spawn_egg",
                 "stick",
                 "stone_axe",
@@ -1066,6 +1096,8 @@
                 "structure_void",
                 "sugar",
                 "sugar_cane",
+                "sulfur_cube_bucket",
+                "sulfur_cube_spawn_egg",
                 "sunflower",
                 "suspicious_stew",
                 "sweet_berries",
@@ -1082,6 +1114,7 @@
                 "totem_of_undying",
                 "trader_llama_spawn_egg",
                 "trial_key",
+                "trident",
                 "tripwire_hook",
                 "tropical_fish",
                 "tropical_fish_bucket",
@@ -1145,6 +1178,7 @@
                 "wither_rose",
                 "wither_skeleton_spawn_egg",
                 "wither_spawn_egg",
+                "wolf_armor",
                 "wolf_spawn_egg",
                 "wooden_axe",
                 "wooden_hoe",
@@ -1185,8 +1219,11 @@
                 "acacia_slab",
                 "acacia_stairs",
                 "acacia_trapdoor",
+                "acacia_wall_hanging_sign",
+                "acacia_wall_sign",
                 "acacia_wood",
                 "activator_rail",
+                "air",
                 "allium",
                 "amethyst_block",
                 "amethyst_cluster",
@@ -1219,6 +1256,8 @@
                 "bamboo_slab",
                 "bamboo_stairs",
                 "bamboo_trapdoor",
+                "bamboo_wall_hanging_sign",
+                "bamboo_wall_sign",
                 "barrel",
                 "barrier",
                 "basalt",
@@ -1229,6 +1268,7 @@
                 "beetroots",
                 "bell",
                 "big_dripleaf",
+                "big_dripleaf_stem",
                 "birch_button",
                 "birch_door",
                 "birch_fence",
@@ -1244,10 +1284,13 @@
                 "birch_slab",
                 "birch_stairs",
                 "birch_trapdoor",
+                "birch_wall_hanging_sign",
+                "birch_wall_sign",
                 "birch_wood",
                 "black_banner",
                 "black_bed",
                 "black_candle",
+                "black_candle_cake",
                 "black_carpet",
                 "black_concrete",
                 "black_concrete_powder",
@@ -1256,6 +1299,7 @@
                 "black_stained_glass",
                 "black_stained_glass_pane",
                 "black_terracotta",
+                "black_wall_banner",
                 "black_wool",
                 "blackstone",
                 "blackstone_slab",
@@ -1265,6 +1309,7 @@
                 "blue_banner",
                 "blue_bed",
                 "blue_candle",
+                "blue_candle_cake",
                 "blue_carpet",
                 "blue_concrete",
                 "blue_concrete_powder",
@@ -1275,12 +1320,14 @@
                 "blue_stained_glass",
                 "blue_stained_glass_pane",
                 "blue_terracotta",
+                "blue_wall_banner",
                 "blue_wool",
                 "bone_block",
                 "bookshelf",
                 "brain_coral",
                 "brain_coral_block",
                 "brain_coral_fan",
+                "brain_coral_wall_fan",
                 "brewing_stand",
                 "brick_slab",
                 "brick_stairs",
@@ -1289,6 +1336,7 @@
                 "brown_banner",
                 "brown_bed",
                 "brown_candle",
+                "brown_candle_cake",
                 "brown_carpet",
                 "brown_concrete",
                 "brown_concrete_powder",
@@ -1299,11 +1347,13 @@
                 "brown_stained_glass",
                 "brown_stained_glass_pane",
                 "brown_terracotta",
+                "brown_wall_banner",
                 "brown_wool",
                 "bubble_column",
                 "bubble_coral",
                 "bubble_coral_block",
                 "bubble_coral_fan",
+                "bubble_coral_wall_fan",
                 "budding_amethyst",
                 "bush",
                 "cactus",
@@ -1313,12 +1363,14 @@
                 "calibrated_sculk_sensor",
                 "campfire",
                 "candle",
+                "candle_cake",
                 "carrots",
                 "cartography_table",
                 "carved_pumpkin",
                 "cauldron",
                 "cave_air",
                 "cave_vines",
+                "cave_vines_plant",
                 "chain_command_block",
                 "cherry_button",
                 "cherry_door",
@@ -1335,10 +1387,13 @@
                 "cherry_slab",
                 "cherry_stairs",
                 "cherry_trapdoor",
+                "cherry_wall_hanging_sign",
+                "cherry_wall_sign",
                 "cherry_wood",
                 "chest",
                 "chipped_anvil",
                 "chiseled_bookshelf",
+                "chiseled_cinnabar",
                 "chiseled_copper",
                 "chiseled_deepslate",
                 "chiseled_nether_bricks",
@@ -1348,10 +1403,19 @@
                 "chiseled_resin_bricks",
                 "chiseled_sandstone",
                 "chiseled_stone_bricks",
+                "chiseled_sulfur",
                 "chiseled_tuff",
                 "chiseled_tuff_bricks",
                 "chorus_flower",
                 "chorus_plant",
+                "cinnabar",
+                "cinnabar_brick_slab",
+                "cinnabar_brick_stairs",
+                "cinnabar_brick_wall",
+                "cinnabar_bricks",
+                "cinnabar_slab",
+                "cinnabar_stairs",
+                "cinnabar_wall",
                 "clay",
                 "closed_eyeblossom",
                 "coal_block",
@@ -1383,6 +1447,7 @@
                 "copper_ore",
                 "copper_torch",
                 "copper_trapdoor",
+                "copper_wall_torch",
                 "cornflower",
                 "cracked_deepslate_bricks",
                 "cracked_deepslate_tiles",
@@ -1393,6 +1458,7 @@
                 "crafting_table",
                 "creaking_heart",
                 "creeper_head",
+                "creeper_wall_head",
                 "crimson_button",
                 "crimson_door",
                 "crimson_fence",
@@ -1410,6 +1476,8 @@
                 "crimson_stairs",
                 "crimson_stem",
                 "crimson_trapdoor",
+                "crimson_wall_hanging_sign",
+                "crimson_wall_sign",
                 "crying_obsidian",
                 "cut_copper",
                 "cut_copper_slab",
@@ -1421,6 +1489,7 @@
                 "cyan_banner",
                 "cyan_bed",
                 "cyan_candle",
+                "cyan_candle_cake",
                 "cyan_carpet",
                 "cyan_concrete",
                 "cyan_concrete_powder",
@@ -1429,6 +1498,7 @@
                 "cyan_stained_glass",
                 "cyan_stained_glass_pane",
                 "cyan_terracotta",
+                "cyan_wall_banner",
                 "cyan_wool",
                 "damaged_anvil",
                 "dandelion",
@@ -1447,6 +1517,8 @@
                 "dark_oak_slab",
                 "dark_oak_stairs",
                 "dark_oak_trapdoor",
+                "dark_oak_wall_hanging_sign",
+                "dark_oak_wall_sign",
                 "dark_oak_wood",
                 "dark_prismarine",
                 "dark_prismarine_slab",
@@ -1455,19 +1527,24 @@
                 "dead_brain_coral",
                 "dead_brain_coral_block",
                 "dead_brain_coral_fan",
+                "dead_brain_coral_wall_fan",
                 "dead_bubble_coral",
                 "dead_bubble_coral_block",
                 "dead_bubble_coral_fan",
+                "dead_bubble_coral_wall_fan",
                 "dead_bush",
                 "dead_fire_coral",
                 "dead_fire_coral_block",
                 "dead_fire_coral_fan",
+                "dead_fire_coral_wall_fan",
                 "dead_horn_coral",
                 "dead_horn_coral_block",
                 "dead_horn_coral_fan",
+                "dead_horn_coral_wall_fan",
                 "dead_tube_coral",
                 "dead_tube_coral_block",
                 "dead_tube_coral_fan",
+                "dead_tube_coral_wall_fan",
                 "decorated_pot",
                 "deepslate",
                 "deepslate_brick_slab",
@@ -1498,6 +1575,7 @@
                 "dispenser",
                 "dragon_egg",
                 "dragon_head",
+                "dragon_wall_head",
                 "dried_ghast",
                 "dried_kelp_block",
                 "dripstone_block",
@@ -1536,6 +1614,7 @@
                 "fire_coral",
                 "fire_coral_block",
                 "fire_coral_fan",
+                "fire_coral_wall_fan",
                 "firefly_bush",
                 "fletching_table",
                 "flower_pot",
@@ -1561,6 +1640,7 @@
                 "gray_banner",
                 "gray_bed",
                 "gray_candle",
+                "gray_candle_cake",
                 "gray_carpet",
                 "gray_concrete",
                 "gray_concrete_powder",
@@ -1569,10 +1649,12 @@
                 "gray_stained_glass",
                 "gray_stained_glass_pane",
                 "gray_terracotta",
+                "gray_wall_banner",
                 "gray_wool",
                 "green_banner",
                 "green_bed",
                 "green_candle",
+                "green_candle_cake",
                 "green_carpet",
                 "green_concrete",
                 "green_concrete_powder",
@@ -1581,6 +1663,7 @@
                 "green_stained_glass",
                 "green_stained_glass_pane",
                 "green_terracotta",
+                "green_wall_banner",
                 "green_wool",
                 "grindstone",
                 "hanging_roots",
@@ -1593,6 +1676,7 @@
                 "horn_coral",
                 "horn_coral_block",
                 "horn_coral_fan",
+                "horn_coral_wall_fan",
                 "ice",
                 "infested_chiseled_stone_bricks",
                 "infested_cobblestone",
@@ -1625,8 +1709,11 @@
                 "jungle_slab",
                 "jungle_stairs",
                 "jungle_trapdoor",
+                "jungle_wall_hanging_sign",
+                "jungle_wall_sign",
                 "jungle_wood",
                 "kelp",
+                "kelp_plant",
                 "ladder",
                 "lantern",
                 "lapis_block",
@@ -1642,6 +1729,7 @@
                 "light_blue_banner",
                 "light_blue_bed",
                 "light_blue_candle",
+                "light_blue_candle_cake",
                 "light_blue_carpet",
                 "light_blue_concrete",
                 "light_blue_concrete_powder",
@@ -1650,10 +1738,12 @@
                 "light_blue_stained_glass",
                 "light_blue_stained_glass_pane",
                 "light_blue_terracotta",
+                "light_blue_wall_banner",
                 "light_blue_wool",
                 "light_gray_banner",
                 "light_gray_bed",
                 "light_gray_candle",
+                "light_gray_candle_cake",
                 "light_gray_carpet",
                 "light_gray_concrete",
                 "light_gray_concrete_powder",
@@ -1662,6 +1752,7 @@
                 "light_gray_stained_glass",
                 "light_gray_stained_glass_pane",
                 "light_gray_terracotta",
+                "light_gray_wall_banner",
                 "light_gray_wool",
                 "light_weighted_pressure_plate",
                 "lightning_rod",
@@ -1671,6 +1762,7 @@
                 "lime_banner",
                 "lime_bed",
                 "lime_candle",
+                "lime_candle_cake",
                 "lime_carpet",
                 "lime_concrete",
                 "lime_concrete_powder",
@@ -1679,12 +1771,14 @@
                 "lime_stained_glass",
                 "lime_stained_glass_pane",
                 "lime_terracotta",
+                "lime_wall_banner",
                 "lime_wool",
                 "lodestone",
                 "loom",
                 "magenta_banner",
                 "magenta_bed",
                 "magenta_candle",
+                "magenta_candle_cake",
                 "magenta_carpet",
                 "magenta_concrete",
                 "magenta_concrete_powder",
@@ -1693,6 +1787,7 @@
                 "magenta_stained_glass",
                 "magenta_stained_glass_pane",
                 "magenta_terracotta",
+                "magenta_wall_banner",
                 "magenta_wool",
                 "magma_block",
                 "mangrove_button",
@@ -1711,6 +1806,8 @@
                 "mangrove_slab",
                 "mangrove_stairs",
                 "mangrove_trapdoor",
+                "mangrove_wall_hanging_sign",
+                "mangrove_wall_sign",
                 "mangrove_wood",
                 "medium_amethyst_bud",
                 "melon",
@@ -1725,6 +1822,7 @@
                 "mossy_stone_brick_stairs",
                 "mossy_stone_brick_wall",
                 "mossy_stone_bricks",
+                "moving_piston",
                 "mud",
                 "mud_brick_slab",
                 "mud_brick_stairs",
@@ -1762,6 +1860,8 @@
                 "oak_slab",
                 "oak_stairs",
                 "oak_trapdoor",
+                "oak_wall_hanging_sign",
+                "oak_wall_sign",
                 "oak_wood",
                 "observer",
                 "obsidian",
@@ -1770,6 +1870,7 @@
                 "orange_banner",
                 "orange_bed",
                 "orange_candle",
+                "orange_candle_cake",
                 "orange_carpet",
                 "orange_concrete",
                 "orange_concrete_powder",
@@ -1779,6 +1880,7 @@
                 "orange_stained_glass_pane",
                 "orange_terracotta",
                 "orange_tulip",
+                "orange_wall_banner",
                 "orange_wool",
                 "oxeye_daisy",
                 "oxidized_chiseled_copper",
@@ -1816,14 +1918,18 @@
                 "pale_oak_slab",
                 "pale_oak_stairs",
                 "pale_oak_trapdoor",
+                "pale_oak_wall_hanging_sign",
+                "pale_oak_wall_sign",
                 "pale_oak_wood",
                 "pearlescent_froglight",
                 "peony",
                 "petrified_oak_slab",
                 "piglin_head",
+                "piglin_wall_head",
                 "pink_banner",
                 "pink_bed",
                 "pink_candle",
+                "pink_candle_cake",
                 "pink_carpet",
                 "pink_concrete",
                 "pink_concrete_powder",
@@ -1834,11 +1940,14 @@
                 "pink_stained_glass_pane",
                 "pink_terracotta",
                 "pink_tulip",
+                "pink_wall_banner",
                 "pink_wool",
                 "piston",
+                "piston_head",
                 "pitcher_crop",
                 "pitcher_plant",
                 "player_head",
+                "player_wall_head",
                 "podzol",
                 "pointed_dripstone",
                 "polished_andesite",
@@ -1855,6 +1964,10 @@
                 "polished_blackstone_slab",
                 "polished_blackstone_stairs",
                 "polished_blackstone_wall",
+                "polished_cinnabar",
+                "polished_cinnabar_slab",
+                "polished_cinnabar_stairs",
+                "polished_cinnabar_wall",
                 "polished_deepslate",
                 "polished_deepslate_slab",
                 "polished_deepslate_stairs",
@@ -1865,12 +1978,17 @@
                 "polished_granite",
                 "polished_granite_slab",
                 "polished_granite_stairs",
+                "polished_sulfur",
+                "polished_sulfur_slab",
+                "polished_sulfur_stairs",
+                "polished_sulfur_wall",
                 "polished_tuff",
                 "polished_tuff_slab",
                 "polished_tuff_stairs",
                 "polished_tuff_wall",
                 "poppy",
                 "potatoes",
+                "potent_sulfur",
                 "potted_acacia_sapling",
                 "potted_allium",
                 "potted_azalea_bush",
@@ -1910,6 +2028,7 @@
                 "potted_white_tulip",
                 "potted_wither_rose",
                 "powder_snow",
+                "powder_snow_cauldron",
                 "powered_rail",
                 "prismarine",
                 "prismarine_brick_slab",
@@ -1923,6 +2042,7 @@
                 "purple_banner",
                 "purple_bed",
                 "purple_candle",
+                "purple_candle_cake",
                 "purple_carpet",
                 "purple_concrete",
                 "purple_concrete_powder",
@@ -1931,6 +2051,7 @@
                 "purple_stained_glass",
                 "purple_stained_glass_pane",
                 "purple_terracotta",
+                "purple_wall_banner",
                 "purple_wool",
                 "purpur_block",
                 "purpur_pillar",
@@ -1948,6 +2069,7 @@
                 "red_banner",
                 "red_bed",
                 "red_candle",
+                "red_candle_cake",
                 "red_carpet",
                 "red_concrete",
                 "red_concrete_powder",
@@ -1968,11 +2090,13 @@
                 "red_stained_glass_pane",
                 "red_terracotta",
                 "red_tulip",
+                "red_wall_banner",
                 "red_wool",
                 "redstone_block",
                 "redstone_lamp",
                 "redstone_ore",
                 "redstone_torch",
+                "redstone_wall_torch",
                 "redstone_wire",
                 "reinforced_deepslate",
                 "repeater",
@@ -2005,6 +2129,7 @@
                 "shroomlight",
                 "shulker_box",
                 "skeleton_skull",
+                "skeleton_wall_skull",
                 "slime_block",
                 "small_amethyst_bud",
                 "small_dripleaf",
@@ -2031,6 +2156,7 @@
                 "soul_sand",
                 "soul_soil",
                 "soul_torch",
+                "soul_wall_torch",
                 "spawner",
                 "sponge",
                 "spore_blossom",
@@ -2049,6 +2175,8 @@
                 "spruce_slab",
                 "spruce_stairs",
                 "spruce_trapdoor",
+                "spruce_wall_hanging_sign",
+                "spruce_wall_sign",
                 "spruce_wood",
                 "sticky_piston",
                 "stone",
@@ -2087,6 +2215,15 @@
                 "structure_block",
                 "structure_void",
                 "sugar_cane",
+                "sulfur",
+                "sulfur_brick_slab",
+                "sulfur_brick_stairs",
+                "sulfur_brick_wall",
+                "sulfur_bricks",
+                "sulfur_slab",
+                "sulfur_spike",
+                "sulfur_stairs",
+                "sulfur_wall",
                 "sunflower",
                 "suspicious_gravel",
                 "suspicious_sand",
@@ -2110,6 +2247,7 @@
                 "tube_coral",
                 "tube_coral_block",
                 "tube_coral_fan",
+                "tube_coral_wall_fan",
                 "tuff",
                 "tuff_brick_slab",
                 "tuff_brick_stairs",
@@ -2120,9 +2258,12 @@
                 "tuff_wall",
                 "turtle_egg",
                 "twisting_vines",
+                "twisting_vines_plant",
                 "vault",
                 "verdant_froglight",
                 "vine",
+                "void_air",
+                "wall_torch",
                 "warped_button",
                 "warped_door",
                 "warped_fence",
@@ -2140,6 +2281,8 @@
                 "warped_stairs",
                 "warped_stem",
                 "warped_trapdoor",
+                "warped_wall_hanging_sign",
+                "warped_wall_sign",
                 "warped_wart_block",
                 "water",
                 "water_cauldron",
@@ -2219,11 +2362,13 @@
                 "weathered_cut_copper_stairs",
                 "weathered_lightning_rod",
                 "weeping_vines",
+                "weeping_vines_plant",
                 "wet_sponge",
                 "wheat",
                 "white_banner",
                 "white_bed",
                 "white_candle",
+                "white_candle_cake",
                 "white_carpet",
                 "white_concrete",
                 "white_concrete_powder",
@@ -2233,13 +2378,16 @@
                 "white_stained_glass_pane",
                 "white_terracotta",
                 "white_tulip",
+                "white_wall_banner",
                 "white_wool",
                 "wildflowers",
                 "wither_rose",
                 "wither_skeleton_skull",
+                "wither_skeleton_wall_skull",
                 "yellow_banner",
                 "yellow_bed",
                 "yellow_candle",
+                "yellow_candle_cake",
                 "yellow_carpet",
                 "yellow_concrete",
                 "yellow_concrete_powder",
@@ -2248,8 +2396,10 @@
                 "yellow_stained_glass",
                 "yellow_stained_glass_pane",
                 "yellow_terracotta",
+                "yellow_wall_banner",
                 "yellow_wool",
-                "zombie_head"
+                "zombie_head",
+                "zombie_wall_head"
             ]
         }
     },
@@ -2275,7 +2425,11 @@
                     },
                     "renewable": {
                         "type": "string",
-                        "enum": ["yes", "no", "vault_only"],
+                        "enum": [
+                            "yes",
+                            "no",
+                            "vault_only"
+                        ],
                         "$comment": "If block is renewable (infinite), some are 'vault_only', which means they are only renewable when more than 128 players open a vault, which makes them not renewable in singleplayer"
                     },
                     "stackSize": {
@@ -2283,16 +2437,27 @@
                     },
                     "rarityTier": {
                         "type": "string",
-                        "enum": ["common", "uncommon", "rare", "epic"],
+                        "enum": [
+                            "common",
+                            "uncommon",
+                            "rare",
+                            "epic"
+                        ],
                         "default": "common"
                     },
                     "mostDominantColor": {
-                        "type": ["string", "null"],
+                        "type": [
+                            "string",
+                            "null"
+                        ],
                         "pattern": "^#[0-9A-Fa-f]{6}$",
                         "$comment": "Dominant visible texture color in hex, computed via CIELAB + K-Means."
                     },
                     "medianColor": {
-                        "type": ["string", "null"],
+                        "type": [
+                            "string",
+                            "null"
+                        ],
                         "pattern": "^#[0-9A-Fa-f]{6}$",
                         "$comment": "Median texture color in hex."
                     },
@@ -2313,13 +2478,13 @@
                         "properties": {
                             "blastResistance": {
                                 "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 3600000.0
+                                "minimum": 0,
+                                "maximum": 3600000
                             },
                             "hardness": {
                                 "type": "number",
-                                "minimum": -1.0,
-                                "maximum": 1000.0
+                                "minimum": -1,
+                                "maximum": 1000
                             },
                             "luminousLevel": {
                                 "type": "integer",
@@ -2328,7 +2493,11 @@
                             },
                             "transparency": {
                                 "type": "string",
-                                "enum": ["transparent", "partial", "opaque"]
+                                "enum": [
+                                    "transparent",
+                                    "partial",
+                                    "opaque"
+                                ]
                             },
                             "waterloggable": {
                                 "type": "boolean"
@@ -2360,11 +2529,11 @@
                                 "properties": {
                                     "attackDamage": {
                                         "type": "number",
-                                        "minimum": 0.0
+                                        "minimum": 0
                                     },
                                     "attackSpeed": {
                                         "type": "number",
-                                        "minimum": 0.0
+                                        "minimum": 0
                                     }
                                 }
                             },
@@ -2378,15 +2547,15 @@
                                 "properties": {
                                     "armorPoints": {
                                         "type": "number",
-                                        "minimum": 0.0
+                                        "minimum": 0
                                     },
                                     "toughness": {
                                         "type": "number",
-                                        "minimum": 0.0
+                                        "minimum": 0
                                     },
                                     "knockbackResistance": {
                                         "type": "number",
-                                        "minimum": 0.0
+                                        "minimum": 0
                                     }
                                 }
                             },
@@ -2405,7 +2574,9 @@
                                 "$comment": "If this item is fire resistant (e.g. netherite)"
                             }
                         },
-                        "required": ["fireResistant"]
+                        "required": [
+                            "fireResistant"
+                        ]
                     },
                     "edible": {
                         "type": "object",
@@ -2417,11 +2588,11 @@
                         "properties": {
                             "hunger": {
                                 "type": "number",
-                                "minimum": 0.0
+                                "minimum": 0
                             },
                             "saturation": {
                                 "type": "number",
-                                "minimum": 0.0
+                                "minimum": 0
                             },
                             "alwaysConsumable": {
                                 "type": "boolean"
@@ -2430,11 +2601,18 @@
                     },
                     "breaking": {
                         "type": "object",
-                        "required": ["requiresSilkTouch", "instantBreaking"],
+                        "required": [
+                            "requiresSilkTouch",
+                            "instantBreaking"
+                        ],
                         "properties": {
                             "requiresSilkTouch": {
                                 "type": "string",
-                                "enum": ["silk_touch_only", "yes", "no"],
+                                "enum": [
+                                    "silk_touch_only",
+                                    "yes",
+                                    "no"
+                                ],
                                 "$comment": "Block requires Silk Touch to drop in this form"
                             },
                             "requiresSpecialToolsToDrop": {
@@ -2520,14 +2698,20 @@
                                                 "type": "string"
                                             }
                                         },
-                                        "required": ["structures"]
+                                        "required": [
+                                            "structures"
+                                        ]
                                     }
                                 },
-                                "required": ["dimensions"]
+                                "required": [
+                                    "dimensions"
+                                ]
                             },
                             "generatedLoot": {
                                 "type": "object",
-                                "required": ["structures"],
+                                "required": [
+                                    "structures"
+                                ],
                                 "properties": {
                                     "structures": {
                                         "type": "array",
@@ -2549,8 +2733,8 @@
                                                             },
                                                             "chance": {
                                                                 "type": "number",
-                                                                "minimum": 0.0,
-                                                                "maximum": 1.0
+                                                                "minimum": 0,
+                                                                "maximum": 1
                                                             },
                                                             "quantity": {
                                                                 "$ref": "#/definitions/quantitySpec"
@@ -2568,7 +2752,10 @@
                                                     "type": "string"
                                                 }
                                             },
-                                            "required": ["structure", "chests"],
+                                            "required": [
+                                                "structure",
+                                                "chests"
+                                            ],
                                             "additionalProperties": false,
                                             "allOf": [
                                                 {
@@ -3095,15 +3282,19 @@
                                 "minItems": 1,
                                 "items": {
                                     "type": "object",
-                                    "required": ["mob", "chance", "quantity"],
+                                    "required": [
+                                        "mob",
+                                        "chance",
+                                        "quantity"
+                                    ],
                                     "properties": {
                                         "mob": {
                                             "$ref": "#/definitions/mobEnum"
                                         },
                                         "chance": {
                                             "type": "number",
-                                            "minimum": 0.0,
-                                            "maximum": 1.0
+                                            "minimum": 0,
+                                            "maximum": 1
                                         },
                                         "quantity": {
                                             "$ref": "#/definitions/quantitySpec"
@@ -3134,8 +3325,8 @@
                                         },
                                         "chance": {
                                             "type": "number",
-                                            "minimum": 0.0,
-                                            "maximum": 1.0
+                                            "minimum": 0,
+                                            "maximum": 1
                                         },
                                         "quantity": {
                                             "$ref": "#/definitions/quantitySpec"
@@ -3167,8 +3358,8 @@
                                                 },
                                                 "probability": {
                                                     "type": "number",
-                                                    "minimum": 0.0,
-                                                    "maximum": 1.0
+                                                    "minimum": 0,
+                                                    "maximum": 1
                                                 },
                                                 "quantity": {
                                                     "$ref": "#/definitions/quantitySpec"
@@ -3189,8 +3380,8 @@
                                         "properties": {
                                             "chance": {
                                                 "type": "number",
-                                                "minimum": 0.0,
-                                                "maximum": 1.0
+                                                "minimum": 0,
+                                                "maximum": 1
                                             },
                                             "quantity": {
                                                 "$ref": "#/definitions/quantitySpec"
@@ -3199,12 +3390,22 @@
                                                 "type": "string"
                                             }
                                         },
-                                        "required": ["chance"]
+                                        "required": [
+                                            "chance"
+                                        ]
                                     }
                                 },
                                 "anyOf": [
-                                    { "required": ["villagers"] },
-                                    { "required": ["wanderingTrader"] }
+                                    {
+                                        "required": [
+                                            "villagers"
+                                        ]
+                                    },
+                                    {
+                                        "required": [
+                                            "wanderingTrader"
+                                        ]
+                                    }
                                 ]
                             },
                             "fishing": {
@@ -3212,12 +3413,16 @@
                                 "properties": {
                                     "category": {
                                         "type": "string",
-                                        "enum": ["fish", "treasure", "junk"]
+                                        "enum": [
+                                            "fish",
+                                            "treasure",
+                                            "junk"
+                                        ]
                                     },
                                     "chance": {
                                         "type": "number",
-                                        "minimum": 0.0,
-                                        "maximum": 1.0
+                                        "minimum": 0,
+                                        "maximum": 1
                                     },
                                     "quantity": {
                                         "$ref": "#/definitions/quantitySpec"
@@ -3226,15 +3431,19 @@
                                         "type": "string"
                                     }
                                 },
-                                "required": ["category", "chance", "quantity"]
+                                "required": [
+                                    "category",
+                                    "chance",
+                                    "quantity"
+                                ]
                             },
                             "bartering": {
                                 "type": "object",
                                 "properties": {
                                     "chance": {
                                         "type": "number",
-                                        "minimum": 0.0,
-                                        "maximum": 1.0
+                                        "minimum": 0,
+                                        "maximum": 1
                                     },
                                     "quantity": {
                                         "$ref": "#/definitions/quantitySpec"
@@ -3243,7 +3452,10 @@
                                         "type": "string"
                                     }
                                 },
-                                "required": ["chance", "quantity"]
+                                "required": [
+                                    "chance",
+                                    "quantity"
+                                ]
                             },
                             "smelting": {
                                 "type": "object",
@@ -3263,10 +3475,13 @@
                                     },
                                     "xpFromSmelting": {
                                         "type": "number",
-                                        "minimum": 0.0
+                                        "minimum": 0
                                     }
                                 },
-                                "required": ["smeltable", "xpFromSmelting"]
+                                "required": [
+                                    "smeltable",
+                                    "xpFromSmelting"
+                                ]
                             },
                             "difficultyToObtain": {
                                 "type": "integer",
@@ -3282,12 +3497,14 @@
                     },
                     "compostable": {
                         "type": "object",
-                        "required": ["chance"],
+                        "required": [
+                            "chance"
+                        ],
                         "properties": {
                             "chance": {
                                 "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 1.0
+                                "minimum": 0,
+                                "maximum": 1
                             }
                         }
                     },
@@ -3301,18 +3518,21 @@
                     },
                     "fuel": {
                         "type": "object",
-                        "required": ["burnTimeSeconds", "numberOfItemsSmelted"],
+                        "required": [
+                            "burnTimeSeconds",
+                            "numberOfItemsSmelted"
+                        ],
                         "properties": {
                             "burnTimeSeconds": {
                                 "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 1000.0,
+                                "minimum": 0,
+                                "maximum": 1000,
                                 "$comment": "Time in seconds this item burns for"
                             },
                             "numberOfItemsSmelted": {
                                 "type": "number",
-                                "minimum": 0.0,
-                                "maximum": 100.0,
+                                "minimum": 0,
+                                "maximum": 100,
                                 "$comment": "The number of items that can be smelted per fuel"
                             }
                         },
@@ -3331,7 +3551,10 @@
                                     "$ref": "#/definitions/quantitySpec"
                                 }
                             },
-                            "required": ["id", "levels"]
+                            "required": [
+                                "id",
+                                "levels"
+                            ]
                         }
                     }
                 },
@@ -3350,18 +3573,26 @@
                     {
                         "$comment": "Block item — isBlock must be true and block sub-object must be present. Item-only fields (damage, durability, possibleEnchantments) are forbidden.",
                         "properties": {
-                            "isBlock": { "const": true },
+                            "isBlock": {
+                                "const": true
+                            },
                             "item": false
                         },
-                        "required": ["block"]
+                        "required": [
+                            "block"
+                        ]
                     },
                     {
                         "$comment": "Non-block item — isBlock must be false and block sub-object must not be present.",
                         "properties": {
-                            "isBlock": { "const": false },
+                            "isBlock": {
+                                "const": false
+                            },
                             "block": false
                         },
-                        "required": ["item"]
+                        "required": [
+                            "item"
+                        ]
                     }
                 ]
             }
