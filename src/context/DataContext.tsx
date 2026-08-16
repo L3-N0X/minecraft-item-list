@@ -23,8 +23,10 @@ import { getDataUrl } from '../lib/utils'
 import {
     fetchVersionConfig,
     validateVersion,
+    createVersionApi,
     type VersionOption,
     type VersionConfig,
+    type CreateVersionPayload,
 } from '../lib/versions'
 
 export type { MinecraftItemData as ItemData }
@@ -55,6 +57,7 @@ interface DataContextType {
     activeVersion: string
     availableVersions: VersionOption[]
     setActiveVersion: (version: string) => void
+    createVersion: (payload: CreateVersionPayload) => Promise<void>
     schema: Record<string, unknown> | null
     structureToChest: Record<string, string[]>
     tags: Record<string, unknown> | null
@@ -109,6 +112,25 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         // Update URL search parameter ?v=...
         const url = new URL(window.location.href)
         url.searchParams.set('v', valid)
+        window.history.pushState({}, '', url.toString())
+    }
+
+    const createVersion = async (payload: CreateVersionPayload) => {
+        if (isStaticMode) {
+            throw new Error('Version creation is not available in static mode')
+        }
+
+        const result = await createVersionApi(payload)
+        setVersionConfig(result.config)
+        setAvailableVersions(result.config.versions)
+
+        const newVer = payload.newVersionId
+        setActiveVersionState(newVer)
+        localStorage.setItem('mc_version', newVer)
+
+        // Update URL search parameter ?v=...
+        const url = new URL(window.location.href)
+        url.searchParams.set('v', newVer)
         window.history.pushState({}, '', url.toString())
     }
 
@@ -287,6 +309,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
                 activeVersion,
                 availableVersions,
                 setActiveVersion,
+                createVersion,
                 schema,
                 structureToChest,
                 tags,

@@ -1,4 +1,5 @@
 import { serve } from 'bun'
+import fs from 'node:fs/promises'
 import path from 'node:path'
 import { AsyncLock, readJSON, safeWriteJSON } from './lib/server-utils'
 
@@ -6,6 +7,32 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 const itemsLock = new AsyncLock()
 const categoriesLock = new AsyncLock()
+const versionsLock = new AsyncLock()
+
+const versionsConfigPath = path.join(
+    process.cwd(),
+    'public',
+    'data',
+    'versions.json'
+)
+
+interface VersionOption {
+    id: string
+    label: string
+    order: number
+}
+
+interface VersionConfig {
+    defaultVersion: string
+    versions: VersionOption[]
+}
+
+interface CreateVersionPayload {
+    sourceVersionId: string
+    newVersionId: string
+    newVersionLabel?: string
+    setAsDefault?: boolean
+}
 
 function getVersionPaths(version?: string | null) {
     const activeVersion = version || '26.1-snapshot-10'
@@ -195,6 +222,213 @@ const server = serve({
                     return Response.json({ success: true })
                 } catch (error) {
                     console.error('Error in POST /api/categories:', error)
+                    return Response.json(
+                        {
+                            success: false,
+                            error:
+                                error instanceof Error
+                                    ? error.message
+                                    : 'Unknown error',
+                        },
+                        { status: 500 }
+                    )
+                }
+            },
+        },
+
+        '/api/versions': {
+            async GET() {
+                try {
+                    return await versionsLock.runLocked(async () => {
+                        const data =
+                            await readJSON<VersionConfig>(versionsConfigPath)
+                        return Response.json(data)
+                    })
+                } catch (error) {
+                    console.error('Error in GET /api/versions:', error)
+                    return Response.json(
+                        {
+                            success: false,
+                            error:
+                                error instanceof Error
+                                    ? error.message
+                                    : 'Unknown error',
+                        },
+                        { status: 500 }
+                    )
+                }
+            },
+            async POST(req) {
+                try {
+                    const body = (await req.json()) as CreateVersionPayload
+                    const {
+                        sourceVersionId,
+                        newVersionId: rawNewVersionId,
+                        newVersionLabel,
+                        setAsDefault,
+                    } = body
+
+                    const newVersionId = (rawNewVersionId || '').trim()
+
+                    if (!sourceVersionId) {
+                        return Response.json(
+                            {
+                                success: false,
+                                error: 'Source version is required',
+                            },
+                            { status: 400 }
+                        )
+                    }
+
+                    if (!newVersionId) {
+                        return Response.json(
+                            {
+                                success: false,
+                                error: 'New version ID is required',
+                            },
+                            { status: 400 }
+                        )
+                    }
+
+                    // Validate version ID format (alphanumeric, dots, dashes, underscores)
+                    if (!/^[a-zA-Z0-9._-]+$/.test(newVersionId)) {
+                        return Response.json(
+                            {
+                                success: false,
+                                error: 'Version ID may only contain alphanumeric characters, dots, dashes, and underscores',
+                            },
+                            { status: 400 }
+                        )
+                    }
+
+                    const versionsDir = path.join(
+                        process.cwd(),
+                        'public',
+                        'data',
+                        'versions'
+                    )
+                    const sourceDir = path.join(versionsDir, sourceVersionId)
+                    const targetDir = path.join(versionsDir, newVersionId)
+
+                    // Verify source directory exists
+                    try {
+                        const stat = await fs.stat(sourceDir)
+                        if (!stat.isDirectory()) {
+                            return Response.json(
+                                {
+                                    success: false,
+                                    error: `Source version directory '${sourceVersionId}' is not a directory`,
+                                },
+                                { status: 400 }
+                            )
+                        }
+                    } catch {
+                        return Response.json(
+                            {
+                                success: false,
+                                error: `Source version '${sourceVersionId}' does not exist`,
+                            },
+                            { status: 400 }
+                        )
+                    }
+
+                    // Verify target directory does not already exist
+                    try {
+                        await fs.access(targetDir)
+                        return Response.json(
+                            {
+                                success: false,
+                                error: `Version directory '${newVersionId}' already exists`,
+                            },
+                            { status: 400 }
+                        )
+                    } catch {
+                        // Target directory does not exist, proceed
+                    }
+
+                    return await versionsLock.runLocked(async () => {
+                        const config =
+                            await readJSON<VersionConfig>(versionsConfigPath)
+
+                        if (config.versions.some((v) => v.id === newVersionId)) {
+                            return Response.json(
+                                {
+                                    success: false,
+                                    error: `Version '${newVersionId}' already exists in versions.json`,
+                                },
+                                { status: 400 }
+                            )
+                        }
+
+                        // Create new version directory
+                        await fs.mkdir(targetDir, { recursive: true })
+
+                        // Copy all valid JSON files from source to target
+                        const entries = await fs.readdir(sourceDir, {
+                            withFileTypes: true,
+                        })
+
+                        for (const entry of entries) {
+                            if (
+                                entry.isFile() &&
+                                entry.name.endsWith('.json') &&
+                                !entry.name.endsWith('.bak') &&
+                                !entry.name.endsWith('.tmp')
+                            ) {
+                                const srcFile = path.join(sourceDir, entry.name)
+                                const dstFile = path.join(targetDir, entry.name)
+
+                                if (entry.name === 'items.json') {
+                                    const itemsContent =
+                                        await readJSON<ItemsJsonData>(srcFile)
+                                    if (
+                                        itemsContent &&
+                                        typeof itemsContent === 'object'
+                                    ) {
+                                        if ('minecraft_version' in itemsContent) {
+                                            itemsContent.minecraft_version =
+                                                newVersionId
+                                        }
+                                    }
+                                    await safeWriteJSON(dstFile, itemsContent)
+                                } else {
+                                    await fs.copyFile(srcFile, dstFile)
+                                }
+                            }
+                        }
+
+                        const newVersionOption: VersionOption = {
+                            id: newVersionId,
+                            label: (newVersionLabel || '').trim() || newVersionId,
+                            order: 1,
+                        }
+
+                        // Shift existing orders
+                        const updatedVersions: VersionOption[] = [
+                            newVersionOption,
+                            ...config.versions.map((v, idx) => ({
+                                ...v,
+                                order: idx + 2,
+                            })),
+                        ]
+
+                        const updatedConfig: VersionConfig = {
+                            defaultVersion: setAsDefault
+                                ? newVersionId
+                                : config.defaultVersion || newVersionId,
+                            versions: updatedVersions,
+                        }
+
+                        await safeWriteJSON(versionsConfigPath, updatedConfig)
+
+                        return Response.json({
+                            success: true,
+                            version: newVersionOption,
+                            config: updatedConfig,
+                        })
+                    })
+                } catch (error) {
+                    console.error('Error in POST /api/versions:', error)
                     return Response.json(
                         {
                             success: false,

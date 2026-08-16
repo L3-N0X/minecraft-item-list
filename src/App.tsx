@@ -169,8 +169,8 @@ function Layout({ children }: { children: React.ReactNode }) {
                                 ))}
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 md:gap-3">
-                        <VersionSelect className="hidden sm:flex w-[160px]" />
+                    <div className="flex items-center gap-2 md:gap-3 shrink-0">
+                        <VersionSelect className="hidden sm:flex" />
                         <ThemeToggle />
                         <Button
                             variant="default"
