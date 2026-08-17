@@ -357,14 +357,16 @@ async function updateCraftingData() {
     let craftingIngredientCorrected = 0
     for (const [itemId, item] of Object.entries(data.items)) {
         const recipeShapes = itemRecipeShapes.get(itemId)
-        if (recipeShapes) {
-            if (!item.obtaining) {
-                item.obtaining = {
-                    obtainability: 'survival',
-                    craftable: true,
-                    difficultyToObtain: -1,
-                }
+        if (!item.obtaining) {
+            item.obtaining = {
+                obtainability: 'survival',
+                craftable: Boolean(recipeShapes && recipeShapes.size > 0),
+                difficultyToObtain: -1,
             }
+        }
+
+        if (recipeShapes) {
+            item.obtaining.craftable = true
 
             // Migrate and clean up 'options' if it exists
             if (item.obtaining.options) {

@@ -26,14 +26,14 @@ import { getAssetPath } from '@/lib/utils'
 const PAGE_SIZE = 75
 
 function ItemRow({ id }: { id: string }) {
-    const { items, getItemCategories, isStaticMode } = useData()
+    const { items, getItemCategories, isStaticMode, schema } = useData()
     const navigate = useNavigate()
     const item = items[id]
 
     const errorCount = useMemo(() => {
         if (!item) return 0
-        return validateItemData(item).size
-    }, [item])
+        return validateItemData(item, undefined, schema).size
+    }, [item, schema])
     const categories = useMemo(
         () => getItemCategories(id),
         [id, getItemCategories]

@@ -77,20 +77,24 @@ export function EditorView() {
         const sourceItem = items[sourceItemId]
         if (!sourceItem) return
 
-        // Define fields to EXCLUDE from copying
-        const excludedFields = ['displayName', 'displayNameGerman']
+        // Clone source item completely
+        const clonedSource = JSON.parse(
+            JSON.stringify(sourceItem)
+        ) as Record<string, unknown>
 
-        // Create new data object
-        const newData = { ...currentItem } as Record<string, unknown>
+        // Preserve current item's display names and dominant colors
+        const newData: Record<string, unknown> = {
+            ...clonedSource,
+            displayName: currentItem.displayName,
+            displayNameGerman: currentItem.displayNameGerman,
+        }
 
-        // Copy all other fields
-        Object.keys(sourceItem).forEach((key) => {
-            if (!excludedFields.includes(key)) {
-                newData[key] = JSON.parse(
-                    JSON.stringify((sourceItem as Record<string, unknown>)[key])
-                )
-            }
-        })
+        if (currentItem.mostDominantColor) {
+            newData.mostDominantColor = currentItem.mostDominantColor
+        }
+        if (currentItem.medianColor) {
+            newData.medianColor = currentItem.medianColor
+        }
 
         // Get source item categories
         const sourceCategories = getItemCategories(sourceItemId)

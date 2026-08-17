@@ -179,7 +179,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
             const path: (string | number)[] = [...currentPath, key]
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const value = currentData ? (currentData as any)[key] : undefined
-            const fieldSchema = resolveSchema(rawFieldSchema)
+            const fieldSchema = resolveSchema(rawFieldSchema, activeSchema)
             const label = getLabel(key, fieldSchema)
             // A field is optional when the parent schema explicitly lists required
             // fields and this key is absent from that list.

@@ -41,14 +41,14 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
 
     const { getItemCategories } = useData()
     const categories = getItemCategories(itemId)
-    const blockLoots = item.obtaining.blockLoot ?? []
+    const blockLoots = item.obtaining?.blockLoot ?? []
     const totalBlocks = blockLoots.reduce(
         (acc, loot) => acc + (loot.blocks?.length ?? 0),
         0
     )
 
     const generatedLootStructures =
-        item.obtaining.generatedLoot?.structures ?? []
+        item.obtaining?.generatedLoot?.structures ?? []
     const totalLootRows = generatedLootStructures.reduce(
         (acc, s) => acc + s.chests.length,
         0
@@ -174,19 +174,19 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
 
     const hasBreaking = item.isBlock && item.breaking
 
-    const mobLoot = item.obtaining.mobLoot ?? []
+    const mobLoot = item.obtaining?.mobLoot ?? []
     const hasMobLoot = mobLoot.length > 0
-    const tradingVillagers = item.obtaining.trading?.villagers ?? []
-    const hasWanderingTrader = !!item.obtaining.trading?.wanderingTrader
+    const tradingVillagers = item.obtaining?.trading?.villagers ?? []
+    const hasWanderingTrader = !!item.obtaining?.trading?.wanderingTrader
     const traderCount = tradingVillagers.length + (hasWanderingTrader ? 1 : 0)
     const hasTrading = traderCount > 0
 
-    const biomes = item.obtaining.naturalGeneration?.biomes ?? []
+    const biomes = item.obtaining?.naturalGeneration?.biomes ?? []
     const structures =
-        item.obtaining.naturalGeneration?.partOfStructures?.structures ?? []
+        item.obtaining?.naturalGeneration?.partOfStructures?.structures ?? []
     const hasBiomes =
         biomes.length > 0 ||
-        (item.obtaining.naturalGeneration !== undefined &&
+        (item.obtaining?.naturalGeneration !== undefined &&
             biomes.length === 0 &&
             item.obtaining.naturalGeneration.comment !== undefined &&
             item.obtaining.naturalGeneration.comment.length === 0)
@@ -303,15 +303,15 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 contentClassName="flex flex-col items-center justify-center pb-5"
                 title="Difficulty"
             >
-                {item.obtaining.difficultyToObtain < 0 ? (
+                {(item.obtaining?.difficultyToObtain ?? -1) < 0 ? (
                     <div className="text-lg flex-1 font-bold text-center justify-center items-center font-mono text-foreground/90 tracking-tighter flex">
-                        {item.obtaining.obtainability === 'unobtainable' ? (
+                        {item.obtaining?.obtainability === 'unobtainable' ? (
                             <p className="dark:text-red-400/80 text-red-800/80">
                                 Not
                                 <br />
                                 Obtainable
                             </p>
-                        ) : item.obtaining.obtainability === 'creative_only' ? (
+                        ) : item.obtaining?.obtainability === 'creative_only' ? (
                             <p className="text-pink-300">
                                 Creative
                                 <br />
@@ -324,7 +324,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 ) : (
                     <>
                         <div className="flex-1 flex justify-center items-center mt-1 text-6xl font-black font-mono text-foreground/90 leading-none">
-                            {item.obtaining.difficultyToObtain}
+                            {item.obtaining?.difficultyToObtain}
                         </div>
                     </>
                 )}
@@ -344,13 +344,13 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                             src={getAssetPath('/items/crafting_table.png')}
                             alt="craftable"
                             className={cn(
-                                item.obtaining.recipeShape?.includes(
+                                item.obtaining?.recipeShape?.includes(
                                     'stonecutting'
                                 )
                                     ? 'h-12 w-12'
                                     : 'h-16 w-16',
                                 'drop-shadow-sm object-contain',
-                                !item.obtaining.craftable &&
+                                !item.obtaining?.craftable &&
                                     'grayscale opacity-50'
                             )}
                             onError={(e) => {
@@ -358,7 +358,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
                             }}
                         />
-                        {item.obtaining.recipeShape?.includes(
+                        {item.obtaining?.recipeShape?.includes(
                             'stonecutting'
                         ) && (
                             <img
@@ -375,8 +375,8 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     <div
                         className={cn(
                             'text-xs font-mono tracking-tight mb-5',
-                            item.obtaining.craftable ||
-                                item.obtaining.recipeShape?.includes(
+                            item.obtaining?.craftable ||
+                                item.obtaining?.recipeShape?.includes(
                                     'stonecutting'
                                 )
                                 ? 'text-emerald-400/90'
@@ -384,13 +384,13 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         )}
                     >
                         {(() => {
-                            const shapes = item.obtaining.recipeShape ?? []
+                            const shapes = item.obtaining?.recipeShape ?? []
                             if (shapes.includes('2x2_crafting'))
                                 return 'Yes (2x2)'
                             if (shapes.includes('3x3_crafting'))
                                 return 'Yes (3x3)'
                             if (
-                                item.obtaining.craftable ||
+                                item.obtaining?.craftable ||
                                 shapes.includes('stonecutting')
                             )
                                 return 'Yes'
@@ -407,11 +407,11 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             >
                 <div className="flex flex-1 flex-col items-center justify-center gap-1 w-full">
                     <div className="flex flex-1 w-full flex-wrap gap-y-0.5 gap-x-2 items-center justify-center min-h-12 mt-2">
-                        {item.obtaining.smelting &&
+                        {item.obtaining?.smelting &&
                         item.obtaining.smelting.smeltable.length > 0 ? (
                             item.obtaining.smelting.smeltable.map((furnace) => {
                                 const smeltableCount =
-                                    item.obtaining.smelting?.smeltable.length
+                                    item.obtaining?.smelting?.smeltable.length
 
                                 return (
                                     <React.Fragment key={furnace}>
@@ -453,12 +453,12 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     <div
                         className={cn(
                             'text-xs font-mono tracking-tight mb-5',
-                            (item.obtaining.smelting?.smeltable.length ?? 0) > 0
+                            (item.obtaining?.smelting?.smeltable.length ?? 0) > 0
                                 ? 'text-emerald-400/90'
                                 : 'dark:text-red-400/80 text-red-700/80'
                         )}
                     >
-                        {(item.obtaining.smelting?.smeltable.length ?? 0) > 0
+                        {(item.obtaining?.smelting?.smeltable.length ?? 0) > 0
                             ? 'Yes'
                             : 'No'}
                     </div>
@@ -681,7 +681,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     Best Tool
                                 </span>
                                 <div className="flex gap-1">
-                                    {item.block?.bestTools.map((tool) => (
+                                    {item.block?.bestTools?.map((tool) => (
                                         <ToolIcon key={tool} tool={tool} />
                                     ))}
                                 </div>
@@ -705,7 +705,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         ) : (
                             // <div className="flex-1 flex items-center justify-center">
                             <span className="text-[10px] uppercase tracking-[0.2em] mb-5 text-center text-muted-foreground">
-                                {item.obtaining.obtainability === 'survival'
+                                {item.obtaining?.obtainability === 'survival'
                                     ? 'Drops by Hand'
                                     : 'Does not drop'}
                             </span>
@@ -928,11 +928,11 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 )}
 
             {/* Fishing Panel */}
-            {item.obtaining.fishing && (
+            {item.obtaining?.fishing && (
                 <FlippableGlassPanel
                     className="md:col-span-2"
                     title="Fishing"
-                    comment={item.obtaining.fishing.comment}
+                    comment={item.obtaining?.fishing?.comment}
                     contentClassName="flex flex-col items-center justify-center"
                 >
                     <div className="flex-1 flex flex-col items-center justify-center gap-1">
@@ -958,7 +958,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             )}
 
             {/* Bartering Panel */}
-            {item.obtaining.bartering && (
+            {item.obtaining?.bartering && (
                 <FlippableGlassPanel
                     className="md:col-span-2"
                     title="Bartering"
@@ -1077,25 +1077,25 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                     <div className="flex gap-2 items-baseline mt-1">
                                         <span className="text-base font-semibold font-mono text-emerald-400/90 leading-none">
                                             {formatChance(
-                                                item.obtaining.trading!
-                                                    .wanderingTrader!.chance
+                                                item.obtaining?.trading
+                                                    ?.wanderingTrader?.chance
                                             )}
                                         </span>
                                         <div className="shrink-0 h-3 w-px bg-white/20" />
                                         <span className="text-sm font-mono text-muted-foreground tracking-tighter">
                                             {formatQuantity(
-                                                item.obtaining.trading!
-                                                    .wanderingTrader!.quantity
+                                                item.obtaining?.trading
+                                                    ?.wanderingTrader?.quantity
                                             )}
                                             x
                                         </span>
                                     </div>
-                                    {item.obtaining.trading!.wanderingTrader!
-                                        .comment && (
+                                    {item.obtaining?.trading?.wanderingTrader
+                                        ?.comment && (
                                         <p className="text-[10px] text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
                                             {
-                                                item.obtaining.trading!
-                                                    .wanderingTrader!.comment
+                                                item.obtaining.trading
+                                                    .wanderingTrader.comment
                                             }
                                         </p>
                                     )}
@@ -1109,7 +1109,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
             {/* ROW 5-6: GENERATED LOOT */}
             <GlassPanel
                 className={cn(
-                    item.obtaining.generatedLoot &&
+                    item.obtaining?.generatedLoot &&
                         item.obtaining.generatedLoot.structures.length > 0
                         ? cn(
                               'md:col-span-9',
@@ -1120,7 +1120,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 title="Generated Loot"
                 contentClassName="pb-5 overflow-hidden"
             >
-                {item.obtaining.generatedLoot &&
+                {item.obtaining?.generatedLoot &&
                 item.obtaining.generatedLoot.structures.length > 0 ? (
                     <div className="flex flex-col gap-3 h-full overflow-y-auto scrollbar-thin px-2">
                         <div className="overflow-x-auto">
@@ -1427,25 +1427,25 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 contentClassName="flex justify-center items-center"
             >
                 <div className="flex flex-col flex-1 justify-center items-center gap-1 mb-5">
-                    {item.obtaining.naturalGeneration?.dimensions.map((dim) => (
+                    {item.obtaining?.naturalGeneration?.dimensions.map((dim) => (
                         <DimensionBadge key={dim} dimension={dim} />
                     ))}
-                    {item.obtaining.naturalGeneration?.dimensions.length ===
+                    {(item.obtaining?.naturalGeneration?.dimensions.length ===
                         0 ||
-                        (item.obtaining.naturalGeneration === undefined && (
-                            <div className="flex-1 flex flex-col items-center justify-center h-full">
-                                <img
-                                    className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain drop-shadow-sm"
-                                    src={getAssetPath(
-                                        '/items/end_portal_frame.png'
-                                    )}
-                                />
-                                <div className="text-muted-foreground/60 text-xs text-center">
-                                    Does not naturally generate in any
-                                    dimensions
-                                </div>
+                        item.obtaining?.naturalGeneration === undefined) && (
+                        <div className="flex-1 flex flex-col items-center justify-center h-full">
+                            <img
+                                className="w-12 h-12 flex-1 text-muted-foreground/50 grayscale opacity-50 object-contain drop-shadow-sm"
+                                src={getAssetPath(
+                                    '/items/end_portal_frame.png'
+                                )}
+                            />
+                            <div className="text-muted-foreground/60 text-xs text-center">
+                                Does not naturally generate in any
+                                dimensions
                             </div>
-                        ))}
+                        </div>
+                    )}
                 </div>
             </GlassPanel>
 
@@ -1460,7 +1460,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 )}
                 title="Part of Structures"
                 comment={
-                    item.obtaining.naturalGeneration?.partOfStructures?.comment
+                    item.obtaining?.naturalGeneration?.partOfStructures?.comment
                 }
                 contentClassName="pb-5 overflow-hidden px-4"
             >
@@ -1514,10 +1514,10 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         : 'md:col-span-3 row-span-1'
                 )}
                 title="Biome Generation"
-                comment={item.obtaining.naturalGeneration?.comment}
+                comment={item.obtaining?.naturalGeneration?.comment}
                 contentClassName="pb-5 overflow-hidden px-4"
             >
-                {(item.obtaining.naturalGeneration !== undefined &&
+                {(item.obtaining?.naturalGeneration !== undefined &&
                     item.obtaining.naturalGeneration.comment !== undefined &&
                     item.obtaining.naturalGeneration.comment.length > 0) ||
                 biomes.length > 0 ? (
@@ -1538,7 +1538,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         {biomes.map((biome) => (
                             <BiomeIcon key={biome} biome={biome} />
                         ))}
-                        {item.obtaining.naturalGeneration !== undefined &&
+                        {item.obtaining?.naturalGeneration !== undefined &&
                             biomes.length === 0 &&
                             item.obtaining.naturalGeneration.comment !==
                                 undefined &&

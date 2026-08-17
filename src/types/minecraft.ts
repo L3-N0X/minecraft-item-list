@@ -54,15 +54,15 @@ export interface ItemData {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any
     block?: {
-        blastResistance: number
-        hardness: number
-        luminousLevel: number
-        transparency: Transparency
-        waterloggable: boolean
-        isBlockEntity: boolean
-        bestTools: Tool[]
-        flammable: boolean
-        catchesFire: boolean
+        blastResistance?: number
+        hardness?: number
+        luminousLevel?: number
+        transparency?: Transparency
+        waterloggable?: boolean
+        isBlockEntity?: boolean
+        bestTools?: Tool[]
+        flammable?: boolean
+        catchesFire?: boolean
     }
     item?: {
         damage?: {
@@ -88,7 +88,7 @@ export interface ItemData {
         requiresSpecialToolsToDrop?: SpecialTool[]
         instantBreaking: boolean
     }
-    obtaining: {
+    obtaining?: {
         obtainability: Obtainability
         craftable: boolean
         difficultyToObtain: number

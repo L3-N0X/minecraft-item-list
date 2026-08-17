@@ -161,17 +161,37 @@ async function initData() {
 
         if (existing) {
             // Preserve all existing data, only manage the fields this script is responsible for
-            newItems[name] = {
-                ...existing,
-                displayName: displayNameEn,
-                displayNameGerman: displayNameGerman,
-                isBlock,
-                ...(isBlock
-                    ? {
-                          block: existing.block ?? {},
-                          breaking: existing.breaking ?? {},
-                      }
-                    : { item: existing.item ?? {} }),
+            const existingCopy = { ...existing }
+
+            if (isBlock) {
+                delete existingCopy.item
+                newItems[name] = {
+                    ...existingCopy,
+                    displayName: displayNameEn,
+                    displayNameGerman: displayNameGerman,
+                    isBlock: true,
+                    block: existing.block ?? {},
+                    ...(existing.breaking &&
+                    Object.keys(existing.breaking).length > 0
+                        ? { breaking: existing.breaking }
+                        : {}),
+                }
+            } else {
+                delete existingCopy.block
+                delete existingCopy.breaking
+                const fireResistant =
+                    (existing.item?.fireResistant as boolean | undefined) ??
+                    (itemComp?.['minecraft:damage_resistant'] !== undefined)
+                newItems[name] = {
+                    ...existingCopy,
+                    displayName: displayNameEn,
+                    displayNameGerman: displayNameGerman,
+                    isBlock: false,
+                    item: {
+                        fireResistant,
+                        ...(existing.item ?? {}),
+                    },
+                }
             }
         } else {
             // New item initialization
@@ -186,6 +206,11 @@ async function initData() {
                 isArmorTrimMaterial:
                     itemComp?.['minecraft:provides_trim_material'] !==
                     undefined,
+                obtaining: {
+                    obtainability: 'survival',
+                    craftable: false,
+                    difficultyToObtain: -1,
+                },
             }
 
             if (isBlock) {
