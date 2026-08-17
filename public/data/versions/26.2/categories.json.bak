@@ -1394,8 +1394,8 @@
         "melon_seeds",
         "pitcher_pod",
         "pumpkin_seeds",
-        "wheat_seeds",
-        "torchflower_seeds"
+        "torchflower_seeds",
+        "wheat_seeds"
     ],
     "soup": [
         "beetroot_soup"

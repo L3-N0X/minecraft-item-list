@@ -73381,9 +73381,7 @@
             },
             "mostDominantColor": "#206644",
             "medianColor": "#286E4A",
-            "item": {
-                "fireResistant": false
-            }
+            "item": {}
         },
         "totem_of_undying": {
             "displayName": "Totem of Undying",
