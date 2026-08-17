@@ -12346,8 +12346,8 @@
                     "3x3_crafting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#B64D4D",
+            "medianColor": "#8F302F"
         },
         "chiseled_copper": {
             "displayName": "Chiseled Copper",
@@ -12882,8 +12882,8 @@
                     "3x3_crafting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#D0CE67",
+            "medianColor": "#BBAB5B"
         },
         "chiseled_tuff": {
             "displayName": "Chiseled Tuff",
@@ -13145,8 +13145,8 @@
                     "wooden_pickaxe"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null,
+            "mostDominantColor": "#AD5D5A",
+            "medianColor": "#965553",
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": false,
@@ -13206,8 +13206,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#963330",
+            "medianColor": "#9A3834"
         },
         "cinnabar_brick_stairs": {
             "displayName": "Cinnabar Brick Stairs",
@@ -13253,8 +13253,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#8F3733",
+            "medianColor": "#9A3834"
         },
         "cinnabar_brick_wall": {
             "displayName": "Cinnabar Brick Wall",
@@ -13300,8 +13300,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#752728",
+            "medianColor": "#9C3834"
         },
         "cinnabar_bricks": {
             "displayName": "Cinnabar Bricks",
@@ -13348,8 +13348,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#AE4644",
+            "medianColor": "#9A3834"
         },
         "cinnabar_slab": {
             "displayName": "Cinnabar Slab",
@@ -13395,8 +13395,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#9F504A",
+            "medianColor": "#965553"
         },
         "cinnabar_stairs": {
             "displayName": "Cinnabar Stairs",
@@ -13442,8 +13442,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#A0504A",
+            "medianColor": "#965553"
         },
         "cinnabar_wall": {
             "displayName": "Cinnabar Wall",
@@ -13489,8 +13489,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#A0504B",
+            "medianColor": "#965553"
         },
         "clay": {
             "displayName": "Clay",
@@ -48192,8 +48192,8 @@
             "item": {
                 "fireResistant": false
             },
-            "mostDominantColor": "#333333",
-            "medianColor": "#404040",
+            "mostDominantColor": "#363636",
+            "medianColor": "#51514F",
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": false,
@@ -57262,8 +57262,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#A33B37",
+            "medianColor": "#9C3C38"
         },
         "polished_cinnabar_slab": {
             "displayName": "Polished Cinnabar Slab",
@@ -57309,8 +57309,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#9E3834",
+            "medianColor": "#9A3834"
         },
         "polished_cinnabar_stairs": {
             "displayName": "Polished Cinnabar Stairs",
@@ -57356,8 +57356,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#A33B37",
+            "medianColor": "#9C3834"
         },
         "polished_cinnabar_wall": {
             "displayName": "Polished Cinnabar Wall",
@@ -57403,8 +57403,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#94322E",
+            "medianColor": "#9C3C38"
         },
         "polished_deepslate": {
             "displayName": "Polished Deepslate",
@@ -58005,8 +58005,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#C1B55D",
+            "medianColor": "#BBAB5B"
         },
         "polished_sulfur_slab": {
             "displayName": "Polished Sulfur Slab",
@@ -58052,8 +58052,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#B69C56",
+            "medianColor": "#BBA059"
         },
         "polished_sulfur_stairs": {
             "displayName": "Polished Sulfur Stairs",
@@ -58099,8 +58099,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#B8A158",
+            "medianColor": "#BBAB5B"
         },
         "polished_sulfur_wall": {
             "displayName": "Polished Sulfur Wall",
@@ -58146,8 +58146,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#B8A258",
+            "medianColor": "#BBAB5B"
         },
         "polished_tuff": {
             "displayName": "Polished Tuff",
@@ -58755,8 +58755,8 @@
                     "comment": "Also generates on the surface in sulfur springs"
                 }
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#D6D666",
+            "medianColor": "#D2D264"
         },
         "potion": {
             "displayName": "Potion",
@@ -71908,8 +71908,8 @@
                     "comment": "Also on the surface as part of sulfur springs"
                 }
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#C2B36B",
+            "medianColor": "#C2B365"
         },
         "sulfur_brick_slab": {
             "displayName": "Sulfur Brick Slab",
@@ -71955,8 +71955,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#C2B55D",
+            "medianColor": "#BBAB5B"
         },
         "sulfur_brick_stairs": {
             "displayName": "Sulfur Brick Stairs",
@@ -72002,8 +72002,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#C1B45D",
+            "medianColor": "#BBAB5B"
         },
         "sulfur_brick_wall": {
             "displayName": "Sulfur Brick Wall",
@@ -72049,8 +72049,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#B79D57",
+            "medianColor": "#BBAB5B"
         },
         "sulfur_bricks": {
             "displayName": "Sulfur Bricks",
@@ -72097,8 +72097,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#BBA65A",
+            "medianColor": "#BBAB5B"
         },
         "sulfur_cube_bucket": {
             "displayName": "Bucket of Sulfur Cube",
@@ -72112,8 +72112,8 @@
             "item": {
                 "fireResistant": false
             },
-            "mostDominantColor": null,
-            "medianColor": null,
+            "mostDominantColor": "#D2CEC8",
+            "medianColor": "#A19690",
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": false,
@@ -72132,8 +72132,8 @@
             "item": {
                 "fireResistant": false
             },
-            "mostDominantColor": "#3282B7",
-            "medianColor": "#33B3E8",
+            "mostDominantColor": "#AD876A",
+            "medianColor": "#D4D490",
             "obtaining": {
                 "obtainability": "creative_only",
                 "craftable": false,
@@ -72184,8 +72184,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#B09D61",
+            "medianColor": "#C2B365"
         },
         "sulfur_spike": {
             "displayName": "Sulfur Spike",
@@ -72213,8 +72213,8 @@
                 "requiresSilkTouch": "no",
                 "instantBreaking": false
             },
-            "mostDominantColor": null,
-            "medianColor": null,
+            "mostDominantColor": "#D5CC6D",
+            "medianColor": "#BDB965",
             "obtaining": {
                 "obtainability": "survival",
                 "craftable": false,
@@ -72280,8 +72280,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#C2B36B",
+            "medianColor": "#C2B365"
         },
         "sulfur_wall": {
             "displayName": "Sulfur Wall",
@@ -72327,8 +72327,8 @@
                     "stonecutting"
                 ]
             },
-            "mostDominantColor": null,
-            "medianColor": null
+            "mostDominantColor": "#C2B36B",
+            "medianColor": "#C2B365"
         },
         "sunflower": {
             "displayName": "Sunflower",
