@@ -232,13 +232,13 @@ export function HomeView() {
                     </div>
                 </div>
 
-                <div className="relative group">
+                <div className="relative group isolate">
                     <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors z-20 pointer-events-none" />
                     <Input
                         ref={inputRef}
                         type="text"
                         placeholder="Search items..."
-                        className="h-12 md:h-14 text-xl md:text-2xl pl-12 pr-12 rounded-2xl shadow-xl border-primary/20 focus-visible:ring-primary bg-background/60 backdrop-blur-xl transition-all duration-500 group-focus-within:shadow-primary/10 relative z-10"
+                        className="h-12 md:h-14 text-xl md:text-2xl pl-12 pr-12 rounded-2xl shadow-xl border-primary/20 focus-visible:ring-primary bg-background/90 transition-shadow duration-300 group-focus-within:shadow-primary/10 relative z-10"
                         value={search}
                         onChange={(e) => {
                             setSearch(e.target.value)
@@ -386,7 +386,7 @@ export function HomeView() {
                 </div>
             )}
 
-            <div className="w-full">
+            <div className="w-full isolate">
                 {activeItemId && selectedItem && (
                     <div
                         key={activeItemId}

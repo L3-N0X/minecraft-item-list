@@ -1582,19 +1582,18 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
 
             {/* Dummy Panels to fill grid holes */}
             {dummyPanels.map((dummy) => (
-                <GlassPanel
+                <div
                     key={dummy.id}
                     data-dummy
                     className={cn(
-                        'opacity-0 pointer-events-none transition-all duration-500 ease-in-out',
+                        'pointer-events-none invisible',
                         `md:col-span-${dummy.colSpan}`
                     )}
                     style={{
                         gridColumn: `span ${dummy.colSpan} / span ${dummy.colSpan}`,
                     }}
-                >
-                    <div className="w-full h-full" />
-                </GlassPanel>
+                    aria-hidden="true"
+                />
             ))}
         </div>
     )
