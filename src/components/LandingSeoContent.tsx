@@ -438,7 +438,7 @@ export function LandingSeoContent() {
             {/* 2. SCROLL-DRIVEN FEATURE SECTION WITH HORIZONTAL STRIPE */}
             <div
                 ref={scrollSectionRef}
-                className="relative h-[280vh] mt-8 md:mt-12"
+                className="relative h-[280vh] mt-20 md:mt-28"
             >
                 <div className="sticky top-28 md:top-36">
                     <div className="min-h-[220px] md:min-h-[240px] flex flex-col items-center text-center gap-6 md:gap-7 w-full">
@@ -490,7 +490,7 @@ export function LandingSeoContent() {
             </div>
 
             {/* 3. KEY DATABASE ELEMENTS (CONCISE OVERVIEW GRID) */}
-            <div className="space-y-6 mt-14 md:mt-20">
+            <div className="space-y-6 mt-28 md:mt-40">
                 <div
                     ref={registerElement('elements-header')}
                     data-reveal-id="elements-header"
