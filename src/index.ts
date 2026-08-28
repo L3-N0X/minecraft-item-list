@@ -91,6 +91,12 @@ const server = serve({
                 return new Response(file)
             }
 
+            // Check if a directory index.html exists (for pre-rendered routes like /impressum)
+            const nestedIndex = Bun.file(path.join(filePath, 'index.html'))
+            if (await nestedIndex.exists()) {
+                return new Response(nestedIndex)
+            }
+
             // Client-side routing fallback (React Router):
             // If the file isn't found, serve index.html and let React Router handle the 404
             return new Response(

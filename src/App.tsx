@@ -1,5 +1,11 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import {
+    BrowserRouter,
+    StaticRouter,
+    Routes,
+    Route,
+    useLocation,
+} from 'react-router-dom'
 import { DataProvider, useData } from './context/DataContext'
 import { ListView } from './views/ListView'
 import { EditorView } from './views/EditorView'
@@ -194,24 +200,47 @@ function Layout({ children }: { children: React.ReactNode }) {
     )
 }
 
+export function AppRoutes() {
+    return (
+        <Layout>
+            <Routes>
+                <Route path="/" element={<HomeView />} />
+                <Route path="/list" element={<ListView />} />
+                <Route path="/edit/:id" element={<EditorView />} />
+                <Route path="/bulk" element={<BulkEditorView />} />
+                <Route
+                    path="/impressum"
+                    element={<ImpressumView />}
+                />
+            </Routes>
+        </Layout>
+    )
+}
+
 export function App() {
     return (
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <DataProvider>
                 <BrowserRouter basename={import.meta.env.BASE_URL}>
-                    <Layout>
-                        <Routes>
-                            <Route path="/" element={<HomeView />} />
-                            <Route path="/list" element={<ListView />} />
-                            <Route path="/edit/:id" element={<EditorView />} />
-                            <Route path="/bulk" element={<BulkEditorView />} />
-                            <Route
-                                path="/impressum"
-                                element={<ImpressumView />}
-                            />
-                        </Routes>
-                    </Layout>
+                    <AppRoutes />
                 </BrowserRouter>
+            </DataProvider>
+        </ThemeProvider>
+    )
+}
+
+export function ServerApp({ url = '/' }: { url?: string }) {
+    const base = import.meta.env.BASE_URL || '/'
+    const fullUrl = url.startsWith(base)
+        ? url
+        : `${base.replace(/\/$/, '')}${url.startsWith('/') ? url : `/${url}`}`
+
+    return (
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <DataProvider>
+                <StaticRouter location={fullUrl} basename={base}>
+                    <AppRoutes />
+                </StaticRouter>
             </DataProvider>
         </ThemeProvider>
     )
