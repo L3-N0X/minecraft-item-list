@@ -204,8 +204,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     const obtaining = data.obtaining as any
                     const selectedStructure = obtaining?.generatedLoot
                         ?.structures?.[structIdx]?.structure as
-                        | string
-                        | undefined
+                        string | undefined
                     if (
                         selectedStructure &&
                         structureToChest[selectedStructure]
@@ -271,9 +270,7 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
 
             // Array of enums (multi-select)
             if (fieldSchema.type === 'array' && fieldSchema.items?.enum) {
-                const options = [
-                    ...(fieldSchema.items.enum as string[]),
-                ].sort()
+                const options = [...(fieldSchema.items.enum as string[])].sort()
                 const err = getErr(path)
                 return (
                     <div key={path.join('.')} className="md:col-span-2">

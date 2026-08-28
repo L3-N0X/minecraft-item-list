@@ -2,12 +2,7 @@ export type RecipeRef = string
 export type RecipeRefOrList = RecipeRef | RecipeRef[]
 
 export type RecipeCategory =
-    | 'blocks'
-    | 'building'
-    | 'equipment'
-    | 'food'
-    | 'misc'
-    | 'redstone'
+    'blocks' | 'building' | 'equipment' | 'food' | 'misc' | 'redstone'
 
 export type RecipeType =
     | 'minecraft:blasting'

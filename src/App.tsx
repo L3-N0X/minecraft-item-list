@@ -108,7 +108,9 @@ function Layout({ children }: { children: React.ReactNode }) {
                                                             asChild
                                                             className={cn(
                                                                 'justify-start h-11 px-4',
-                                                                isActive(link.to) &&
+                                                                isActive(
+                                                                    link.to
+                                                                ) &&
                                                                     'bg-primary/10 text-primary hover:bg-primary/20'
                                                             )}
                                                         >

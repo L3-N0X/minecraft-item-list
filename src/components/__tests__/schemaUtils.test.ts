@@ -1,11 +1,12 @@
 import { describe, it, expect } from 'bun:test'
-import { resolveRef, resolveSchema, isQuantitySpec } from '../schemaUtils'
+import { resolveSchema } from '../schemaUtils'
 import { validateItemData, getItemSchema } from '../schemaValidation'
 import v26_2Schema from '../../../public/data/versions/26.2/schema.json'
 import type { ItemData } from '../../types/minecraft'
+import type { JsonSchemaProperty } from '../schema-types'
 
 describe('schemaUtils & schemaValidation with versioned schema', () => {
-    const rawBiomesField = {
+    const rawBiomesField: JsonSchemaProperty = {
         type: 'array',
         description: 'Biomes where the item generates naturally',
         items: {
@@ -29,7 +30,9 @@ describe('schemaUtils & schemaValidation with versioned schema', () => {
 
     it('getItemSchema extracts definitions and properties from 26.2 schema', () => {
         const schemaObj = getItemSchema(v26_2Schema)
-        const biomeEnum = schemaObj.definitions?.biomeEnum as { enum?: string[] }
+        const biomeEnum = schemaObj.definitions?.biomeEnum as {
+            enum?: string[]
+        }
         expect(biomeEnum?.enum?.includes('sulfur_caves')).toBe(true)
     })
 
@@ -68,10 +71,16 @@ describe('schemaUtils & schemaValidation with versioned schema', () => {
         // Default schema does not know sulfur_caves -> should report error
         const defaultErrors = validateItemData(sulfurBlockItem)
         expect(defaultErrors.size).toBeGreaterThan(0)
-        expect(defaultErrors.get('obtaining.naturalGeneration.biomes.0')).toBeDefined()
+        expect(
+            defaultErrors.get('obtaining.naturalGeneration.biomes.0')
+        ).toBeDefined()
 
         // 26.2 schema knows sulfur_caves -> should pass with 0 errors
-        const v26Errors = validateItemData(sulfurBlockItem, undefined, v26_2Schema)
+        const v26Errors = validateItemData(
+            sulfurBlockItem,
+            undefined,
+            v26_2Schema
+        )
         expect(v26Errors.size).toBe(0)
     })
 })

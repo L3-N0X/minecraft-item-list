@@ -146,7 +146,10 @@ async function updateCraftingData() {
 
     // Resolve tags
     const resolvedTags = new Map<string, Set<string>>()
-    function resolveTag(tagId: string, inProgress: Set<string> = new Set()): Set<string> {
+    function resolveTag(
+        tagId: string,
+        inProgress: Set<string> = new Set()
+    ): Set<string> {
         if (resolvedTags.has(tagId)) return resolvedTags.get(tagId)!
         if (inProgress.has(tagId)) return new Set()
 

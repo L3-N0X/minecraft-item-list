@@ -209,7 +209,9 @@ export async function loadItemTagMap(
     })
 
     if (!response.ok) {
-        throw new Error(`Failed to load tags for version ${version} (${response.status})`)
+        throw new Error(
+            `Failed to load tags for version ${version} (${response.status})`
+        )
     }
 
     return parseItemTagMap(await response.json())

@@ -70,4 +70,3 @@ export function VersionSelect({ className }: { className?: string }) {
         </>
     )
 }
-

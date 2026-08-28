@@ -78,9 +78,10 @@ export function EditorView() {
         if (!sourceItem) return
 
         // Clone source item completely
-        const clonedSource = JSON.parse(
-            JSON.stringify(sourceItem)
-        ) as Record<string, unknown>
+        const clonedSource = JSON.parse(JSON.stringify(sourceItem)) as Record<
+            string,
+            unknown
+        >
 
         // Preserve current item's display names and dominant colors
         const newData: Record<string, unknown> = {

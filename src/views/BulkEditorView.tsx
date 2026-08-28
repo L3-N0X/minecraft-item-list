@@ -110,12 +110,7 @@ export interface EditableFieldConfig {
 }
 
 export type FieldOperation =
-    | 'set'
-    | 'add'
-    | 'multiply'
-    | 'toggle'
-    | 'remove'
-    | 'clear'
+    'set' | 'add' | 'multiply' | 'toggle' | 'remove' | 'clear'
 
 export const BASE_EDITABLE_FIELDS: EditableFieldConfig[] = [
     // General
@@ -218,12 +213,7 @@ export const BASE_EDITABLE_FIELDS: EditableFieldConfig[] = [
     {
         label: 'Nat. Gen Structure Comment',
         group: 'Natural Generation',
-        path: [
-            'obtaining',
-            'naturalGeneration',
-            'partOfStructures',
-            'comment',
-        ],
+        path: ['obtaining', 'naturalGeneration', 'partOfStructures', 'comment'],
         type: 'string',
     },
 
@@ -524,8 +514,14 @@ export function applyPatch(
             const hasComment = !!natGen.comment
             const hasStructComment = !!natGen.partOfStructures?.comment
             const isEditingDimensions =
-                field.path.join('.') === 'obtaining.naturalGeneration.dimensions'
-            if (!hasBiomes && !hasStructures && !hasComment && !hasStructComment) {
+                field.path.join('.') ===
+                'obtaining.naturalGeneration.dimensions'
+            if (
+                !hasBiomes &&
+                !hasStructures &&
+                !hasComment &&
+                !hasStructComment
+            ) {
                 if (
                     !isEditingDimensions ||
                     !natGen.dimensions ||
@@ -706,8 +702,7 @@ export function BulkEditorView() {
 
     const setColumnVisibility = (
         updaterOrValue:
-            | VisibilityState
-            | ((old: VisibilityState) => VisibilityState)
+            VisibilityState | ((old: VisibilityState) => VisibilityState)
     ) => {
         setBulkEditorState((prev) => ({
             ...prev,
@@ -1946,10 +1941,17 @@ export function BulkEditorView() {
                 accessorKey: 'craftingIngredient',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Crafting Ingredient" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Crafting Ingredient"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('craftingIngredient') as boolean} />
+                    <YesNoCell
+                        value={row.getValue('craftingIngredient') as boolean}
+                    />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -1978,7 +1980,12 @@ export function BulkEditorView() {
                 accessorKey: 'transparency',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Transparency" isFilterable options={filterOptions.transparency} />
+                    <SortableHeader
+                        column={column}
+                        title="Transparency"
+                        isFilterable
+                        options={filterOptions.transparency}
+                    />
                 ),
                 filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
@@ -1990,10 +1997,17 @@ export function BulkEditorView() {
                 accessorKey: 'waterloggable',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Waterloggable" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Waterloggable"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('waterloggable') as boolean} />
+                    <YesNoCell
+                        value={row.getValue('waterloggable') as boolean}
+                    />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -2083,7 +2097,12 @@ export function BulkEditorView() {
                 accessorKey: 'flammable',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Flammable" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Flammable"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
                     <YesNoCell value={row.getValue('flammable') as boolean} />
@@ -2094,7 +2113,12 @@ export function BulkEditorView() {
                 accessorKey: 'catchesFire',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Catches Fire" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Catches Fire"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
                     <YesNoCell value={row.getValue('catchesFire') as boolean} />
@@ -2119,7 +2143,12 @@ export function BulkEditorView() {
                 accessorKey: 'isArmor',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Is Armor" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Is Armor"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
                     <YesNoCell value={row.getValue('isArmor') as boolean} />
@@ -2130,7 +2159,12 @@ export function BulkEditorView() {
                 accessorKey: 'isFood',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Is Food" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Is Food"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
                     <YesNoCell value={row.getValue('isFood') as boolean} />
@@ -2155,10 +2189,17 @@ export function BulkEditorView() {
                 accessorKey: 'instantBreaking',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Instant Breaking" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Instant Breaking"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('instantBreaking') as boolean} />
+                    <YesNoCell
+                        value={row.getValue('instantBreaking') as boolean}
+                    />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -2166,10 +2207,17 @@ export function BulkEditorView() {
                 accessorKey: 'hasBartering',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Has Bartering" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Has Bartering"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
-                    <YesNoCell value={row.getValue('hasBartering') as boolean} />
+                    <YesNoCell
+                        value={row.getValue('hasBartering') as boolean}
+                    />
                 ),
                 filterFn: binaryFilterFn,
             },
@@ -2177,7 +2225,12 @@ export function BulkEditorView() {
                 accessorKey: 'hasFishing',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Has Fishing" isFilterable options={filterOptions.yesNo} />
+                    <SortableHeader
+                        column={column}
+                        title="Has Fishing"
+                        isFilterable
+                        options={filterOptions.yesNo}
+                    />
                 ),
                 cell: ({ row }) => (
                     <YesNoCell value={row.getValue('hasFishing') as boolean} />
@@ -2270,7 +2323,12 @@ export function BulkEditorView() {
                 accessorKey: 'obtainability',
                 size: 150,
                 header: ({ column }) => (
-                    <SortableHeader column={column} title="Obtainability" isFilterable options={filterOptions.obtainability} />
+                    <SortableHeader
+                        column={column}
+                        title="Obtainability"
+                        isFilterable
+                        options={filterOptions.obtainability}
+                    />
                 ),
                 filterFn: (row, id, value: string[]) => {
                     if (!value || value.length === 0) return true
@@ -2463,7 +2521,10 @@ export function BulkEditorView() {
                             Columns
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56 max-h-[70vh] overflow-y-auto">
+                    <DropdownMenuContent
+                        align="end"
+                        className="w-56 max-h-[70vh] overflow-y-auto"
+                    >
                         {table
                             .getAllColumns()
                             .filter((column) => column.getCanHide())

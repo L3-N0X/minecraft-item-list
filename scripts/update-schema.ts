@@ -90,7 +90,9 @@ async function updateSchema() {
     // Items that are not blocks, or all registered item keys
     const nonBlockItems = itemsList.filter((item) => !blockSet.has(item))
     const existingItemsEnum = new Set(schema.definitions.itemsEnum?.enum ?? [])
-    const existingBlocksEnum = new Set(schema.definitions.blocksEnum?.enum ?? [])
+    const existingBlocksEnum = new Set(
+        schema.definitions.blocksEnum?.enum ?? []
+    )
 
     // Add all new non-block items to itemsEnum
     for (const item of itemsList) {

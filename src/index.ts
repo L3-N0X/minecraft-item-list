@@ -36,7 +36,13 @@ interface CreateVersionPayload {
 
 function getVersionPaths(version?: string | null) {
     const activeVersion = version || '26.1-snapshot-10'
-    const versionDir = path.join(process.cwd(), 'public', 'data', 'versions', activeVersion)
+    const versionDir = path.join(
+        process.cwd(),
+        'public',
+        'data',
+        'versions',
+        activeVersion
+    )
     return {
         itemsPath: path.join(versionDir, 'items.json'),
         categoriesPath: path.join(versionDir, 'categories.json'),
@@ -134,9 +140,16 @@ const server = serve({
                 try {
                     const url = new URL(req.url)
                     const body = (await req.json()) as ItemUpdatePayload
-                    const { id, data, categories: itemCategories, version: bodyVersion } = body
-                    const version = bodyVersion || url.searchParams.get('version')
-                    const { itemsPath, categoriesPath } = getVersionPaths(version)
+                    const {
+                        id,
+                        data,
+                        categories: itemCategories,
+                        version: bodyVersion,
+                    } = body
+                    const version =
+                        bodyVersion || url.searchParams.get('version')
+                    const { itemsPath, categoriesPath } =
+                        getVersionPaths(version)
 
                     await itemsLock.runLocked(async () => {
                         const jsonData =
@@ -350,7 +363,9 @@ const server = serve({
                         const config =
                             await readJSON<VersionConfig>(versionsConfigPath)
 
-                        if (config.versions.some((v) => v.id === newVersionId)) {
+                        if (
+                            config.versions.some((v) => v.id === newVersionId)
+                        ) {
                             return Response.json(
                                 {
                                     success: false,
@@ -385,7 +400,9 @@ const server = serve({
                                         itemsContent &&
                                         typeof itemsContent === 'object'
                                     ) {
-                                        if ('minecraft_version' in itemsContent) {
+                                        if (
+                                            'minecraft_version' in itemsContent
+                                        ) {
                                             itemsContent.minecraft_version =
                                                 newVersionId
                                         }
@@ -399,7 +416,8 @@ const server = serve({
 
                         const newVersionOption: VersionOption = {
                             id: newVersionId,
-                            label: (newVersionLabel || '').trim() || newVersionId,
+                            label:
+                                (newVersionLabel || '').trim() || newVersionId,
                             order: 1,
                         }
 

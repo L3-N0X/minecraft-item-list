@@ -60,7 +60,11 @@ export async function fetchVersionConfig(
 
 export async function createVersionApi(
     payload: CreateVersionPayload
-): Promise<{ success: boolean; version: VersionOption; config: VersionConfig }> {
+): Promise<{
+    success: boolean
+    version: VersionOption
+    config: VersionConfig
+}> {
     const response = await fetch('/api/versions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -80,4 +84,3 @@ export async function createVersionApi(
         },
     }
 }
-

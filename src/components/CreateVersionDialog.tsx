@@ -32,7 +32,8 @@ export function CreateVersionDialog({
 }: CreateVersionDialogProps) {
     const { activeVersion, availableVersions, createVersion } = useData()
 
-    const [sourceVersionId, setSourceVersionId] = useState<string>(activeVersion)
+    const [sourceVersionId, setSourceVersionId] =
+        useState<string>(activeVersion)
     const [newVersionId, setNewVersionId] = useState<string>('')
     const [newVersionLabel, setNewVersionLabel] = useState<string>('')
     const [setAsDefault, setSetAsDefault] = useState<boolean>(false)
@@ -56,14 +57,16 @@ export function CreateVersionDialog({
 
     // Validation
     const isIdEmpty = trimmedVersionId.length === 0
-    const hasInvalidChars = !isIdEmpty && !/^[a-zA-Z0-9._-]+$/.test(trimmedVersionId)
+    const hasInvalidChars =
+        !isIdEmpty && !/^[a-zA-Z0-9._-]+$/.test(trimmedVersionId)
     const isDuplicate =
         !isIdEmpty &&
         availableVersions.some(
             (v) => v.id.toLowerCase() === trimmedVersionId.toLowerCase()
         )
 
-    const canSubmit = !isIdEmpty && !hasInvalidChars && !isDuplicate && !isSubmitting
+    const canSubmit =
+        !isIdEmpty && !hasInvalidChars && !isDuplicate && !isSubmitting
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -99,7 +102,8 @@ export function CreateVersionDialog({
                         Create New Version
                     </DialogTitle>
                     <DialogDescription>
-                        Copy an existing version template into a new version ready to be edited and expanded.
+                        Copy an existing version template into a new version
+                        ready to be edited and expanded.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -111,13 +115,18 @@ export function CreateVersionDialog({
                     )}
 
                     <div className="space-y-1.5">
-                        <Label htmlFor="source-version">Copy from Template</Label>
+                        <Label htmlFor="source-version">
+                            Copy from Template
+                        </Label>
                         <Select
                             value={sourceVersionId}
                             onValueChange={setSourceVersionId}
                             disabled={isSubmitting}
                         >
-                            <SelectTrigger id="source-version" className="w-full">
+                            <SelectTrigger
+                                id="source-version"
+                                className="w-full"
+                            >
                                 <SelectValue placeholder="Select version" />
                             </SelectTrigger>
                             <SelectContent>
@@ -129,13 +138,15 @@ export function CreateVersionDialog({
                             </SelectContent>
                         </Select>
                         <p className="text-xs text-muted-foreground">
-                            Copies all items, categories, tags, schema, and structure mappings from this version.
+                            Copies all items, categories, tags, schema, and
+                            structure mappings from this version.
                         </p>
                     </div>
 
                     <div className="space-y-1.5">
                         <Label htmlFor="new-version-id">
-                            New Version ID <span className="text-destructive">*</span>
+                            New Version ID{' '}
+                            <span className="text-destructive">*</span>
                         </Label>
                         <Input
                             id="new-version-id"
@@ -147,7 +158,8 @@ export function CreateVersionDialog({
                         />
                         {hasInvalidChars && (
                             <p className="text-xs text-destructive">
-                                Only alphanumeric characters, dots, dashes, and underscores are allowed.
+                                Only alphanumeric characters, dots, dashes, and
+                                underscores are allowed.
                             </p>
                         )}
                         {isDuplicate && (
@@ -164,11 +176,16 @@ export function CreateVersionDialog({
 
                     <div className="space-y-1.5">
                         <Label htmlFor="new-version-label">
-                            Display Name <span className="text-muted-foreground text-xs">(optional)</span>
+                            Display Name{' '}
+                            <span className="text-muted-foreground text-xs">
+                                (optional)
+                            </span>
                         </Label>
                         <Input
                             id="new-version-label"
-                            placeholder={trimmedVersionId || 'e.g. 26.1-snapshot-11'}
+                            placeholder={
+                                trimmedVersionId || 'e.g. 26.1-snapshot-11'
+                            }
                             value={newVersionLabel}
                             onChange={(e) => setNewVersionLabel(e.target.value)}
                             disabled={isSubmitting}

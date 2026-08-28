@@ -15,9 +15,7 @@
         ]
     },
     "armadillo_food": {
-        "values": [
-            "minecraft:spider_eye"
-        ]
+        "values": ["minecraft:spider_eye"]
     },
     "arrows": {
         "values": [
@@ -38,15 +36,10 @@
         ]
     },
     "axolotl_food": {
-        "values": [
-            "minecraft:tropical_fish_bucket"
-        ]
+        "values": ["minecraft:tropical_fish_bucket"]
     },
     "bamboo_blocks": {
-        "values": [
-            "minecraft:bamboo_block",
-            "minecraft:stripped_bamboo_block"
-        ]
+        "values": ["minecraft:bamboo_block", "minecraft:stripped_bamboo_block"]
     },
     "banners": {
         "values": [
@@ -167,9 +160,7 @@
         ]
     },
     "book_cloning_target": {
-        "values": [
-            "minecraft:writable_book"
-        ]
+        "values": ["minecraft:writable_book"]
     },
     "bookshelf_books": {
         "values": [
@@ -192,9 +183,7 @@
         ]
     },
     "brewing_fuel": {
-        "values": [
-            "minecraft:blaze_powder"
-        ]
+        "values": ["minecraft:blaze_powder"]
     },
     "bundles": {
         "values": [
@@ -218,20 +207,13 @@
         ]
     },
     "buttons": {
-        "values": [
-            "#minecraft:wooden_buttons",
-            "#minecraft:stone_buttons"
-        ]
+        "values": ["#minecraft:wooden_buttons", "#minecraft:stone_buttons"]
     },
     "camel_food": {
-        "values": [
-            "minecraft:cactus"
-        ]
+        "values": ["minecraft:cactus"]
     },
     "camel_husk_food": {
-        "values": [
-            "minecraft:rabbit_foot"
-        ]
+        "values": ["minecraft:rabbit_foot"]
     },
     "candles": {
         "values": [
@@ -255,15 +237,10 @@
         ]
     },
     "cat_collar_dyes": {
-        "values": [
-            "#minecraft:dyes"
-        ]
+        "values": ["#minecraft:dyes"]
     },
     "cat_food": {
-        "values": [
-            "minecraft:cod",
-            "minecraft:salmon"
-        ]
+        "values": ["minecraft:cod", "minecraft:salmon"]
     },
     "cauldron_can_remove_dye": {
         "values": [
@@ -343,22 +320,13 @@
         ]
     },
     "coal_ores": {
-        "values": [
-            "minecraft:coal_ore",
-            "minecraft:deepslate_coal_ore"
-        ]
+        "values": ["minecraft:coal_ore", "minecraft:deepslate_coal_ore"]
     },
     "coals": {
-        "values": [
-            "minecraft:coal",
-            "minecraft:charcoal"
-        ]
+        "values": ["minecraft:coal", "minecraft:charcoal"]
     },
     "compasses": {
-        "values": [
-            "minecraft:compass",
-            "minecraft:recovery_compass"
-        ]
+        "values": ["minecraft:compass", "minecraft:recovery_compass"]
     },
     "completes_find_tree_tutorial": {
         "values": [
@@ -444,20 +412,13 @@
         ]
     },
     "copper_ores": {
-        "values": [
-            "minecraft:copper_ore",
-            "minecraft:deepslate_copper_ore"
-        ]
+        "values": ["minecraft:copper_ore", "minecraft:deepslate_copper_ore"]
     },
     "copper_tool_materials": {
-        "values": [
-            "minecraft:copper_ingot"
-        ]
+        "values": ["minecraft:copper_ingot"]
     },
     "cow_food": {
-        "values": [
-            "minecraft:wheat"
-        ]
+        "values": ["minecraft:wheat"]
     },
     "creeper_drop_music_discs": {
         "values": [
@@ -476,10 +437,7 @@
         ]
     },
     "creeper_igniters": {
-        "values": [
-            "minecraft:flint_and_steel",
-            "minecraft:fire_charge"
-        ]
+        "values": ["minecraft:flint_and_steel", "minecraft:fire_charge"]
     },
     "crimson_stems": {
         "values": [
@@ -490,10 +448,7 @@
         ]
     },
     "dampens_vibrations": {
-        "values": [
-            "#minecraft:wool",
-            "#minecraft:wool_carpets"
-        ]
+        "values": ["#minecraft:wool", "#minecraft:wool_carpets"]
     },
     "dark_oak_logs": {
         "values": [
@@ -504,10 +459,7 @@
         ]
     },
     "decorated_pot_ingredients": {
-        "values": [
-            "minecraft:brick",
-            "#minecraft:decorated_pot_sherds"
-        ]
+        "values": ["minecraft:brick", "#minecraft:decorated_pot_sherds"]
     },
     "decorated_pot_sherds": {
         "values": [
@@ -537,15 +489,10 @@
         ]
     },
     "diamond_ores": {
-        "values": [
-            "minecraft:diamond_ore",
-            "minecraft:deepslate_diamond_ore"
-        ]
+        "values": ["minecraft:diamond_ore", "minecraft:deepslate_diamond_ore"]
     },
     "diamond_tool_materials": {
-        "values": [
-            "minecraft:diamond"
-        ]
+        "values": ["minecraft:diamond"]
     },
     "dirt": {
         "values": [
@@ -569,14 +516,10 @@
         ]
     },
     "drowned_preferred_weapons": {
-        "values": [
-            "minecraft:trident"
-        ]
+        "values": ["minecraft:trident"]
     },
     "duplicates_allays": {
-        "values": [
-            "minecraft:amethyst_shard"
-        ]
+        "values": ["minecraft:amethyst_shard"]
     },
     "dyes": {
         "values": [
@@ -599,17 +542,10 @@
         ]
     },
     "eggs": {
-        "values": [
-            "minecraft:egg",
-            "minecraft:blue_egg",
-            "minecraft:brown_egg"
-        ]
+        "values": ["minecraft:egg", "minecraft:blue_egg", "minecraft:brown_egg"]
     },
     "emerald_ores": {
-        "values": [
-            "minecraft:emerald_ore",
-            "minecraft:deepslate_emerald_ore"
-        ]
+        "values": ["minecraft:emerald_ore", "minecraft:deepslate_emerald_ore"]
     },
     "enchantable/armor": {
         "values": [
@@ -620,19 +556,13 @@
         ]
     },
     "enchantable/bow": {
-        "values": [
-            "minecraft:bow"
-        ]
+        "values": ["minecraft:bow"]
     },
     "enchantable/chest_armor": {
-        "values": [
-            "#minecraft:chest_armor"
-        ]
+        "values": ["#minecraft:chest_armor"]
     },
     "enchantable/crossbow": {
-        "values": [
-            "minecraft:crossbow"
-        ]
+        "values": ["minecraft:crossbow"]
     },
     "enchantable/durability": {
         "values": [
@@ -672,46 +602,28 @@
         ]
     },
     "enchantable/fire_aspect": {
-        "values": [
-            "#minecraft:enchantable/melee_weapon",
-            "minecraft:mace"
-        ]
+        "values": ["#minecraft:enchantable/melee_weapon", "minecraft:mace"]
     },
     "enchantable/fishing": {
-        "values": [
-            "minecraft:fishing_rod"
-        ]
+        "values": ["minecraft:fishing_rod"]
     },
     "enchantable/foot_armor": {
-        "values": [
-            "#minecraft:foot_armor"
-        ]
+        "values": ["#minecraft:foot_armor"]
     },
     "enchantable/head_armor": {
-        "values": [
-            "#minecraft:head_armor"
-        ]
+        "values": ["#minecraft:head_armor"]
     },
     "enchantable/leg_armor": {
-        "values": [
-            "#minecraft:leg_armor"
-        ]
+        "values": ["#minecraft:leg_armor"]
     },
     "enchantable/lunge": {
-        "values": [
-            "#minecraft:spears"
-        ]
+        "values": ["#minecraft:spears"]
     },
     "enchantable/mace": {
-        "values": [
-            "minecraft:mace"
-        ]
+        "values": ["minecraft:mace"]
     },
     "enchantable/melee_weapon": {
-        "values": [
-            "#minecraft:swords",
-            "#minecraft:spears"
-        ]
+        "values": ["#minecraft:swords", "#minecraft:spears"]
     },
     "enchantable/mining": {
         "values": [
@@ -731,20 +643,13 @@
         ]
     },
     "enchantable/sharp_weapon": {
-        "values": [
-            "#minecraft:enchantable/melee_weapon",
-            "#minecraft:axes"
-        ]
+        "values": ["#minecraft:enchantable/melee_weapon", "#minecraft:axes"]
     },
     "enchantable/sweeping": {
-        "values": [
-            "#minecraft:swords"
-        ]
+        "values": ["#minecraft:swords"]
     },
     "enchantable/trident": {
-        "values": [
-            "minecraft:trident"
-        ]
+        "values": ["minecraft:trident"]
     },
     "enchantable/vanishing": {
         "values": [
@@ -755,10 +660,7 @@
         ]
     },
     "enchantable/weapon": {
-        "values": [
-            "#minecraft:enchantable/sharp_weapon",
-            "minecraft:mace"
-        ]
+        "values": ["#minecraft:enchantable/sharp_weapon", "minecraft:mace"]
     },
     "fence_gates": {
         "values": [
@@ -777,10 +679,7 @@
         ]
     },
     "fences": {
-        "values": [
-            "#minecraft:wooden_fences",
-            "minecraft:nether_brick_fence"
-        ]
+        "values": ["#minecraft:wooden_fences", "minecraft:nether_brick_fence"]
     },
     "fishes": {
         "values": [
@@ -823,10 +722,7 @@
         ]
     },
     "fox_food": {
-        "values": [
-            "minecraft:sweet_berries",
-            "minecraft:glow_berries"
-        ]
+        "values": ["minecraft:sweet_berries", "minecraft:glow_berries"]
     },
     "freeze_immune_wearables": {
         "values": [
@@ -838,20 +734,13 @@
         ]
     },
     "frog_food": {
-        "values": [
-            "minecraft:slime_ball"
-        ]
+        "values": ["minecraft:slime_ball"]
     },
     "furnace_minecart_fuel": {
-        "values": [
-            "minecraft:coal",
-            "minecraft:charcoal"
-        ]
+        "values": ["minecraft:coal", "minecraft:charcoal"]
     },
     "gaze_disguise_equipment": {
-        "values": [
-            "minecraft:carved_pumpkin"
-        ]
+        "values": ["minecraft:carved_pumpkin"]
     },
     "glazed_terracotta": {
         "values": [
@@ -874,9 +763,7 @@
         ]
     },
     "goat_food": {
-        "values": [
-            "minecraft:wheat"
-        ]
+        "values": ["minecraft:wheat"]
     },
     "gold_ores": {
         "values": [
@@ -886,9 +773,7 @@
         ]
     },
     "gold_tool_materials": {
-        "values": [
-            "minecraft:gold_ingot"
-        ]
+        "values": ["minecraft:gold_ingot"]
     },
     "grass_blocks": {
         "values": [
@@ -914,15 +799,10 @@
         ]
     },
     "happy_ghast_food": {
-        "values": [
-            "minecraft:snowball"
-        ]
+        "values": ["minecraft:snowball"]
     },
     "happy_ghast_tempt_items": {
-        "values": [
-            "#minecraft:happy_ghast_food",
-            "#minecraft:harnesses"
-        ]
+        "values": ["#minecraft:happy_ghast_food", "#minecraft:harnesses"]
     },
     "harnesses": {
         "values": [
@@ -968,9 +848,7 @@
         ]
     },
     "hoglin_food": {
-        "values": [
-            "minecraft:crimson_fungus"
-        ]
+        "values": ["minecraft:crimson_fungus"]
     },
     "horse_food": {
         "values": [
@@ -992,20 +870,13 @@
         ]
     },
     "ignored_by_piglin_babies": {
-        "values": [
-            "minecraft:leather"
-        ]
+        "values": ["minecraft:leather"]
     },
     "iron_ores": {
-        "values": [
-            "minecraft:iron_ore",
-            "minecraft:deepslate_iron_ore"
-        ]
+        "values": ["minecraft:iron_ore", "minecraft:deepslate_iron_ore"]
     },
     "iron_tool_materials": {
-        "values": [
-            "minecraft:iron_ingot"
-        ]
+        "values": ["minecraft:iron_ingot"]
     },
     "jungle_logs": {
         "values": [
@@ -1030,10 +901,7 @@
         ]
     },
     "lapis_ores": {
-        "values": [
-            "minecraft:lapis_ore",
-            "minecraft:deepslate_lapis_ore"
-        ]
+        "values": ["minecraft:lapis_ore", "minecraft:deepslate_lapis_ore"]
     },
     "leaves": {
         "values": [
@@ -1051,10 +919,7 @@
         ]
     },
     "lectern_books": {
-        "values": [
-            "minecraft:written_book",
-            "minecraft:writable_book"
-        ]
+        "values": ["minecraft:written_book", "minecraft:writable_book"]
     },
     "leg_armor": {
         "values": [
@@ -1080,15 +945,10 @@
         ]
     },
     "llama_food": {
-        "values": [
-            "minecraft:wheat",
-            "minecraft:hay_block"
-        ]
+        "values": ["minecraft:wheat", "minecraft:hay_block"]
     },
     "llama_tempt_items": {
-        "values": [
-            "minecraft:hay_block"
-        ]
+        "values": ["minecraft:hay_block"]
     },
     "logs": {
         "values": [
@@ -1111,9 +971,7 @@
         ]
     },
     "loom_dyes": {
-        "values": [
-            "#minecraft:dyes"
-        ]
+        "values": ["#minecraft:dyes"]
     },
     "loom_patterns": {
         "values": [
@@ -1138,9 +996,7 @@
         ]
     },
     "map_invisibility_equipment": {
-        "values": [
-            "minecraft:carved_pumpkin"
-        ]
+        "values": ["minecraft:carved_pumpkin"]
     },
     "meat": {
         "values": [
@@ -1165,16 +1021,10 @@
         ]
     },
     "moss_blocks": {
-        "values": [
-            "minecraft:moss_block",
-            "minecraft:pale_moss_block"
-        ]
+        "values": ["minecraft:moss_block", "minecraft:pale_moss_block"]
     },
     "mud": {
-        "values": [
-            "minecraft:mud",
-            "minecraft:muddy_mangrove_roots"
-        ]
+        "values": ["minecraft:mud", "minecraft:muddy_mangrove_roots"]
     },
     "nautilus_bucket_food": {
         "values": [
@@ -1185,21 +1035,13 @@
         ]
     },
     "nautilus_food": {
-        "values": [
-            "#minecraft:fishes",
-            "#minecraft:nautilus_bucket_food"
-        ]
+        "values": ["#minecraft:fishes", "#minecraft:nautilus_bucket_food"]
     },
     "nautilus_taming_items": {
-        "values": [
-            "minecraft:pufferfish_bucket",
-            "minecraft:pufferfish"
-        ]
+        "values": ["minecraft:pufferfish_bucket", "minecraft:pufferfish"]
     },
     "netherite_tool_materials": {
-        "values": [
-            "minecraft:netherite_ingot"
-        ]
+        "values": ["minecraft:netherite_ingot"]
     },
     "non_flammable_wood": {
         "values": [
@@ -1257,10 +1099,7 @@
         ]
     },
     "ocelot_food": {
-        "values": [
-            "minecraft:cod",
-            "minecraft:salmon"
-        ]
+        "values": ["minecraft:cod", "minecraft:salmon"]
     },
     "pale_oak_logs": {
         "values": [
@@ -1271,15 +1110,10 @@
         ]
     },
     "panda_eats_from_ground": {
-        "values": [
-            "#minecraft:panda_food",
-            "minecraft:cake"
-        ]
+        "values": ["#minecraft:panda_food", "minecraft:cake"]
     },
     "panda_food": {
-        "values": [
-            "minecraft:bamboo"
-        ]
+        "values": ["minecraft:bamboo"]
     },
     "parrot_food": {
         "values": [
@@ -1292,9 +1126,7 @@
         ]
     },
     "parrot_poisonous_food": {
-        "values": [
-            "minecraft:cookie"
-        ]
+        "values": ["minecraft:cookie"]
     },
     "pickaxes": {
         "values": [
@@ -1308,17 +1140,10 @@
         ]
     },
     "pig_food": {
-        "values": [
-            "minecraft:carrot",
-            "minecraft:potato",
-            "minecraft:beetroot"
-        ]
+        "values": ["minecraft:carrot", "minecraft:potato", "minecraft:beetroot"]
     },
     "piglin_food": {
-        "values": [
-            "minecraft:porkchop",
-            "minecraft:cooked_porkchop"
-        ]
+        "values": ["minecraft:porkchop", "minecraft:cooked_porkchop"]
     },
     "piglin_loved": {
         "values": [
@@ -1351,10 +1176,7 @@
         ]
     },
     "piglin_preferred_weapons": {
-        "values": [
-            "minecraft:crossbow",
-            "minecraft:golden_spear"
-        ]
+        "values": ["minecraft:crossbow", "minecraft:golden_spear"]
     },
     "piglin_repellents": {
         "values": [
@@ -1372,9 +1194,7 @@
         ]
     },
     "pillager_preferred_weapons": {
-        "values": [
-            "minecraft:crossbow"
-        ]
+        "values": ["minecraft:crossbow"]
     },
     "planks": {
         "values": [
@@ -1408,55 +1228,34 @@
         ]
     },
     "redstone_ores": {
-        "values": [
-            "minecraft:redstone_ore",
-            "minecraft:deepslate_redstone_ore"
-        ]
+        "values": ["minecraft:redstone_ore", "minecraft:deepslate_redstone_ore"]
     },
     "repairs_chain_armor": {
-        "values": [
-            "minecraft:iron_ingot"
-        ]
+        "values": ["minecraft:iron_ingot"]
     },
     "repairs_copper_armor": {
-        "values": [
-            "minecraft:copper_ingot"
-        ]
+        "values": ["minecraft:copper_ingot"]
     },
     "repairs_diamond_armor": {
-        "values": [
-            "minecraft:diamond"
-        ]
+        "values": ["minecraft:diamond"]
     },
     "repairs_gold_armor": {
-        "values": [
-            "minecraft:gold_ingot"
-        ]
+        "values": ["minecraft:gold_ingot"]
     },
     "repairs_iron_armor": {
-        "values": [
-            "minecraft:iron_ingot"
-        ]
+        "values": ["minecraft:iron_ingot"]
     },
     "repairs_leather_armor": {
-        "values": [
-            "minecraft:leather"
-        ]
+        "values": ["minecraft:leather"]
     },
     "repairs_netherite_armor": {
-        "values": [
-            "minecraft:netherite_ingot"
-        ]
+        "values": ["minecraft:netherite_ingot"]
     },
     "repairs_turtle_helmet": {
-        "values": [
-            "minecraft:turtle_scute"
-        ]
+        "values": ["minecraft:turtle_scute"]
     },
     "repairs_wolf_armor": {
-        "values": [
-            "minecraft:armadillo_scute"
-        ]
+        "values": ["minecraft:armadillo_scute"]
     },
     "sand": {
         "values": [
@@ -1481,14 +1280,10 @@
         ]
     },
     "shearable_from_copper_golem": {
-        "values": [
-            "minecraft:poppy"
-        ]
+        "values": ["minecraft:poppy"]
     },
     "sheep_food": {
-        "values": [
-            "minecraft:wheat"
-        ]
+        "values": ["minecraft:wheat"]
     },
     "shovels": {
         "values": [
@@ -1539,9 +1334,7 @@
         ]
     },
     "skeleton_preferred_weapons": {
-        "values": [
-            "minecraft:bow"
-        ]
+        "values": ["minecraft:bow"]
     },
     "skulls": {
         "values": [
@@ -1637,21 +1430,13 @@
         ]
     },
     "smelts_to_glass": {
-        "values": [
-            "minecraft:sand",
-            "minecraft:red_sand"
-        ]
+        "values": ["minecraft:sand", "minecraft:red_sand"]
     },
     "sniffer_food": {
-        "values": [
-            "minecraft:torchflower_seeds"
-        ]
+        "values": ["minecraft:torchflower_seeds"]
     },
     "soul_fire_base_blocks": {
-        "values": [
-            "minecraft:soul_sand",
-            "minecraft:soul_soil"
-        ]
+        "values": ["minecraft:soul_sand", "minecraft:soul_soil"]
     },
     "spears": {
         "values": [
@@ -1758,9 +1543,7 @@
         ]
     },
     "strider_food": {
-        "values": [
-            "minecraft:warped_fungus"
-        ]
+        "values": ["minecraft:warped_fungus"]
     },
     "strider_tempt_items": {
         "values": [
@@ -1777,9 +1560,7 @@
         ]
     },
     "sulfur_cube_archetype/explosive": {
-        "values": [
-            "minecraft:tnt"
-        ]
+        "values": ["minecraft:tnt"]
     },
     "sulfur_cube_archetype/fast_flat": {
         "values": [
@@ -1818,20 +1599,13 @@
         ]
     },
     "sulfur_cube_archetype/high_resistance": {
-        "values": [
-            "minecraft:soul_sand",
-            "minecraft:soul_soil"
-        ]
+        "values": ["minecraft:soul_sand", "minecraft:soul_soil"]
     },
     "sulfur_cube_archetype/hot": {
-        "values": [
-            "minecraft:magma_block"
-        ]
+        "values": ["minecraft:magma_block"]
     },
     "sulfur_cube_archetype/light": {
-        "values": [
-            "#minecraft:wool"
-        ]
+        "values": ["#minecraft:wool"]
     },
     "sulfur_cube_archetype/regular": {
         "values": [
@@ -2004,14 +1778,10 @@
         ]
     },
     "sulfur_cube_archetype/sticky": {
-        "values": [
-            "minecraft:honeycomb_block"
-        ]
+        "values": ["minecraft:honeycomb_block"]
     },
     "sulfur_cube_food": {
-        "values": [
-            "minecraft:slime_ball"
-        ]
+        "values": ["minecraft:slime_ball"]
     },
     "sulfur_cube_swallowable": {
         "values": [
@@ -2099,9 +1869,7 @@
         ]
     },
     "turtle_food": {
-        "values": [
-            "minecraft:seagrass"
-        ]
+        "values": ["minecraft:seagrass"]
     },
     "villager_picks_up": {
         "values": [
@@ -2166,21 +1934,13 @@
         ]
     },
     "wart_blocks": {
-        "values": [
-            "minecraft:nether_wart_block",
-            "minecraft:warped_wart_block"
-        ]
+        "values": ["minecraft:nether_wart_block", "minecraft:warped_wart_block"]
     },
     "wither_skeleton_disliked_weapons": {
-        "values": [
-            "minecraft:bow",
-            "minecraft:crossbow"
-        ]
+        "values": ["minecraft:bow", "minecraft:crossbow"]
     },
     "wolf_collar_dyes": {
-        "values": [
-            "#minecraft:dyes"
-        ]
+        "values": ["#minecraft:dyes"]
     },
     "wolf_food": {
         "values": [
@@ -2307,9 +2067,7 @@
         ]
     },
     "wooden_tool_materials": {
-        "values": [
-            "#minecraft:planks"
-        ]
+        "values": ["#minecraft:planks"]
     },
     "wooden_trapdoors": {
         "values": [
@@ -2368,8 +2126,6 @@
         ]
     },
     "zombie_horse_food": {
-        "values": [
-            "minecraft:red_mushroom"
-        ]
+        "values": ["minecraft:red_mushroom"]
     }
 }

@@ -73,14 +73,21 @@ function getUrlVersion(): string | null {
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
     const isStaticMode = import.meta.env.VITE_STATIC_MODE === 'true'
-    const [versionConfig, setVersionConfig] = useState<VersionConfig | null>(null)
-    const [availableVersions, setAvailableVersions] = useState<VersionOption[]>([])
-    const [activeVersion, setActiveVersionState] = useState<string>('26.1-snapshot-10')
-    
+    const [versionConfig, setVersionConfig] = useState<VersionConfig | null>(
+        null
+    )
+    const [availableVersions, setAvailableVersions] = useState<VersionOption[]>(
+        []
+    )
+    const [activeVersion, setActiveVersionState] =
+        useState<string>('26.1-snapshot-10')
+
     const [items, setItems] = useState<Record<string, ItemData>>({})
     const [categories, setCategories] = useState<CategoriesData>({})
     const [schema, setSchema] = useState<Record<string, unknown> | null>(null)
-    const [structureToChest, setStructureToChest] = useState<Record<string, string[]>>({})
+    const [structureToChest, setStructureToChest] = useState<
+        Record<string, string[]>
+    >({})
     const [tags, setTags] = useState<Record<string, unknown> | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -192,27 +199,49 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
             ? getDataUrl(`${versionPath}/categories.json`)
             : `/api/categories?version=${activeVersion}`
         const schemaUrl = getDataUrl(`${versionPath}/schema.json`)
-        const structureToChestUrl = getDataUrl(`${versionPath}/structure_to_chest.json`)
+        const structureToChestUrl = getDataUrl(
+            `${versionPath}/structure_to_chest.json`
+        )
         const tagsUrl = getDataUrl(`${versionPath}/tags.json`)
 
         Promise.all([
             fetch(itemsUrl).then((res) => res.json()),
             fetch(categoriesUrl).then((res) => res.json()),
-            fetch(schemaUrl).then((res) => res.json()).catch(() => null),
-            fetch(structureToChestUrl).then((res) => res.json()).catch(() => null),
-            fetch(tagsUrl).then((res) => res.json()).catch(() => null),
+            fetch(schemaUrl)
+                .then((res) => res.json())
+                .catch(() => null),
+            fetch(structureToChestUrl)
+                .then((res) => res.json())
+                .catch(() => null),
+            fetch(tagsUrl)
+                .then((res) => res.json())
+                .catch(() => null),
         ])
-            .then(([itemsData, categoriesData, schemaData, structData, tagsData]) => {
-                const normalizedItems = itemsData.items ?? itemsData
-                setItems(normalizedItems)
-                setCategories(categoriesData)
-                if (schemaData) setSchema(schemaData)
-                if (structData) setStructureToChest(structData.structureToChestMapping ?? structData)
-                if (tagsData) setTags(tagsData)
-                setIsLoading(false)
-            })
+            .then(
+                ([
+                    itemsData,
+                    categoriesData,
+                    schemaData,
+                    structData,
+                    tagsData,
+                ]) => {
+                    const normalizedItems = itemsData.items ?? itemsData
+                    setItems(normalizedItems)
+                    setCategories(categoriesData)
+                    if (schemaData) setSchema(schemaData)
+                    if (structData)
+                        setStructureToChest(
+                            structData.structureToChestMapping ?? structData
+                        )
+                    if (tagsData) setTags(tagsData)
+                    setIsLoading(false)
+                }
+            )
             .catch((err) => {
-                console.error(`Failed to load data for version ${activeVersion}:`, err)
+                console.error(
+                    `Failed to load data for version ${activeVersion}:`,
+                    err
+                )
                 setIsLoading(false)
             })
     }, [activeVersion, isStaticMode])

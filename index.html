@@ -4,10 +4,16 @@
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Minecraft Item List</title>
+        <title>
+            Minecraft Item List - Instant Search, Block Stats & Loot Database
+        </title>
         <meta
             name="description"
-            content="A List of all Minecraft items! Quickly search for any item or block and get all stats, generation details, biome info, and more. Allows to create lists of items easily and you can download the whole list as JSON file for your own projects."
+            content="Search all Minecraft items and blocks instantly! Explore stats, hardness, light levels, harvest tools, crafting recipes, biome generation, loot tables, mob drops, and villager trades for Minecraft 26.2 and earlier. Custom list filtering and JSON exports for developers."
+        />
+        <meta
+            name="keywords"
+            content="minecraft item list, minecraft item search, minecraft item database, minecraft 26.2, minecraft block properties, minecraft loot tables, minecraft mob drops, minecraft crafting recipes, minecraft villager trading, minecraft item ids, minecraft custom item list"
         />
         <link
             rel="canonical"
@@ -21,10 +27,13 @@
         />
 
         <!-- Open Graph -->
-        <meta property="og:title" content="Minecraft Item List" />
+        <meta
+            property="og:title"
+            content="Minecraft Item List - Instant Search, Block Stats & Loot Database"
+        />
         <meta
             property="og:description"
-            content="A List of all Minecraft items! Quickly search for any item or block and get all stats, generation details, biome info, and more. Allows to create lists of items easily and you can download the whole list as JSON file for your own projects."
+            content="Search all Minecraft items and blocks instantly! Explore stats, hardness, light levels, harvest tools, crafting recipes, biome generation, loot tables, mob drops, and villager trades for Minecraft 26.2. Create custom lists and export JSON."
         />
         <meta
             property="og:url"
@@ -35,18 +44,102 @@
             property="og:image"
             content="https://l3-n0x.github.io/minecraft-item-list/social-banner.png"
         />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Minecraft Item List - Instant Search & Database"
+        />
+        <meta
+            name="twitter:description"
+            content="Lightning-fast Minecraft item search, block stats, generation biomes, loot tables, and custom list export tools for Minecraft 26.2."
+        />
+        <meta
+            name="twitter:image"
+            content="https://l3-n0x.github.io/minecraft-item-list/social-banner.png"
+        />
+
+        <!-- Structured Data (JSON-LD): WebApplication & FAQPage -->
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "WebApplication",
-                "name": "Minecraft Item List",
-                "url": "https://l3-n0x.github.io/minecraft-item-list/",
-                "description": "A List of all Minecraft items! Quickly search for any item or block and get all stats, generation details, biome info, and more. Allows to create lists of items easily and you can download the whole list as JSON file for your own projects.",
-                "author": {
-                    "@type": "Person",
-                    "name": "Leon Gött",
-                    "url": "https://github.com/L3-N0X"
-                }
+                "@graph": [
+                    {
+                        "@type": "WebApplication",
+                        "name": "Minecraft Item List",
+                        "url": "https://l3-n0x.github.io/minecraft-item-list/",
+                        "description": "An ultra-fast, comprehensive Minecraft item database and lookup tool. Search all items, inspect block hardness, light levels, harvest tools, crafting recipes, biome generation, chest loot tables, mob drops, and villager trades.",
+                        "applicationCategory": "ReferenceApplication",
+                        "operatingSystem": "All",
+                        "author": {
+                            "@type": "Person",
+                            "name": "Leon Gött",
+                            "url": "https://github.com/L3-N0X"
+                        }
+                    },
+                    {
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "What is Minecraft Item Search?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Minecraft Item Search is an instant, browser-based lookup tool and comprehensive database for every item, block, tool, entity drop, and game mechanic in Minecraft. Everything runs instantly with zero load time as you type."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "How do I search for items using keyboard shortcuts?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Press Ctrl+K (or Cmd+K on Mac) anywhere on the page to focus the search bar. Use the up and down arrow keys to navigate suggestions, and press Enter to open the complete stats panel. Press Esc to exit search."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "What information can I look up for each item?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Each item page provides block properties (hardness, blast resistance, light level, harvest tools), item and combat stats (attack damage, armor, durability, enchantability), crafting and smelting recipes, loot tables (chests, trial vaults), natural biome generation, mob drops, and villager trades."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Which Minecraft versions are supported?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "The database is updated for Minecraft 26.2 and earlier releases. You can switch between supported versions at any time using the version selector in the top navigation bar."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "How do I build and export a custom item list?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Click on the Custom List tab in the navigation bar. Developers can filter and query the catalog by renewability, rarity, harvest tools, biomes, or dimensions, then export formatted lists of item IDs or properties for configurations, plugins, and tools."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Can I download the entire database as JSON?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes. Click the Download List button in the top bar to download the full version-specific database in standardized JSON format for your own mods, plugins, bots, or development projects."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "How can I report missing items, bugs, or wrong stats?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "If you find a missing item, outdated stat, or bug, please open an issue on our GitHub Issues page (https://github.com/L3-N0X/minecraft-item-list/issues). Pull requests and data corrections are always welcome!"
+                                }
+                            }
+                        ]
+                    }
+                ]
             }
         </script>
         <script type="module" src="/src/frontend.tsx"></script>

@@ -13,6 +13,7 @@ import {
     SmileyXEyesIcon,
 } from '@phosphor-icons/react'
 import { getAssetPath } from '@/lib/utils'
+import { LandingSeoContent } from '@/components/LandingSeoContent'
 
 export function HomeView() {
     const { items, itemIds } = useData()
@@ -203,10 +204,11 @@ export function HomeView() {
     const activeItemId = selectedItemId || autoSelectedId
     const selectedItem = activeItemId ? items[activeItemId] : null
     const isSearching = search.trim().length > 0
+    const isLanding = !activeItemId && !isSearching
 
     return (
         <div
-            className={`flex flex-col items-center transition-all duration-500 ease-in-out ${activeItemId || isSearching ? 'pt-0' : 'pt-[8vh]'} min-h-[85vh] gap-3 ${activeItemId ? 'max-w-7xl' : 'max-w-2xl'} mx-auto w-full`}
+            className={`flex flex-col items-center transition-[padding] duration-500 ease-in-out ${activeItemId || isSearching ? 'pt-0' : 'pt-[6vh] md:pt-[8vh]'} min-h-[85vh] gap-3 ${activeItemId ? 'max-w-7xl' : 'max-w-4xl'} mx-auto w-full`}
         >
             <div className="max-w-2xl mx-auto w-full space-y-2">
                 <div
@@ -268,8 +270,15 @@ export function HomeView() {
                 </div>
             </div>
 
+            {/* SEO Content: visible only when not searching and no item selected */}
+            {isLanding && (
+                <div className="w-full mt-28 md:mt-44 animate-in fade-in duration-700 flex flex-col items-center">
+                    <LandingSeoContent />
+                </div>
+            )}
+
             {search && !activeItemId && (
-                <div className="w-full animate-in fade-in slide-in-from-top-2 duration-500 flex flex-col">
+                <div className="max-w-2xl mx-auto w-full animate-in fade-in slide-in-from-top-2 duration-500 flex flex-col">
                     {filteredResults.length > 0 ? (
                         <>
                             <div className="relative z-20 rounded-2xl border dark:border-white/10 border-border/50 bg-background/40 backdrop-blur-xl dark:shadow-2xl shadow-lg overflow-hidden">
@@ -401,11 +410,11 @@ export function HomeView() {
                     </div>
                 )}
             </div>
-            <div className="absolute bottom-4 dark:text-primary/15 text-primary/20 flex items-center gap-2">
+            <footer className="mt-12 py-4 dark:text-primary/25 text-primary/40 flex items-center justify-center gap-2 text-xs md:text-sm">
                 <Link
                     to="https://github.com/L3-N0X"
                     target="_blank"
-                    className="hover:text-primary/30 dark:hover:text-primary/25 transition-colors"
+                    className="hover:text-primary/60 dark:hover:text-primary/50 transition-colors"
                 >
                     by L3-N0X
                 </Link>
@@ -413,18 +422,18 @@ export function HomeView() {
                 <Link
                     to="https://github.com/L3-N0X/minecraft-item-list"
                     target="_blank"
-                    className="hover:text-primary/30 dark:hover:text-primary/25 transition-colors"
+                    className="hover:text-primary/60 dark:hover:text-primary/50 transition-colors"
                 >
                     GitHub
                 </Link>
                 <span className="opacity-50">·</span>
                 <Link
                     to="/impressum"
-                    className="hover:text-primary/30 dark:hover:text-primary/25 transition-colors"
+                    className="hover:text-primary/60 dark:hover:text-primary/50 transition-colors"
                 >
                     Impressum
                 </Link>
-            </div>
+            </footer>
         </div>
     )
 }

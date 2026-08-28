@@ -42,7 +42,8 @@ export function getItemSchema(rawSchema?: unknown): {
     return {
         definitions: typedSchema.definitions ?? {},
         properties:
-            typedSchema.properties?.items?.additionalProperties?.properties ?? {},
+            typedSchema.properties?.items?.additionalProperties?.properties ??
+            {},
         required: typedSchema.properties?.items?.additionalProperties?.required,
     }
 }
@@ -54,7 +55,11 @@ export const itemSchema = getItemSchema(defaultSchema)
 const validatorCache = new WeakMap<object, any>()
 
 function getValidator(rawSchema?: unknown) {
-    const s = (typeof rawSchema === 'object' && rawSchema !== null ? rawSchema : defaultSchema) as object
+    const s = (
+        typeof rawSchema === 'object' && rawSchema !== null
+            ? rawSchema
+            : defaultSchema
+    ) as object
     let validator = validatorCache.get(s)
     if (!validator) {
         const schemaToCompile = getItemSchema(s)

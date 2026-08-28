@@ -149,7 +149,7 @@ async function initData() {
         const musicDesc = enUs?.[`${itemKey}.desc`]
         if (name.startsWith('music_disc_') && musicDesc) {
             const songName = musicDesc.includes(' - ')
-                ? musicDesc.split(' - ')[1]?.trim() ?? musicDesc.trim()
+                ? (musicDesc.split(' - ')[1]?.trim() ?? musicDesc.trim())
                 : musicDesc.trim()
             displayNameEn = `Music Disc ${songName}`
             displayNameGerman = `Schallplatte ${songName}`
@@ -181,7 +181,7 @@ async function initData() {
                 delete existingCopy.breaking
                 const fireResistant =
                     (existing.item?.fireResistant as boolean | undefined) ??
-                    (itemComp?.['minecraft:damage_resistant'] !== undefined)
+                    itemComp?.['minecraft:damage_resistant'] !== undefined
                 newItems[name] = {
                     ...existingCopy,
                     displayName: displayNameEn,

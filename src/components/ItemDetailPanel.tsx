@@ -311,7 +311,8 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 <br />
                                 Obtainable
                             </p>
-                        ) : item.obtaining?.obtainability === 'creative_only' ? (
+                        ) : item.obtaining?.obtainability ===
+                          'creative_only' ? (
                             <p className="text-pink-300">
                                 Creative
                                 <br />
@@ -453,7 +454,8 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                     <div
                         className={cn(
                             'text-xs font-mono tracking-tight mb-5',
-                            (item.obtaining?.smelting?.smeltable.length ?? 0) > 0
+                            (item.obtaining?.smelting?.smeltable.length ?? 0) >
+                                0
                                 ? 'text-emerald-400/90'
                                 : 'dark:text-red-400/80 text-red-700/80'
                         )}
@@ -1427,9 +1429,11 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                 contentClassName="flex justify-center items-center"
             >
                 <div className="flex flex-col flex-1 justify-center items-center gap-1 mb-5">
-                    {item.obtaining?.naturalGeneration?.dimensions.map((dim) => (
-                        <DimensionBadge key={dim} dimension={dim} />
-                    ))}
+                    {item.obtaining?.naturalGeneration?.dimensions.map(
+                        (dim) => (
+                            <DimensionBadge key={dim} dimension={dim} />
+                        )
+                    )}
                     {(item.obtaining?.naturalGeneration?.dimensions.length ===
                         0 ||
                         item.obtaining?.naturalGeneration === undefined) && (
@@ -1441,8 +1445,7 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                                 )}
                             />
                             <div className="text-muted-foreground/60 text-xs text-center">
-                                Does not naturally generate in any
-                                dimensions
+                                Does not naturally generate in any dimensions
                             </div>
                         </div>
                     )}

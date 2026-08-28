@@ -131,7 +131,12 @@ describe('BulkEditorView - applyPatch operations', () => {
         }
 
         // Switch to block -> deletes item section
-        const asBlock = applyPatch(itemWithItemSection, isBlockField, 'set', 'true')
+        const asBlock = applyPatch(
+            itemWithItemSection,
+            isBlockField,
+            'set',
+            'true'
+        )
         expect(asBlock.isBlock).toBe(true)
         expect(asBlock.item).toBeUndefined()
 
@@ -150,7 +155,12 @@ describe('BulkEditorView - applyPatch operations', () => {
                 catchesFire: false,
             },
         }
-        const asNonBlock = applyPatch(blockWithProps, isBlockField, 'set', 'false')
+        const asNonBlock = applyPatch(
+            blockWithProps,
+            isBlockField,
+            'set',
+            'false'
+        )
         expect(asNonBlock.isBlock).toBe(false)
         expect(asNonBlock.block).toBeUndefined()
     })
@@ -220,8 +230,12 @@ describe('BulkEditorView - applyPatch operations', () => {
         }
 
         const setStr = applyPatch(baseItem, field, 'set', 'Found underground')
-        expect(setStr.obtaining?.naturalGeneration?.comment).toBe('Found underground')
-        expect(setStr.obtaining?.naturalGeneration?.dimensions).toEqual(['overworld'])
+        expect(setStr.obtaining?.naturalGeneration?.comment).toBe(
+            'Found underground'
+        )
+        expect(setStr.obtaining?.naturalGeneration?.dimensions).toEqual([
+            'overworld',
+        ])
 
         // Empty string deletes property
         const emptyStr = applyPatch(setStr, field, 'set', '   ')
@@ -242,19 +256,43 @@ describe('BulkEditorView - applyPatch operations', () => {
         }
 
         // Set
-        const setItem = applyPatch(baseItem, recipeField, 'set', '', ['3x3_crafting', 'smelting'])
-        expect(setItem.obtaining?.recipeShape).toEqual(['3x3_crafting', 'smelting'])
+        const setItem = applyPatch(baseItem, recipeField, 'set', '', [
+            '3x3_crafting',
+            'smelting',
+        ])
+        expect(setItem.obtaining?.recipeShape).toEqual([
+            '3x3_crafting',
+            'smelting',
+        ])
 
         // Add
-        const addedItem = applyPatch(setItem, recipeField, 'add', '', ['blasting', 'smelting'])
-        expect(addedItem.obtaining?.recipeShape).toEqual(['3x3_crafting', 'smelting', 'blasting'])
+        const addedItem = applyPatch(setItem, recipeField, 'add', '', [
+            'blasting',
+            'smelting',
+        ])
+        expect(addedItem.obtaining?.recipeShape).toEqual([
+            '3x3_crafting',
+            'smelting',
+            'blasting',
+        ])
 
         // Remove
-        const removedItem = applyPatch(addedItem, recipeField, 'remove', '', ['smelting'])
-        expect(removedItem.obtaining?.recipeShape).toEqual(['3x3_crafting', 'blasting'])
+        const removedItem = applyPatch(addedItem, recipeField, 'remove', '', [
+            'smelting',
+        ])
+        expect(removedItem.obtaining?.recipeShape).toEqual([
+            '3x3_crafting',
+            'blasting',
+        ])
 
         // Clear
-        const clearedItem = applyPatch(removedItem, recipeField, 'clear', '', [])
+        const clearedItem = applyPatch(
+            removedItem,
+            recipeField,
+            'clear',
+            '',
+            []
+        )
         expect(clearedItem.obtaining?.recipeShape).toBeUndefined()
     })
 
@@ -269,27 +307,54 @@ describe('BulkEditorView - applyPatch operations', () => {
         const structuresField: EditableFieldConfig = {
             label: 'Nat. Gen Structures',
             group: 'Natural Generation',
-            path: ['obtaining', 'naturalGeneration', 'partOfStructures', 'structures'],
+            path: [
+                'obtaining',
+                'naturalGeneration',
+                'partOfStructures',
+                'structures',
+            ],
             type: 'multi-enum',
         }
 
         // Adding biomes automatically sets dimensions to ['overworld']
-        const withBiomes = applyPatch(baseItem, biomesField, 'set', '', ['plains', 'forest'])
-        expect(withBiomes.obtaining?.naturalGeneration?.biomes).toEqual(['plains', 'forest'])
-        expect(withBiomes.obtaining?.naturalGeneration?.dimensions).toEqual(['overworld'])
+        const withBiomes = applyPatch(baseItem, biomesField, 'set', '', [
+            'plains',
+            'forest',
+        ])
+        expect(withBiomes.obtaining?.naturalGeneration?.biomes).toEqual([
+            'plains',
+            'forest',
+        ])
+        expect(withBiomes.obtaining?.naturalGeneration?.dimensions).toEqual([
+            'overworld',
+        ])
 
         // Adding structures maintains/adds dimensions
-        const withStructs = applyPatch(withBiomes, structuresField, 'add', '', ['village_plains'])
-        expect(withStructs.obtaining?.naturalGeneration?.partOfStructures?.structures).toEqual(['village_plains'])
+        const withStructs = applyPatch(withBiomes, structuresField, 'add', '', [
+            'village_plains',
+        ])
+        expect(
+            withStructs.obtaining?.naturalGeneration?.partOfStructures
+                ?.structures
+        ).toEqual(['village_plains'])
 
         // Removing all biomes but keeping structures retains naturalGen and dimensions
-        const noBiomes = applyPatch(withStructs, biomesField, 'remove', '', ['plains', 'forest'])
+        const noBiomes = applyPatch(withStructs, biomesField, 'remove', '', [
+            'plains',
+            'forest',
+        ])
         expect(noBiomes.obtaining?.naturalGeneration?.biomes).toBeUndefined()
-        expect(noBiomes.obtaining?.naturalGeneration?.partOfStructures?.structures).toEqual(['village_plains'])
-        expect(noBiomes.obtaining?.naturalGeneration?.dimensions).toEqual(['overworld'])
+        expect(
+            noBiomes.obtaining?.naturalGeneration?.partOfStructures?.structures
+        ).toEqual(['village_plains'])
+        expect(noBiomes.obtaining?.naturalGeneration?.dimensions).toEqual([
+            'overworld',
+        ])
 
         // Removing all structures cleans up partOfStructures and whole naturalGeneration
-        const noStructs = applyPatch(noBiomes, structuresField, 'remove', '', ['village_plains'])
+        const noStructs = applyPatch(noBiomes, structuresField, 'remove', '', [
+            'village_plains',
+        ])
         expect(noStructs.obtaining?.naturalGeneration).toBeUndefined()
     })
 
@@ -303,15 +368,24 @@ describe('BulkEditorView - applyPatch operations', () => {
 
         // Set dimensions explicitly
         const setNether = applyPatch(baseItem, dimField, 'set', '', ['nether'])
-        expect(setNether.obtaining?.naturalGeneration?.dimensions).toEqual(['nether'])
+        expect(setNether.obtaining?.naturalGeneration?.dimensions).toEqual([
+            'nether',
+        ])
 
         // Add dimensions
         const addEnd = applyPatch(setNether, dimField, 'add', '', ['the_end'])
-        expect(addEnd.obtaining?.naturalGeneration?.dimensions).toEqual(['nether', 'the_end'])
+        expect(addEnd.obtaining?.naturalGeneration?.dimensions).toEqual([
+            'nether',
+            'the_end',
+        ])
 
         // Remove dimension
-        const removeNether = applyPatch(addEnd, dimField, 'remove', '', ['nether'])
-        expect(removeNether.obtaining?.naturalGeneration?.dimensions).toEqual(['the_end'])
+        const removeNether = applyPatch(addEnd, dimField, 'remove', '', [
+            'nether',
+        ])
+        expect(removeNether.obtaining?.naturalGeneration?.dimensions).toEqual([
+            'the_end',
+        ])
 
         // Clear dimensions
         const clearedDim = applyPatch(removeNether, dimField, 'clear', '', [])
@@ -367,8 +441,14 @@ describe('BulkEditorView - applyPatch operations', () => {
         item = applyPatch(item, hungerField, 'set', '4')
         item = applyPatch(item, alwaysConsumableField, 'set', 'true')
         item = applyPatch(item, compostChanceField, 'set', '0.65')
-        item = applyPatch(item, bestToolsField, 'set', '', ['pickaxe', 'shovel'])
-        item = applyPatch(item, specialToolsField, 'set', '', ['diamond_pickaxe', 'netherite_pickaxe'])
+        item = applyPatch(item, bestToolsField, 'set', '', [
+            'pickaxe',
+            'shovel',
+        ])
+        item = applyPatch(item, specialToolsField, 'set', '', [
+            'diamond_pickaxe',
+            'netherite_pickaxe',
+        ])
 
         expect(item.item?.damage?.attackDamage).toBe(9)
         expect(item.item?.armor?.armorPoints).toBe(3)
@@ -376,7 +456,10 @@ describe('BulkEditorView - applyPatch operations', () => {
         expect(item.edible?.alwaysConsumable).toBe(true)
         expect(item.compostable?.chance).toBe(0.65)
         expect(item.block?.bestTools).toEqual(['pickaxe', 'shovel'])
-        expect(item.breaking?.requiresSpecialToolsToDrop).toEqual(['diamond_pickaxe', 'netherite_pickaxe'])
+        expect(item.breaking?.requiresSpecialToolsToDrop).toEqual([
+            'diamond_pickaxe',
+            'netherite_pickaxe',
+        ])
 
         // Clear nested properties and check container pruning
         item = applyPatch(item, attackDamageField, 'clear', '')
