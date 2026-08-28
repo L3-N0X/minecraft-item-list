@@ -4,7 +4,12 @@
     "definitions": {
         "stackSizeEnum": {
             "type": "integer",
-            "enum": [-1, 1, 16, 64]
+            "enum": [
+                -1,
+                1,
+                16,
+                64
+            ]
         },
         "toolEnum": {
             "type": "string",
@@ -35,7 +40,10 @@
                             "type": "integer"
                         }
                     },
-                    "required": ["min", "max"],
+                    "required": [
+                        "min",
+                        "max"
+                    ],
                     "additionalProperties": false
                 }
             ]
@@ -182,7 +190,11 @@
         },
         "dimensionEnum": {
             "type": "string",
-            "enum": ["overworld", "nether", "the_end"]
+            "enum": [
+                "overworld",
+                "nether",
+                "the_end"
+            ]
         },
         "structureEnum": {
             "type": "string",
@@ -2389,6 +2401,22 @@
                 "zombie_head",
                 "zombie_wall_head"
             ]
+        },
+        "mobSpecialRequirementEnum": {
+            "type": "string",
+            "enum": [
+                "when_equipped",
+                "fire_aspect_or_on_fire",
+                "killed_by_skeleton",
+                "player_kill_only",
+                "sheared",
+                "charged_creeper",
+                "fox_mouth",
+                "cat_gift",
+                "periodic_drop",
+                "killed_by_frog",
+                "mob_interaction"
+            ]
         }
     },
     "type": "object",
@@ -2413,7 +2441,11 @@
                     },
                     "renewable": {
                         "type": "string",
-                        "enum": ["yes", "no", "vault_only"],
+                        "enum": [
+                            "yes",
+                            "no",
+                            "vault_only"
+                        ],
                         "$comment": "If block is renewable (infinite), some are 'vault_only', which means they are only renewable when more than 128 players open a vault, which makes them not renewable in singleplayer"
                     },
                     "stackSize": {
@@ -2421,16 +2453,27 @@
                     },
                     "rarityTier": {
                         "type": "string",
-                        "enum": ["common", "uncommon", "rare", "epic"],
+                        "enum": [
+                            "common",
+                            "uncommon",
+                            "rare",
+                            "epic"
+                        ],
                         "default": "common"
                     },
                     "mostDominantColor": {
-                        "type": ["string", "null"],
+                        "type": [
+                            "string",
+                            "null"
+                        ],
                         "pattern": "^#[0-9A-Fa-f]{6}$",
                         "$comment": "Dominant visible texture color in hex, computed via CIELAB + K-Means."
                     },
                     "medianColor": {
-                        "type": ["string", "null"],
+                        "type": [
+                            "string",
+                            "null"
+                        ],
                         "pattern": "^#[0-9A-Fa-f]{6}$",
                         "$comment": "Median texture color in hex."
                     },
@@ -2466,7 +2509,11 @@
                             },
                             "transparency": {
                                 "type": "string",
-                                "enum": ["transparent", "partial", "opaque"]
+                                "enum": [
+                                    "transparent",
+                                    "partial",
+                                    "opaque"
+                                ]
                             },
                             "waterloggable": {
                                 "type": "boolean"
@@ -2543,7 +2590,9 @@
                                 "$comment": "If this item is fire resistant (e.g. netherite)"
                             }
                         },
-                        "required": ["fireResistant"]
+                        "required": [
+                            "fireResistant"
+                        ]
                     },
                     "edible": {
                         "type": "object",
@@ -2568,11 +2617,18 @@
                     },
                     "breaking": {
                         "type": "object",
-                        "required": ["requiresSilkTouch", "instantBreaking"],
+                        "required": [
+                            "requiresSilkTouch",
+                            "instantBreaking"
+                        ],
                         "properties": {
                             "requiresSilkTouch": {
                                 "type": "string",
-                                "enum": ["silk_touch_only", "yes", "no"],
+                                "enum": [
+                                    "silk_touch_only",
+                                    "yes",
+                                    "no"
+                                ],
                                 "$comment": "Block requires Silk Touch to drop in this form"
                             },
                             "requiresSpecialToolsToDrop": {
@@ -2658,14 +2714,20 @@
                                                 "type": "string"
                                             }
                                         },
-                                        "required": ["structures"]
+                                        "required": [
+                                            "structures"
+                                        ]
                                     }
                                 },
-                                "required": ["dimensions"]
+                                "required": [
+                                    "dimensions"
+                                ]
                             },
                             "generatedLoot": {
                                 "type": "object",
-                                "required": ["structures"],
+                                "required": [
+                                    "structures"
+                                ],
                                 "properties": {
                                     "structures": {
                                         "type": "array",
@@ -2706,7 +2768,10 @@
                                                     "type": "string"
                                                 }
                                             },
-                                            "required": ["structure", "chests"],
+                                            "required": [
+                                                "structure",
+                                                "chests"
+                                            ],
                                             "additionalProperties": false,
                                             "allOf": [
                                                 {
@@ -3233,7 +3298,11 @@
                                 "minItems": 1,
                                 "items": {
                                     "type": "object",
-                                    "required": ["mob", "chance", "quantity"],
+                                    "required": [
+                                        "mob",
+                                        "chance",
+                                        "quantity"
+                                    ],
                                     "properties": {
                                         "mob": {
                                             "$ref": "#/definitions/mobEnum"
@@ -3248,6 +3317,9 @@
                                         },
                                         "comment": {
                                             "type": "string"
+                                        },
+                                        "specialRequirement": {
+                                            "$ref": "#/definitions/mobSpecialRequirementEnum"
                                         }
                                     }
                                 }
@@ -3337,15 +3409,21 @@
                                                 "type": "string"
                                             }
                                         },
-                                        "required": ["chance"]
+                                        "required": [
+                                            "chance"
+                                        ]
                                     }
                                 },
                                 "anyOf": [
                                     {
-                                        "required": ["villagers"]
+                                        "required": [
+                                            "villagers"
+                                        ]
                                     },
                                     {
-                                        "required": ["wanderingTrader"]
+                                        "required": [
+                                            "wanderingTrader"
+                                        ]
                                     }
                                 ]
                             },
@@ -3354,7 +3432,11 @@
                                 "properties": {
                                     "category": {
                                         "type": "string",
-                                        "enum": ["fish", "treasure", "junk"]
+                                        "enum": [
+                                            "fish",
+                                            "treasure",
+                                            "junk"
+                                        ]
                                     },
                                     "chance": {
                                         "type": "number",
@@ -3368,7 +3450,11 @@
                                         "type": "string"
                                     }
                                 },
-                                "required": ["category", "chance", "quantity"]
+                                "required": [
+                                    "category",
+                                    "chance",
+                                    "quantity"
+                                ]
                             },
                             "bartering": {
                                 "type": "object",
@@ -3385,7 +3471,10 @@
                                         "type": "string"
                                     }
                                 },
-                                "required": ["chance", "quantity"]
+                                "required": [
+                                    "chance",
+                                    "quantity"
+                                ]
                             },
                             "smelting": {
                                 "type": "object",
@@ -3408,7 +3497,10 @@
                                         "minimum": 0
                                     }
                                 },
-                                "required": ["smeltable", "xpFromSmelting"]
+                                "required": [
+                                    "smeltable",
+                                    "xpFromSmelting"
+                                ]
                             },
                             "difficultyToObtain": {
                                 "type": "integer",
@@ -3424,7 +3516,9 @@
                     },
                     "compostable": {
                         "type": "object",
-                        "required": ["chance"],
+                        "required": [
+                            "chance"
+                        ],
                         "properties": {
                             "chance": {
                                 "type": "number",
@@ -3443,7 +3537,10 @@
                     },
                     "fuel": {
                         "type": "object",
-                        "required": ["burnTimeSeconds", "numberOfItemsSmelted"],
+                        "required": [
+                            "burnTimeSeconds",
+                            "numberOfItemsSmelted"
+                        ],
                         "properties": {
                             "burnTimeSeconds": {
                                 "type": "number",
@@ -3473,7 +3570,10 @@
                                     "$ref": "#/definitions/quantitySpec"
                                 }
                             },
-                            "required": ["id", "levels"]
+                            "required": [
+                                "id",
+                                "levels"
+                            ]
                         }
                     }
                 },
@@ -3490,24 +3590,28 @@
                 ],
                 "oneOf": [
                     {
-                        "$comment": "Block item — isBlock must be true and block sub-object must be present. Item-only fields (damage, durability, possibleEnchantments) are forbidden.",
+                        "$comment": "Block item \u2014 isBlock must be true and block sub-object must be present. Item-only fields (damage, durability, possibleEnchantments) are forbidden.",
                         "properties": {
                             "isBlock": {
                                 "const": true
                             },
                             "item": false
                         },
-                        "required": ["block"]
+                        "required": [
+                            "block"
+                        ]
                     },
                     {
-                        "$comment": "Non-block item — isBlock must be false and block sub-object must not be present.",
+                        "$comment": "Non-block item \u2014 isBlock must be false and block sub-object must not be present.",
                         "properties": {
                             "isBlock": {
                                 "const": false
                             },
                             "block": false
                         },
-                        "required": ["item"]
+                        "required": [
+                            "item"
+                        ]
                     }
                 ]
             }

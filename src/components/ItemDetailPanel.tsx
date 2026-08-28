@@ -20,6 +20,7 @@ import {
     formatRenewable,
     getRarityColor,
     ROMAN_NUMERALS,
+    MOB_SPECIAL_REQUIREMENTS,
 } from './detailpanel/utils'
 import { ToolIcon } from './detailpanel/ToolIcon'
 import { ItemIcon } from './detailpanel/ItemIcon'
@@ -736,35 +737,58 @@ export function ItemDetailPanel({ item, itemId }: ItemDetailPanelProps) {
                         className="flex flex-row h-full overflow-x-auto scrollbar-hidden items-center cursor-grab select-none active:cursor-grabbing [&>*:first-child]:ml-auto [&>*:last-child]:mr-auto"
                         {...mobLootDragProps}
                     >
-                        {mobLoot.map((loot, idx) => (
-                            <React.Fragment key={idx}>
-                                <div className="flex flex-none items-center gap-4 px-6 min-w-50 h-3/4">
-                                    <MobIcon mob={loot.mob} />
-                                    <div className="flex flex-col h-full py-1 min-w-24">
-                                        <span className="text-base font-bold min-w-0 uppercase tracking-tight text-foreground/90 truncate">
-                                            {loot.mob.replace(/_/g, ' ')}
-                                        </span>
-                                        <div className="flex gap-2 items-baseline">
-                                            <span className="text-base mt-1 font-semibold font-mono text-emerald-400/90 leading-none">
-                                                {formatChance(loot.chance)}
-                                            </span>
-                                            <div className="shrink-0 h-3 w-px bg-white/20" />
-                                            <span className="text-sm font-mono text-muted-foreground tracking-tighter">
-                                                {formatQuantity(loot.quantity)}x
-                                            </span>
+                        {mobLoot.map((loot, idx) => {
+                            const reqConfig = loot.specialRequirement
+                                ? MOB_SPECIAL_REQUIREMENTS[
+                                      loot.specialRequirement
+                                  ]
+                                : null
+                            return (
+                                <React.Fragment key={idx}>
+                                    <div className="flex flex-none items-center gap-4 px-6 min-w-50 h-3/4">
+                                        <MobIcon mob={loot.mob} />
+                                        <div className="flex flex-col h-full py-1 min-w-24">
+                                            <div className="flex items-center gap-1.5 flex-wrap">
+                                                <span className="text-base font-bold min-w-0 uppercase tracking-tight text-foreground/90 truncate">
+                                                    {loot.mob.replace(/_/g, ' ')}
+                                                </span>
+                                                {reqConfig && (
+                                                    <span
+                                                        className={cn(
+                                                            'text-[10px] uppercase font-semibold px-1.5 py-0.5 rounded border leading-none tracking-tight whitespace-nowrap',
+                                                            reqConfig.className
+                                                        )}
+                                                        title={reqConfig.label}
+                                                    >
+                                                        {reqConfig.shortLabel}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <div className="flex gap-2 items-baseline">
+                                                <span className="text-base mt-1 font-semibold font-mono text-emerald-400/90 leading-none">
+                                                    {formatChance(loot.chance)}
+                                                </span>
+                                                <div className="shrink-0 h-3 w-px bg-white/20" />
+                                                <span className="text-sm font-mono text-muted-foreground tracking-tighter">
+                                                    {formatQuantity(
+                                                        loot.quantity
+                                                    )}
+                                                    x
+                                                </span>
+                                            </div>
+                                            {(loot.comment && (
+                                                <p className="text-sm text-muted-foreground/70 max-w-48 italic leading-tight line-clamp-2 mt-0.5">
+                                                    {loot.comment}
+                                                </p>
+                                            )) || <div className="mt-1" />}
                                         </div>
-                                        {(loot.comment && (
-                                            <p className="text-sm text-muted-foreground/70 max-w-44 italic leading-tight line-clamp-2 mt-0.5">
-                                                {loot.comment}
-                                            </p>
-                                        )) || <div className="mt-1" />}
                                     </div>
-                                </div>
-                                {idx < mobLoot.length - 1 && (
-                                    <div className="h-[50%] w-px bg-white/10 shrink-0" />
-                                )}
-                            </React.Fragment>
-                        ))}
+                                    {idx < mobLoot.length - 1 && (
+                                        <div className="h-[50%] w-px bg-white/10 shrink-0" />
+                                    )}
+                                </React.Fragment>
+                            )
+                        })}
                     </div>
                 ) : (
                     <div className="flex-1 flex flex-col items-center justify-center pb-5">

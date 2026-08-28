@@ -217,14 +217,33 @@ export function SchemaForm({ data, onChange }: SchemaFormProps) {
                     }
                 }
 
+                const isNumeric =
+                    fieldSchema.type === 'number' ||
+                    fieldSchema.type === 'integer' ||
+                    (Array.isArray(fieldSchema.enum) &&
+                        typeof fieldSchema.enum[0] === 'number')
+
                 return (
                     <div key={path.join('.')}>
                         <EnumSelect
                             label={label}
                             options={options}
-                            value={(value as string) || ''}
-                            onChange={(val) => handleFieldChange(path, val)}
+                            value={
+                                value !== undefined && value !== null
+                                    ? (value as string | number)
+                                    : ''
+                            }
+                            onChange={(val) => {
+                                if (val === '') {
+                                    handleFieldChange(path, undefined)
+                                } else if (isNumeric) {
+                                    handleFieldChange(path, Number(val))
+                                } else {
+                                    handleFieldChange(path, val)
+                                }
+                            }}
                             triggerClassName={validationRingClass(getErr(path))}
+                            isOptional={isOptional}
                         />
                         {getErr(path) && (
                             <p

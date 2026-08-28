@@ -37,6 +37,19 @@ export type Transparency = 'transparent' | 'partial' | 'opaque'
 
 export type Obtainability = 'survival' | 'creative_only' | 'unobtainable'
 
+export type MobDropSpecialRequirement =
+    | 'when_equipped'
+    | 'fire_aspect_or_on_fire'
+    | 'killed_by_skeleton'
+    | 'player_kill_only'
+    | 'sheared'
+    | 'charged_creeper'
+    | 'fox_mouth'
+    | 'cat_gift'
+    | 'periodic_drop'
+    | 'killed_by_frog'
+    | 'mob_interaction'
+
 export interface QuantitySpecObject {
     min: number
     max: number
@@ -129,6 +142,7 @@ export interface ItemData {
             mob: string
             chance: number
             quantity: QuantitySpec
+            specialRequirement?: MobDropSpecialRequirement
             comment?: string
         }[]
         blockLoot?: {

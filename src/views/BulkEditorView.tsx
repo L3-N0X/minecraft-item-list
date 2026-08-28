@@ -70,6 +70,7 @@ import {
     type TableRowData,
 } from '@/components/bulkeditor/utils'
 import { YesNoCell } from '@/components/bulkeditor/YesNoCell'
+import { MOB_SPECIAL_REQUIREMENTS } from '@/components/detailpanel/utils'
 import defaultSchema from '../schema/schema.json'
 import { MultiEnumSelect } from '@/components/schema-fields/MultiEnumSelect'
 
@@ -825,6 +826,8 @@ export function BulkEditorView() {
                     requiresSilkTouch: false,
                     craftable: false,
                     hasMobLoot: false,
+                    mobs: [],
+                    mobSpecialRequirements: [],
                     hasBlockLoot: false,
                     hasTrading: false,
                     hasSmelting: false,
@@ -870,6 +873,14 @@ export function BulkEditorView() {
                 requiresSilkTouch: item.breaking?.requiresSilkTouch === 'yes',
                 craftable: !!item.obtaining?.craftable,
                 hasMobLoot: !!item.obtaining?.mobLoot?.length,
+                mobs:
+                    item.obtaining?.mobLoot
+                        ?.map((m) => m.mob)
+                        .filter(Boolean) ?? [],
+                mobSpecialRequirements:
+                    item.obtaining?.mobLoot?.flatMap((m) =>
+                        m.specialRequirement ? [m.specialRequirement] : []
+                    ) ?? [],
                 hasBlockLoot: !!item.obtaining?.blockLoot?.length,
                 hasTrading: !!item.obtaining?.trading,
                 hasSmelting: !!item.obtaining?.smelting,
@@ -1064,6 +1075,32 @@ export function BulkEditorView() {
                 value: shape,
             }))
 
+        const mobsSet = new Set<string>()
+        data.forEach((d) => d.mobs.forEach((m) => mobsSet.add(m)))
+        const mobsOptions = Array.from(mobsSet)
+            .sort()
+            .map((mob) => ({
+                label: mob
+                    .replace(/_/g, ' ')
+                    .replace(/\b\w/g, (l) => l.toUpperCase()),
+                value: mob,
+            }))
+
+        const mobSpecialReqSet = new Set<string>()
+        data.forEach((d) =>
+            d.mobSpecialRequirements.forEach((r) => mobSpecialReqSet.add(r))
+        )
+        const mobSpecialReqOptions = Array.from(mobSpecialReqSet)
+            .sort()
+            .map((req) => ({
+                label:
+                    MOB_SPECIAL_REQUIREMENTS[req]?.label ??
+                    req
+                        .replace(/_/g, ' ')
+                        .replace(/\b\w/g, (l) => l.toUpperCase()),
+                value: req,
+            }))
+
         return {
             categories: categoryOptions,
             difficulty: difficultyOptions,
@@ -1080,6 +1117,8 @@ export function BulkEditorView() {
             obtainability: obtainabilityOptions,
             dimensions: dimensionsOptions,
             isBlock: isBlockOptions,
+            mobs: mobsOptions,
+            mobSpecialRequirements: mobSpecialReqOptions,
         }
     }, [categories, data])
 
@@ -1333,6 +1372,177 @@ export function BulkEditorView() {
                     <YesNoCell value={row.getValue('hasMobLoot') as boolean} />
                 ),
                 filterFn: binaryFilterFn,
+            },
+            {
+                accessorKey: 'mobs',
+                size: 180,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Mobs"
+                        isFilterable
+                        options={filterOptions.mobs}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const mobs = row.getValue('mobs') as string[]
+                    const count = mobs.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 3) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {mobs.map((mob) => (
+                                    <Badge
+                                        key={mob}
+                                        variant="outline"
+                                        className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                    >
+                                        {mob
+                                            .replace(/_/g, ' ')
+                                            .replace(/\b\w/g, (l) =>
+                                                l.toUpperCase()
+                                            )}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} mobs
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-80 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {mobs.map((mob) => (
+                                        <Badge
+                                            key={mob}
+                                            variant="outline"
+                                            className="text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm"
+                                        >
+                                            {mob
+                                                .replace(/_/g, ' ')
+                                                .replace(/\b\w/g, (l) =>
+                                                    l.toUpperCase()
+                                                )}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowMobs = row.getValue(id) as string[]
+                    return value.some((v) => rowMobs.includes(v))
+                },
+            },
+            {
+                accessorKey: 'mobSpecialRequirements',
+                size: 200,
+                header: ({ column }) => (
+                    <SortableHeader
+                        column={column}
+                        title="Mob Req."
+                        isFilterable
+                        options={filterOptions.mobSpecialRequirements}
+                    />
+                ),
+                cell: ({ row }) => {
+                    const reqs = row.getValue(
+                        'mobSpecialRequirements'
+                    ) as string[]
+                    const count = reqs.length
+
+                    if (count === 0) {
+                        return (
+                            <span className="text-muted-foreground text-xs">
+                                N/A
+                            </span>
+                        )
+                    }
+
+                    if (count <= 2) {
+                        return (
+                            <div className="flex flex-wrap gap-1 max-w-full overflow-hidden py-1">
+                                {reqs.map((req) => {
+                                    const config = MOB_SPECIAL_REQUIREMENTS[req]
+                                    return (
+                                        <Badge
+                                            key={req}
+                                            variant="outline"
+                                            className={cn(
+                                                'text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm',
+                                                config?.className
+                                            )}
+                                        >
+                                            {config?.shortLabel ?? req}
+                                        </Badge>
+                                    )
+                                })}
+                            </div>
+                        )
+                    }
+
+                    return (
+                        <HoverCard openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px] px-1.5 py-0 rounded-sm cursor-help"
+                                >
+                                    {count} reqs
+                                </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side="top"
+                                className="w-80 p-3 max-h-64 overflow-y-auto"
+                            >
+                                <div className="flex flex-wrap gap-1">
+                                    {reqs.map((req) => {
+                                        const config =
+                                            MOB_SPECIAL_REQUIREMENTS[req]
+                                        return (
+                                            <Badge
+                                                key={req}
+                                                variant="outline"
+                                                className={cn(
+                                                    'text-[10px] px-1.5 py-0 whitespace-nowrap rounded-sm',
+                                                    config?.className
+                                                )}
+                                            >
+                                                {config?.label ?? req}
+                                            </Badge>
+                                        )
+                                    })}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                    )
+                },
+                filterFn: (row, id, value: string[]) => {
+                    if (!value || value.length === 0) return true
+                    const rowReqs = row.getValue(id) as string[]
+                    return value.some((v) => rowReqs.includes(v))
+                },
             },
             {
                 accessorKey: 'hasBlockLoot',

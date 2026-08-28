@@ -13,6 +13,8 @@ export type TableRowData = {
     requiresSilkTouch: boolean
     craftable: boolean
     hasMobLoot: boolean
+    mobs: string[]
+    mobSpecialRequirements: string[]
     hasBlockLoot: boolean
     hasTrading: boolean
     hasSmelting: boolean
