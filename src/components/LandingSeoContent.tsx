@@ -85,7 +85,7 @@ const FAQ_ITEMS: FaqItem[] = [
         question: 'Which Minecraft versions are supported?',
         answer: (
             <>
-                The database is updated for Minecraft <strong>26.2</strong> and
+                The database is updated for Minecraft <strong>26.3</strong> and
                 earlier releases. You can switch between supported versions at
                 any time using the version selector in the top navigation bar.
             </>
@@ -632,7 +632,7 @@ export function LandingSeoContent() {
                         </div>
                         <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                             Notice a missing item, outdated drop rate, or
-                            incorrect stat for Minecraft 26.2? Help us keep the
+                            incorrect stat for Minecraft 26.3? Help us keep the
                             database accurate and up to date by reporting issues
                             or submitting corrections directly on GitHub.
                         </p>
