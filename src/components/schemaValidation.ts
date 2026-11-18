@@ -110,6 +110,41 @@ export function validateItemData(
         }
     }
 
+    // Enforce min <= max on range objects (cannot be expressed in pure Draft-07 JSON Schema)
+    const checkMinMaxRanges = (node: unknown, currentPath: string) => {
+        if (Array.isArray(node)) {
+            for (let i = 0; i < node.length; i++) {
+                checkMinMaxRanges(
+                    node[i],
+                    currentPath ? `${currentPath}.${i}` : String(i)
+                )
+            }
+            return
+        }
+        if (typeof node === 'object' && node !== null) {
+            const record = node as Record<string, unknown>
+            if (
+                typeof record.min === 'number' &&
+                typeof record.max === 'number' &&
+                record.min > record.max &&
+                currentPath &&
+                !errors.has(currentPath)
+            ) {
+                errors.set(currentPath, {
+                    severity: 'error',
+                    message: `min (${record.min}) must be less than or equal to max (${record.max})`,
+                })
+            }
+            for (const [key, val] of Object.entries(record)) {
+                checkMinMaxRanges(
+                    val,
+                    currentPath ? `${currentPath}.${key}` : key
+                )
+            }
+        }
+    }
+    checkMinMaxRanges(data, '')
+
     if (debugLabel !== undefined) {
         console.debug(
             `[schemaValidation] "${debugLabel}" → ${errors.size} issue(s)`,

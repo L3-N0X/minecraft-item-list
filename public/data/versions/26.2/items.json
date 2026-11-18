@@ -618,7 +618,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -3011,7 +3011,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -4522,7 +4522,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -4865,7 +4865,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -6007,7 +6007,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -8471,7 +8471,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -11823,7 +11823,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -15746,7 +15746,7 @@
                         "mob": "polar_bear",
                         "chance": 0.1667,
                         "quantity": {
-                            "min": 90,
+                            "min": 0,
                             "max": 2
                         },
                         "specialRequirement": "fire_aspect_or_on_fire"
@@ -18843,7 +18843,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -19705,7 +19705,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -21130,7 +21130,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -26487,7 +26487,7 @@
                                     "chestName": "chest",
                                     "chance": 0.086,
                                     "quantity": {
-                                        "min": 12,
+                                        "min": 2,
                                         "max": 6
                                     }
                                 }
@@ -33556,7 +33556,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -34279,7 +34279,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -40073,7 +40073,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -42212,7 +42212,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -42932,7 +42932,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -43937,7 +43937,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -44897,7 +44897,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -46236,7 +46236,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -51533,7 +51533,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -52297,7 +52297,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -54545,7 +54545,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -55397,7 +55397,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -59761,7 +59761,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -61604,7 +61604,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -68785,7 +68785,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -75488,7 +75488,7 @@
                 "luminousLevel": 0,
                 "transparency": "transparent",
                 "waterloggable": true,
-                "isBlockEntity": false,
+                "isBlockEntity": true,
                 "bestTools": [
                     "axe"
                 ],
@@ -79763,7 +79763,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,
@@ -81567,7 +81567,7 @@
                 "flammable": false,
                 "catchesFire": true,
                 "waterloggable": false,
-                "isBlockEntity": true,
+                "isBlockEntity": false,
                 "transparency": "transparent",
                 "luminousLevel": 0,
                 "hardness": 0.2,

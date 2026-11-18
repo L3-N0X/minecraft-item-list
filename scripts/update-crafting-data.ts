@@ -184,13 +184,11 @@ async function updateCraftingData() {
     console.log(`Processing ${Object.keys(recipeMap).length} recipes...`)
 
     for (const [recipeId, recipe] of Object.entries(recipeMap)) {
-        if (!recipe.result) continue
-
-        const resultId = recipe.result.id.replace(/^minecraft:/, '')
+        const resultId = recipe.result?.id?.replace(/^minecraft:/, '') ?? null
         let shape: string | null = null
 
         // Handle standard crafting and specialized crafting
-        if (recipe.type.startsWith('minecraft:crafting')) {
+        if (resultId && recipe.type.startsWith('minecraft:crafting')) {
             if (recipe.type === 'minecraft:crafting_shaped') {
                 const pattern = recipe.pattern
                 const rows = pattern.length
@@ -268,7 +266,7 @@ async function updateCraftingData() {
             }
         }
 
-        if (shape) {
+        if (shape && resultId) {
             let shapes = itemRecipeShapes.get(resultId)
             if (!shapes) {
                 shapes = new Set<string>()
@@ -327,6 +325,9 @@ async function updateCraftingData() {
             if ('template' in recipe) collectIngredient(recipe.template)
             if ('base' in recipe) collectIngredient(recipe.base)
             if ('addition' in recipe) collectIngredient(recipe.addition)
+        } else if (recipe.type === 'minecraft:crafting_special_mapextending') {
+            if ('map' in recipe) collectIngredient(recipe.map)
+            if ('material' in recipe) collectIngredient(recipe.material)
         } else if (recipe.type === 'minecraft:crafting_decorated_pot') {
             if ('back' in recipe) collectIngredient(recipe.back)
             if ('front' in recipe) collectIngredient(recipe.front)

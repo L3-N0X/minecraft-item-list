@@ -28,7 +28,7 @@ export type RecipeType =
     | 'minecraft:stonecutting'
 
 export interface RecipeResult {
-    id: string
+    id?: string
     count?: number
 }
 
