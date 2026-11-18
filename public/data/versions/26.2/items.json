@@ -15746,7 +15746,7 @@
                         "mob": "polar_bear",
                         "chance": 0.1667,
                         "quantity": {
-                            "min": 90,
+                            "min": 0,
                             "max": 2
                         },
                         "specialRequirement": "fire_aspect_or_on_fire"
@@ -26487,7 +26487,7 @@
                                     "chestName": "chest",
                                     "chance": 0.086,
                                     "quantity": {
-                                        "min": 12,
+                                        "min": 2,
                                         "max": 6
                                     }
                                 }

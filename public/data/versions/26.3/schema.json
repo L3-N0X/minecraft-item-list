@@ -28,16 +28,45 @@
         "quantitySpec": {
             "oneOf": [
                 {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 {
                     "type": "object",
                     "properties": {
                         "min": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": 0
                         },
                         "max": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    },
+                    "required": [
+                        "min",
+                        "max"
+                    ],
+                    "additionalProperties": false
+                }
+            ]
+        },
+        "enchantmentLevelsSpec": {
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "min": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "max": {
+                            "type": "integer",
+                            "minimum": 1
                         }
                     },
                     "required": [
@@ -2552,9 +2581,14 @@
         }
     },
     "type": "object",
+    "required": [
+        "minecraft_version",
+        "items"
+    ],
     "properties": {
         "minecraft_version": {
             "type": "string",
+            "const": "26.3",
             "description": "The Minecraft version this item list targets"
         },
         "items": {
@@ -3725,7 +3759,7 @@
                                     "$ref": "#/definitions/enchantmentEnum"
                                 },
                                 "levels": {
-                                    "$ref": "#/definitions/quantitySpec"
+                                    "$ref": "#/definitions/enchantmentLevelsSpec"
                                 }
                             },
                             "required": [
@@ -3748,7 +3782,7 @@
                 ],
                 "oneOf": [
                     {
-                        "$comment": "Block item — isBlock must be true and block sub-object must be present. Item-only fields (damage, durability, possibleEnchantments) are forbidden.",
+                        "$comment": "Block item — isBlock must be true and block sub-object must be present. The item sub-object is forbidden, while top-level possibleEnchantments is allowed (e.g. carved_pumpkin).",
                         "properties": {
                             "isBlock": {
                                 "const": true

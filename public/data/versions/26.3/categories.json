@@ -207,7 +207,6 @@
   "hanging_sign": [
     "bamboo_hanging_sign",
     "crimson_hanging_sign",
-    "dark_oak_sign",
     "jungle_hanging_sign",
     "pale_oak_hanging_sign",
     "warped_hanging_sign",
@@ -503,7 +502,6 @@
     "bamboo_stairs",
     "birch_stairs",
     "brick_stairs",
-    "bricks",
     "cherry_stairs",
     "cobbled_deepslate_stairs",
     "cobblestone_stairs",
@@ -519,7 +517,6 @@
     "mossy_cobblestone_stairs",
     "mossy_stone_brick_stairs",
     "mud_brick_stairs",
-    "mud_brick_wall",
     "nether_brick_stairs",
     "oak_stairs",
     "pale_oak_stairs",
@@ -791,7 +788,9 @@
     "polished_cinnabar_wall",
     "polished_sulfur_wall",
     "sulfur_brick_wall",
-    "sulfur_wall"
+    "sulfur_wall",
+    "mud_brick_wall",
+    "prismarine_wall"
   ],
   "pottery_sherd": [
     "angler_pottery_sherd",
@@ -2287,7 +2286,6 @@
     "stone_sword",
     "stone_axe",
     "stone_spear",
-    "wooden_spear",
     "infested_chiseled_stone_bricks",
     "infested_cobblestone",
     "infested_cracked_stone_bricks",
@@ -2459,6 +2457,7 @@
     "golden_spear",
     "netherite_spear",
     "stone_spear",
+    "wooden_spear",
     "diamond_axe",
     "diamond_hoe",
     "diamond_pickaxe",
